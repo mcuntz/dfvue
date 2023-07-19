@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dfvue.dfvmain &#8212; dfvue 0.0.0.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dfvue.dfvmain</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Main dfvue window.</span>
+
+<span class="sd">This sets up the main notebook window with the plotting panels.</span>
+
+<span class="sd">This module was written by Matthias Cuntz while at Institut National de</span>
+<span class="sd">Recherche pour l&#39;Agriculture, l&#39;Alimentation et l&#39;Environnement (INRAE), Nancy,</span>
+<span class="sd">France.</span>
+
+<span class="sd">:copyright: Copyright 2023- Matthias Cuntz - mc (at) macu (dot) de</span>
+<span class="sd">:license: MIT License, see LICENSE for details.</span>
+
+<span class="sd">.. moduleauthor:: Matthias Cuntz</span>
+
+<span class="sd">The following classes are provided:</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   dfvMain</span>
+
+<span class="sd">History</span>
+<span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Using the themed widget set introduced in Tk 8.5.&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.dfvscatter</span> <span class="kn">import</span> <span class="n">dfvScatter</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dfvMain&#39;</span><span class="p">]</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Window with plot panels</span>
+<span class="c1">#</span>
+
+<div class="viewcode-block" id="dfvMain"><a class="viewcode-back" href="../../dfvmain.html#dfvue.dfvmain.dfvMain">[docs]</a><span class="k">class</span> <span class="nc">dfvMain</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main dfvue notebook window with the plotting panels.</span>
+
+<span class="sd">    Sets up the notebook layout with the panels.</span>
+
+<span class="sd">    Contains the method to check if csv file has changed.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># Window setup</span>
+    <span class="c1">#</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span>   <span class="o">=</span> <span class="s1">&#39;dfvMain&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="n">master</span>      <span class="c1"># master window, i.e. root</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top</span>    <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">top</span>  <span class="c1"># top window</span>
+
+        <span class="c1"># Notebook for tabs for future plot types</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span> <span class="o">=</span> <span class="n">dfvScatter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+        <span class="c1"># self.tabs.bind(&quot;&lt;&lt;NotebookTabChanged&gt;&gt;&quot;, self.check_new_csv)</span>
+        <span class="c1"># self.tabs.bind(&quot;&lt;Enter&gt;&quot;, self.check_new_csv)</span>
+
+    <span class="c1"># #</span>
+    <span class="c1"># # Methods</span>
+    <span class="c1"># #</span>
+
+    <span class="c1"># def check_new_csv(self, event):</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     Command called if notebook panel changed or mouse pointer enters a</span>
+    <span class="c1">#     window. It checks if csv file was changed in any panel of any window</span>
+    <span class="c1">#     and re-initialises all plot panels (of the current window).</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     ido = False</span>
+    <span class="c1">#     if ( (self.tab_scatter.top.df is None) and</span>
+    <span class="c1">#          (self.tab_scatter.df is None) ):</span>
+    <span class="c1">#         ido = False</span>
+    <span class="c1">#     elif ((self.tab_scatter.top.df is None) or</span>
+    <span class="c1">#           (self.tab_scatter.df is None)):</span>
+    <span class="c1">#         ido = True</span>
+    <span class="c1">#     elif (not self.tab_scatter.df.equals(self.tab_scatter.top.df)):</span>
+    <span class="c1">#         ido = True</span>
+    <span class="c1">#     elif (not self.tab_scatter.top.df.equals(self.tab_scatter.df)):</span>
+    <span class="c1">#         ido = True</span>
+
+    <span class="c1">#     if ido:</span>
+    <span class="c1">#         self.tab_scatter.reinit()</span>
+    <span class="c1">#         self.tab_scatter.redraw()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">dfvue</a></h1>
+
+
+
+<p class="blurb">A minimal GUI for a quick view of csv files.</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">dfvue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package.html">API</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/mcuntz/dfvue">dfvue @ GitHub</a></li>
+    
+    <li class="toctree-l1"><a href="https://doi.org/10.5281/zenodo.5574388">dfvue @ Zenodo</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/dfvue">dfvue @ PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://anaconda.org/conda-forge/dfvue">dfvue @ conda-forge</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020-2023, Matthias Cuntz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

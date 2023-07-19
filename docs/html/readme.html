@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dfvue &#8212; dfvue 0.0.0.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" />
+    <link rel="prev" title="Contents" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="dfvue">
+<h1>dfvue<a class="headerlink" href="#dfvue" title="Permalink to this heading">¶</a></h1>
+<section id="a-simple-gui-to-view-csv-files">
+<h2>A simple GUI to view csv files<a class="headerlink" href="#a-simple-gui-to-view-csv-files" title="Permalink to this heading">¶</a></h2>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.4459598"><img alt="Zenodo DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.4459598.svg" /></a>
+<a class="reference external image-reference" href="https://badge.fury.io/py/dfvue"><img alt="PyPI version" src="https://badge.fury.io/py/dfvue.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/mcuntz/dfvue/blob/master/LICENSE"><img alt="License" src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" /></a>
+<a class="reference external image-reference" href="https://github.com/mcuntz/dfvue/actions"><img alt="Build status" src="https://github.com/mcuntz/dfvue/workflows/Continuous%20Integration/badge.svg?branch=main" /></a>
+</section>
+<section id="about-dfvue">
+<h2>About dfvue<a class="headerlink" href="#about-dfvue" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is a minimal GUI for a quick view of csv files. It uses an input panel
+similar to Excel to check visually that the csv file is read correctly. It
+provides most options of pandas’ <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a> method to be very versatile on the
+possible csv format.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is a Python script that can be called from within Python or as a
+command line tool. It is not supposed to produce publication-ready plots but
+rather provide a quick overview of the csv file.</p>
+<p>The complete documentation for <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is available from:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://mcuntz.github.io/dfvue/">https://mcuntz.github.io/dfvue/</a></p>
+</div></blockquote>
+</section>
+<section id="quick-usage-guide">
+<h2>Quick usage guide<a class="headerlink" href="#quick-usage-guide" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> can be run from the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dfvue<span class="w"> </span>csv_file.csv
+</pre></div>
+</div>
+<p>or from within Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dfvue</span> <span class="kn">import</span> <span class="n">dfvue</span>
+<span class="n">dfvue</span><span class="p">(</span><span class="s1">&#39;csv_file.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where the csv file is optional. The latter can be left out and a csv file can be
+opened with the “Open File” button from within <code class="docutils literal notranslate"><span class="pre">dfvue</span></code>.</p>
+<p>Note, <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses the <cite>TkAgg</cite> backend of <cite>matplotlib</cite>. It must be called
+before any other call to <cite>matplotlib</cite>. This also means that you cannot launch it
+from within <cite>iPython</cite> if it was launched with <cite>–pylab</cite>. It can be called from
+within a standard <cite>iPython</cite>, though, or using <cite>ipython –gui tk</cite>.</p>
+<section id="general-layout">
+<h3>General layout<a class="headerlink" href="#general-layout" title="Permalink to this heading">¶</a></h3>
+<p>On opening, <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> presents currently only one panel for producing
+scatter/line plots. This is the look in macOS light mode (click on figures to
+open larger pictures):</p>
+<a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/scatter_panel_light.png"><img alt="Graphical documentation of dfvue layout" class="align-left" src="https://mcuntz.github.io/dfvue/images/scatter_panel_light.png" style="width: 860px;" /></a>
+<p>The pane is organised in this fashion: the plotting canvas, the Matplotlib
+navigation toolbar and the pane, where one can choose the plotting variables and
+plotting options. You can open another, identical window for the same csv file
+with the button “New Window” on the top right. You can then also read in a new
+csv file in one of the windows with the button “Open File”.</p>
+</section>
+<section id="reading-a-csv-file">
+<h3>Reading a csv file<a class="headerlink" href="#reading-a-csv-file" title="Permalink to this heading">¶</a></h3>
+<p>The “Read csv file” window opens when a csv file is given.</p>
+<a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/read_csv_panel.png"><img alt="Read csv file window" class="align-left" src="https://mcuntz.github.io/dfvue/images/read_csv_panel.png" style="width: 860px;" /></a>
+<p>The csv file can be given on the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dfvue<span class="w"> </span>csv_file.csv
+</pre></div>
+</div>
+<p>from within Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dfvue</span> <span class="kn">import</span> <span class="n">dfvue</span>
+<span class="n">dfvue</span><span class="p">(</span><span class="s1">&#39;csv_file.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or being selected from the “Choose csv file” selector that opens when hitting
+the button “Open File”.</p>
+<p>The “Read csv file” window reads the first 40 rows of the csv file with pandas’
+<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a> method using the options given in the pane. It shows the resulting
+<cite>pandas.DataFrame</cite> in tabulated format. Changing focus from one option entry to
+another, for example by hitting the &lt;tab&gt; key, re-reads the first 40 rows of the
+csv file with <cite>pandas.read_csv</cite> using the selected options in the form. Hitting
+&lt;enter&gt; or &lt;return&gt; within the window reads the entire csv file using the
+selected options and returns to the plotting panels. This is the same than
+pressing the “Read csv” button in the lower right corner.</p>
+<p>The options in the form are pandas’ <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a> default options except for
+<cite>parse_date</cite>, which is set to <cite>True</cite> instead of <cite>False</cite> here. Hover over the
+entry boxes to see explanations of the options in the tooltip.</p>
+<p>If the csv file includes a Date/Time column, it is best to set this column as
+the index of the <cite>pandas.DataFrame</cite> by using <cite>index_col</cite>. Correct <cite>datetime</cite> is
+indicated if the index has the data type <cite>datetime64[ns]</cite> in the plot panels.
+This is then correctly interpreted by the underlying Matplotlib when plotting,
+zooming, or panning the axes. <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> sets the index if <cite>index_col</cite> is used
+but also provides the original column.</p>
+<p><cite>missing_value</cite> is not an option of pandas’ <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a>. It is here for
+convenience and any number entered in <cite>missing_value</cite> will be added to pandas
+<cite>na_values</cite>.</p>
+</section>
+<section id="scatter-line-panel">
+<h3>Scatter/Line panel<a class="headerlink" href="#scatter-line-panel" title="Permalink to this heading">¶</a></h3>
+<p>Here is the Scatter/Line panel in macOS dark mode, describing all buttons,
+sliders, entry boxes, spinboxes, and menus:</p>
+<a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/scatter_panel_dark.png"><img alt="Graphical documentation of Scatter/Line panel" class="align-left" src="https://mcuntz.github.io/dfvue/images/scatter_panel_dark.png" style="width: 860px;" /></a>
+<p>The default plot is a line plot with solid lines (line style ‘ls’ is ‘-‘). One
+can set line style ‘ls’ to None and set a marker symbol, e.g. ‘o’ for circles,
+to get a scatter plot. A large variety of line styles, marker symbols and color
+notations are supported.</p>
+</section>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is distributed under the MIT License. See the <a class="reference external" href="https://github.com/mcuntz/dfvue/blob/main/LICENSE">LICENSE</a> file for
+details.</p>
+<p>Copyright (c) 2023- Matthias Cuntz</p>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses the <a class="reference external" href="https://github.com/rdbende/Azure-ttk-theme">Azure</a> theme (v2.0) by <a class="reference external" href="https://github.com/rdbende">rdbende</a> on Linux and Windows.</p>
+<p>Standalone applications are produced with <a class="reference external" href="https://cx-freeze.readthedocs.io/en/latest/">cx_Freeze</a>, currently maintained by
+<a class="reference external" href="https://github.com/marcelotduarte">Marcelo Duarte</a>.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">dfvue</a></h1>
+
+
+
+<p class="blurb">A minimal GUI for a quick view of csv files.</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dfvue</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-gui-to-view-csv-files">A simple GUI to view csv files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-dfvue">About dfvue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-usage-guide">Quick usage guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package.html">API</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/mcuntz/dfvue">dfvue @ GitHub</a></li>
+    
+    <li class="toctree-l1"><a href="https://doi.org/10.5281/zenodo.5574388">dfvue @ Zenodo</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/dfvue">dfvue @ PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://anaconda.org/conda-forge/dfvue">dfvue @ conda-forge</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Contents</a></li>
+      <li>Next: <a href="install.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020-2023, Matthias Cuntz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/readme.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

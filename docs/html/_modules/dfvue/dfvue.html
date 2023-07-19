@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dfvue.dfvue &#8212; dfvue 0.0.0.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dfvue.dfvue</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calling routine of dfvue</span>
+
+<span class="sd">The calling routine sets up the toplevel root window and gets an</span>
+<span class="sd">instance of the dfvMain class.</span>
+
+<span class="sd">This module was written by Matthias Cuntz while at Institut National de</span>
+<span class="sd">Recherche pour l&#39;Agriculture, l&#39;Alimentation et l&#39;Environnement (INRAE), Nancy,</span>
+<span class="sd">France.</span>
+
+<span class="sd">:copyright: Copyright 2023- Matthias Cuntz - mc (at) macu (dot) de</span>
+<span class="sd">:license: MIT License, see LICENSE for details.</span>
+
+<span class="sd">.. moduleauthor:: Matthias Cuntz</span>
+
+<span class="sd">The following functions are provided:</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   dfvue</span>
+
+<span class="sd">History</span>
+<span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
+<span class="sd">      adapted ncvue.py</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Using the themed widget set introduced in Tk 8.5.&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># import matplotlib as mpl</span>
+<span class="c1"># mpl.use(&#39;TkAgg&#39;)</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">.dfvmain</span> <span class="kn">import</span> <span class="n">dfvMain</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dfvue&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="dfvue"><a class="viewcode-back" href="../../dfvue.html#dfvue.dfvue.dfvue">[docs]</a><span class="k">def</span> <span class="nf">dfvue</span><span class="p">(</span><span class="n">csvfile</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">miss</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The main function to start the data frame GUI.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    csvfile : str, optional</span>
+<span class="sd">        Name of csv file (default: &#39;&#39;).</span>
+<span class="sd">    miss : float, optional</span>
+<span class="sd">        Set ``miss`` to NaN in pandas.DataFrame</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># print(mpl.get_backend())</span>
+    <span class="n">ios</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span>  <span class="c1"># Windows, Darwin, Linux</span>
+    <span class="k">if</span> <span class="n">ios</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
+        <span class="c1"># make Windows aware of high resolution displays</span>
+        <span class="c1"># https://stackoverflow.com/questions/41315873/attempting-to-resolve-blurred-tkinter-text-scaling-on-windows-10-high-dpi-disp</span>
+        <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">windll</span>
+        <span class="n">windll</span><span class="o">.</span><span class="n">shcore</span><span class="o">.</span><span class="n">SetProcessDpiAwareness</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Pyinstaller sets _MEIPASS if macOS app</span>
+    <span class="n">bundle_dir</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_MEIPASS&#39;</span><span class="p">,</span>
+                         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+
+    <span class="n">top</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+    <span class="n">top</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>
+    <span class="c1"># top.option_add(&quot;*Font&quot;, &quot;Helvetica 10&quot;)</span>
+
+    <span class="c1"># Check light/dark mode</span>
+    <span class="c1"># https://stackoverflow.com/questions/65294987/detect-os-dark-mode-in-python</span>
+
+    <span class="c1"># style = ttk.Style()</span>
+    <span class="c1"># print(style.theme_names(), style.theme_use())</span>
+    <span class="k">if</span> <span class="n">ios</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
+        <span class="n">theme</span> <span class="o">=</span> <span class="s1">&#39;aqua&#39;</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">style</span><span class="o">.</span><span class="n">theme_use</span><span class="p">(</span><span class="n">theme</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">elif</span> <span class="n">ios</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">option_add</span><span class="p">(</span><span class="s2">&quot;*Font&quot;</span><span class="p">,</span> <span class="s2">&quot;Helvetica 10&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+        <span class="c1"># standard Windows themes</span>
+        <span class="c1"># (&#39;winnative&#39;, &#39;clam&#39;, &#39;alt&#39;, &#39;default&#39;, &#39;classic&#39;, &#39;vista&#39;,</span>
+        <span class="c1">#  &#39;xpnative&#39;)</span>
+        <span class="c1"># theme = &#39;vista&#39;</span>
+        <span class="c1"># style = ttk.Style()</span>
+        <span class="c1"># style.theme_use(theme)</span>
+
+        <span class="c1"># &#39;azure&#39; v2.x, &#39;sun-valley&#39;, &#39;forest&#39; of rdbende</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="n">bundle_dir</span> <span class="o">+</span> <span class="s1">&#39;/themes/azure-2.0/azure.tcl&#39;</span><span class="p">)</span>
+        <span class="n">theme</span> <span class="o">=</span> <span class="s1">&#39;light&#39;</span>  <span class="c1"># light, dark</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;set_theme&quot;</span><span class="p">,</span> <span class="n">theme</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ios</span> <span class="o">==</span> <span class="s1">&#39;Linux&#39;</span><span class="p">:</span>
+        <span class="c1"># standard Linux schemes</span>
+        <span class="c1"># theme = &#39;clam&#39;  # &#39;clam&#39;, &#39;alt&#39;, &#39;default&#39;, &#39;classic&#39;</span>
+        <span class="c1"># style = ttk.Style()</span>
+        <span class="c1"># style.theme_use(theme)</span>
+
+        <span class="c1"># &#39;azure&#39; v2.x, &#39;sun-valley&#39;, &#39;forest&#39; of rdbende</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="n">bundle_dir</span> <span class="o">+</span> <span class="s1">&#39;/themes/azure-2.0/azure.tcl&#39;</span><span class="p">)</span>
+        <span class="n">theme</span> <span class="o">=</span> <span class="s1">&#39;light&#39;</span>  <span class="c1"># light, dark</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;set_theme&quot;</span><span class="p">,</span> <span class="n">theme</span><span class="p">)</span>
+
+    <span class="c1"># set titlebar and taskbar icon only if &quot;standalone&quot;,</span>
+    <span class="c1"># i.e. not ipython or jupyter</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">whichpy</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+        <span class="n">whichpy</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">whichpy</span><span class="p">:</span>
+        <span class="n">icon</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">bundle_dir</span> <span class="o">+</span> <span class="s1">&#39;/images/dfvue_icon.png&#39;</span><span class="p">)</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">iconphoto</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">icon</span><span class="p">)</span>  <span class="c1"># True: apply to all future toplevels</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">icon</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">()</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvOne&#39;</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;dfvue &quot;</span> <span class="o">+</span> <span class="n">csvfile</span><span class="p">)</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x800+110+0&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Connect csv file and add information to top</span>
+    <span class="n">top</span><span class="o">.</span><span class="n">os</span> <span class="o">=</span> <span class="n">ios</span>           <span class="c1"># operating system</span>
+    <span class="n">top</span><span class="o">.</span><span class="n">theme</span> <span class="o">=</span> <span class="n">theme</span>      <span class="c1"># current theme</span>
+    <span class="n">top</span><span class="o">.</span><span class="n">icon</span> <span class="o">=</span> <span class="n">icon</span>        <span class="c1"># app icon</span>
+    <span class="n">top</span><span class="o">.</span><span class="n">csvfile</span> <span class="o">=</span> <span class="n">csvfile</span>  <span class="c1"># file name or file handle</span>
+    <span class="n">top</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="kc">None</span>          <span class="c1"># pandas.DataFrame of csvfile</span>
+    <span class="n">top</span><span class="o">.</span><span class="n">miss</span> <span class="o">=</span> <span class="n">miss</span>        <span class="c1"># extra missing value</span>
+    <span class="n">top</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>          <span class="c1"># variable list</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">top</span>
+
+    <span class="k">def</span> <span class="nf">on_closing</span><span class="p">():</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">protocol</span><span class="p">(</span><span class="s2">&quot;WM_DELETE_WINDOW&quot;</span><span class="p">,</span> <span class="n">on_closing</span><span class="p">)</span>
+
+    <span class="c1"># 1st plotting window</span>
+    <span class="n">main_frame</span> <span class="o">=</span> <span class="n">dfvMain</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+
+    <span class="n">top</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">dfvue</a></h1>
+
+
+
+<p class="blurb">A minimal GUI for a quick view of csv files.</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">dfvue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package.html">API</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/mcuntz/dfvue">dfvue @ GitHub</a></li>
+    
+    <li class="toctree-l1"><a href="https://doi.org/10.5281/zenodo.5574388">dfvue @ Zenodo</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/dfvue">dfvue @ PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://anaconda.org/conda-forge/dfvue">dfvue @ conda-forge</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020-2023, Matthias Cuntz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

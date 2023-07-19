@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API &#8212; dfvue 0.0.0.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dfvmain" href="dfvmain.html" />
+    <link rel="prev" title="License" href="license.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-dfvue">
+<span id="api"></span><h1>API<a class="headerlink" href="#module-dfvue" title="Permalink to this heading">¶</a></h1>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
+<p>dfvue is a minimal GUI for a quick view of csv files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Copyright 2023- Matthias Cuntz - mc (at) macu (dot) de</p>
+</dd>
+<dt class="field-even">license<span class="colon">:</span></dt>
+<dd class="field-even"><p>MIT License, see LICENSE for details.</p>
+</dd>
+</dl>
+</section>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="dfvmain.html#module-dfvue.dfvmain" title="dfvue.dfvmain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dfvmain</span></code></a></p></td>
+<td><p>Main dfvue window.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="dfvscatter.html#module-dfvue.dfvscatter" title="dfvue.dfvscatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dfvscatter</span></code></a></p></td>
+<td><p>Scatter/Line panel of dfvue.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="dfvue.html#module-dfvue.dfvue" title="dfvue.dfvue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dfvue</span></code></a>([csvfile, miss])</p></td>
+<td><p>The main function to start the data frame GUI.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="dfvutils.html#module-dfvue.dfvutils" title="dfvue.dfvutils"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dfvutils</span></code></a></p></td>
+<td><p>Utility functions for dfvue.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ncvwidgets.html#module-dfvue.ncvwidgets" title="dfvue.ncvwidgets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ncvwidgets</span></code></a></p></td>
+<td><p>Widget functions.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>History</dt><dd><ul class="simple">
+<li><p>Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dfvmain.html">dfvmain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain"><code class="docutils literal notranslate"><span class="pre">dfvMain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.after"><code class="docutils literal notranslate"><span class="pre">dfvMain.after()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.after_cancel"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_cancel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.after_idle"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_idle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.anchor"><code class="docutils literal notranslate"><span class="pre">dfvMain.anchor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.bbox"><code class="docutils literal notranslate"><span class="pre">dfvMain.bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.bell"><code class="docutils literal notranslate"><span class="pre">dfvMain.bell()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.bind"><code class="docutils literal notranslate"><span class="pre">dfvMain.bind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.bind_all"><code class="docutils literal notranslate"><span class="pre">dfvMain.bind_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.bind_class"><code class="docutils literal notranslate"><span class="pre">dfvMain.bind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.bindtags"><code class="docutils literal notranslate"><span class="pre">dfvMain.bindtags()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.cget"><code class="docutils literal notranslate"><span class="pre">dfvMain.cget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.clipboard_append"><code class="docutils literal notranslate"><span class="pre">dfvMain.clipboard_append()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.clipboard_clear"><code class="docutils literal notranslate"><span class="pre">dfvMain.clipboard_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.clipboard_get"><code class="docutils literal notranslate"><span class="pre">dfvMain.clipboard_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.columnconfigure"><code class="docutils literal notranslate"><span class="pre">dfvMain.columnconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.config"><code class="docutils literal notranslate"><span class="pre">dfvMain.config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.deletecommand"><code class="docutils literal notranslate"><span class="pre">dfvMain.deletecommand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.destroy"><code class="docutils literal notranslate"><span class="pre">dfvMain.destroy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.event_add"><code class="docutils literal notranslate"><span class="pre">dfvMain.event_add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.event_delete"><code class="docutils literal notranslate"><span class="pre">dfvMain.event_delete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.event_generate"><code class="docutils literal notranslate"><span class="pre">dfvMain.event_generate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.event_info"><code class="docutils literal notranslate"><span class="pre">dfvMain.event_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.focus"><code class="docutils literal notranslate"><span class="pre">dfvMain.focus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.focus_displayof"><code class="docutils literal notranslate"><span class="pre">dfvMain.focus_displayof()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.focus_force"><code class="docutils literal notranslate"><span class="pre">dfvMain.focus_force()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.focus_get"><code class="docutils literal notranslate"><span class="pre">dfvMain.focus_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.focus_lastfor"><code class="docutils literal notranslate"><span class="pre">dfvMain.focus_lastfor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.focus_set"><code class="docutils literal notranslate"><span class="pre">dfvMain.focus_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.getboolean"><code class="docutils literal notranslate"><span class="pre">dfvMain.getboolean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.getdouble"><code class="docutils literal notranslate"><span class="pre">dfvMain.getdouble()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.getint"><code class="docutils literal notranslate"><span class="pre">dfvMain.getint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.getvar"><code class="docutils literal notranslate"><span class="pre">dfvMain.getvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grab_current"><code class="docutils literal notranslate"><span class="pre">dfvMain.grab_current()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grab_release"><code class="docutils literal notranslate"><span class="pre">dfvMain.grab_release()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grab_set"><code class="docutils literal notranslate"><span class="pre">dfvMain.grab_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grab_set_global"><code class="docutils literal notranslate"><span class="pre">dfvMain.grab_set_global()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grab_status"><code class="docutils literal notranslate"><span class="pre">dfvMain.grab_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_anchor"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_anchor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_bbox"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_columnconfigure"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_columnconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_info"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_location"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_propagate"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_remove"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_remove()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_rowconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_size"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_slaves"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.identify"><code class="docutils literal notranslate"><span class="pre">dfvMain.identify()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.image_names"><code class="docutils literal notranslate"><span class="pre">dfvMain.image_names()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.image_types"><code class="docutils literal notranslate"><span class="pre">dfvMain.image_types()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.info"><code class="docutils literal notranslate"><span class="pre">dfvMain.info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.instate"><code class="docutils literal notranslate"><span class="pre">dfvMain.instate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.keys"><code class="docutils literal notranslate"><span class="pre">dfvMain.keys()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.lift"><code class="docutils literal notranslate"><span class="pre">dfvMain.lift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.location"><code class="docutils literal notranslate"><span class="pre">dfvMain.location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.lower"><code class="docutils literal notranslate"><span class="pre">dfvMain.lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.mainloop"><code class="docutils literal notranslate"><span class="pre">dfvMain.mainloop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.nametowidget"><code class="docutils literal notranslate"><span class="pre">dfvMain.nametowidget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.option_add"><code class="docutils literal notranslate"><span class="pre">dfvMain.option_add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.option_clear"><code class="docutils literal notranslate"><span class="pre">dfvMain.option_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.option_get"><code class="docutils literal notranslate"><span class="pre">dfvMain.option_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.option_readfile"><code class="docutils literal notranslate"><span class="pre">dfvMain.option_readfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.pack"><code class="docutils literal notranslate"><span class="pre">dfvMain.pack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.pack_configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.pack_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.pack_forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.pack_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.pack_info"><code class="docutils literal notranslate"><span class="pre">dfvMain.pack_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.pack_propagate"><code class="docutils literal notranslate"><span class="pre">dfvMain.pack_propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.pack_slaves"><code class="docutils literal notranslate"><span class="pre">dfvMain.pack_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.place"><code class="docutils literal notranslate"><span class="pre">dfvMain.place()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.place_configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.place_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.place_forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.place_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.place_info"><code class="docutils literal notranslate"><span class="pre">dfvMain.place_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.place_slaves"><code class="docutils literal notranslate"><span class="pre">dfvMain.place_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.propagate"><code class="docutils literal notranslate"><span class="pre">dfvMain.propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.quit"><code class="docutils literal notranslate"><span class="pre">dfvMain.quit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.register"><code class="docutils literal notranslate"><span class="pre">dfvMain.register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvMain.rowconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_clear"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_get"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_handle"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_handle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_own"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_own()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_own_get"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_own_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.send"><code class="docutils literal notranslate"><span class="pre">dfvMain.send()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.setvar"><code class="docutils literal notranslate"><span class="pre">dfvMain.setvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.size"><code class="docutils literal notranslate"><span class="pre">dfvMain.size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.slaves"><code class="docutils literal notranslate"><span class="pre">dfvMain.slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.state"><code class="docutils literal notranslate"><span class="pre">dfvMain.state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_bisque"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_bisque()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusFollowsMouse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusNext()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_focusPrev"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusPrev()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_setPalette"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_setPalette()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_strictMotif"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_strictMotif()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tkraise"><code class="docutils literal notranslate"><span class="pre">dfvMain.tkraise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.unbind"><code class="docutils literal notranslate"><span class="pre">dfvMain.unbind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.unbind_all"><code class="docutils literal notranslate"><span class="pre">dfvMain.unbind_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.unbind_class"><code class="docutils literal notranslate"><span class="pre">dfvMain.unbind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.update"><code class="docutils literal notranslate"><span class="pre">dfvMain.update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.update_idletasks"><code class="docutils literal notranslate"><span class="pre">dfvMain.update_idletasks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.wait_variable"><code class="docutils literal notranslate"><span class="pre">dfvMain.wait_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.wait_visibility"><code class="docutils literal notranslate"><span class="pre">dfvMain.wait_visibility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.wait_window"><code class="docutils literal notranslate"><span class="pre">dfvMain.wait_window()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.waitvar"><code class="docutils literal notranslate"><span class="pre">dfvMain.waitvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_atom"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_atom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_atomname"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_atomname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_cells"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_cells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_children"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_children()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_class"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_colormapfull"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_colormapfull()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_containing"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_containing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_depth"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_exists"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_fpixels"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_fpixels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_geometry"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_geometry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_height"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_height()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_id"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_interps"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_interps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_ismapped"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_ismapped()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_manager"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_manager()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_name"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_parent"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_parent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_pathname"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_pathname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_pixels"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_pixels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_pointerx"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_pointerx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_pointerxy"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_pointerxy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_pointery"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_pointery()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_reqheight"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_reqheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_reqwidth"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_reqwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_rgb"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_rootx"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_rootx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_rooty"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_rooty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_screen"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_screen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_screencells"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_screencells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_screendepth"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_screendepth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_screenheight"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_screenheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_screenmmheight"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_screenmmheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_screenmmwidth"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_screenmmwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_screenvisual"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_screenvisual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_screenwidth"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_screenwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_server"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_server()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_toplevel"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_toplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_viewable"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_viewable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_visual"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_visual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_visualid"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_visualid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_visualsavailable"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_visualsavailable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_vrootheight"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_vrootheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_vrootwidth"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_vrootwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_vrootx"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_vrootx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_vrooty"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_vrooty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_width"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_width()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_x"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.winfo_y"><code class="docutils literal notranslate"><span class="pre">dfvMain.winfo_y()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.after"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.after()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.after_cancel"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.after_cancel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.after_idle"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.after_idle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.anchor"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.anchor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.aspect"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.aspect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.attributes"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.attributes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bbox"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bell"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bell()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bind"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bind_all"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bind_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bindtags"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bindtags()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.cget"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.cget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.client"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.client()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.clipboard_append"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.clipboard_append()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.clipboard_clear"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.clipboard_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.clipboard_get"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.clipboard_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.colormapwindows"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.colormapwindows()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.columnconfigure"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.columnconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.command"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.config"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.configure"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.deiconify"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.deiconify()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.deletecommand"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.deletecommand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.destroy"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.destroy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.event_add"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.event_add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.event_delete"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.event_delete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.event_generate"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.event_generate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.event_info"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.event_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.focus"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.focus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.focus_displayof"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.focus_displayof()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.focus_force"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.focus_force()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.focus_get"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.focus_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.focus_lastfor"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.focus_lastfor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.focus_set"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.focus_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.focusmodel"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.focusmodel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.forget"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.frame"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.frame()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.geometry"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.geometry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.getboolean"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.getboolean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.getdouble"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.getdouble()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.getint"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.getint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.getvar"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.getvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grab_current"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grab_current()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grab_release"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grab_release()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grab_set"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grab_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grab_set_global"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grab_set_global()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grab_status"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grab_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid_anchor"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid_anchor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid_bbox"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid_bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid_columnconfigure"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid_columnconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid_location"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid_propagate"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid_propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid_rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid_rowconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid_size"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.grid_slaves"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.grid_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.group"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.iconbitmap"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.iconbitmap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.iconify"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.iconify()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.iconmask"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.iconmask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.iconname"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.iconname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.iconphoto"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.iconphoto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.iconposition"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.iconposition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.iconwindow"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.iconwindow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.image_names"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.image_names()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.image_types"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.image_types()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.keys"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.keys()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.lift"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.lift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.lower"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.mainloop"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.mainloop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.manage"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.manage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.maxsize"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.maxsize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.minsize"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.minsize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.nametowidget"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.nametowidget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.new_tree"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.new_tree()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.option_add"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.option_add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.option_clear"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.option_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.option_get"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.option_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.option_readfile"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.option_readfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.overrideredirect"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.overrideredirect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.pack_propagate"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.pack_propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.pack_slaves"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.pack_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.place_slaves"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.place_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.positionfrom"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.positionfrom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.propagate"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.protocol"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.protocol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.quit"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.quit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.read_again"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.read_again()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.read_df"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.read_df()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.read_final"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.read_final()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.register"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.resizable"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.resizable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.rowconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.selection_clear"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.selection_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.selection_get"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.selection_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.selection_handle"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.selection_handle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.selection_own"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.selection_own()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.selection_own_get"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.selection_own_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.send"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.send()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.setvar"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.setvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.size"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.sizefrom"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.sizefrom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.slaves"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.state"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.title"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.title()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.tk_bisque"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.tk_bisque()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.tk_focusFollowsMouse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.tk_focusNext()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.tk_focusPrev"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.tk_focusPrev()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.tk_setPalette"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.tk_setPalette()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.tk_strictMotif"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.tk_strictMotif()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.tkraise"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.tkraise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.transient"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.transient()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.unbind"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.unbind_all"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.unbind_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.update"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.update_idletasks"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.update_idletasks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wait_variable"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wait_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wait_visibility"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wait_visibility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wait_window"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wait_window()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.waitvar"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.waitvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_atom"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_atom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_atomname"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_atomname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_cells"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_cells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_children"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_children()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_colormapfull"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_colormapfull()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_containing"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_containing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_depth"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_exists"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_fpixels"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_fpixels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_geometry"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_geometry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_height"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_height()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_id"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_interps"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_interps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_ismapped"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_ismapped()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_manager"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_manager()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_name"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_parent"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_parent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_pathname"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_pathname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_pixels"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_pixels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_pointerx"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_pointerx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_pointerxy"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_pointerxy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_pointery"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_pointery()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_reqheight"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_reqheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_reqwidth"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_reqwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_rgb"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_rootx"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_rootx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_rooty"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_rooty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_screen"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_screen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_screencells"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_screencells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_screendepth"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_screendepth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_screenheight"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_screenheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_screenmmheight"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_screenmmheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_screenmmwidth"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_screenmmwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_screenvisual"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_screenvisual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_screenwidth"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_screenwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_server"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_server()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_toplevel"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_toplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_viewable"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_viewable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_visual"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_visual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_visualid"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_visualid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_visualsavailable"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_visualsavailable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_vrootheight"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_vrootheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_vrootwidth"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_vrootwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_vrootx"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_vrootx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_vrooty"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_vrooty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_width"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_width()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_x"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.winfo_y"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.winfo_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.withdraw"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.withdraw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_aspect"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_aspect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_attributes"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_attributes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_client"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_client()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_colormapwindows"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_colormapwindows()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_command"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_deiconify"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_deiconify()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_focusmodel"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_focusmodel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_forget"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_frame"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_frame()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_geometry"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_geometry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_grid"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_group"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_iconbitmap"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_iconbitmap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_iconify"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_iconify()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_iconmask"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_iconmask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_iconname"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_iconname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_iconphoto"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_iconphoto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_iconposition"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_iconposition()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_iconwindow"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_iconwindow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_manage"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_manage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_maxsize"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_maxsize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_minsize"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_minsize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_overrideredirect"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_overrideredirect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_positionfrom"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_positionfrom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_protocol"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_protocol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_resizable"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_resizable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_sizefrom"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_sizefrom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_state"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_title"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_title()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_transient"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_transient()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wm_withdraw"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wm_withdraw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dfvscatter.html">dfvscatter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter"><code class="docutils literal notranslate"><span class="pre">dfvScatter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.after"><code class="docutils literal notranslate"><span class="pre">dfvScatter.after()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.after_cancel"><code class="docutils literal notranslate"><span class="pre">dfvScatter.after_cancel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.after_idle"><code class="docutils literal notranslate"><span class="pre">dfvScatter.after_idle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.anchor"><code class="docutils literal notranslate"><span class="pre">dfvScatter.anchor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.bbox"><code class="docutils literal notranslate"><span class="pre">dfvScatter.bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.bell"><code class="docutils literal notranslate"><span class="pre">dfvScatter.bell()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.bind"><code class="docutils literal notranslate"><span class="pre">dfvScatter.bind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.bind_all"><code class="docutils literal notranslate"><span class="pre">dfvScatter.bind_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.bind_class"><code class="docutils literal notranslate"><span class="pre">dfvScatter.bind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.bindtags"><code class="docutils literal notranslate"><span class="pre">dfvScatter.bindtags()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.cget"><code class="docutils literal notranslate"><span class="pre">dfvScatter.cget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.checked_x"><code class="docutils literal notranslate"><span class="pre">dfvScatter.checked_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.checked_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.checked_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.checked_y2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.checked_y2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.checked_yy2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.checked_yy2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.clipboard_append"><code class="docutils literal notranslate"><span class="pre">dfvScatter.clipboard_append()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.clipboard_clear"><code class="docutils literal notranslate"><span class="pre">dfvScatter.clipboard_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.clipboard_get"><code class="docutils literal notranslate"><span class="pre">dfvScatter.clipboard_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.columnconfigure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.columnconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.config"><code class="docutils literal notranslate"><span class="pre">dfvScatter.config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.configure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.deletecommand"><code class="docutils literal notranslate"><span class="pre">dfvScatter.deletecommand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.destroy"><code class="docutils literal notranslate"><span class="pre">dfvScatter.destroy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.entered_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.entered_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.entered_y2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.entered_y2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.event_add"><code class="docutils literal notranslate"><span class="pre">dfvScatter.event_add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.event_delete"><code class="docutils literal notranslate"><span class="pre">dfvScatter.event_delete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.event_generate"><code class="docutils literal notranslate"><span class="pre">dfvScatter.event_generate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.event_info"><code class="docutils literal notranslate"><span class="pre">dfvScatter.event_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.focus"><code class="docutils literal notranslate"><span class="pre">dfvScatter.focus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.focus_displayof"><code class="docutils literal notranslate"><span class="pre">dfvScatter.focus_displayof()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.focus_force"><code class="docutils literal notranslate"><span class="pre">dfvScatter.focus_force()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.focus_get"><code class="docutils literal notranslate"><span class="pre">dfvScatter.focus_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.focus_lastfor"><code class="docutils literal notranslate"><span class="pre">dfvScatter.focus_lastfor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.focus_set"><code class="docutils literal notranslate"><span class="pre">dfvScatter.focus_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.forget"><code class="docutils literal notranslate"><span class="pre">dfvScatter.forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.getboolean"><code class="docutils literal notranslate"><span class="pre">dfvScatter.getboolean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.getdouble"><code class="docutils literal notranslate"><span class="pre">dfvScatter.getdouble()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.getint"><code class="docutils literal notranslate"><span class="pre">dfvScatter.getint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.getvar"><code class="docutils literal notranslate"><span class="pre">dfvScatter.getvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grab_current"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grab_current()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grab_release"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grab_release()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grab_set"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grab_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grab_set_global"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grab_set_global()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grab_status"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grab_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_anchor"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_anchor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_bbox"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_columnconfigure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_columnconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_configure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_forget"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_info"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_location"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_propagate"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_remove"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_remove()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_rowconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_size"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_slaves"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.identify"><code class="docutils literal notranslate"><span class="pre">dfvScatter.identify()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.image_names"><code class="docutils literal notranslate"><span class="pre">dfvScatter.image_names()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.image_types"><code class="docutils literal notranslate"><span class="pre">dfvScatter.image_types()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.info"><code class="docutils literal notranslate"><span class="pre">dfvScatter.info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.instate"><code class="docutils literal notranslate"><span class="pre">dfvScatter.instate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.keys"><code class="docutils literal notranslate"><span class="pre">dfvScatter.keys()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.lift"><code class="docutils literal notranslate"><span class="pre">dfvScatter.lift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.location"><code class="docutils literal notranslate"><span class="pre">dfvScatter.location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.lower"><code class="docutils literal notranslate"><span class="pre">dfvScatter.lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.mainloop"><code class="docutils literal notranslate"><span class="pre">dfvScatter.mainloop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.minmax_ylim"><code class="docutils literal notranslate"><span class="pre">dfvScatter.minmax_ylim()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.nametowidget"><code class="docutils literal notranslate"><span class="pre">dfvScatter.nametowidget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.new_csv"><code class="docutils literal notranslate"><span class="pre">dfvScatter.new_csv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.new_df"><code class="docutils literal notranslate"><span class="pre">dfvScatter.new_df()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.next_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.next_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.option_add"><code class="docutils literal notranslate"><span class="pre">dfvScatter.option_add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.option_clear"><code class="docutils literal notranslate"><span class="pre">dfvScatter.option_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.option_get"><code class="docutils literal notranslate"><span class="pre">dfvScatter.option_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.option_readfile"><code class="docutils literal notranslate"><span class="pre">dfvScatter.option_readfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.pack"><code class="docutils literal notranslate"><span class="pre">dfvScatter.pack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.pack_configure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.pack_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.pack_forget"><code class="docutils literal notranslate"><span class="pre">dfvScatter.pack_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.pack_info"><code class="docutils literal notranslate"><span class="pre">dfvScatter.pack_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.pack_propagate"><code class="docutils literal notranslate"><span class="pre">dfvScatter.pack_propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.pack_slaves"><code class="docutils literal notranslate"><span class="pre">dfvScatter.pack_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.place"><code class="docutils literal notranslate"><span class="pre">dfvScatter.place()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.place_configure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.place_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.place_forget"><code class="docutils literal notranslate"><span class="pre">dfvScatter.place_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.place_info"><code class="docutils literal notranslate"><span class="pre">dfvScatter.place_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.place_slaves"><code class="docutils literal notranslate"><span class="pre">dfvScatter.place_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.prev_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.prev_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.propagate"><code class="docutils literal notranslate"><span class="pre">dfvScatter.propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.quit"><code class="docutils literal notranslate"><span class="pre">dfvScatter.quit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.redraw"><code class="docutils literal notranslate"><span class="pre">dfvScatter.redraw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.redraw_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.redraw_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.redraw_y2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.redraw_y2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.register"><code class="docutils literal notranslate"><span class="pre">dfvScatter.register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.reinit"><code class="docutils literal notranslate"><span class="pre">dfvScatter.reinit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.reset"><code class="docutils literal notranslate"><span class="pre">dfvScatter.reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.rowconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.selected_x"><code class="docutils literal notranslate"><span class="pre">dfvScatter.selected_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.selected_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.selected_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.selected_y2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.selected_y2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.selection_clear"><code class="docutils literal notranslate"><span class="pre">dfvScatter.selection_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.selection_get"><code class="docutils literal notranslate"><span class="pre">dfvScatter.selection_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.selection_handle"><code class="docutils literal notranslate"><span class="pre">dfvScatter.selection_handle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.selection_own"><code class="docutils literal notranslate"><span class="pre">dfvScatter.selection_own()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.selection_own_get"><code class="docutils literal notranslate"><span class="pre">dfvScatter.selection_own_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.send"><code class="docutils literal notranslate"><span class="pre">dfvScatter.send()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.setvar"><code class="docutils literal notranslate"><span class="pre">dfvScatter.setvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.size"><code class="docutils literal notranslate"><span class="pre">dfvScatter.size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.slaves"><code class="docutils literal notranslate"><span class="pre">dfvScatter.slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.sortvars"><code class="docutils literal notranslate"><span class="pre">dfvScatter.sortvars()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.spinned_x"><code class="docutils literal notranslate"><span class="pre">dfvScatter.spinned_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.spinned_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.spinned_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.spinned_y2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.spinned_y2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.state"><code class="docutils literal notranslate"><span class="pre">dfvScatter.state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_bisque"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_bisque()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_focusFollowsMouse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_focusNext()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_focusPrev"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_focusPrev()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_setPalette"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_setPalette()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_strictMotif"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_strictMotif()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tkraise"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tkraise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.unbind"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.unbind_all"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.unbind_class"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.update"><code class="docutils literal notranslate"><span class="pre">dfvScatter.update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.update_idletasks"><code class="docutils literal notranslate"><span class="pre">dfvScatter.update_idletasks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.wait_variable"><code class="docutils literal notranslate"><span class="pre">dfvScatter.wait_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.wait_visibility"><code class="docutils literal notranslate"><span class="pre">dfvScatter.wait_visibility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.wait_window"><code class="docutils literal notranslate"><span class="pre">dfvScatter.wait_window()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.waitvar"><code class="docutils literal notranslate"><span class="pre">dfvScatter.waitvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_atom"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_atom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_atomname"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_atomname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_cells"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_cells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_children"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_children()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_class"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_colormapfull"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_colormapfull()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_containing"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_containing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_depth"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_exists"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_fpixels"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_fpixels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_geometry"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_geometry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_height"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_height()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_id"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_interps"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_interps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_ismapped"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_ismapped()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_manager"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_manager()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_name"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_parent"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_parent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_pathname"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_pathname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_pixels"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_pixels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_pointerx"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_pointerx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_pointerxy"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_pointerxy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_pointery"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_pointery()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_reqheight"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_reqheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_reqwidth"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_reqwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_rgb"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_rootx"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_rootx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_rooty"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_rooty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_screen"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_screen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_screencells"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_screencells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_screendepth"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_screendepth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_screenheight"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_screenheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_screenmmheight"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_screenmmheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_screenmmwidth"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_screenmmwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_screenvisual"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_screenvisual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_screenwidth"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_screenwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_server"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_server()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_toplevel"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_toplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_viewable"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_viewable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_visual"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_visual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_visualid"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_visualid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_visualsavailable"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_visualsavailable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_vrootheight"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_vrootheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_vrootwidth"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_vrootwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_vrootx"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_vrootx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_vrooty"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_vrooty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_width"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_width()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_x"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.winfo_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.winfo_y()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dfvue.html">dfvue</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dfvue.html#dfvue.dfvue.dfvue"><code class="docutils literal notranslate"><span class="pre">dfvue()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dfvutils.html">dfvutils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dfvutils.html#dfvue.dfvutils.clone_dfvmain"><code class="docutils literal notranslate"><span class="pre">clone_dfvmain()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvutils.html#dfvue.dfvutils.format_coord_scatter"><code class="docutils literal notranslate"><span class="pre">format_coord_scatter()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvutils.html#dfvue.dfvutils.list_intersection"><code class="docutils literal notranslate"><span class="pre">list_intersection()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvutils.html#dfvue.dfvutils.vardim2var"><code class="docutils literal notranslate"><span class="pre">vardim2var()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ncvwidgets.html">ncvwidgets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Tooltip"><code class="docutils literal notranslate"><span class="pre">Tooltip</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Tooltip.get_position"><code class="docutils literal notranslate"><span class="pre">Tooltip.get_position()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Tooltip.hidetip"><code class="docutils literal notranslate"><span class="pre">Tooltip.hidetip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Tooltip.position_window"><code class="docutils literal notranslate"><span class="pre">Tooltip.position_window()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Tooltip.schedule"><code class="docutils literal notranslate"><span class="pre">Tooltip.schedule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Tooltip.showcontents"><code class="docutils literal notranslate"><span class="pre">Tooltip.showcontents()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Tooltip.showtip"><code class="docutils literal notranslate"><span class="pre">Tooltip.showtip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Tooltip.unschedule"><code class="docutils literal notranslate"><span class="pre">Tooltip.unschedule()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview"><code class="docutils literal notranslate"><span class="pre">Treeview</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.after"><code class="docutils literal notranslate"><span class="pre">Treeview.after()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.after_cancel"><code class="docutils literal notranslate"><span class="pre">Treeview.after_cancel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.after_idle"><code class="docutils literal notranslate"><span class="pre">Treeview.after_idle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.anchor"><code class="docutils literal notranslate"><span class="pre">Treeview.anchor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.bbox"><code class="docutils literal notranslate"><span class="pre">Treeview.bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.bell"><code class="docutils literal notranslate"><span class="pre">Treeview.bell()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.bind"><code class="docutils literal notranslate"><span class="pre">Treeview.bind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.bind_all"><code class="docutils literal notranslate"><span class="pre">Treeview.bind_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.bind_class"><code class="docutils literal notranslate"><span class="pre">Treeview.bind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.bindtags"><code class="docutils literal notranslate"><span class="pre">Treeview.bindtags()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.cget"><code class="docutils literal notranslate"><span class="pre">Treeview.cget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.clipboard_append"><code class="docutils literal notranslate"><span class="pre">Treeview.clipboard_append()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.clipboard_clear"><code class="docutils literal notranslate"><span class="pre">Treeview.clipboard_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.clipboard_get"><code class="docutils literal notranslate"><span class="pre">Treeview.clipboard_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.columnconfigure"><code class="docutils literal notranslate"><span class="pre">Treeview.columnconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.config"><code class="docutils literal notranslate"><span class="pre">Treeview.config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.configure"><code class="docutils literal notranslate"><span class="pre">Treeview.configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.deletecommand"><code class="docutils literal notranslate"><span class="pre">Treeview.deletecommand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.destroy"><code class="docutils literal notranslate"><span class="pre">Treeview.destroy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.event_add"><code class="docutils literal notranslate"><span class="pre">Treeview.event_add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.event_delete"><code class="docutils literal notranslate"><span class="pre">Treeview.event_delete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.event_generate"><code class="docutils literal notranslate"><span class="pre">Treeview.event_generate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.event_info"><code class="docutils literal notranslate"><span class="pre">Treeview.event_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.focus"><code class="docutils literal notranslate"><span class="pre">Treeview.focus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.focus_displayof"><code class="docutils literal notranslate"><span class="pre">Treeview.focus_displayof()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.focus_force"><code class="docutils literal notranslate"><span class="pre">Treeview.focus_force()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.focus_get"><code class="docutils literal notranslate"><span class="pre">Treeview.focus_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.focus_lastfor"><code class="docutils literal notranslate"><span class="pre">Treeview.focus_lastfor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.focus_set"><code class="docutils literal notranslate"><span class="pre">Treeview.focus_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.forget"><code class="docutils literal notranslate"><span class="pre">Treeview.forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.getboolean"><code class="docutils literal notranslate"><span class="pre">Treeview.getboolean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.getdouble"><code class="docutils literal notranslate"><span class="pre">Treeview.getdouble()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.getint"><code class="docutils literal notranslate"><span class="pre">Treeview.getint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.getvar"><code class="docutils literal notranslate"><span class="pre">Treeview.getvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grab_current"><code class="docutils literal notranslate"><span class="pre">Treeview.grab_current()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grab_release"><code class="docutils literal notranslate"><span class="pre">Treeview.grab_release()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grab_set"><code class="docutils literal notranslate"><span class="pre">Treeview.grab_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grab_set_global"><code class="docutils literal notranslate"><span class="pre">Treeview.grab_set_global()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grab_status"><code class="docutils literal notranslate"><span class="pre">Treeview.grab_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid"><code class="docutils literal notranslate"><span class="pre">Treeview.grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_anchor"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_anchor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_bbox"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_columnconfigure"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_columnconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_configure"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_forget"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_info"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_location"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_propagate"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_remove"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_remove()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_rowconfigure"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_rowconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_size"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_slaves"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.identify"><code class="docutils literal notranslate"><span class="pre">Treeview.identify()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.image_names"><code class="docutils literal notranslate"><span class="pre">Treeview.image_names()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.image_types"><code class="docutils literal notranslate"><span class="pre">Treeview.image_types()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.info"><code class="docutils literal notranslate"><span class="pre">Treeview.info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.instate"><code class="docutils literal notranslate"><span class="pre">Treeview.instate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.keys"><code class="docutils literal notranslate"><span class="pre">Treeview.keys()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.lift"><code class="docutils literal notranslate"><span class="pre">Treeview.lift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.location"><code class="docutils literal notranslate"><span class="pre">Treeview.location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.lower"><code class="docutils literal notranslate"><span class="pre">Treeview.lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.mainloop"><code class="docutils literal notranslate"><span class="pre">Treeview.mainloop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.nametowidget"><code class="docutils literal notranslate"><span class="pre">Treeview.nametowidget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.option_add"><code class="docutils literal notranslate"><span class="pre">Treeview.option_add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.option_clear"><code class="docutils literal notranslate"><span class="pre">Treeview.option_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.option_get"><code class="docutils literal notranslate"><span class="pre">Treeview.option_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.option_readfile"><code class="docutils literal notranslate"><span class="pre">Treeview.option_readfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.pack"><code class="docutils literal notranslate"><span class="pre">Treeview.pack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.pack_configure"><code class="docutils literal notranslate"><span class="pre">Treeview.pack_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.pack_forget"><code class="docutils literal notranslate"><span class="pre">Treeview.pack_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.pack_info"><code class="docutils literal notranslate"><span class="pre">Treeview.pack_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.pack_propagate"><code class="docutils literal notranslate"><span class="pre">Treeview.pack_propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.pack_slaves"><code class="docutils literal notranslate"><span class="pre">Treeview.pack_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.place"><code class="docutils literal notranslate"><span class="pre">Treeview.place()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.place_configure"><code class="docutils literal notranslate"><span class="pre">Treeview.place_configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.place_forget"><code class="docutils literal notranslate"><span class="pre">Treeview.place_forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.place_info"><code class="docutils literal notranslate"><span class="pre">Treeview.place_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.place_slaves"><code class="docutils literal notranslate"><span class="pre">Treeview.place_slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.propagate"><code class="docutils literal notranslate"><span class="pre">Treeview.propagate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.quit"><code class="docutils literal notranslate"><span class="pre">Treeview.quit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.register"><code class="docutils literal notranslate"><span class="pre">Treeview.register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.rowconfigure"><code class="docutils literal notranslate"><span class="pre">Treeview.rowconfigure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.selection_clear"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.selection_get"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.selection_handle"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_handle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.selection_own"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_own()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.selection_own_get"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_own_get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.send"><code class="docutils literal notranslate"><span class="pre">Treeview.send()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.setvar"><code class="docutils literal notranslate"><span class="pre">Treeview.setvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.size"><code class="docutils literal notranslate"><span class="pre">Treeview.size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.slaves"><code class="docutils literal notranslate"><span class="pre">Treeview.slaves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.state"><code class="docutils literal notranslate"><span class="pre">Treeview.state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_bisque"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_bisque()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_focusFollowsMouse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_focusNext()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_focusPrev"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_focusPrev()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_setPalette"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_setPalette()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_strictMotif"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_strictMotif()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tkraise"><code class="docutils literal notranslate"><span class="pre">Treeview.tkraise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.unbind"><code class="docutils literal notranslate"><span class="pre">Treeview.unbind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.unbind_all"><code class="docutils literal notranslate"><span class="pre">Treeview.unbind_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.unbind_class"><code class="docutils literal notranslate"><span class="pre">Treeview.unbind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.update"><code class="docutils literal notranslate"><span class="pre">Treeview.update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.update_idletasks"><code class="docutils literal notranslate"><span class="pre">Treeview.update_idletasks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.wait_variable"><code class="docutils literal notranslate"><span class="pre">Treeview.wait_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.wait_visibility"><code class="docutils literal notranslate"><span class="pre">Treeview.wait_visibility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.wait_window"><code class="docutils literal notranslate"><span class="pre">Treeview.wait_window()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.waitvar"><code class="docutils literal notranslate"><span class="pre">Treeview.waitvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_atom"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_atom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_atomname"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_atomname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_cells"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_cells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_children"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_children()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_class"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_colormapfull"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_colormapfull()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_containing"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_containing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_depth"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_exists"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_fpixels"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_fpixels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_geometry"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_geometry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_height"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_height()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_id"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_interps"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_interps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_ismapped"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_ismapped()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_manager"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_manager()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_name"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_parent"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_parent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_pathname"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_pathname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_pixels"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_pixels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_pointerx"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_pointerx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_pointerxy"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_pointerxy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_pointery"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_pointery()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_reqheight"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_reqheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_reqwidth"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_reqwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_rgb"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_rootx"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_rootx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_rooty"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_rooty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_screen"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_screen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_screencells"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_screencells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_screendepth"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_screendepth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_screenheight"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_screenheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_screenmmheight"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_screenmmheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_screenmmwidth"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_screenmmwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_screenvisual"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_screenvisual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_screenwidth"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_screenwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_server"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_server()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_toplevel"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_toplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_viewable"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_viewable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_visual"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_visual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_visualid"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_visualid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_visualsavailable"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_visualsavailable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_vrootheight"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_vrootheight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_vrootwidth"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_vrootwidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_vrootx"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_vrootx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_vrooty"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_vrooty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_width"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_width()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_x"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.winfo_y"><code class="docutils literal notranslate"><span class="pre">Treeview.winfo_y()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.add_checkbutton"><code class="docutils literal notranslate"><span class="pre">add_checkbutton()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.add_combobox"><code class="docutils literal notranslate"><span class="pre">add_combobox()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.add_entry"><code class="docutils literal notranslate"><span class="pre">add_entry()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.add_imagemenu"><code class="docutils literal notranslate"><span class="pre">add_imagemenu()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.add_menu"><code class="docutils literal notranslate"><span class="pre">add_menu()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.add_scale"><code class="docutils literal notranslate"><span class="pre">add_scale()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.add_spinbox"><code class="docutils literal notranslate"><span class="pre">add_spinbox()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.add_tooltip"><code class="docutils literal notranslate"><span class="pre">add_tooltip()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">dfvue</a></h1>
+
+
+
+<p class="blurb">A minimal GUI for a quick view of csv files.</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">dfvue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvmain.html">dfvmain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvscatter.html">dfvscatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvue.html">dfvue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvutils.html">dfvutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html">ncvwidgets</a></li>
+</ul>
+</li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/mcuntz/dfvue">dfvue @ GitHub</a></li>
+    
+    <li class="toctree-l1"><a href="https://doi.org/10.5281/zenodo.5574388">dfvue @ Zenodo</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/dfvue">dfvue @ PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://anaconda.org/conda-forge/dfvue">dfvue @ conda-forge</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="license.html" title="previous chapter">License</a></li>
+      <li>Next: <a href="dfvmain.html" title="next chapter">dfvmain</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020-2023, Matthias Cuntz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/package.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

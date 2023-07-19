@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dfvue.dfvutils &#8212; dfvue 0.0.0.dev0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dfvue.dfvutils</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Utility functions for dfvue.</span>
+
+<span class="sd">The utility functions do not depend on the dfvue class.</span>
+<span class="sd">Functions depending on the class are in dfvmethods.</span>
+
+<span class="sd">This module was written by Matthias Cuntz while at Institut National de</span>
+<span class="sd">Recherche pour l&#39;Agriculture, l&#39;Alimentation et l&#39;Environnement (INRAE), Nancy,</span>
+<span class="sd">France.</span>
+
+<span class="sd">:copyright: Copyright 2023- Matthias Cuntz - mc (at) macu (dot) de</span>
+<span class="sd">:license: MIT License, see LICENSE for details.</span>
+
+<span class="sd">.. moduleauthor:: Matthias Cuntz</span>
+
+<span class="sd">The following functions are provided:</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   clone_dfvmain</span>
+<span class="sd">   format_coord_scatter</span>
+<span class="sd">   list_intersection</span>
+<span class="sd">   vardim2var</span>
+
+<span class="sd">History</span>
+<span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mpld</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;clone_dfvmain&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;format_coord_scatter&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;list_intersection&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;vardim2var&#39;</span><span class="p">]</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Clone the main window</span>
+<span class="c1">#</span>
+
+<div class="viewcode-block" id="clone_dfvmain"><a class="viewcode-back" href="../../dfvutils.html#dfvue.dfvutils.clone_dfvmain">[docs]</a><span class="k">def</span> <span class="nf">clone_dfvmain</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Duplicate the main dfvue window.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    widget : dfvue.dfvMain</span>
+<span class="sd">        widget of dfvMain class.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Another dfvue window will be created.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; self.newwin = ttk.Button(</span>
+<span class="sd">    ...     self.rowwin, text=&quot;New Window&quot;,</span>
+<span class="sd">    ...     command=partial(clone_dfvmain, self.master))</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># parent = widget.nametowidget(widget.winfo_parent())</span>
+    <span class="k">if</span> <span class="n">widget</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;dfvMain&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;clone_dfvmain failed. Widget should be dfvMain.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;widget.name is: &#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">sys</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">()</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvClone&#39;</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Secondary dfvue window&quot;</span><span class="p">)</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x800+150+100&#39;</span><span class="p">)</span>
+
+    <span class="n">root</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">top</span>
+
+    <span class="c1"># https://stackoverflow.com/questions/46505982/is-there-a-way-to-clone-a-tkinter-widget</span>
+    <span class="bp">cls</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="vm">__class__</span>
+    <span class="n">clone</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">widget</span><span class="o">.</span><span class="n">configure</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span>
+            <span class="n">clone</span><span class="o">.</span><span class="n">configure</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">widget</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="n">key</span><span class="p">)})</span>
+
+    <span class="k">return</span> <span class="n">clone</span></div>
+
+
+<span class="c1">#</span>
+<span class="c1"># How to write the value of the data point below the pointer</span>
+<span class="c1">#</span>
+
+<div class="viewcode-block" id="format_coord_scatter"><a class="viewcode-back" href="../../dfvutils.html#dfvue.dfvutils.format_coord_scatter">[docs]</a><span class="k">def</span> <span class="nf">format_coord_scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">xdtype</span><span class="p">,</span> <span class="n">ydtype</span><span class="p">,</span> <span class="n">y2dtype</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Formatter function for scatter plot with left and right axis</span>
+<span class="sd">    having the same x-axis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x, y : float</span>
+<span class="sd">        Data coordinates of `ax2`.</span>
+<span class="sd">    ax, ax2: matplotlib.axes._subplots.AxesSubplot</span>
+<span class="sd">        Matplotlib axes object for left-hand and right-hand y-axis, resp.</span>
+<span class="sd">    xdtype, ydtype, y2dtype: numpy.dtype</span>
+<span class="sd">        Numpy dtype of data of x-values (xdtype), left-hand side y-values</span>
+<span class="sd">        (ydtype), and right-hand side y-values (y2dtype)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    String with left-hand side and right hand-side coordinates.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; ax = plt.subplot(111)</span>
+<span class="sd">    &gt;&gt;&gt; ax2 = ax.twinx()</span>
+<span class="sd">    &gt;&gt;&gt; ax.plot(xx, yy)</span>
+<span class="sd">    &gt;&gt;&gt; ax2.plot(xx, yy2)</span>
+<span class="sd">    &gt;&gt;&gt; ax2.format_coord = lambda x, y: format_coord_scatter(</span>
+<span class="sd">    ...     x, y, ax, ax2, xx.dtype, yy.dtype, yy2.dtype)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># convert to display coords</span>
+    <span class="c1"># https://stackoverflow.com/questions/21583965/matplotlib-cursor-value-with-two-axes</span>
+    <span class="n">display_coord</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">transform</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="c1"># convert back to data coords with respect to ax</span>
+    <span class="n">inv</span>      <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span>
+    <span class="n">ax_coord</span> <span class="o">=</span> <span class="n">inv</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">display_coord</span><span class="p">)</span>
+
+    <span class="c1"># Special treatment for datetime</span>
+    <span class="c1"># https://stackoverflow.com/questions/49267011/matplotlib-datetime-from-event-coordinates</span>
+    <span class="k">if</span> <span class="n">xdtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;&lt;M8[ms]&#39;</span><span class="p">):</span>
+        <span class="n">xstr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">xstr</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ydtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;&lt;M8[ms]&#39;</span><span class="p">):</span>
+        <span class="n">ystr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">ax_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ystr</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ax_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">y2dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;&lt;M8[ms]&#39;</span><span class="p">):</span>
+        <span class="n">y2str</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">y2str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">out</span>  <span class="o">=</span> <span class="s1">&#39;Left: (&#39;</span> <span class="o">+</span> <span class="n">xstr</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">ystr</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+    <span class="n">out</span> <span class="o">+=</span> <span class="s1">&#39; Right: (&#39;</span> <span class="o">+</span> <span class="n">xstr</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">y2str</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+    <span class="k">return</span> <span class="n">out</span></div>
+
+
+<span class="c1">#</span>
+<span class="c1"># Intersection of two lists</span>
+<span class="c1">#</span>
+
+<div class="viewcode-block" id="list_intersection"><a class="viewcode-back" href="../../dfvutils.html#dfvue.dfvutils.list_intersection">[docs]</a><span class="k">def</span> <span class="nf">list_intersection</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Intersection of two lists.</span>
+
+<span class="sd">    From:</span>
+<span class="sd">    https://stackoverflow.com/questions/3697432/how-to-find-list-intersection</span>
+<span class="sd">    Using list comprehension for small lists and set() method with builtin</span>
+<span class="sd">    intersection for longer lists.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lst1, lst2 : list</span>
+<span class="sd">        Python lists</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        List with common elements in both input lists.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; lst1 = [ 4, 9, 1, 17, 11, 26, 28, 28, 26, 66, 91]</span>
+<span class="sd">    &gt;&gt;&gt; lst2 = [9, 9, 74, 21, 45, 11, 63]</span>
+<span class="sd">    &gt;&gt;&gt; print(Intersection(lst1, lst2))</span>
+<span class="sd">    [9, 11]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">lst1</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">lst2</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">ll</span> <span class="k">for</span> <span class="n">ll</span> <span class="ow">in</span> <span class="n">lst1</span> <span class="k">if</span> <span class="n">ll</span> <span class="ow">in</span> <span class="n">lst2</span> <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="vardim2var"><a class="viewcode-back" href="../../dfvutils.html#dfvue.dfvutils.vardim2var">[docs]</a><span class="k">def</span> <span class="nf">vardim2var</span><span class="p">(</span><span class="n">vardim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract variable name from &#39;variable (dim1=ndim1,)&#39; string.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    vardim : string</span>
+<span class="sd">        Variable name with dimensions, such as &#39;latitude (lat=32,lon=64)&#39;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    string</span>
+<span class="sd">        Variable name.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; vardim2var(&#39;latitude (lat=32,lon=64)&#39;)</span>
+<span class="sd">    latitude</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">vardim</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">vardim</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">dfvue</a></h1>
+
+
+
+<p class="blurb">A minimal GUI for a quick view of csv files.</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">dfvue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package.html">API</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/mcuntz/dfvue">dfvue @ GitHub</a></li>
+    
+    <li class="toctree-l1"><a href="https://doi.org/10.5281/zenodo.5574388">dfvue @ Zenodo</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/dfvue">dfvue @ PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://anaconda.org/conda-forge/dfvue">dfvue @ conda-forge</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020-2023, Matthias Cuntz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
