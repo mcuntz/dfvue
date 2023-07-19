@@ -26,21 +26,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python 3.9
+      - name: Set up Python 3.10
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: "3.10"
 
       - name: Install dependencies
         run: |
           # Spatial system dependencies
           sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt update
-          sudo apt install \
-            libudunits2-dev \
-            libgdal-dev \
-            libgeos-dev \
-            libproj-dev
           python -m pip install --upgrade pip
           pip install --editable .
 
@@ -51,11 +46,11 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
         exclude:
           # 3.6 uses proj v19 that does not work with newer versions of canopy
           - os: macos-latest
-            python-version: 3.9
+            python-version: "3.10"
 
     steps:
       - uses: actions/checkout@v2
@@ -96,7 +91,7 @@ jobs:
           python -m build
 
       - uses: actions/upload-artifact@v2
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.9'
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10'
         with:
           path: dist
 
