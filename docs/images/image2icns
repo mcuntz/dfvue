@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Make macOS icon .icns from an image file such as png
+#
+set -e
+
+im=${1}
+
+imbase=${im%.*}
+
+mkdir ${imbase}.iconset
+
+sips -z 16 16 ${im} --out ${imbase}.iconset/icon_16x16.png
+sips -z 32 32 ${im} --out ${imbase}.iconset/icon_16x16@2x.png
+sips -z 32 32 ${im} --out ${imbase}.iconset/icon_32x32.png
+sips -z 64 64 ${im} --out ${imbase}.iconset/icon_32x32@2x.png
+sips -z 64 64 ${im} --out ${imbase}.iconset/icon_64x64.png
+sips -z 128 128 ${im} --out ${imbase}.iconset/icon_64x64@2x.png
+sips -z 128 128 ${im} --out ${imbase}.iconset/icon_128x128.png
+sips -z 256 256 ${im} --out ${imbase}.iconset/icon_128x128@2x.png
+sips -z 256 256 ${im} --out ${imbase}.iconset/icon_256x256.png
+sips -z 512 512 ${im} --out ${imbase}.iconset/icon_256x256@2x.png
+sips -z 512 512 ${im} --out ${imbase}.iconset/icon_512x512.png
+sips -z 1024 1024 ${im} --out ${imbase}.iconset/icon_512x512@2x.png
+
+iconutil -c icns ${imbase}.iconset
+
+rm -r ${imbase}.iconset
+
+echo ${im} "->" ${imbase}.icns
+
+exit
