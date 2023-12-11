@@ -1,34 +1,294 @@
+
+
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dfvue.dfvreadcsv &#8212; dfvue 0.0.0.dev0 documentation</title>
+    <title>dfvue.dfvreadcsv &#8212; dfvue</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/dfvue/dfvreadcsv';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-   
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
   
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-  </head><body>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
   
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">dfvue</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">dfvue</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../package.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvmain.html">dfvmain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvreadcsv.html">dfvreadcsv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvscatter.html">dfvscatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvue.html">dfvue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvutils.html">dfvutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ncvwidgets.html">ncvwidgets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+</ul>
 
-          <div class="body" role="main">
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mcuntz/dfvue" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mcuntz/dfvue/issues/new?title=Issue%20on%20page%20%2F_modules/dfvue/dfvreadcsv.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <h1>Source code for dfvue.dfvreadcsv</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -60,13 +320,11 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
-<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;Using the themed widget set introduced in Tk 8.5.&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
+<span class="kn">import</span> <span class="nn">tkinter.font</span> <span class="k">as</span> <span class="nn">tkfont</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">.ncvwidgets</span> <span class="kn">import</span> <span class="n">add_entry</span><span class="p">,</span> <span class="n">add_tooltip</span><span class="p">,</span> <span class="n">Treeview</span>
+<span class="kn">from</span> <span class="nn">.ncvwidgets</span> <span class="kn">import</span> <span class="n">add_entry</span><span class="p">,</span> <span class="n">add_tooltip</span><span class="p">,</span> <span class="n">Treeview</span><span class="p">,</span> <span class="n">callurl</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;read_csvopts&#39;</span><span class="p">,</span> <span class="s1">&#39;read_csvdefaults&#39;</span><span class="p">,</span> <span class="s1">&#39;read_csvhelp&#39;</span><span class="p">,</span>
@@ -118,132 +376,145 @@
 <span class="n">read_csvhelp</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;file&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;str, path object or file-like object</span>
-<span class="sd">    Any valid string path is acceptable. The string could be a URL. Valid</span>
-<span class="sd">URL schemes include http, ftp, s3, gs, and file. For file URLs, a host is</span>
-<span class="sd">expected. A local file could be: file://localhost/path/to/table.csv. If you</span>
-<span class="sd">want to pass in a path object, pandas accepts any os.PathLike. By file-like</span>
-<span class="sd">object, we refer to objects with a read() method, such as a file handle</span>
-<span class="sd">(e.g. via builtin open function) or StringIO.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Any valid string path is acceptable.</span>
+<span class="sd">    The string could be a URL. Valid URL schemes include http, ftp, s3, gs,</span>
+<span class="sd">and file. For file URLs, a host is expected.</span>
+<span class="sd">    A local file could be: file://localhost/path/to/table.csv.</span>
+<span class="sd">    If you want to pass in a path object, pandas accepts any os.PathLike.</span>
+<span class="sd">    By file-like object, we refer to objects with a read() method, such as</span>
+<span class="sd">a file handle (e.g. via builtin open function) or StringIO.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;sep&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;str, default: ,</span>
-<span class="sd">    Delimiter to use. If sep is None, the C engine cannot automatically</span>
-<span class="sd">detect the separator, but the Python parsing engine can, meaning the latter</span>
-<span class="sd">will be used and automatically detect the separator by Python&#39;s builtin</span>
-<span class="sd">sniffer tool, csv.Sniffer. In addition, separators longer than 1 character</span>
-<span class="sd">and different from &#39;\s+&#39; will be interpreted as regular expressions and</span>
-<span class="sd">will also force the use of the Python parsing engine. Note that regex</span>
-<span class="sd">delimiters are prone to ignoring quoted data. Regex example: &#39;\r\t&#39;.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Delimiter to use.</span>
+<span class="sd">    If sep is None, the C engine cannot automatically detect the separator,</span>
+<span class="sd">but the Python parsing engine can, meaning the latter will be used and</span>
+<span class="sd">automatically detect the separator by Python&#39;s builtin sniffer tool,</span>
+<span class="sd">csv.Sniffer.</span>
+<span class="sd">    In addition, separators longer than 1 character and different from &#39;\s+&#39;</span>
+<span class="sd">will be interpreted as regular expressions and will also force the use of the</span>
+<span class="sd">Python parsing engine.</span>
+<span class="sd">    Note that regex delimiters are prone to ignoring quoted data.</span>
+<span class="sd">    Regex example: &#39;\r\t&#39;.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;header&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;int, list of int, None, default: infer</span>
 <span class="sd">    Row number(s) to use as the column names, and the start of the data.</span>
-<span class="sd">Default behavior is to infer the column names: if no names are passed the</span>
-<span class="sd">behavior is identical to header=0 and column names are inferred from the</span>
-<span class="sd">first line of the file, if column names are passed explicitly then the</span>
-<span class="sd">behavior is identical to header=None. Explicitly pass header=0 to be able</span>
-<span class="sd">to replace existing names. The header can be a list of integers that</span>
-<span class="sd">specify row locations for a multi-index on the columns e.g. [0,1,3].</span>
-<span class="sd">Intervening rows that are not specified will be skipped (e.g. 2 in this</span>
-<span class="sd">example is skipped). Note that this parameter ignores commented lines and</span>
-<span class="sd">empty lines if skip_blank_lines=True, so header=0 denotes the first line of</span>
-<span class="sd">data rather than the first line of the file.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Default behavior is to infer the column names: if no names are passed the</span>
+<span class="sd">behavior is identical to header=0 and column names are inferred from the first</span>
+<span class="sd">line of the file, if column names are passed explicitly then the behavior is</span>
+<span class="sd">identical to header=None.</span>
+<span class="sd">    Explicitly pass header=0 to be able to replace existing names. The header</span>
+<span class="sd">can be a list of integers that specify row locations for a multi-index on the</span>
+<span class="sd">columns e.g. 0,1,3. Intervening rows that are not specified will be skipped</span>
+<span class="sd">(e.g. 2 in this example is skipped).</span>
+<span class="sd">    Note that this parameter ignores commented lines and empty lines if</span>
+<span class="sd">skip_blank_lines=True, so header=0 denotes the first line of data rather than</span>
+<span class="sd">the first line of the file.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;names&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;array-like, optional</span>
-<span class="sd">    List of column names to use. If the file contains a header row, then</span>
-<span class="sd">you should explicitly pass header=0 to override the column names.</span>
-<span class="sd">Duplicates in this list are not allowed.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    List of column names to use.</span>
+<span class="sd">    If the file contains a header row, then you should explicitly pass</span>
+<span class="sd">header=0 to override the column names.</span>
+<span class="sd">    Duplicates in this list are not allowed.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;index_col&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;int, str, sequence of int / str, or False, optional, default: None</span>
 <span class="sd">    Column(s) to use as the row labels of the DataFrame, either given as</span>
-<span class="sd">string name or column index. If a sequence of int / str is given, a</span>
-<span class="sd">MultiIndex is used.</span>
-<span class="sd">Note: index_col=False can be used to force pandas to not use the first</span>
+<span class="sd">string name (without column index) or column index.</span>
+<span class="sd">    If a sequence of int / str is given, a MultiIndex is used. dfvue converts</span>
+<span class="sd">a MultiIndex to a single string index with blanks.</span>
+<span class="sd">    Note: index_col=False can be used to force pandas to not use the first</span>
 <span class="sd">column as the index, e.g. when you have a malformed file with delimiters at</span>
 <span class="sd">the end of each line.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;usecols&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;list-like or callable, optional</span>
-<span class="sd">    Return a subset of the columns. If list-like, all elements must either</span>
-<span class="sd">be positional (i.e. integer indices into the document columns) or strings</span>
-<span class="sd">that correspond to column names provided either by the user in names or</span>
-<span class="sd">inferred from the document header row(s). If names are given, the document</span>
-<span class="sd">header row(s) are not taken into account. For example, a valid list-like</span>
-<span class="sd">usecols parameter would be [0, 1, 2] or [&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]. Element</span>
-<span class="sd">order is ignored, so usecols=[0, 1] is the same as [1, 0]. To instantiate a</span>
-<span class="sd">DataFrame from data with element order preserved use pd.read_csv(data,</span>
-<span class="sd">usecols=[&#39;foo&#39;, &#39;bar&#39;])[[&#39;foo&#39;, &#39;bar&#39;]] for columns in [&#39;foo&#39;, &#39;bar&#39;] order</span>
-<span class="sd">or pd.read_csv(data, usecols=[&#39;foo&#39;, &#39;bar&#39;])[[&#39;bar&#39;, &#39;foo&#39;]] for [&#39;bar&#39;,</span>
-<span class="sd">&#39;foo&#39;] order.</span>
-<span class="sd">If callable, the callable function will be evaluated against the column</span>
+<span class="sd">    Return a subset of the columns.</span>
+<span class="sd">    If list-like, all elements must either be positional (i.e. integer indices</span>
+<span class="sd">into the document columns) or strings that correspond to column names provided</span>
+<span class="sd">either by the user in names or inferred from the document header row(s).</span>
+<span class="sd">    If names are given, the document header row(s) are not taken into account.</span>
+<span class="sd">For example, a valid list-like usecols parameter would be 0, 1, 2 or</span>
+<span class="sd">&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;.</span>
+<span class="sd">    Element order is ignored, so usecols=[0, 1] is the same as [1, 0].</span>
+<span class="sd">    To instantiate a DataFrame from data with element order preserved use</span>
+<span class="sd">pd.read_csv(data, usecols=[&#39;foo&#39;, &#39;bar&#39;])[[&#39;foo&#39;, &#39;bar&#39;]]</span>
+<span class="sd">for columns in [&#39;foo&#39;, &#39;bar&#39;] order or</span>
+<span class="sd">pd.read_csv(data, usecols=[&#39;foo&#39;, &#39;bar&#39;])[[&#39;bar&#39;, &#39;foo&#39;]]</span>
+<span class="sd">for [&#39;bar&#39;, &#39;foo&#39;] order.</span>
+<span class="sd">    If callable, the callable function will be evaluated against the column</span>
 <span class="sd">names, returning names where the callable function evaluates to True. An</span>
-<span class="sd">example of a valid callable argument would be lambda x: x.upper() in</span>
-<span class="sd">[&#39;AAA&#39;, &#39;BBB&#39;, &#39;DDD&#39;]. Using this parameter results in much faster parsing</span>
-<span class="sd">time and lower memory usage.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">example of a valid callable argument would be</span>
+<span class="sd">lambda x: x.upper() in [&#39;AAA&#39;, &#39;BBB&#39;, &#39;DDD&#39;].</span>
+<span class="sd">Using this parameter results in much faster parsing time and lower memory</span>
+<span class="sd">usage.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;dtype&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Type name or dict of column -&gt; type, optional</span>
-<span class="sd">    Data type for data or columns. E.g. {&#39;a&#39;: np.float64, &#39;b&#39;: np.int32,</span>
-<span class="sd">&#39;c&#39;: &#39;Int64&#39;} Use str or object together with suitable na_values settings</span>
-<span class="sd">to preserve and not interpret dtype. If converters are specified, they will</span>
-<span class="sd">be applied INSTEAD of dtype conversion.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Data type for data or columns.</span>
+<span class="sd">    E.g. &#39;a&#39;: np.float64, &#39;b&#39;: np.int32, &#39;c&#39;: &#39;Int64&#39;</span>
+<span class="sd">    Use str or object together with suitable na_values settings to preserve and</span>
+<span class="sd">not interpret dtype.</span>
+<span class="sd">    If converters are specified, they will be applied INSTEAD of dtype</span>
+<span class="sd">conversion.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;engine&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;{&#39;c&#39;, &#39;python&#39;, &#39;pyarrow&#39;}, optional</span>
-<span class="sd">    Parser engine to use. The C and pyarrow engines are faster, while the</span>
-<span class="sd">python engine is currently more feature-complete. Multithreading is</span>
-<span class="sd">currently only supported by the pyarrow engine.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Parser engine to use.</span>
+<span class="sd">    The C and pyarrow engines are faster, while the python engine is currently</span>
+<span class="sd">more feature-complete. Multithreading is currently only supported by the</span>
+<span class="sd">pyarrow engine.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;converters&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;dict, optional</span>
-<span class="sd">    Dict of functions for converting values in certain columns. Keys can</span>
-<span class="sd">either be integers or column labels.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Dict of functions for converting values in certain columns.</span>
+<span class="sd">    Keys can either be integers or column labels.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;true_values&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;list, optional</span>
-<span class="sd">    Values to consider as True in addition to case-insensitive variants of</span>
-<span class="sd">&#39;True&#39;.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Values to consider as True in addition to case-insensitive variants</span>
+<span class="sd">of &#39;True&#39;.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;false_values&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;list, optional</span>
-<span class="sd">    Values to consider as False in addition to case-insensitive variants of</span>
-<span class="sd">&#39;False&#39;.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Values to consider as False in addition to case-insensitive variants</span>
+<span class="sd">of &#39;False&#39;.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;skipinitialspace&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: False</span>
 <span class="sd">    Skip spaces after delimiter.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;skiprows&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;list-like, int or callable, optional</span>
-<span class="sd">    Line numbers to skip (0-indexed) or number of lines to skip (int) at</span>
-<span class="sd">the start of the file.</span>
-<span class="sd">If callable, the callable function will be evaluated against the row</span>
+<span class="sd">    Line numbers to skip (0-indexed, must include comma, e.g. 1, for skipping the second row) or number of lines to skip (int, without comma) at the start of the file.</span>
+<span class="sd">    If callable, the callable function will be evaluated against the row</span>
 <span class="sd">indices, returning True if the row should be skipped and False otherwise.</span>
 <span class="sd">An example of a valid callable argument would be lambda x: x in [0, 2].&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;skipfooter&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;int, default: 0</span>
-<span class="sd">    Number of lines at bottom of file to skip (Unsupported with</span>
-<span class="sd">engine=&#39;c&#39;).&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Number of lines at bottom of file to skip</span>
+<span class="sd">(Unsupported with engine=&#39;c&#39;).&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;nrows&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;int, optional</span>
-<span class="sd">    Number of rows of file to read. Useful for reading pieces of large</span>
-<span class="sd">files.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Number of rows of file to read.</span>
+<span class="sd">    Useful for reading pieces of large files.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;na_values&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;scalar, str, list-like, or dict, optional</span>
-<span class="sd">    Additional strings to recognize as NA/NaN. If dict passed, specific</span>
-<span class="sd">per-column NA values. By default the following values are interpreted as</span>
-<span class="sd">NaN: &#39;&#39;, &#39;#N/A&#39;, &#39;#N/A N/A&#39;, &#39;#NA&#39;, &#39;-1.#IND&#39;, &#39;-1.#QNAN&#39;, &#39;-NaN&#39;, &#39;-nan&#39;,</span>
+<span class="sd">    Additional strings to recognize as NA/NaN.</span>
+<span class="sd">    If dict passed, specific per-column NA values.</span>
+<span class="sd">    By default the following values are interpreted as NaN:</span>
+<span class="sd">&#39;&#39;, &#39;#N/A&#39;, &#39;#N/A N/A&#39;, &#39;#NA&#39;, &#39;-1.#IND&#39;, &#39;-1.#QNAN&#39;, &#39;-NaN&#39;, &#39;-nan&#39;,</span>
 <span class="sd">&#39;1.#IND&#39;, &#39;1.#QNAN&#39;, &#39;&lt;NA&gt;&#39;, &#39;N/A&#39;, &#39;NA&#39;, &#39;NULL&#39;, &#39;NaN&#39;, &#39;None&#39;, &#39;n/a&#39;,</span>
 <span class="sd">&#39;nan&#39;, &#39;null&#39;.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;keep_default_na&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: True</span>
 <span class="sd">    Whether or not to include the default NaN values when parsing the data.</span>
-<span class="sd">Depending on whether na_values is passed in, the behavior is as follows:</span>
-<span class="sd">If keep_default_na is True, and na_values are specified, na_values is</span>
-<span class="sd">appended to the default NaN values used for parsing.</span>
-<span class="sd">If keep_default_na is True, and na_values are not specified, only the</span>
-<span class="sd">default NaN values are used for parsing.</span>
-<span class="sd">If keep_default_na is False, and na_values are specified, only the NaN</span>
-<span class="sd">values specified na_values are used for parsing.</span>
-<span class="sd">If keep_default_na is False, and na_values are not specified, no strings</span>
-<span class="sd">will be parsed as NaN.</span>
-<span class="sd">Note that if na_filter is passed in as False, the keep_default_na and</span>
+<span class="sd">    Depending on whether na_values is passed in, the behavior is as follows:</span>
+<span class="sd">        If keep_default_na is True, and na_values are specified,</span>
+<span class="sd">na_values is appended to the default NaN values used for parsing.</span>
+<span class="sd">        If keep_default_na is True, and na_values are not specified,</span>
+<span class="sd">only the default NaN values are used for parsing.</span>
+<span class="sd">        If keep_default_na is False, and na_values are specified,</span>
+<span class="sd">only the NaN values specified na_values are used for parsing.</span>
+<span class="sd">        If keep_default_na is False, and na_values are not specified,</span>
+<span class="sd">no strings will be parsed as NaN.</span>
+<span class="sd">    Note that if na_filter is passed in as False, the keep_default_na and</span>
 <span class="sd">na_values parameters will be ignored.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;na_filter&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: True</span>
-<span class="sd">    Detect missing value markers (empty strings and the value of</span>
-<span class="sd">na_values). In data without any NAs, passing na_filter=False can improve</span>
-<span class="sd">the performance of reading a large file.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Detect missing value markers (empty strings and the value of na_values).</span>
+<span class="sd">    In data without any NAs, passing na_filter=False can improve the</span>
+<span class="sd">performance of reading a large file.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;verbose&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: False</span>
 <span class="sd">    Indicate number of NA values placed in non-numeric columns.&quot;&quot;&quot;</span><span class="p">,</span>
@@ -252,18 +523,19 @@
 <span class="sd">    If True, skip over blank lines rather than interpreting as NaN values.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;parse_dates&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool or list of int or names or list of lists or dict, default: False</span>
-<span class="sd">The behavior is as follows:</span>
-<span class="sd">boolean. If True -&gt; try parsing the index.</span>
-<span class="sd">list of int or names. e.g. If [1, 2, 3] -&gt; try parsing columns 1, 2, 3 each</span>
-<span class="sd">as a separate date column.</span>
-<span class="sd">list of lists. e.g. If [[1, 3]] -&gt; combine columns 1 and 3 and parse as a</span>
-<span class="sd">single date column.</span>
-<span class="sd">dict, e.g. {&#39;foo&#39; : [1, 3]} -&gt; parse columns 1, 3 as date and call result &#39;foo&#39;</span>
-<span class="sd">If a column or index cannot be represented as an array of datetimes, say</span>
-<span class="sd">because of an unparsable value or a mixture of timezones, the column or</span>
+<span class="sd">    The behavior is as follows:</span>
+<span class="sd">        boolean. If True -&gt; try parsing the index.</span>
+<span class="sd">        list of int or names. e.g. If 1, 2, 3</span>
+<span class="sd">-&gt; try parsing columns 1, 2, 3 each as a separate date column.</span>
+<span class="sd">        list of lists. e.g. If [1, 3]</span>
+<span class="sd">-&gt; combine columns 1 and 3 and parse as a single date column.</span>
+<span class="sd">        dict, e.g. &#39;foo&#39; : [1, 3]</span>
+<span class="sd">-&gt; parse columns 1, 3 as date and call result &#39;foo&#39;</span>
+<span class="sd">    If a column or index cannot be represented as an array of datetimes,</span>
+<span class="sd">say because of an unparsable value or a mixture of timezones, the column or</span>
 <span class="sd">index will be returned unaltered as an object data type. For non-standard</span>
 <span class="sd">datetime parsing, use pd.to_datetime after pd.read_csv.</span>
-<span class="sd">Note: A fast-path exists for iso8601-formatted dates.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Note: A fast-path exists for iso8601-formatted dates.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;keep_date_col&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: False</span>
 <span class="sd">    If True and parse_dates specifies combining multiple columns then keep</span>
@@ -271,142 +543,201 @@
     <span class="s1">&#39;date_format&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str or dict of column -&gt; format, default: None</span>
 <span class="sd">    If used in conjunction with parse_dates, will parse dates according to</span>
-<span class="sd">this format. For anything more complex, please read in as object and then</span>
-<span class="sd">apply to_datetime() as-needed.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">this format.</span>
+<span class="sd">    For anything more complex, please read in as object and then apply</span>
+<span class="sd">to_datetime() as-needed.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;dayfirst&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: False</span>
 <span class="sd">    DD/MM format dates, international and European format.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;cache_dates&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: True</span>
 <span class="sd">    If True, use a cache of unique, converted dates to apply the datetime</span>
-<span class="sd">conversion. May produce significant speed-up when parsing duplicate date</span>
-<span class="sd">strings, especially ones with timezone offsets.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">conversion.</span>
+<span class="sd">    May produce significant speed-up when parsing duplicate date strings,</span>
+<span class="sd">especially ones with timezone offsets.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;iterator&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: False</span>
-<span class="sd">    Return TextFileReader object for iteration or getting chunks with</span>
-<span class="sd">get_chunk().&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Return TextFileReader object for iteration or getting chunks</span>
+<span class="sd">with get_chunk().&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;chunksize&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;int, optional</span>
-<span class="sd">    Return TextFileReader object for iteration. See the IO Tools docs for</span>
-<span class="sd">more information on iterator and chunksize.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Return TextFileReader object for iteration.</span>
+<span class="sd">    See the IO Tools docs for more information on iterator and chunksize.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;compression&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str or dict, default: &#39;infer&#39;</span>
-<span class="sd">    For on-the-fly decompression of on-disk data. If &#39;infer&#39; and</span>
-<span class="sd">&#39;filepath_or_buffer&#39; is path-like, then detect compression from the</span>
-<span class="sd">following extensions: &#39;.gz&#39;, &#39;.bz2&#39;, &#39;.zip&#39;, &#39;.xz&#39;, &#39;.zst&#39;, &#39;.tar&#39;,</span>
-<span class="sd">&#39;.tar.gz&#39;, &#39;.tar.xz&#39; or &#39;.tar.bz2&#39; (otherwise no compression). If using</span>
-<span class="sd">&#39;zip&#39; or &#39;tar&#39;, the ZIP file must contain only one data file to be read in.</span>
-<span class="sd">Set to None for no decompression. Can also be a dict with key &#39;method&#39; set</span>
-<span class="sd">to one of {&#39;zip&#39;, &#39;gzip&#39;, &#39;bz2&#39;, &#39;zstd&#39;, &#39;tar&#39;} and other key-value pairs</span>
-<span class="sd">are forwarded to zipfile.ZipFile, gzip.GzipFile, bz2.BZ2File,</span>
-<span class="sd">zstandard.ZstdDecompressor or tarfile.TarFile, respectively. As an example,</span>
-<span class="sd">the following could be passed for Zstandard decompression using a custom</span>
-<span class="sd">compression dictionary: compression={&#39;method&#39;: &#39;zstd&#39;, &#39;dict_data&#39;:</span>
-<span class="sd">my_compression_dict}.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    For on-the-fly decompression of on-disk data.</span>
+<span class="sd">    If &#39;infer&#39; and &#39;filepath_or_buffer&#39; is path-like, then detect compression</span>
+<span class="sd">from the following extensions:</span>
+<span class="sd">&#39;.gz&#39;, &#39;.bz2&#39;, &#39;.zip&#39;, &#39;.xz&#39;, &#39;.zst&#39;, &#39;.tar&#39;, &#39;.tar.gz&#39;, &#39;.tar.xz&#39; or</span>
+<span class="sd">&#39;.tar.bz2&#39; (otherwise no compression).</span>
+<span class="sd">    If using &#39;zip&#39; or &#39;tar&#39;, the ZIP file must contain only one data file to</span>
+<span class="sd">be read in.</span>
+<span class="sd">    Set to None for no decompression.</span>
+<span class="sd">    Can also be a dict with key &#39;method&#39; set to one of</span>
+<span class="sd">{&#39;zip&#39;, &#39;gzip&#39;, &#39;bz2&#39;, &#39;zstd&#39;, &#39;tar&#39;} and other key-value pairs are forwarded</span>
+<span class="sd">to zipfile.ZipFile, gzip.GzipFile, bz2.BZ2File, zstandard.ZstdDecompressor or</span>
+<span class="sd">tarfile.TarFile, respectively. As an example, the following could be passed for</span>
+<span class="sd">Zstandard decompression using a custom compression dictionary:</span>
+<span class="sd">compression={&#39;method&#39;: &#39;zstd&#39;, &#39;dict_data&#39;: my_compression_dict}.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;thousands&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str, optional</span>
 <span class="sd">    Thousands separator.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;decimal&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str, default: &#39;.&#39;</span>
-<span class="sd">    Character to recognize as decimal point (e.g. use &#39;,&#39; for European</span>
-<span class="sd">data).&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Character to recognize as decimal point</span>
+<span class="sd">(e.g. use &#39;,&#39; for European data).&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;lineterminator&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str (length 1), optional</span>
 <span class="sd">    Character to break file into lines. Only valid with C parser.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;quotechar&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str (length 1), optional</span>
-<span class="sd">    The character used to denote the start and end of a quoted item. Quoted</span>
-<span class="sd">items can include the delimiter and it will be ignored.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    The character used to denote the start and end of a quoted item.</span>
+<span class="sd">    Quoted items can include the delimiter and it will be ignored.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;quoting&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;int or csv.QUOTE_* instance, default: 0</span>
-<span class="sd">    Control field quoting behavior per csv.QUOTE_* constants. Use one of</span>
-<span class="sd">QUOTE_MINIMAL (0), QUOTE_ALL (1), QUOTE_NONNUMERIC (2) or QUOTE_NONE (3).&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Control field quoting behavior per csv.QUOTE_* constants.</span>
+<span class="sd">    Use one of QUOTE_MINIMAL (0), QUOTE_ALL (1), QUOTE_NONNUMERIC (2) or</span>
+<span class="sd">QUOTE_NONE (3).&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;doublequote&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: True</span>
-<span class="sd">    When quotechar is specified and quoting is not QUOTE_NONE, indicate</span>
-<span class="sd">whether or not to interpret two consecutive quotechar elements INSIDE a</span>
-<span class="sd">field as a single quotechar element.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    When quotechar is specified and quoting is not QUOTE_NONE, indicate whether</span>
+<span class="sd">or not to interpret two consecutive quotechar elements INSIDE a field as a</span>
+<span class="sd">single quotechar element.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;escapechar&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str (length 1), optional</span>
 <span class="sd">    One-character string used to escape other characters.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;comment&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;str, optional</span>
-<span class="sd">    Indicates remainder of line should not be parsed. If found at the</span>
-<span class="sd">beginning of a line, the line will be ignored altogether. This parameter</span>
-<span class="sd">must be a single character. Like empty lines (as long as</span>
-<span class="sd">skip_blank_lines=True), fully commented lines are ignored by the parameter</span>
-<span class="sd">header but not by skiprows. For example, if comment=&#39;#&#39;, parsing</span>
-<span class="sd">#empty\na,b,c\n1,2,3 with header=0 will result in &#39;a,b,c&#39; being treated as</span>
-<span class="sd">the header.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Indicates remainder of line should not be parsed.</span>
+<span class="sd">    If found at the beginning of a line, the line will be ignored altogether.</span>
+<span class="sd">    This parameter must be a single character. Like empty lines</span>
+<span class="sd">(as long as skip_blank_lines=True), fully commented lines are ignored by the</span>
+<span class="sd">parameter header but not by skiprows.</span>
+<span class="sd">    For example, if comment=&#39;#&#39;, parsing</span>
+<span class="sd">        #empty\na,b,c\n1,2,3</span>
+<span class="sd">    with header=0 will result in &#39;a,b,c&#39; being treated as the header.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;encoding&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str, optional, default: &#39;utf-8&#39;</span>
-<span class="sd">    Encoding to use for UTF when reading/writing (ex. &#39;utf-8&#39;). List of</span>
-<span class="sd">Python standard encodings.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Encoding to use for UTF when reading/writing (ex. &#39;utf-8&#39;).</span>
+<span class="sd">    List of Python standard encodings.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;encoding_errors&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str, optional, default: &#39;strict&#39;</span>
-<span class="sd">    How encoding errors are treated. List of possible values.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    How encoding errors are treated.</span>
+<span class="sd">    List of possible values.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;dialect&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str or csv.Dialect, optional</span>
-<span class="sd">    If provided, this parameter will override values (default or not) for</span>
-<span class="sd">the following parameters: delimiter, doublequote, escapechar,</span>
-<span class="sd">skipinitialspace, quotechar, and quoting. If it is necessary to override</span>
-<span class="sd">values, a ParserWarning will be issued. See csv.Dialect documentation for</span>
-<span class="sd">more details.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    If provided, this parameter will override values (default or not) for the</span>
+<span class="sd">following parameters: delimiter, doublequote, escapechar, skipinitialspace,</span>
+<span class="sd">quotechar, and quoting.</span>
+<span class="sd">    If it is necessary to override values, a ParserWarning will be issued.</span>
+<span class="sd">See csv.Dialect documentation for more details.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;on_bad_lines&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;{&#39;error&#39;, &#39;warn&#39;, &#39;skip&#39;} or callable, default: &#39;error&#39;</span>
-<span class="sd">    Specifies what to do upon encountering a bad line (a line with too many</span>
-<span class="sd">fields). Allowed values are :</span>
-<span class="sd">&#39;error&#39;, raise an Exception when a bad line is encountered.</span>
-<span class="sd">&#39;warn&#39;, raise a warning when a bad line is encountered and skip that line.</span>
-<span class="sd">&#39;skip&#39;, skip bad lines without raising or warning when they are</span>
-<span class="sd">    encountered.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Specifies what to do upon encountering a bad line</span>
+<span class="sd">(a line with too many fields).</span>
+<span class="sd">    Allowed values are:</span>
+<span class="sd">        &#39;error&#39;, raise an Exception when a bad line is encountered.</span>
+<span class="sd">        &#39;warn&#39;, raise a warning when a bad line is encountered and skip</span>
+<span class="sd">that line.</span>
+<span class="sd">        &#39;skip&#39;, skip bad lines without raising or warning when they are</span>
+<span class="sd">encountered.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;delim_whitespace&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;bool, default: False</span>
-<span class="sd">    Specifies whether or not whitespace (e.g. &#39; &#39; or &#39; &#39;) will be used as</span>
-<span class="sd">the sep. Equivalent to setting sep=&#39;\s+&#39;. If this option is set to True,</span>
-<span class="sd">nothing should be passed in for the delimiter parameter.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Specifies whether or not whitespace (e.g. &#39; &#39; or &#39; &#39;) will be used</span>
+<span class="sd">as the sep.</span>
+<span class="sd">    Equivalent to setting sep=&#39;\s+&#39;.</span>
+<span class="sd">    If this option is set to True, nothing should be passed in for the</span>
+<span class="sd">delimiter parameter.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;low_memory&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: True</span>
 <span class="sd">    Internally process the file in chunks, resulting in lower memory use</span>
-<span class="sd">while parsing, but possibly mixed type inference. To ensure no mixed types</span>
-<span class="sd">either set False, or specify the type with the dtype parameter. Note that</span>
-<span class="sd">the entire file is read into a single DataFrame regardless, use the</span>
-<span class="sd">chunksize or iterator parameter to return the data in chunks. (Only valid</span>
-<span class="sd">with C parser).&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">while parsing, but possibly mixed type inference.</span>
+<span class="sd">    To ensure no mixed types either set False, or specify the type with</span>
+<span class="sd">the dtype parameter.</span>
+<span class="sd">    Note that the entire file is read into a single DataFrame regardless,</span>
+<span class="sd">use the chunksize or iterator parameter to return the data in chunks.</span>
+<span class="sd">(Only valid with C parser).&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;memory_map&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;bool, default: False</span>
 <span class="sd">    If a filepath is provided for filepath_or_buffer, map the file object</span>
-<span class="sd">directly onto memory and access the data directly from there. Using this</span>
-<span class="sd">option can improve performance because there is no longer any I/O overhead.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">directly onto memory and access the data directly from there.</span>
+<span class="sd">    Using this option can improve performance because there is no longer</span>
+<span class="sd">any I/O overhead.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;float_precision&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;str, optional</span>
-<span class="sd">    Specifies which converter the C engine should use for floating-point</span>
-<span class="sd">values. The options are None or &#39;high&#39; for the ordinary converter, &#39;legacy&#39;</span>
-<span class="sd">for the original lower precision pandas converter, and &#39;round_trip&#39; for the</span>
-<span class="sd">round-trip converter.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Specifies which converter the C engine should use for</span>
+<span class="sd">floating-point values.</span>
+<span class="sd">    The options are</span>
+<span class="sd">        None or &#39;high&#39; for the ordinary converter,</span>
+<span class="sd">        &#39;legacy&#39; for the original lower precision pandas converter, and</span>
+<span class="sd">        &#39;round_trip&#39; for the round-trip converter.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;storage_options&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;dict, optional</span>
-<span class="sd">    Extra options that make sense for a particular storage connection, e.g.</span>
-<span class="sd">host, port, username, password, etc. For HTTP(S) URLs the key-value pairs</span>
-<span class="sd">are forwarded to urllib.request.Request as header options. For other URLs</span>
-<span class="sd">(e.g. starting with &#39;s3://&#39;, and &#39;gcs://&#39;) the key-value pairs are</span>
-<span class="sd">forwarded to fsspec.open. Please see fsspec and urllib for more details,</span>
-<span class="sd">and for more examples on storage options refer here.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    Extra options that make sense for a particular storage connection,</span>
+<span class="sd">e.g. host, port, username, password, etc.</span>
+<span class="sd">    For HTTP(S) URLs the key-value pairs are forwarded to</span>
+<span class="sd">urllib.request.Request as header options.</span>
+<span class="sd">    For other URLs (e.g. starting with &#39;s3://&#39;, and &#39;gcs://&#39;) the key-value</span>
+<span class="sd">pairs are forwarded to fsspec.open.</span>
+<span class="sd">    Please see fsspec and urllib for more details, and for more examples</span>
+<span class="sd">on storage options refer here.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;dtype_backend&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;{&#39;numpy_nullable&#39;, &#39;pyarrow&#39;}, defaults to NumPy backed DataFrames</span>
-<span class="sd">    Which dtype_backend to use, e.g. whether a DataFrame should have NumPy</span>
-<span class="sd">arrays, nullable dtypes are used for all dtypes that have a nullable</span>
+<span class="sd">    Which dtype_backend to use, e.g. whether a DataFrame should have</span>
+<span class="sd">NumPy arrays, nullable dtypes are used for all dtypes that have a nullable</span>
 <span class="sd">implementation when &#39;numpy_nullable&#39; is set, pyarrow is used for all dtypes</span>
 <span class="sd">if &#39;pyarrow&#39; is set.</span>
-<span class="sd">The dtype_backends are still experimental.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">    The dtype_backends are still experimental.&quot;&quot;&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="n">read_csvhelp</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;missing_value&#39;</span><span class="p">:</span>
-                     <span class="sa">r</span><span class="s1">&#39;scalar or str\n&#39;</span>
-                     <span class="sa">r</span><span class="s1">&#39;    Additional value to na_values set to NA/NaN.&#39;</span><span class="p">})</span>
+                     <span class="s1">&#39;scalar or str</span><span class="se">\n</span><span class="s1">&#39;</span>
+                     <span class="s1">&#39;    Additional value to na_values set to NA/NaN.&#39;</span><span class="p">})</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Tooltips for pandas.read_csv options from pandas v2.0.3</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">_parse_entry</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine and convert to correct data type from text string</span>
+
+<span class="sd">    Parse entry field to None, bool, int, float, list, dict</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+        <span class="c1"># None</span>
+        <span class="n">tt</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span><span class="p">:</span>
+        <span class="c1"># bool True</span>
+        <span class="n">tt</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;False&#39;</span><span class="p">:</span>
+        <span class="c1"># bool False</span>
+        <span class="n">tt</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="c1"># dict or str</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">tt</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">{{</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">}}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">:</span>
+            <span class="n">tt</span> <span class="o">=</span> <span class="n">text</span>
+    <span class="k">elif</span> <span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="c1"># list or str</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">tt</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">:</span>
+            <span class="n">tt</span> <span class="o">=</span> <span class="n">text</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># int</span>
+            <span class="n">tt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># float</span>
+                <span class="n">tt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="c1"># str</span>
+                <span class="n">tt</span> <span class="o">=</span> <span class="n">text</span>
+    <span class="k">return</span> <span class="n">tt</span>
 
 
 <div class="viewcode-block" id="dfvReadcsv"><a class="viewcode-back" href="../../dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv">[docs]</a><span class="k">class</span> <span class="nc">dfvReadcsv</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">):</span>
@@ -431,8 +762,14 @@
 
         <span class="c1"># copy for ease of use</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newcsvfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">newcsvfile</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">df</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">miss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">miss</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">sep</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index_col</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">index_col</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">skiprows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">skiprows</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parse_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">parse_dates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">date_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">date_format</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">missing_value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">cols</span>
 
         <span class="c1"># space</span>
@@ -464,8 +801,19 @@
         <span class="c1"># label for read_csv options</span>
         <span class="n">opthead</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">opthead</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-        <span class="n">optheadlabel</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Options for pandas.read_csv&#39;</span><span class="p">)</span>
-        <span class="n">optheadlabel</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        <span class="n">optheadlabel1</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Options for&#39;</span><span class="p">)</span>
+        <span class="n">optheadlabel1</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        <span class="c1"># https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s1">&#39;blue.TLabel&#39;</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+        <span class="n">optheadlabel2</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;pandas.read_csv&#39;</span><span class="p">,</span>
+                                  <span class="n">style</span><span class="o">=</span><span class="s1">&#39;blue.TLabel&#39;</span><span class="p">)</span>
+        <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        <span class="c1"># https://stackoverflow.com/questions/3655449/underline-text-in-tkinter-label-widget</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="n">tkfont</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">optheadlabel2</span><span class="p">,</span> <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">))</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">underline</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Button-1&gt;&quot;</span><span class="p">,</span>
+                           <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">callurl</span><span class="p">(</span><span class="s2">&quot;https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html&quot;</span><span class="p">))</span>
 
         <span class="c1"># option fields</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">opt</span> <span class="o">=</span> <span class="p">{}</span>     <span class="c1"># option</span>
@@ -495,9 +843,8 @@
                     <span class="n">width</span><span class="o">=</span><span class="n">entrywidth</span><span class="p">,</span>
                     <span class="n">tooltip</span><span class="o">=</span><span class="n">read_csvhelp</span><span class="p">[</span><span class="n">oo</span><span class="p">],</span>
                     <span class="n">command</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_again</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_final</span><span class="p">])</span>
-        <span class="c1"># overwrite default of missing_value from command line</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">miss</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;missing_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">miss</span><span class="p">))</span>
+        <span class="c1"># overwrite defaults from command line</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_command_line_options</span><span class="p">(</span><span class="n">defaults</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">newcsvfile</span><span class="p">)</span>
         <span class="c1"># add cancel and read buttons to last row</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowopt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Read csv&quot;</span><span class="p">,</span>
                                <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_final</span><span class="p">)</span>
@@ -510,9 +857,41 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">focus_force</span><span class="p">()</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_again</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
     <span class="c1">#</span>
     <span class="c1"># Event bindings</span>
     <span class="c1">#</span>
+
+<div class="viewcode-block" id="dfvReadcsv.set_command_line_options"><a class="viewcode-back" href="../../dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.set_command_line_options">[docs]</a>    <span class="k">def</span> <span class="nf">set_command_line_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set options possible on the command line</span>
+
+<span class="sd">        If defaults=True, use default options otherwise set options</span>
+<span class="sd">        from command line.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">defaults</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;sep&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;index_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;skiprows&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;parse_dates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;date_format&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;missing_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;sep&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;index_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index_col</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">skiprows</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;skiprows&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">skiprows</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_dates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;parse_dates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_dates</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">date_format</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;date_format&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">date_format</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="s1">&#39;missing_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span><span class="p">)</span>
+        <span class="k">return</span></div>
 
 <div class="viewcode-block" id="dfvReadcsv.new_tree"><a class="viewcode-back" href="../../dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.new_tree">[docs]</a>    <span class="k">def</span> <span class="nf">new_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -531,7 +910,10 @@
         <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">idx</span> <span class="o">=</span> <span class="s1">&#39;index &#39;</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
         <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-        <span class="n">columns</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+        <span class="n">df_columns</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># index: name</span>
+        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">cc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)):</span>
+            <span class="n">df_columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">cc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">df_columns</span><span class="p">)</span>  <span class="c1"># index, df_columns</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="s2">&quot;headings&quot;</span><span class="p">,</span>
                          <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nrows</span><span class="p">)</span>
         <span class="c1"># columns</span>
@@ -542,10 +924,10 @@
             <span class="n">cwidth</span> <span class="o">=</span> <span class="mi">700</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">cwidth</span> <span class="o">=</span> <span class="mi">150</span>
-        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_columns</span><span class="p">:</span>  <span class="c1"># columns w/o index</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">cwidth</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                              <span class="n">anchor</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>  <span class="c1"># columns with index</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
         <span class="c1"># rows</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">nrows</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])):</span>
@@ -563,20 +945,7 @@
         <span class="n">opts</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">oo</span> <span class="ow">in</span> <span class="n">read_csvopts</span><span class="p">:</span>
             <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="p">[</span><span class="n">oo</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
-                <span class="n">tt</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">elif</span> <span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span><span class="p">:</span>
-                <span class="n">tt</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;False&#39;</span><span class="p">:</span>
-                <span class="n">tt</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="n">tt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">tt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                        <span class="n">tt</span> <span class="o">=</span> <span class="n">text</span>
+            <span class="n">tt</span> <span class="o">=</span> <span class="n">_parse_entry</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">tt</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">tt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
                 <span class="n">opts</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">oo</span><span class="p">:</span> <span class="n">tt</span><span class="p">})</span>
         <span class="c1"># skipfooter does not work with nrows</span>
@@ -622,8 +991,16 @@
         <span class="n">idx</span> <span class="o">=</span> <span class="s1">&#39;df.index&#39;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span>
-                       <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="p">):</span>
+            <span class="n">series</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="nb">str</span><span class="p">(</span><span class="n">kk</span><span class="p">)</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">ii</span> <span class="p">]</span>
+                       <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="p">]</span>
+            <span class="n">series</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">series</span> <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="p">):</span>
+            <span class="c1"># replace MultiIndex with combined column</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cc</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">rows</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">cc</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">)&#39;</span>
                       <span class="k">for</span> <span class="n">cc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="p">]</span>
@@ -634,78 +1011,69 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div></div>
 </pre></div>
 
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">dfvue</a></h1>
-
-
-
-<p class="blurb">A minimal GUI for a quick view of csv files.</p>
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html">dfvue</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../package.html">API</a></li>
-</ul>
-
-
-<hr />
-<ul>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
     
-    <li class="toctree-l1"><a href="https://github.com/mcuntz/dfvue">dfvue @ GitHub</a></li>
+<p class="component-author">
+By Matthias Cuntz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
     
-    <li class="toctree-l1"><a href="https://doi.org/10.5281/zenodo.5574388">dfvue @ Zenodo</a></li>
+  <p class="copyright">
     
-    <li class="toctree-l1"><a href="https://pypi.org/project/dfvue">dfvue @ PyPI</a></li>
+      © Copyright 2023-2023, Matthias Cuntz.
+      <br/>
     
-    <li class="toctree-l1"><a href="https://anaconda.org/conda-forge/dfvue">dfvue @ conda-forge</a></li>
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
     
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2020-2023, Matthias Cuntz.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
-      
-    </div>
+          </footer>
+        
 
-    
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
-    
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
