@@ -1,4 +1,4 @@
-# required for readthedocs.org
+# required for documentation
 numpy
 numpydoc
 matplotlib

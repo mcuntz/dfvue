@@ -16,6 +16,7 @@ France.
 The following functions are provided:
 
 .. autosummary::
+   callurl
    Tooltip
    add_checkbutton
    add_combobox
@@ -42,25 +43,54 @@ History
     * Use Hovertip from local copy of tooltip.py, Jul 2023, Matthias Cuntz
     * Added Treeview class with optional horizontal and vertical scroolbars,
       Jul 2023, Matthias Cuntz
+    * Added callurl function, Dec 2023, Matthias Cuntz
 
 """
 import tkinter as tk
-try:
-    import tkinter.ttk as ttk
-except Exception:
-    import sys
-    print('Using the themed widget set introduced in Tk 8.5.')
-    print('Try to use mcview.py, which uses wxpython instead.')
-    sys.exit()
+import tkinter.ttk as ttk
+import webbrowser
 from .tooltip import Hovertip
-# https://docs.python.org/3/library/tkinter.html
 
 
-__all__ = ['Tooltip',
+__all__ = ['callurl', 'Tooltip',
            'add_checkbutton', 'add_combobox', 'add_entry',
            'add_imagemenu', 'add_menu', 'add_scale', 'add_spinbox',
            'add_tooltip',
            'Treeview']
+
+
+# https://stackoverflow.com/questions/23482748/how-to-create-a-hyperlink-with-a-label-in-tkinter
+def callurl(url):
+    """
+    Open url in external web browser
+
+    Parameters
+    ----------
+    url : str
+        html url
+
+    Returns
+    -------
+    Opens *url* in external web browser
+
+    Examples
+    --------
+    >>> opthead = ttk.Frame(self)
+    >>> opthead.pack(side='top', fill='x')
+    >>> optheadlabel1 = ttk.Label(opthead, text='Options for')
+    >>> optheadlabel1.pack(side='left')
+    >>> ttk.Style().configure('blue.TLabel', foreground='blue')
+    >>> optheadlabel2 = ttk.Label(opthead, text='pandas.read_csv',
+    ...                           style='blue.TLabel')
+    >>> optheadlabel2.pack(side='left')
+    >>> font = tkfont.Font(optheadlabel2, optheadlabel2.cget("font"))
+    >>> font.configure(underline=True)
+    >>> optheadlabel2.configure(font=font)
+    >>> optheadlabel2.bind("<Button-1>",
+    ...                    lambda e: callurl("https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"))
+
+    """
+    webbrowser.open_new(url)
 
 
 class Tooltip(Hovertip):

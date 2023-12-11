@@ -1,21 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# dfvue documentation build configuration file.
+# configuration file to build documentation of dfvue, created by
+# sphinx-quickstart
 #
-# This file does only contain a selection of the most common options. For a
-# full list see the documentation:
-# http://www.sphinx-doc.org/en/master/config
-
-# -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# NOTE:
-# pip install sphinx_rtd_theme
-# is needed in order to build the documentation
 import datetime
 import warnings
 import os
@@ -32,6 +20,7 @@ warnings.filterwarnings(
              " so cannot show the figure."),
 )
 
+
 def skip(app, what, name, obj, skip, options):
     if name in ["__call__"]:
         return False
@@ -44,13 +33,7 @@ def setup(app):
 
 # -- General configuration ------------------------------------------------
 
-# If your documentation needs a minimal Sphinx version, state it here.
-#
-# needs_sphinx = '1.0'
-
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
+# Add any Sphinx extension module names here, as strings.
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.doctest",
@@ -103,7 +86,7 @@ master_doc = "index"
 # General information about the project.
 curr_year = datetime.datetime.now().year
 project = "dfvue"
-copyright = "2020-{}, Matthias Cuntz".format(curr_year)
+copyright = "2023-{}, Matthias Cuntz".format(curr_year)
 author = "Matthias Cuntz"
 
 # The version info for the project you're documenting, acts as replacement for
@@ -130,46 +113,24 @@ pygments_style = "sphinx"
 
 # -- Options for HTML output ----------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-
-# html_theme = "sphinx_rtd_theme"
-# html_theme_options = {
-#     #    'canonical_url': '',
-#     #    'analytics_id': '',
-#     "logo_only": False,
-#     "display_version": True,
-#     "prev_next_buttons_location": "top",
-#     #    'style_external_links': False,
-#     #    'vcs_pageview_mode': '',
-#     # Toc options
-#     "collapse_navigation": False,
-#     "sticky_navigation": True,
-#     "navigation_depth": 4,
-#     "includehidden": True,
-#     "titles_only": False,
-# }
-
-html_theme = 'alabaster'
-html_sidebars = {
-    '**': [
-        'about.html',
-        'navigation.html',
-        'relations.html',
-        'searchbox.html',
-    ]
-}
+html_theme = "sphinx_book_theme"
+html_copy_source = True
+html_show_sourcelink = True
+html_sourcelink_suffix = ""
+html_title = "dfvue"
+# html_favicon = "_static/favicon.png"
 html_theme_options = {
-    'description': 'A minimal GUI for a quick view of csv files.',
-    'extra_nav_links': {
-        'dfvue @ GitHub': "https://github.com/mcuntz/dfvue",
-        'dfvue @ Zenodo': "https://doi.org/10.5281/zenodo.5574388",
-        'dfvue @ PyPI': "https://pypi.org/project/dfvue",
-        'dfvue @ conda-forge': "https://anaconda.org/conda-forge/dfvue"
+    "path_to_docs": "docs",
+    "repository_url": "https://github.com/mcuntz/dfvue",
+    "repository_branch": "main",
+    "launch_buttons": {
+        "binderhub_url": "https://mybinder.org",
+        "notebook_interface": "classic",
     },
+    "use_edit_page_button": True,
+    "use_issues_button": True,
+    "use_repository_button": True,
+    "use_download_button": True,
 }
 
 # # Add any paths that contain custom static files (such as style sheets) here,
@@ -262,6 +223,6 @@ intersphinx_mapping = {
     "schwimmbad":  ("https://schwimmbad.readthedocs.io/en/latest/",  None),
     "mpi4py":      ("https://mpi4py.readthedocs.io/en/latest/",      None),
     "emcee":       ("https://emcee.readthedocs.io/en/latest/",       None),
-    "partialwrap": ("https://partialwrap.readthedocs.io/en/latest/", None),
+    "partialwrap": ("https://mcuntz.github.io/partialwrap/html/",    None),
     "pyeee":       ("https://pyeee.readthedocs.io/en/latest/",       None),
 }

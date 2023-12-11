@@ -13,6 +13,6 @@ Contents
    :maxdepth: 2
 
    readme
-   install
-   license
    package
+   changelog
+   authors

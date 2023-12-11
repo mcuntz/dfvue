@@ -23,10 +23,7 @@ History
 
 """
 import tkinter as tk
-try:
-    import tkinter.ttk as ttk
-except Exception:
-    raise ImportError('Using the themed widget set introduced in Tk 8.5.')
+import tkinter.ttk as ttk
 from .dfvscatter import dfvScatter
 
 

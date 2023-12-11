@@ -12,6 +12,7 @@ Subpackages
 -----------
 .. autosummary::
    dfvmain
+   dfvreadcsv
    dfvscatter
    dfvue
    dfvutils
@@ -38,7 +39,7 @@ from .dfvutils import clone_dfvmain, format_coord_scatter, list_intersection
 from .dfvutils import vardim2var
 
 # adding widgets with labels, etc.
-from .ncvwidgets import Tooltip
+from .ncvwidgets import callurl, Tooltip
 from .ncvwidgets import add_checkbutton, add_combobox, add_entry, add_imagemenu
 from .ncvwidgets import add_menu, add_scale, add_spinbox, add_tooltip
 from .ncvwidgets import Treeview

@@ -25,12 +25,7 @@ History
 
 """
 import tkinter as tk
-try:
-    import tkinter.ttk as ttk
-except Exception:
-    import sys
-    print('Using the themed widget set introduced in Tk 8.5.')
-    sys.exit()
+import tkinter.ttk as ttk
 from tkinter import filedialog
 import numpy as np
 import pandas as pd
@@ -84,8 +79,14 @@ class dfvScatter(ttk.Frame):
 
         # copy for ease of use
         self.csvfile = self.top.csvfile
+        self.newcsvfile = self.top.newcsvfile
         self.df = self.top.df
-        self.miss = self.top.miss
+        self.sep = self.top.sep
+        self.index_col = self.top.index_col
+        self.skiprows = self.top.skiprows
+        self.parse_dates = self.top.parse_dates
+        self.date_format = self.top.date_format
+        self.missing_value = self.top.missing_value
         self.cols = self.top.cols
 
         # row new window
@@ -383,6 +384,7 @@ class dfvScatter(ttk.Frame):
             parent=self, title='Choose csv file', multiple=False)
 
         if self.top.csvfile:
+            self.top.newcsvfile = True
             self.new_df()
 
     def new_df(self):
@@ -574,10 +576,20 @@ class dfvScatter(ttk.Frame):
         """
         # reinit from top
         self.csvfile = self.top.csvfile
+        self.newcsvfile = self.top.newcsvfile
         self.df = self.top.df
-        self.miss = self.top.miss
+        self.sep = self.top.sep
+        self.index_col = self.top.index_col
+        self.skiprows = self.top.skiprows
+        self.parse_dates = self.top.parse_dates
+        self.date_format = self.top.date_format
+        self.missing_value = self.top.missing_value
         self.cols = self.top.cols
-        self.master.master.title("dfvue " + self.top.csvfile)
+        if self.top.csvfile:
+            tit = "dfvue " + self.top.csvfile
+        else:
+            tit = "dfvue"
+        self.master.master.title(tit)
         # set variables
         columns = [''] + self.cols
         self.x['values'] = columns
