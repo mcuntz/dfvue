@@ -1,5 +1,6 @@
 dfvue
 =====
+
 A simple GUI to view csv files
 ------------------------------
 ..
@@ -12,9 +13,10 @@ A simple GUI to view csv files
       click on figures to open larger pictures
     remove section "Installation"
 
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4459598.svg
-   :target: https://doi.org/10.5281/zenodo.4459598
-   :alt: Zenodo DOI
+..
+  image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4459598.svg
+  :target: https://doi.org/10.5281/zenodo.4459598
+  :alt: Zenodo DOI
 
 .. image:: https://badge.fury.io/py/dfvue.svg
    :target: https://badge.fury.io/py/dfvue
