@@ -36,8 +36,8 @@ from .dfvreadcsv import dfvReadcsv
 # import matplotlib
 # matplotlib.use('TkAgg')
 from matplotlib import pyplot as plt
-# plt.style.use('seaborn-darkgrid')
-plt.style.use('seaborn-dark')
+# plt.style.use('seaborn-v0_8-darkgrid')
+plt.style.use('seaborn-v0_8-dark')
 # plt.style.use('fast')
 
 
