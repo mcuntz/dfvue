@@ -1,9 +1,8 @@
 prune **
-graft bin
 include src/dfvue/*.py
 graft src/dfvue/images
-graft src/dfvue/themes/azure-2.0
+graft src/dfvue/themes
 graft tests
 
-include AUTHORS.rst CHANGELOG.rst CONTRIBUTING.rst README.rst LICENSE pyproject.toml setup.cfg
-global-exclude __pycache__ *.py[cod] .* *~
+include AUTHORS.rst CHANGELOG.rst LICENSE README.rst pyproject.toml setup.cfg
+# global-exclude __pycache__ *.py[cod] .* *~
