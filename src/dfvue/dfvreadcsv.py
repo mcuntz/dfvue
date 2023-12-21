@@ -512,7 +512,7 @@ class dfvReadcsv(tk.Toplevel):
         optheadlabel1 = ttk.Label(opthead, text='Options for')
         optheadlabel1.pack(side='left')
         # https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118
-        ttk.Style().configure('blue.TLabel', foreground='blue')
+        ttk.Style().configure('blue.TLabel', foreground='#0096FF')
         optheadlabel2 = ttk.Label(opthead, text='pandas.read_csv',
                                   style='blue.TLabel')
         optheadlabel2.pack(side='left')
@@ -521,7 +521,22 @@ class dfvReadcsv(tk.Toplevel):
         font.configure(underline=True)
         optheadlabel2.configure(font=font)
         optheadlabel2.bind("<Button-1>",
-                           lambda e: callurl("https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"))
+                           lambda e:
+                           callurl("https://pandas.pydata.org/docs/reference/"
+                                   "api/pandas.read_csv.html"))
+        optheadlabel3 = ttk.Label(opthead, text='(date_format: see')
+        optheadlabel3.pack(side='left')
+        optheadlabel4 = ttk.Label(opthead, text='strftime',
+                                  style='blue.TLabel')
+        optheadlabel4.pack(side='left')
+        optheadlabel4.configure(font=font)
+        optheadlabel4.bind("<Button-1>",
+                           lambda e:
+                           callurl("https://docs.python.org/3/library/"
+                                   "datetime.html#"
+                                   "strftime-and-strptime-behavior"))
+        optheadlabel5 = ttk.Label(opthead, text=')')
+        optheadlabel5.pack(side='left', padx=0)
 
         # option fields
         self.opt = {}     # option

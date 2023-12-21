@@ -48,23 +48,23 @@ def main():
             ' or string name.')
     parser.add_argument('-i', '--index_col', action='store', type=str,
                         default=index_col, dest='index_col',
-                        metavar='column(s)', help=hstr)
-    hstr = ('Line numbers to skip (0-indexed, must include comma,'
+                        metavar='columns', help=hstr)
+    hstr = ('Line number(s) to skip (0-indexed, must include comma,'
             ' e.g. "1," for skipping the second row) or\n'
             'number of lines to skip (int, without comma) at the start'
             ' of the file.')
     parser.add_argument('-k', '--skiprows', action='store', type=str,
                         default=skiprows, dest='skiprows',
-                        metavar='#rows', help=hstr)
-    hstr = ('boolean. If True -> try parsing the index.\n'
-            'list of int or names. e.g. If 1, 2, 3\n'
-            '    -> try parsing columns 1, 2, 3 each as a separate date'
+                        metavar='rows', help=hstr)
+    hstr = ('boolean, if True -> try parsing the index.\n'
+            'list of int or names, e.g. 1,2,3\n'
+            '    -> try parsing columns 1, 2, and 3 each as a separate date'
             ' column.\n'
-            'list of lists. e.g. If [1, 3]\n'
+            'list of lists, e.g. [1,3]\n'
             '    -> combine columns 1 and 3 and parse as a single date'
             ' column.\n'
-            'dict, e.g. "foo" : [1, 3]\n'
-            '    -> parse columns 1, 3 as date and call result')
+            'dict, e.g. "foo":[1,3]\n'
+            '    -> parse columns 1 and 3 as date and call result "foo"')
     parser.add_argument('-p', '--parse_dates', action='store', type=str,
                         default=parse_dates, dest='parse_dates',
                         metavar='bool/list/dict', help=hstr)
