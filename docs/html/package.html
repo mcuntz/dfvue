@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>API &#8212; dfvue</title>
   
@@ -19,29 +18,29 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=628480d8" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=fc79ae44"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'package';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -56,10 +55,9 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -100,11 +98,14 @@
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -119,6 +120,7 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -127,10 +129,22 @@
   
   
   
+  
     <p class="title logo__title">dfvue</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">dfvue</a></li>
@@ -315,6 +329,7 @@
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -324,6 +339,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -366,12 +382,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="module-dfvue">
-<span id="api"></span><h1>API<a class="headerlink" href="#module-dfvue" title="Permalink to this heading">#</a></h1>
+<span id="api"></span><h1>API<a class="headerlink" href="#module-dfvue" title="Link to this heading">#</a></h1>
 <section id="purpose">
-<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">#</a></h2>
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">#</a></h2>
 <p>dfvue is a minimal GUI for a quick view of csv files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">copyright<span class="colon">:</span></dt>
@@ -383,7 +399,7 @@ document.write(`
 </dl>
 </section>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">#</a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="dfvmain.html#module-dfvue.dfvmain" title="dfvue.dfvmain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dfvmain</span></code></a></p></td>
@@ -473,6 +489,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.image_names"><code class="docutils literal notranslate"><span class="pre">dfvMain.image_names()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.image_types"><code class="docutils literal notranslate"><span class="pre">dfvMain.image_types()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.info"><code class="docutils literal notranslate"><span class="pre">dfvMain.info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">dfvMain.info_patchlevel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.instate"><code class="docutils literal notranslate"><span class="pre">dfvMain.instate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.keys"><code class="docutils literal notranslate"><span class="pre">dfvMain.keys()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.lift"><code class="docutils literal notranslate"><span class="pre">dfvMain.lift()</span></code></a></li>
@@ -647,6 +664,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.iconwindow"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.iconwindow()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.image_names"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.image_names()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.image_types"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.image_types()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.info_patchlevel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.keys"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.keys()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.lift"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.lift()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.lower"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.lower()</span></code></a></li>
@@ -853,6 +871,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.image_names"><code class="docutils literal notranslate"><span class="pre">dfvScatter.image_names()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.image_types"><code class="docutils literal notranslate"><span class="pre">dfvScatter.image_types()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.info"><code class="docutils literal notranslate"><span class="pre">dfvScatter.info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">dfvScatter.info_patchlevel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.instate"><code class="docutils literal notranslate"><span class="pre">dfvScatter.instate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.keys"><code class="docutils literal notranslate"><span class="pre">dfvScatter.keys()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.lift"><code class="docutils literal notranslate"><span class="pre">dfvScatter.lift()</span></code></a></li>
@@ -1054,6 +1073,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.image_names"><code class="docutils literal notranslate"><span class="pre">Treeview.image_names()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.image_types"><code class="docutils literal notranslate"><span class="pre">Treeview.image_types()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.info"><code class="docutils literal notranslate"><span class="pre">Treeview.info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">Treeview.info_patchlevel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.instate"><code class="docutils literal notranslate"><span class="pre">Treeview.instate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.keys"><code class="docutils literal notranslate"><span class="pre">Treeview.keys()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.lift"><code class="docutils literal notranslate"><span class="pre">Treeview.lift()</span></code></a></li>
@@ -1181,7 +1201,7 @@ document.write(`
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="readme.html"
@@ -1209,6 +1229,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1239,9 +1260,10 @@ By Matthias Cuntz
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2023-2023, Matthias Cuntz.
+      © Copyright 2023-2024, Matthias Cuntz.
       <br/>
     
   </p>
@@ -1265,8 +1287,8 @@ By Matthias Cuntz
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
