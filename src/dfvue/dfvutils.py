@@ -24,11 +24,14 @@ The following functions are provided:
 
 History
     * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+    * Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz
 
 """
 import tkinter as tk
+import customtkinter as ctk
 import numpy as np
 import matplotlib.dates as mpld
+import dfvue
 
 
 __all__ = ['clone_dfvmain',
@@ -56,33 +59,30 @@ def clone_dfvmain(widget):
 
     Examples
     --------
-    >>> self.newwin = ttk.Button(
+    >>> self.newwin = ctk.CTkButton(
     ...     self.rowwin, text="New Window",
     ...     command=partial(clone_dfvmain, self.master))
 
     """
-    # parent = widget.nametowidget(widget.winfo_parent())
     if widget.name != 'dfvMain':
         print('clone_dfvmain failed. Widget should be dfvMain.')
         print('widget.name is: ', widget.name)
         import sys
         sys.exit()
 
-    root = tk.Toplevel()
+    root = ctk.CTkToplevel()
     root.name = 'dfvClone'
-    root.title("Secondary dfvue window")
+    root.top = widget.top
+    if root.top.csvfile:
+        tit = "Secondary dfvue " + root.top.csvfile
+    else:
+        tit = "Secondary dfvue"
+    root.title(tit)
     root.geometry('1000x800+150+100')
 
-    root.top = widget.top
-
-    # https://stackoverflow.com/questions/46505982/is-there-a-way-to-clone-a-tkinter-widget
-    cls = widget.__class__
+    cls = dfvue.dfvMain
     clone = cls(root)
-    for key in widget.configure():
-        if key != 'class':
-            clone.configure({key: widget.cget(key)})
-
-    return clone
+    clone.grid(sticky=tk.W + tk.E + tk.S + tk.N)
 
 
 #

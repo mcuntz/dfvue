@@ -22,17 +22,14 @@ The following functions are provided:
 History
     * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
       adapted ncvue.py
+    * Moved to customtkinter, Jun 2024, Matthias
 
 """
 import os
 import platform
 import sys
 import tkinter as tk
-import tkinter.ttk as ttk
-import numpy as np
-# import matplotlib as mpl
-# mpl.use('TkAgg')
-from matplotlib import pyplot as plt
+import customtkinter as ctk
 from .dfvmain import dfvMain
 
 
@@ -89,46 +86,8 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
     bundle_dir = getattr(sys, '_MEIPASS',
                          os.path.abspath(os.path.dirname(__file__)))
 
-    top = tk.Tk()
+    top = ctk.CTk()
     top.withdraw()
-    # top.option_add("*Font", "Helvetica 10")
-
-    # Check light/dark mode
-    # https://stackoverflow.com/questions/65294987/detect-os-dark-mode-in-python
-
-    # style = ttk.Style()
-    # print(style.theme_names(), style.theme_use())
-    if ios == 'Darwin':
-        theme = 'aqua'
-        style = ttk.Style()
-        try:
-            style.theme_use(theme)
-        except:
-            pass
-    elif ios == 'Windows':
-        top.option_add("*Font", "Helvetica 10")
-        plt.rc('font', size=13)
-        # standard Windows themes
-        # ('winnative', 'clam', 'alt', 'default', 'classic', 'vista',
-        #  'xpnative')
-        # theme = 'vista'
-        # style = ttk.Style()
-        # style.theme_use(theme)
-
-        # 'azure' v2.x, 'sun-valley', 'forest' of rdbende
-        top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
-        theme = 'light'  # light, dark
-        top.tk.call("set_theme", theme)
-    elif ios == 'Linux':
-        # standard Linux schemes
-        # theme = 'clam'  # 'clam', 'alt', 'default', 'classic'
-        # style = ttk.Style()
-        # style.theme_use(theme)
-
-        # 'azure' v2.x, 'sun-valley', 'forest' of rdbende
-        top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
-        theme = 'light'  # light, dark
-        top.tk.call("set_theme", theme)
 
     # set titlebar and taskbar icon only if "standalone",
     # i.e. not ipython or jupyter
@@ -142,7 +101,7 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
     else:
         icon = None
 
-    root = tk.Toplevel()
+    root = ctk.CTkToplevel()
     root.name = 'dfvOne'
     if csvfile:
         tit = "dfvue " + csvfile
@@ -153,7 +112,6 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
 
     # Connect csv file and add information to top
     top.os = ios           # operating system
-    top.theme = theme      # current theme
     top.icon = icon        # app icon
     top.csvfile = csvfile  # file name or file handle
     top.newcsvfile = True  # new file after command line
@@ -176,5 +134,6 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
 
     # 1st plotting window
     main_frame = dfvMain(root)
+    main_frame.grid(sticky=tk.W + tk.E + tk.S + tk.N)
 
     top.mainloop()

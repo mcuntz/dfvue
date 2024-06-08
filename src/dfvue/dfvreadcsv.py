@@ -25,11 +25,11 @@ The following classes are provided:
 
 History
     * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+    * Moved to customtkinter, Jun 2024, Matthias
 
 """
 import tkinter as tk
-import tkinter.ttk as ttk
-import tkinter.font as tkfont
+import customtkinter as ctk
 from collections.abc import Iterable
 import pandas as pd
 from .ncvwidgets import add_entry, add_tooltip, Treeview, callurl
@@ -40,7 +40,7 @@ __all__ = ['read_csvopts', 'read_csvdefaults', 'read_csvhelp',
 
 
 read_csvopts = ['sep', 'index_col', 'usecols', 'skiprows', 'nrows',
-                'parse_dates', 'date_format', 'keep_date_col',
+                'parse_dates', 'date_format',
                 'header', 'names',
                 'na_filter', 'na_values', 'keep_default_na',
                 'true_values', 'false_values',
@@ -64,7 +64,7 @@ read_csvdefaults = {'sep': '', 'header': 'infer',
                     'skipfooter': 0, 'nrows': None, 'na_values': None,
                     'keep_default_na': True, 'na_filter': True,
                     'verbose': False, 'skip_blank_lines': True,
-                    'parse_dates': True, 'keep_date_col': False,
+                    'parse_dates': True,
                     'date_format': None, 'dayfirst': False,
                     'cache_dates': True, 'iterator': False,
                     'chunksize': None, 'compression': 'infer',
@@ -244,10 +244,6 @@ say because of an unparsable value or a mixture of timezones, the column or
 index will be returned unaltered as an object data type. For non-standard
 datetime parsing, use pd.to_datetime after pd.read_csv.
     Note: A fast-path exists for iso8601-formatted dates.""",
-    'keep_date_col':
-    """bool, default: False
-    If True and parse_dates specifies combining multiple columns then keep
-the original columns.""",
     'date_format':
     """str or dict of column -> format, default: None
     If used in conjunction with parse_dates, will parse dates according to
@@ -448,7 +444,7 @@ def _parse_entry(text):
     return tt
 
 
-class dfvReadcsv(tk.Toplevel):
+class dfvReadcsv(ctk.CTkToplevel):
     """
     Window for reading csv files.
 
@@ -460,13 +456,14 @@ class dfvReadcsv(tk.Toplevel):
 
     def __init__(self, top, callback=None, **kwargs):
         super().__init__(top, **kwargs)
+        self.protocol("WM_DELETE_WINDOW", self.cancel)
 
         self.top = top  # top window
         self.callback = callback
 
         self.name = 'dfvReadcsv'
         self.title("Read csv file")
-        self.geometry('1000x510+100+10')
+        self.geometry('1000x515+100+10')
 
         # copy for ease of use
         self.csvfile = self.top.csvfile
@@ -480,15 +477,7 @@ class dfvReadcsv(tk.Toplevel):
         self.missing_value = self.top.missing_value
         self.cols = self.top.cols
 
-        # space
-        rootspace = ttk.Frame(self)
-        rootspace.pack(side='top', fill='x')
-        rootspacespace = ttk.Label(rootspace, text=" ")
-        rootspacespace.pack(side='left')
-
-        # 1. row - treeview current DataFrame
-        self.rowtree = ttk.Frame(self)
-        self.rowtree.pack(side='top', fill='x')
+        # treeview current DataFrame
         self.nrows = 10
         if self.df is None:
             print('No df')
@@ -499,49 +488,43 @@ class dfvReadcsv(tk.Toplevel):
         else:
             df = self.df
         self.new_tree(df)
-
-        # space
-        treespace = ttk.Frame(self)
-        treespace.pack(side='top', fill='x')
-        treespacespace = ttk.Label(treespace, text=" ")
-        treespacespace.pack(side='left')
+        # self.tree = ctk.CTkLabel(self)
+        # self.tree.grid(row=1, column=0, rowspan=12, columnspan=5)
 
         # label for read_csv options
-        opthead = ttk.Frame(self)
-        opthead.pack(side='top', fill='x')
-        optheadlabel1 = ttk.Label(opthead, text='Options for')
+        spacex2 = ctk.CTkLabel(self, text=" " * 3)
+        spacex2.grid(row=13, column=0, sticky=tk.W + tk.E)
+        opthead = ctk.CTkFrame(self)
+        opthead.grid(row=14, column=0, columnspan=4, sticky=tk.W)
+        optheadlabel1 = ctk.CTkLabel(opthead, text='Options for ')
         optheadlabel1.pack(side='left')
         # https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118
-        ttk.Style().configure('blue.TLabel', foreground='#0096FF')
-        optheadlabel2 = ttk.Label(opthead, text='pandas.read_csv',
-                                  style='blue.TLabel')
+        optheadlabel2 = ctk.CTkLabel(opthead, text='pandas.read_csv',
+                                     text_color=('blue', 'lightblue'))
         optheadlabel2.pack(side='left')
         # https://stackoverflow.com/questions/3655449/underline-text-in-tkinter-label-widget
-        font = tkfont.Font(optheadlabel2, optheadlabel2.cget("font"))
-        font.configure(underline=True)
-        optheadlabel2.configure(font=font)
         optheadlabel2.bind("<Button-1>",
                            lambda e:
                            callurl("https://pandas.pydata.org/docs/reference/"
                                    "api/pandas.read_csv.html"))
-        optheadlabel3 = ttk.Label(opthead, text='(date_format: see')
+        optheadlabel3 = ctk.CTkLabel(opthead, text=' (date_format: see ')
         optheadlabel3.pack(side='left')
-        optheadlabel4 = ttk.Label(opthead, text='strftime',
-                                  style='blue.TLabel')
+        optheadlabel4 = ctk.CTkLabel(opthead, text='strftime',
+                                     text_color=('blue', 'lightblue'))
         optheadlabel4.pack(side='left')
-        optheadlabel4.configure(font=font)
         optheadlabel4.bind("<Button-1>",
                            lambda e:
                            callurl("https://docs.python.org/3/library/"
                                    "datetime.html#"
                                    "strftime-and-strptime-behavior"))
-        optheadlabel5 = ttk.Label(opthead, text=')')
-        optheadlabel5.pack(side='left', padx=0)
+        optheadlabel5 = ctk.CTkLabel(opthead, text=')')
+        optheadlabel5.pack(side='left')
 
         # option fields
-        self.opt = {}     # option
-        self.optlbl = {}  # label
-        self.opttip = {}  # tooltip
+        self.optframe = {}  # entry frame
+        self.optlbl = {}    # label
+        self.opt = {}       # entry test
+        self.opttip = {}    # tooltip
 
         # rows with pandas.read_csv options
         oend = 0
@@ -550,33 +533,40 @@ class dfvReadcsv(tk.Toplevel):
         if (nopt % 5) > 0:
             noptrow += 1
         self.rowopt = []
-        labelwidth = 13
-        entrywidth = 7
-        padlabel = 3
+        # labelwidth = 13   # characters
+        entrywidth = 80  # px
+        padlabel = 3     # characters
+        padxlabel = 3    # px
+        self.rowopt = ctk.CTkFrame(self)
+        self.rowopt.grid(row=15, rowspan=noptrow + 1, columnspan=10,
+                         sticky=tk.W, pady=2)
         for nr in range(noptrow):
             ostart = oend
             oend = ostart + 5
-            self.rowopt.append(ttk.Frame(self))
-            self.rowopt[-1].pack(side='top', fill='x', pady=2)
-            for oo in read_csvopts[ostart:oend]:
-                self.optlbl[oo], self.opt[oo], self.opttip[oo] = add_entry(
-                    self.rowopt[-1], label=oo,
-                    padlabel=padlabel, labelwidth=labelwidth,
-                    text=read_csvdefaults[oo],
-                    width=entrywidth,
-                    tooltip=read_csvhelp[oo],
-                    command=[self.read_again, self.read_final])
+            for oois, oo in enumerate(read_csvopts[ostart:oend]):
+                (self.optframe[oo], self.optlbl[oo],
+                 self.opt[oo], self.opttip[oo]) = add_entry(
+                     self.rowopt, label=oo,
+                     # labelwidth=labelwidth,
+                     padlabel=padlabel,
+                     text=read_csvdefaults[oo],
+                     width=entrywidth, padx=padxlabel,
+                     tooltip=read_csvhelp[oo],
+                     command=[self.read_again, self.read_final])
+                self.optframe[oo].grid(row=nr, column=2 * oois, columnspan=2,
+                                       sticky=tk.E)
         # overwrite defaults from command line
         self.set_command_line_options(defaults=self.newcsvfile)
+
         # add cancel and read buttons to last row
-        self.done = ttk.Button(self.rowopt[-1], text="Read csv",
-                               command=self.read_final)
-        self.done.pack(side='right', padx=10, pady=5)
-        self.donetip = add_tooltip(self.done, 'Finished reading csv')
-        self.cancel = ttk.Button(self.rowopt[-1], text="Cancel",
-                                 command=self.destroy)
-        self.cancel.pack(side='right', pady=5)
+        self.cancel = ctk.CTkButton(self.rowopt, text="Cancel",
+                                 command=self.cancel)
         self.canceltip = add_tooltip(self.cancel, 'Cancel reading csv file')
+        self.cancel.grid(row=noptrow, column=7, sticky=tk.E)
+        self.done = ctk.CTkButton(self.rowopt, text="Read csv",
+                                  command=self.read_final)
+        self.donetip = add_tooltip(self.done, 'Finished reading csv')
+        self.done.grid(row=noptrow, column=9, sticky=tk.E)
 
         self.focus_force()
 
@@ -586,35 +576,13 @@ class dfvReadcsv(tk.Toplevel):
     # Event bindings
     #
 
-    def set_command_line_options(self, defaults=False):
-        """
-        Set options possible on the command line
-
-        If defaults=True, use default options otherwise set options
-        from command line.
-
-        """
-        if defaults:
-            self.opt['sep'].set('')
-            self.opt['index_col'].set(None)
-            self.opt['skiprows'].set(None)
-            self.opt['parse_dates'].set('True')
-            self.opt['date_format'].set(None)
-            self.opt['missing_value'].set(None)
-        else:
-            if self.sep != '':
-                self.opt['sep'].set(self.sep)
-            if self.index_col is not None:
-                self.opt['index_col'].set(self.index_col)
-            if self.skiprows is not None:
-                self.opt['skiprows'].set(self.skiprows)
-            if self.parse_dates is not None:
-                self.opt['parse_dates'].set(self.parse_dates)
-            if self.date_format is not None:
-                self.opt['date_format'].set(self.date_format)
-            if self.missing_value is not None:
-                self.opt['missing_value'].set(self.missing_value)
-        return
+    def cancel(self, event=None):
+        if self.callback is not None:
+            self.callback()
+        # do not self.destroy() with ctk.CTkButton, leading to
+        # 'invalid command name ".!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas"'
+        # self.destroy() works with ttk.Button
+        self.withdraw()
 
     def new_tree(self, df):
         """
@@ -622,8 +590,10 @@ class dfvReadcsv(tk.Toplevel):
 
         """
         # create
-        self.tree = Treeview(self.rowtree, xscroll=True, yscroll=True)
-        self.tree.pack()
+        self.treeframe = ctk.CTkFrame(self)
+        self.treeframe.grid(row=0, column=0, rowspan=11, columnspan=10)
+        self.tree = Treeview(self.treeframe, xscroll=True, yscroll=True)
+        self.tree.grid(row=0, column=0, columnspan=5)
         self.tree.tag_configure("even", background='white',
                                 foreground='black')
         self.tree.tag_configure("odd", background='gray',
@@ -659,6 +629,13 @@ class dfvReadcsv(tk.Toplevel):
             self.tree.insert(
                 '', 'end', values=values,
                 tags=('even',) if (i % 2) == 0 else ('odd',) )
+
+    def read_again(self, event):
+        self.tree.destroy()
+        self.read_df(nrows=4 * self.nrows)
+        self.new_tree(self.df)
+        # self.tree = ctk.CTkLabel(self)
+        # self.tree.grid(row=1, column=0, rowspan=12, columnspan=5)
 
     def read_df(self, nrows=None):
         """
@@ -702,11 +679,6 @@ class dfvReadcsv(tk.Toplevel):
         #     pass
         self.df = pd.read_csv(self.csvfile, **opts)
 
-    def read_again(self, event):
-        self.tree.destroy()
-        self.read_df(nrows=4 * self.nrows)
-        self.new_tree(self.df)
-
     def read_final(self, event=None):
         self.tree.destroy()
         self.read_df()
@@ -731,4 +703,37 @@ class dfvReadcsv(tk.Toplevel):
         self.top.cols = self.cols
         if self.callback is not None:
             self.callback()
-        self.destroy()
+        # do not self.destroy() with ctk.CTkButton, leading to
+        # 'invalid command name ".!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas"'
+        # self.destroy() works with ttk.Button
+        self.withdraw()
+
+    def set_command_line_options(self, defaults=False):
+        """
+        Set options possible on the command line
+
+        If defaults=True, use default options otherwise set options
+        from command line.
+
+        """
+        if defaults:
+            self.opt['sep'].set('')
+            self.opt['index_col'].set(None)
+            self.opt['skiprows'].set(None)
+            self.opt['parse_dates'].set('True')
+            self.opt['date_format'].set(None)
+            self.opt['missing_value'].set(None)
+        else:
+            if self.sep != '':
+                self.opt['sep'].set(self.sep)
+            if self.index_col is not None:
+                self.opt['index_col'].set(self.index_col)
+            if self.skiprows is not None:
+                self.opt['skiprows'].set(self.skiprows)
+            if self.parse_dates is not None:
+                self.opt['parse_dates'].set(self.parse_dates)
+            if self.date_format is not None:
+                self.opt['date_format'].set(self.date_format)
+            if self.missing_value is not None:
+                self.opt['missing_value'].set(self.missing_value)
+        return

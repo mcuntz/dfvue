@@ -22,10 +22,12 @@ The following classes are provided:
 
 History
     * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+    * Moved to customtkinter, Jun 2024, Matthias
+    * Use mix of grid and pack layout manager, Jun 2024, Matthias
 
 """
 import tkinter as tk
-import tkinter.ttk as ttk
+import customtkinter as ctk
 from tkinter import filedialog
 import numpy as np
 import pandas as pd
@@ -33,22 +35,17 @@ from .dfvutils import clone_dfvmain, format_coord_scatter, vardim2var
 from .ncvwidgets import add_checkbutton, add_combobox, add_entry
 from .ncvwidgets import add_tooltip
 from .dfvreadcsv import dfvReadcsv
-# import matplotlib
-# matplotlib.use('TkAgg')
 from matplotlib import pyplot as plt
 try:
-    # plt.style.use('seaborn-v0_8-darkgrid')
     plt.style.use('seaborn-v0_8-dark')
 except OSError:
-    # plt.style.use('seaborn-darkgrid')
     plt.style.use('seaborn-dark')
-# plt.style.use('fast')
 
 
 __all__ = ['dfvScatter']
 
 
-class dfvScatter(ttk.Frame):
+class dfvScatter(ctk.CTkFrame):
     """
     Panel for scatter and line plots.
 
@@ -93,36 +90,6 @@ class dfvScatter(ttk.Frame):
         self.missing_value = self.top.missing_value
         self.cols = self.top.cols
 
-        # row new window
-        self.rowwin = ttk.Frame(self)
-        self.rowwin.pack(side=tk.TOP, fill=tk.X)
-        self.newfile = ttk.Button(self.rowwin, text="Open File",
-                                  command=self.new_csv)
-        self.newfile.pack(side=tk.LEFT)
-        self.newfiletip = add_tooltip(self.newfile, 'Open a new csv file')
-        self.newwin = ttk.Button(
-            self.rowwin, text="New Window",
-            command=partial(clone_dfvmain, self.master))
-        self.newwin.pack(side=tk.RIGHT)
-        self.newwintip = add_tooltip(
-            self.newwin, 'Open secondary dfvue window')
-
-        # plotting canvas
-        self.figure = Figure(facecolor="white", figsize=(1, 1))
-        self.axes   = self.figure.add_subplot(111)
-        self.axes2  = self.axes.twinx()
-        self.axes2.yaxis.set_label_position("right")
-        self.axes2.yaxis.tick_right()
-        self.canvas = FigureCanvasTkAgg(self.figure, master=self)
-        self.canvas.draw()
-        # pack
-        self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-
-        # matplotlib toolbar
-        self.toolbar = NavigationToolbar2Tk(self.canvas, self)
-        self.toolbar.update()
-        self.toolbar.pack(side=tk.TOP, fill=tk.X)
-
         # selections and options
         columns = [''] + self.cols
         # colors
@@ -149,168 +116,233 @@ class dfvScatter(ttk.Frame):
                  "+ (plus), x (x), X (x (filled)),\n"
                  "D (diamond), d (thin_diamond),\n"
                  "| (vline), _ (hline), or None")
+        # height of plotting canvas
+        canvasheight = 550
+        # width of combo boxes in px
+        combowidth = 288  # px
+        # widths of entry widgets in px
+        ewsmall = 20
+        ewmed = 45
+        ewbig = 70
 
-        # 1. row
-        # x- and lhs y-axis selection
-        self.rowxy = ttk.Frame(self)
-        self.rowxy.pack(side=tk.TOP, fill=tk.X)
-        # block x with dimensions
-        self.blockx = ttk.Frame(self.rowxy)
-        self.blockx.pack(side=tk.LEFT)
-        self.rowx = ttk.Frame(self.blockx)
-        self.rowx.pack(side=tk.TOP, fill=tk.X)
-        self.xlbl, self.x, self.xtip = add_combobox(
-            self.rowx, label="x", values=columns, command=self.selected_x,
+        # open file and new window
+        self.newfile = ctk.CTkButton(self, text="Open File",
+                                     command=self.new_csv)
+        self.newfiletip = add_tooltip(self.newfile, 'Open a new csv file')
+        self.newfile.grid(row=0, column=0, sticky=tk.W)
+        self.newwin = ctk.CTkButton(
+            self, text="New Window",
+            command=partial(clone_dfvmain, self.master))
+        self.newwintip = add_tooltip(
+            self.newwin, 'Open secondary dfvue window')
+        self.newwin.grid(row=0, column=8, sticky=tk.E)
+
+        # plotting canvas
+        self.figure = Figure(facecolor="white", figsize=(1, 1))
+        self.axes   = self.figure.add_subplot(111)
+        self.axes2  = self.axes.twinx()
+        self.axes2.yaxis.set_label_position("right")
+        self.axes2.yaxis.tick_right()
+        self.canvas = FigureCanvasTkAgg(self.figure, master=self)
+        self.canvas.draw()
+        self.tkcanvas = self.canvas.get_tk_widget()
+        self.tkcanvas.grid(row=1, column=0, rowspan=12, columnspan=9,
+                           sticky=tk.NSEW)
+        self.rowconfigure(1, minsize=canvasheight)
+
+        # matplotlib toolbar
+        # toolbar uses pack internally -> put into frame
+        self.toolwin = ctk.CTkFrame(self)
+        self.toolbar = NavigationToolbar2Tk(self.canvas, self.toolwin)
+        self.toolbar.update()
+        self.toolwin.grid(row=13, column=0, columnspan=9, sticky=tk.W)
+
+        # x-axis and left y-axis
+        # block with x
+        self.blockx = ctk.CTkFrame(self)
+        self.blockx.grid(row=14, column=0, columnspan=3, sticky=tk.W)
+        # x
+        self.xframe, self.xlbl, self.x, self.xtip = add_combobox(
+            self.blockx, label="x", values=columns, command=self.selected_x,
+            width=combowidth,
             tooltip="Choose variable of x-axis.\nTake index if 'None' (fast).")
-        # self.x0 = ''
+        self.xframe.pack(side=tk.LEFT)
+        # invert x
         self.line_x = []
-        self.inv_xlbl, self.inv_x, self.inv_xtip = add_checkbutton(
-            self.rowx, label="invert x", value=False,
-            command=self.checked_x,
-            tooltip="Invert x-axis")
-        # block y with dimensions
-        spacex = ttk.Label(self.rowxy, text=" " * 3)
-        spacex.pack(side=tk.LEFT)
-        self.blocky = ttk.Frame(self.rowxy)
-        self.blocky.pack(side=tk.LEFT)
-        self.rowy = ttk.Frame(self.blocky)
-        self.rowy.pack(side=tk.TOP, fill=tk.X)
+        (self.inv_xframe, self.inv_xlbl, self.inv_x,
+         self.inv_xtip) = add_checkbutton(
+             self.blockx, label="invert x", value=False,
+             command=self.checked_x,
+             tooltip="Invert x-axis")
+        self.inv_xframe.pack(side=tk.LEFT)
+        # block with y
+        self.blocky = ctk.CTkFrame(self)
+        self.blocky.grid(row=14, column=3, columnspan=4, sticky=tk.W)
+        # y label
         self.ylbl = tk.StringVar()
         self.ylbl.set("y")
-        ylab = ttk.Label(self.rowy, textvariable=self.ylbl)
-        ylab.pack(side=tk.LEFT)
-        self.bprev_y = ttk.Button(self.rowy, text="<", width=1,
-                                  command=self.prev_y)
-        self.bprev_y.pack(side=tk.LEFT)
+        ylab = ctk.CTkLabel(self.blocky, textvariable=self.ylbl)
+        ylab.pack(side='left')
+        # previous and next buttons
+        self.bprev_y = ctk.CTkButton(self.blocky, text="<", width=1,
+                                     command=self.prev_y)
         self.bprev_ytip = add_tooltip(self.bprev_y, 'Previous variable')
-        self.bnext_y = ttk.Button(self.rowy, text=">", width=1,
-                                  command=self.next_y)
-        self.bnext_y.pack(side=tk.LEFT)
+        self.bprev_y.pack(side='left')
+        self.bnext_y = ctk.CTkButton(self.blocky, text=">", width=1,
+                                     command=self.next_y)
         self.bnext_ytip = add_tooltip(self.bnext_y, 'Next variable')
-        self.y = ttk.Combobox(self.rowy, values=columns, width=25)
-        # long = len(max(columns, key=len))
-        # self.y.configure(width=(max(20, long//2)))
-        self.y.bind("<<ComboboxSelected>>", self.selected_y)
-        self.y.pack(side=tk.LEFT)
+        self.bnext_y.pack(side='left')
+        # y
+        self.y = ctk.CTkComboBox(self.blocky, values=columns, width=combowidth,
+                                 command=self.selected_y)
         self.ytip = add_tooltip(self.y, 'Choose variable of y-axis')
-        # self.y0 = ''
+        self.y.pack(side='left')
+        # invert y
         self.line_y = []
-        self.inv_ylbl, self.inv_y, self.inv_ytip = add_checkbutton(
-            self.rowy, label="invert y", value=False,
-            command=self.checked_y,
-            tooltip="Inert y-axis")
+        (self.inv_yframe, self.inv_ylbl, self.inv_y,
+         self.inv_ytip) = add_checkbutton(
+             self.blocky, label="invert y", value=False,
+             command=self.checked_y,
+             tooltip="Invert y-axis")
+        self.inv_yframe.pack(side=tk.LEFT)
         # redraw button
-        self.bredraw = ttk.Button(self.rowxy, text="Redraw",
-                                  command=self.redraw)
-        self.bredraw.pack(side=tk.RIGHT)
+        self.bredraw = ctk.CTkButton(self, text="Redraw",
+                                     command=self.redraw)
         self.bredrawtip = add_tooltip(self.bredraw, 'Redraw, resetting zoom')
+        self.bredraw.grid(row=14, column=8, sticky=tk.E)
 
-        # 2. row
         # options for lhs y-axis
-        self.rowxyopt = ttk.Frame(self)
-        self.rowxyopt.pack(side=tk.TOP, fill=tk.X)
-        self.lslbl, self.ls, self.lstip = add_entry(
-            self.rowxyopt, label="ls", text='-', width=4,
+        self.blockyopt = ctk.CTkFrame(self)
+        self.blockyopt.grid(row=15, column=0, columnspan=6, sticky=tk.W)
+        self.lsframe, self.lslbl, self.ls, self.lstip = add_entry(
+            self.blockyopt, label="ls", text='-', width=ewmed,
             command=self.entered_y,
             tooltip="Line style: -, --, -., :, or None")
-        self.lwlbl, self.lw, self.lwtip = add_entry(
-            self.rowxyopt, label="lw", text='1', width=3,
+        self.lsframe.pack(side=tk.LEFT)
+        self.lwframe, self.lwlbl, self.lw, self.lwtip = add_entry(
+            self.blockyopt, label="lw", text='1', width=ewsmall,
             command=self.entered_y, tooltip="Line width")
-        self.lclbl, self.lc, self.lctip = add_entry(
-            self.rowxyopt, label="c", text=col1, width=7,
+        self.lwframe.pack(side=tk.LEFT)
+        self.lcframe, self.lclbl, self.lc, self.lctip = add_entry(
+            self.blockyopt, label="c", text=col1, width=ewbig,
             command=self.entered_y,
             tooltip="Line color:\n" + ctstr)
-        self.markerlbl, self.marker, self.markertip = add_entry(
-            self.rowxyopt, label="marker", text='None', width=4,
+        self.lcframe.pack(side=tk.LEFT)
+        (self.markerframe, self.markerlbl, self.marker,
+         self.markertip) = add_entry(
+            self.blockyopt, label="marker", text='None', width=ewmed,
             command=self.entered_y,
             tooltip="Marker symbol:\n" + mtstr)
-        self.mslbl, self.ms, self.mstip = add_entry(
-            self.rowxyopt, label="ms", text='1', width=3,
+        self.markerframe.pack(side=tk.LEFT)
+        self.msframe, self.mslbl, self.ms, self.mstip = add_entry(
+            self.blockyopt, label="ms", text='1', width=ewsmall,
             command=self.entered_y, tooltip="Marker size")
-        self.mfclbl, self.mfc, self.mfctip = add_entry(
-            self.rowxyopt, label="mfc", text=col1, width=7,
+        self.msframe.pack(side=tk.LEFT)
+        self.mfcframe, self.mfclbl, self.mfc, self.mfctip = add_entry(
+            self.blockyopt, label="mfc", text=col1, width=ewbig,
             command=self.entered_y,
             tooltip="Marker fill color:\n" + ctstr)
-        self.meclbl, self.mec, self.mectip = add_entry(
-            self.rowxyopt, label="mec", text=col1, width=7,
+        self.mfcframe.pack(side=tk.LEFT)
+        self.mecframe, self.meclbl, self.mec, self.mectip = add_entry(
+            self.blockyopt, label="mec", text=col1, width=ewbig,
             command=self.entered_y,
             tooltip="Marker edge color:\n" + ctstr)
-        self.mewlbl, self.mew, self.mewtip = add_entry(
-            self.rowxyopt, label="mew", text='1', width=3,
+        self.mecframe.pack(side=tk.LEFT)
+        self.mewframe, self.mewlbl, self.mew, self.mewtip = add_entry(
+            self.blockyopt, label="mew", text='1', width=ewsmall,
             command=self.entered_y, tooltip="Marker edge width")
+        self.mewframe.pack(side=tk.LEFT)
         # redraw button
-        self.bsort = ttk.Button(self.rowxyopt, text="Sort vars",
-                                command=self.sortvars)
-        self.bsort.pack(side=tk.RIGHT)
+        self.bsort = ctk.CTkButton(self, text="Sort vars",
+                                   command=self.sortvars)
         self.bsorttip = add_tooltip(self.bsort, 'Sort variable names')
+        self.bsort.grid(row=15, column=8, sticky=tk.E)
 
-        # space
-        self.rowspace = ttk.Frame(self)
-        self.rowspace.pack(side=tk.TOP, fill=tk.X)
-        rowspace = ttk.Label(self.rowspace, text=" ")
-        rowspace.pack(side=tk.LEFT)
+        # empty row
+        self.rowconfigure(16, minsize=20)
 
-        # 3. row
-        # rhs y-axis 2 selection
-        self.rowyy2 = ttk.Frame(self)
-        self.rowyy2.pack(side=tk.TOP, fill=tk.X)
-        self.blocky2 = ttk.Frame(self.rowyy2)
-        self.blocky2.pack(side=tk.LEFT)
-        self.rowy2 = ttk.Frame(self.blocky2)
-        self.rowy2.pack(side=tk.TOP, fill=tk.X)
-        self.y2lbl, self.y2, self.y2tip = add_combobox(
-            self.rowy2, label="y2", values=columns,
-            command=self.selected_y2,
-            tooltip="Choose variable for right-hand-side y-axis")
-        # self.y20 = ''
+        # right y2-axis
+        self.blocky2 = ctk.CTkFrame(self)
+        self.blocky2.grid(row=17, column=0, columnspan=4, sticky=tk.W)
+        # y label
+        self.ylbl2 = tk.StringVar()
+        self.ylbl2.set("y2")
+        ylab2 = ctk.CTkLabel(self.blocky2, textvariable=self.ylbl2)
+        ylab2.pack(side='left')
+        # previous and next buttons
+        self.bprev_y2 = ctk.CTkButton(self.blocky2, text="<", width=1,
+                                      command=self.prev_y2)
+        self.bprev_y2tip = add_tooltip(self.bprev_y2, 'Previous variable')
+        self.bprev_y2.pack(side='left')
+        self.bnext_y2 = ctk.CTkButton(self.blocky2, text=">", width=1,
+                                      command=self.next_y2)
+        self.bnext_y2tip = add_tooltip(self.bnext_y2, 'Next variable')
+        self.bnext_y2.pack(side='left')
+        # y
+        self.y2 = ctk.CTkComboBox(self.blocky2, values=columns,
+                                  width=combowidth, command=self.selected_y2)
+        self.y2tip = add_tooltip(self.y2,
+                                 'Choose variable of right-hand-side y-axis')
+        self.y2.pack(side='left')
+        # invert y2
         self.line_y2 = []
-        self.inv_y2lbl, self.inv_y2, self.inv_y2tip = add_checkbutton(
-            self.rowy2, label="invert y2", value=False,
-            command=self.checked_y2,
-            tooltip="Invert right-hand-side y-axis")
-        spacey2 = ttk.Label(self.rowy2, text=" " * 1)
-        spacey2.pack(side=tk.LEFT)
+        (self.inv_y2frame, self.inv_y2lbl, self.inv_y2,
+         self.inv_y2tip) = add_checkbutton(
+             self.blocky2, label="invert y2", value=False,
+             command=self.checked_y2,
+             tooltip="Invert right-hand-side y-axis")
+        self.inv_y2frame.pack(side=tk.LEFT)
         tstr = "Same limits for left-hand-side and right-hand-side y-axes"
-        self.same_ylbl, self.same_y, self.same_ytip = add_checkbutton(
-            self.rowy2, label="same y-axes", value=False,
-            command=self.checked_yy2, tooltip=tstr)
+        (self.same_yframe, self.same_ylbl, self.same_y,
+         self.same_ytip) = add_checkbutton(
+             self.blocky2, label="same y-axes", value=False,
+             command=self.checked_yy2, tooltip=tstr)
+        self.same_yframe.pack(side=tk.LEFT)
 
-        # 4. row
         # options for rhs y-axis 2
-        self.rowy2opt = ttk.Frame(self)
-        self.rowy2opt.pack(side=tk.TOP, fill=tk.X)
-        self.ls2lbl, self.ls2, self.ls2tip = add_entry(
-            self.rowy2opt, label="ls", text='-', width=4,
+        self.blocky2opt = ctk.CTkFrame(self)
+        self.blocky2opt.grid(row=18, column=0, columnspan=6, sticky=tk.W)
+        self.ls2frame, self.ls2lbl, self.ls2, self.ls2tip = add_entry(
+            self.blocky2opt, label="ls", text='-', width=ewmed,
             command=self.entered_y2,
             tooltip="Line style: -, --, -., :, or None")
-        self.lw2lbl, self.lw2, self.lw2tip = add_entry(
-            self.rowy2opt, label="lw", text='1', width=3,
+        self.ls2frame.pack(side=tk.LEFT)
+        self.lw2frame, self.lw2lbl, self.lw2, self.lw2tip = add_entry(
+            self.blocky2opt, label="lw", text='1', width=ewsmall,
             command=self.entered_y2, tooltip="Line width")
-        self.lc2lbl, self.lc2, self.lc2tip = add_entry(
-            self.rowy2opt, label="c", text=col2, width=7,
+        self.lw2frame.pack(side=tk.LEFT)
+        self.lc2frame, self.lc2lbl, self.lc2, self.lc2tip = add_entry(
+            self.blocky2opt, label="c", text=col2, width=ewbig,
             command=self.entered_y2,
             tooltip="Line color:\n" + ctstr)
-        self.marker2lbl, self.marker2, self.marker2tip = add_entry(
-            self.rowy2opt, label="marker", text='None', width=4,
+        self.lc2frame.pack(side=tk.LEFT)
+        (self.marker2frame, self.marker2lbl, self.marker2,
+         self.marker2tip) = add_entry(
+            self.blocky2opt, label="marker", text='None', width=ewmed,
             command=self.entered_y2,
             tooltip="Marker symbol:\n" + mtstr)
-        self.ms2lbl, self.ms2, self.ms2tip = add_entry(
-            self.rowy2opt, label="ms", text='1', width=3,
+        self.marker2frame.pack(side=tk.LEFT)
+        self.ms2frame, self.ms2lbl, self.ms2, self.ms2tip = add_entry(
+            self.blocky2opt, label="ms", text='1', width=ewsmall,
             command=self.entered_y2, tooltip="Marker size")
-        self.mfc2lbl, self.mfc2, self.mfc2tip = add_entry(
-            self.rowy2opt, label="mfc", text=col2, width=7,
+        self.ms2frame.pack(side=tk.LEFT)
+        self.mfc2frame, self.mfc2lbl, self.mfc2, self.mfc2tip = add_entry(
+            self.blocky2opt, label="mfc", text=col2, width=ewbig,
             command=self.entered_y2, tooltip="Marker fill color:\n" + ctstr)
-        self.mec2lbl, self.mec2, self.mec2tip = add_entry(
-            self.rowy2opt, label="mec", text=col2, width=7,
+        self.mfc2frame.pack(side=tk.LEFT)
+        self.mec2frame, self.mec2lbl, self.mec2, self.mec2tip = add_entry(
+            self.blocky2opt, label="mec", text=col2, width=ewbig,
             command=self.entered_y2, tooltip="Marker edge color:\n" + ctstr)
-        self.mew2lbl, self.mew2, self.mew2tip = add_entry(
-            self.rowy2opt, label="mew", text='1', width=3,
+        self.mec2frame.pack(side=tk.LEFT)
+        self.mew2frame, self.mew2lbl, self.mew2, self.mew2tip = add_entry(
+            self.blocky2opt, label="mew", text='1', width=ewsmall,
             command=self.entered_y2, tooltip="Marker edge width")
+        self.mew2frame.pack(side=tk.LEFT)
         # Quit button
-        self.bquit = ttk.Button(self.rowy2opt, text="Quit",
-                                command=self.master.top.destroy)
-        self.bquit.pack(side=tk.RIGHT)
+        self.bquit = ctk.CTkButton(self, text="Quit",
+                                   command=self.master.top.destroy)
         self.bquittip = add_tooltip(self.bquit, 'Quit dfvue')
+        self.bquit.grid(row=18, column=8, sticky=tk.E)
 
         if self.csvfile and (self.master.master.name == 'dfvOne'):
             self.new_df()
@@ -397,7 +429,7 @@ class dfvScatter(ttk.Frame):
 
         """
         self.top.df = pd.read_csv(self.top.csvfile, nrows=40)
-        dfvReadcsv(self.top, callback=self.reset)
+        self.readcsvwin = dfvReadcsv(self.top, callback=self.reset)
 
     def next_y(self):
         """
@@ -409,11 +441,28 @@ class dfvScatter(ttk.Frame):
 
         """
         y = self.y.get()
-        cols = self.y["values"]
+        cols = self.y.cget("values")
         idx  = cols.index(y)
         idx += 1
         if idx < len(cols):
             self.y.set(cols[idx])
+            self.redraw()
+
+    def next_y2(self):
+        """
+        Command called if next button for the right-hand-side y-variable was
+        pressed.
+
+        Resets dimensions of right-hand-side y-variable.
+        Redraws plot.
+
+        """
+        y2 = self.y2.get()
+        cols = self.y2.cget("values")
+        idx  = cols.index(y2)
+        idx += 1
+        if idx < len(cols):
+            self.y2.set(cols[idx])
             self.redraw()
 
     # def onpick(self, event):
@@ -436,11 +485,28 @@ class dfvScatter(ttk.Frame):
 
         """
         y = self.y.get()
-        cols = self.y["values"]
+        cols = self.y.cget("values")
         idx  = cols.index(y)
         idx -= 1
         if idx > 0:
             self.y.set(cols[idx])
+            self.redraw()
+
+    def prev_y2(self):
+        """
+        Command called if previous button for the right-hand-side y-variable was
+        pressed.
+
+        Resets dimensions of right-hand-side y-variable.
+        Redraws plot.
+
+        """
+        y2 = self.y2.get()
+        cols = self.y2.cget("values")
+        idx  = cols.index(y2)
+        idx -= 1
+        if idx > 0:
+            self.y2.set(cols[idx])
             self.redraw()
 
     def selected_x(self, event):
@@ -501,13 +567,13 @@ class dfvScatter(ttk.Frame):
             # set variables
             columns = [''] + self.cols
             x = self.x.get()
-            self.x['values'] = columns
+            self.x.configure(values=columns)
             self.x.set(x)
             y = self.y.get()
-            self.y['values'] = columns
+            self.y.configure(values=columns)
             self.y.set(y)
             y2 = self.y2.get()
-            self.y2['values'] = columns
+            self.y2.configure(values=columns)
             self.y2.set(y2)
 
     def spinned_x(self, event=None):
@@ -596,11 +662,11 @@ class dfvScatter(ttk.Frame):
         self.master.master.title(tit)
         # set variables
         columns = [''] + self.cols
-        self.x['values'] = columns
+        self.x.configure(values=columns)
         self.x.set(columns[0])
-        self.y['values'] = columns
+        self.y.configure(values=columns)
         self.y.set(columns[0])
-        self.y2['values'] = columns
+        self.y2.configure(values=columns)
         self.y2.set(columns[0])
 
     def reset(self):

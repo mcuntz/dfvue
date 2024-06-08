@@ -24,7 +24,6 @@ History
     * Written Jul 2023 2023 by Matthias Cuntz (mc (at) macu (dot) de)
 
 """
-import numpy as np
 from dfvue import dfvue
 
 

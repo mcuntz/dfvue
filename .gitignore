@@ -112,4 +112,4 @@ tags
 *.DS_Store
 
 # generated version file
-src/dfvue/_version.py
+src/*/_version.py
