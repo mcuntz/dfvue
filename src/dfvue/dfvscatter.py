@@ -153,7 +153,8 @@ class dfvScatter(ctk.CTkFrame):
         # matplotlib toolbar
         # toolbar uses pack internally -> put into frame
         self.toolwin = ctk.CTkFrame(self)
-        self.toolbar = NavigationToolbar2Tk(self.canvas, self.toolwin)
+        self.toolbar = NavigationToolbar2Tk(self.canvas, self.toolwin,
+                                            pack_toolbar=True)
         self.toolbar.update()
         self.toolwin.grid(row=13, column=0, columnspan=9, sticky=tk.W)
 

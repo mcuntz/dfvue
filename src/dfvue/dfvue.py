@@ -86,6 +86,8 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
     bundle_dir = getattr(sys, '_MEIPASS',
                          os.path.abspath(os.path.dirname(__file__)))
 
+    # ctk.set_appearance_mode("system")  # system, light, dark
+
     top = ctk.CTk()
     top.withdraw()
 
