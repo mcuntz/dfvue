@@ -13,8 +13,8 @@ A simple GUI to view csv files
       click on figures to open larger pictures
     remove section "Installation"
 
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.10372632.svg
-  :target: https://doi.org/10.5281/zenodo.10372632
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.10372631.svg
+  :target: https://doi.org/10.5281/zenodo.10372631
   :alt: Zenodo DOI
 	   
 .. image:: https://badge.fury.io/py/dfvue.svg
