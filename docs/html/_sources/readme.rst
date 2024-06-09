@@ -345,12 +345,11 @@ for details.
 
 Copyright (c) 2023- Matthias Cuntz
 
-``dfvue`` uses the Azure_ theme (v2.0) by rdbende_ on Linux and
-Windows.
+``dfvue`` uses CustomTkinter_ by `Tom Schimansky`_.
 
-Standalone applications are produced with `cx_Freeze`_, currently
-maintained by `Marcelo Duarte`_.
-
+..
+   Standalone applications are produced with `cx_Freeze`_, currently
+   maintained by `Marcelo Duarte`_.
 
 .. _read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 .. _pandas.read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
@@ -362,8 +361,6 @@ maintained by `Marcelo Duarte`_.
 .. _Conda: https://docs.conda.io/projects/conda/en/latest/
 .. _instructions: https://mcuntz.github.io/dfvue/html/install.html
 .. _LICENSE: https://github.com/mcuntz/dfvue/blob/main/LICENSE
-.. _Azure: https://github.com/rdbende/Azure-ttk-theme
-.. _rdbende: https://github.com/rdbende
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
 .. _Marcelo Duarte: https://github.com/marcelotduarte
 .. _ISO8601: https://en.wikipedia.org/wiki/ISO_8601
@@ -371,3 +368,5 @@ maintained by `Marcelo Duarte`_.
 .. _FLUXNET: https://fluxnet.org
 .. _ICOS: https://www.icos-cp.eu
 .. _europe-fluxdata.eu: http://www.europe-fluxdata.eu
+.. _CustomTkinter: https://customtkinter.tomschimansky.com
+.. _Tom Schimansky: https://github.com/TomSchimansky

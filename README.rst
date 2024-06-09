@@ -372,6 +372,8 @@ for details.
 
 Copyright (c) 2023- Matthias Cuntz
 
+``dfvue`` uses CustomTkinter_ by `Tom Schimansky`_.
+
 ..
    Standalone applications are produced with `cx_Freeze`_, currently
    maintained by `Marcelo Duarte`_.
@@ -394,3 +396,5 @@ Copyright (c) 2023- Matthias Cuntz
 .. _FLUXNET: https://fluxnet.org
 .. _ICOS: https://www.icos-cp.eu
 .. _europe-fluxdata.eu: http://www.europe-fluxdata.eu
+.. _CustomTkinter: https://customtkinter.tomschimansky.com
+.. _Tom Schimansky: https://github.com/TomSchimansky
