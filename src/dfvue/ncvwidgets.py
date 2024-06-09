@@ -658,29 +658,16 @@ class Treeview(ctk.CTkFrame):
             self.vscrollbar = ctk.CTkScrollbar(self, orientation='vertical')
         # treeview
         self.tv = ttk.Treeview(self)
-        self.tv.grid(row=0, column=0, sticky=tk.NSEW)
         # pack scrollbars and treeview together
-        if yscroll:
-            self.tv.configure(yscrollcommand=self.vscrollbar.set)
-            self.vscrollbar.configure(command=self.tv.yview)
-            # self.vscrollbar.pack(side='right', fill='y')
-            self.vscrollbar.grid(row=0, column=1, rowspan=11,
-                                 sticky=tk.NS)
         if xscroll:
-            self.tv.configure(xscrollcommand=self.hscrollbar.set)
+            self.tv.config(xscrollcommand=self.hscrollbar.set)
             self.hscrollbar.configure(command=self.tv.xview)
-            # self.hscrollbar.pack(side='bottom', fill='x')
-            self.hscrollbar.grid(row=1, column=0, columnspan=10,
-                                 sticky=tk.EW)
-        # if xscroll:
-        #     self.tv.config(xscrollcommand=self.hscrollbar.set)
-        #     self.hscrollbar.config(command=self.tv.xview)
-        #     self.hscrollbar.pack(side='bottom', fill='x')
-        # if yscroll:
-        #     self.tv.config(yscrollcommand=self.vscrollbar.set)
-        #     self.vscrollbar.config(command=self.tv.yview)
-        #     self.vscrollbar.pack(side='right', fill='y')
-        # self.tv.pack()
+            self.hscrollbar.pack(side='bottom', fill='x')
+        if yscroll:
+            self.tv.config(yscrollcommand=self.vscrollbar.set)
+            self.vscrollbar.configure(command=self.tv.yview)
+            self.vscrollbar.pack(side='right', fill='y')
+        self.tv.pack()
         # convenience functions
         self.tag_configure = self.tv.tag_configure
         self.config = self.tv.config

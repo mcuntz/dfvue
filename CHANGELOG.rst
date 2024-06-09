@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+v2.0 (Jun 2024)
+    * Exclusively use CustomTkinter.
+    * Updated documentation with new screenshots.
+
 v1.9 (Jun 2024)
     * Using CustomTkinter on top of Tkinter.
     * Use mix of grid and pack layout managers.

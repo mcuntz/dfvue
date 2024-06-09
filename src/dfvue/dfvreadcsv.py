@@ -456,7 +456,6 @@ class dfvReadcsv(ctk.CTkToplevel):
 
     def __init__(self, top, callback=None, **kwargs):
         super().__init__(top, **kwargs)
-        self.protocol("WM_DELETE_WINDOW", self.cancel)
 
         self.top = top  # top window
         self.callback = callback
@@ -477,7 +476,15 @@ class dfvReadcsv(ctk.CTkToplevel):
         self.missing_value = self.top.missing_value
         self.cols = self.top.cols
 
-        # treeview current DataFrame
+        # space
+        rootspace = ctk.CTkFrame(self)
+        rootspace.pack(side='top', fill='x')
+        rootspacespace = ctk.CTkLabel(rootspace, text=" ")
+        rootspacespace.pack(side='left')
+
+        # 1. row - treeview current DataFrame
+        self.rowtree = ctk.CTkFrame(self)
+        self.rowtree.pack(side='top', fill='x')
         self.nrows = 10
         if self.df is None:
             print('No df')
@@ -488,14 +495,16 @@ class dfvReadcsv(ctk.CTkToplevel):
         else:
             df = self.df
         self.new_tree(df)
-        # self.tree = ctk.CTkLabel(self)
-        # self.tree.grid(row=1, column=0, rowspan=12, columnspan=5)
+
+        # space
+        treespace = ctk.CTkFrame(self)
+        treespace.pack(side='top', fill='x')
+        treespacespace = ctk.CTkLabel(treespace, text=" ")
+        treespacespace.pack(side='left')
 
         # label for read_csv options
-        spacex2 = ctk.CTkLabel(self, text=" " * 3)
-        spacex2.grid(row=13, column=0, sticky=tk.W + tk.E)
         opthead = ctk.CTkFrame(self)
-        opthead.grid(row=14, column=0, columnspan=4, sticky=tk.W)
+        opthead.pack(side='top', fill='x')
         optheadlabel1 = ctk.CTkLabel(opthead, text='Options for ')
         optheadlabel1.pack(side='left')
         # https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118
@@ -532,14 +541,11 @@ class dfvReadcsv(ctk.CTkToplevel):
         noptrow = nopt // 4
         if (nopt % 5) > 0:
             noptrow += 1
-        self.rowopt = []
-        # labelwidth = 13   # characters
-        entrywidth = 80  # px
+        entrywidth = 85  # px
         padlabel = 3     # characters
-        padxlabel = 3    # px
+        padxlabel = 5    # px
         self.rowopt = ctk.CTkFrame(self)
-        self.rowopt.grid(row=15, rowspan=noptrow + 1, columnspan=10,
-                         sticky=tk.W, pady=2)
+        self.rowopt.pack(side='top', fill='x')
         for nr in range(noptrow):
             ostart = oend
             oend = ostart + 5
@@ -547,7 +553,6 @@ class dfvReadcsv(ctk.CTkToplevel):
                 (self.optframe[oo], self.optlbl[oo],
                  self.opt[oo], self.opttip[oo]) = add_entry(
                      self.rowopt, label=oo,
-                     # labelwidth=labelwidth,
                      padlabel=padlabel,
                      text=read_csvdefaults[oo],
                      width=entrywidth, padx=padxlabel,
@@ -555,18 +560,22 @@ class dfvReadcsv(ctk.CTkToplevel):
                      command=[self.read_again, self.read_final])
                 self.optframe[oo].grid(row=nr, column=2 * oois, columnspan=2,
                                        sticky=tk.E)
+                # self.optframe[oo].pack(side='right')
         # overwrite defaults from command line
         self.set_command_line_options(defaults=self.newcsvfile)
 
         # add cancel and read buttons to last row
-        self.cancel = ctk.CTkButton(self.rowopt, text="Cancel",
-                                 command=self.cancel)
-        self.canceltip = add_tooltip(self.cancel, 'Cancel reading csv file')
-        self.cancel.grid(row=noptrow, column=7, sticky=tk.E)
-        self.done = ctk.CTkButton(self.rowopt, text="Read csv",
+        self.rowdone = ctk.CTkFrame(self)
+        self.rowdone.pack(side='top', fill='x')
+        self.done = ctk.CTkButton(self.rowdone, text="Read csv",
                                   command=self.read_final)
         self.donetip = add_tooltip(self.done, 'Finished reading csv')
-        self.done.grid(row=noptrow, column=9, sticky=tk.E)
+        self.done.pack(side='right', padx=10, pady=5)
+
+        self.cancel = ctk.CTkButton(self.rowdone, text="Cancel",
+                                    command=self.cancel)
+        self.canceltip = add_tooltip(self.cancel, 'Cancel reading csv file')
+        self.cancel.pack(side='right', pady=5)
 
         self.focus_force()
 
@@ -590,10 +599,8 @@ class dfvReadcsv(ctk.CTkToplevel):
 
         """
         # create
-        self.treeframe = ctk.CTkFrame(self)
-        self.treeframe.grid(row=0, column=0, rowspan=11, columnspan=10)
-        self.tree = Treeview(self.treeframe, xscroll=True, yscroll=True)
-        self.tree.grid(row=0, column=0, columnspan=5)
+        self.tree = Treeview(self.rowtree, xscroll=True, yscroll=True)
+        self.tree.pack()
         self.tree.tag_configure("even", background='white',
                                 foreground='black')
         self.tree.tag_configure("odd", background='gray',
