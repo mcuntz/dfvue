@@ -334,11 +334,14 @@ document.write(`
 
 <span class="sd">History</span>
 <span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
+<span class="sd">    * Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">import</span> <span class="nn">customtkinter</span> <span class="k">as</span> <span class="nn">ctk</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mpld</span>
+<span class="kn">import</span> <span class="nn">dfvue</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;clone_dfvmain&#39;</span><span class="p">,</span>
@@ -368,33 +371,30 @@ document.write(`
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; self.newwin = ttk.Button(</span>
+<span class="sd">    &gt;&gt;&gt; self.newwin = ctk.CTkButton(</span>
 <span class="sd">    ...     self.rowwin, text=&quot;New Window&quot;,</span>
 <span class="sd">    ...     command=partial(clone_dfvmain, self.master))</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># parent = widget.nametowidget(widget.winfo_parent())</span>
     <span class="k">if</span> <span class="n">widget</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;dfvMain&#39;</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;clone_dfvmain failed. Widget should be dfvMain.&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;widget.name is: &#39;</span><span class="p">,</span> <span class="n">widget</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="kn">import</span> <span class="nn">sys</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 
-    <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">()</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkToplevel</span><span class="p">()</span>
     <span class="n">root</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvClone&#39;</span>
-    <span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Secondary dfvue window&quot;</span><span class="p">)</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">top</span>
+    <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">tit</span> <span class="o">=</span> <span class="s2">&quot;Secondary dfvue &quot;</span> <span class="o">+</span> <span class="n">root</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tit</span> <span class="o">=</span> <span class="s2">&quot;Secondary dfvue&quot;</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">tit</span><span class="p">)</span>
     <span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x800+150+100&#39;</span><span class="p">)</span>
 
-    <span class="n">root</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">top</span>
-
-    <span class="c1"># https://stackoverflow.com/questions/46505982/is-there-a-way-to-clone-a-tkinter-widget</span>
-    <span class="bp">cls</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="vm">__class__</span>
+    <span class="bp">cls</span> <span class="o">=</span> <span class="n">dfvue</span><span class="o">.</span><span class="n">dfvMain</span>
     <span class="n">clone</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">widget</span><span class="o">.</span><span class="n">configure</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span>
-            <span class="n">clone</span><span class="o">.</span><span class="n">configure</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">widget</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="n">key</span><span class="p">)})</span>
-
-    <span class="k">return</span> <span class="n">clone</span></div>
+    <span class="n">clone</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">S</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">N</span><span class="p">)</span></div>
 
 
 

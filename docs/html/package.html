@@ -433,6 +433,7 @@ document.write(`
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dfvmain.html">dfvmain</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain"><code class="docutils literal notranslate"><span class="pre">dfvMain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.add"><code class="docutils literal notranslate"><span class="pre">dfvMain.add()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.after"><code class="docutils literal notranslate"><span class="pre">dfvMain.after()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.after_cancel"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_cancel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.after_idle"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_idle()</span></code></a></li>
@@ -450,6 +451,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.columnconfigure"><code class="docutils literal notranslate"><span class="pre">dfvMain.columnconfigure()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.config"><code class="docutils literal notranslate"><span class="pre">dfvMain.config()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.delete"><code class="docutils literal notranslate"><span class="pre">dfvMain.delete()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.deletecommand"><code class="docutils literal notranslate"><span class="pre">dfvMain.deletecommand()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.destroy"><code class="docutils literal notranslate"><span class="pre">dfvMain.destroy()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.event_add"><code class="docutils literal notranslate"><span class="pre">dfvMain.event_add()</span></code></a></li>
@@ -463,6 +465,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.focus_lastfor"><code class="docutils literal notranslate"><span class="pre">dfvMain.focus_lastfor()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.focus_set"><code class="docutils literal notranslate"><span class="pre">dfvMain.focus_set()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.forget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.get"><code class="docutils literal notranslate"><span class="pre">dfvMain.get()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.getboolean"><code class="docutils literal notranslate"><span class="pre">dfvMain.getboolean()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.getdouble"><code class="docutils literal notranslate"><span class="pre">dfvMain.getdouble()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.getint"><code class="docutils literal notranslate"><span class="pre">dfvMain.getint()</span></code></a></li>
@@ -485,17 +488,18 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_rowconfigure()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_size"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.grid_slaves"><code class="docutils literal notranslate"><span class="pre">dfvMain.grid_slaves()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.identify"><code class="docutils literal notranslate"><span class="pre">dfvMain.identify()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.image_names"><code class="docutils literal notranslate"><span class="pre">dfvMain.image_names()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.image_types"><code class="docutils literal notranslate"><span class="pre">dfvMain.image_types()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.index"><code class="docutils literal notranslate"><span class="pre">dfvMain.index()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.info"><code class="docutils literal notranslate"><span class="pre">dfvMain.info()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">dfvMain.info_patchlevel()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.instate"><code class="docutils literal notranslate"><span class="pre">dfvMain.instate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.insert"><code class="docutils literal notranslate"><span class="pre">dfvMain.insert()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.keys"><code class="docutils literal notranslate"><span class="pre">dfvMain.keys()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.lift"><code class="docutils literal notranslate"><span class="pre">dfvMain.lift()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.location"><code class="docutils literal notranslate"><span class="pre">dfvMain.location()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.lower"><code class="docutils literal notranslate"><span class="pre">dfvMain.lower()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.mainloop"><code class="docutils literal notranslate"><span class="pre">dfvMain.mainloop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.move"><code class="docutils literal notranslate"><span class="pre">dfvMain.move()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.nametowidget"><code class="docutils literal notranslate"><span class="pre">dfvMain.nametowidget()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.option_add"><code class="docutils literal notranslate"><span class="pre">dfvMain.option_add()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.option_clear"><code class="docutils literal notranslate"><span class="pre">dfvMain.option_clear()</span></code></a></li>
@@ -515,6 +519,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.propagate"><code class="docutils literal notranslate"><span class="pre">dfvMain.propagate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.quit"><code class="docutils literal notranslate"><span class="pre">dfvMain.quit()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.register"><code class="docutils literal notranslate"><span class="pre">dfvMain.register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.rename"><code class="docutils literal notranslate"><span class="pre">dfvMain.rename()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvMain.rowconfigure()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_clear"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_clear()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_get"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_get()</span></code></a></li>
@@ -522,10 +527,11 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_own"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_own()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.selection_own_get"><code class="docutils literal notranslate"><span class="pre">dfvMain.selection_own_get()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.send"><code class="docutils literal notranslate"><span class="pre">dfvMain.send()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.set"><code class="docutils literal notranslate"><span class="pre">dfvMain.set()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.setvar"><code class="docutils literal notranslate"><span class="pre">dfvMain.setvar()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.size"><code class="docutils literal notranslate"><span class="pre">dfvMain.size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.slaves"><code class="docutils literal notranslate"><span class="pre">dfvMain.slaves()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.state"><code class="docutils literal notranslate"><span class="pre">dfvMain.state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tab"><code class="docutils literal notranslate"><span class="pre">dfvMain.tab()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_bisque"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_bisque()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusFollowsMouse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvmain.html#dfvue.dfvmain.dfvMain.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusNext()</span></code></a></li>
@@ -609,6 +615,8 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bind_all"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind_all()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bind_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind_class()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.bindtags"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bindtags()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.block_update_dimensions_event"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.block_update_dimensions_event()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.cancel"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.cancel()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.cget"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.cget()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.client"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.client()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.clipboard_append"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.clipboard_append()</span></code></a></li>
@@ -716,6 +724,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.unbind"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.unbind_all"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind_all()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.unbind_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.unblock_update_dimensions_event"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unblock_update_dimensions_event()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.update"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.update()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.update_idletasks"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.update_idletasks()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.wait_variable"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wait_variable()</span></code></a></li>
@@ -867,12 +876,10 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_rowconfigure"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_rowconfigure()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_size"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.grid_slaves"><code class="docutils literal notranslate"><span class="pre">dfvScatter.grid_slaves()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.identify"><code class="docutils literal notranslate"><span class="pre">dfvScatter.identify()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.image_names"><code class="docutils literal notranslate"><span class="pre">dfvScatter.image_names()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.image_types"><code class="docutils literal notranslate"><span class="pre">dfvScatter.image_types()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.info"><code class="docutils literal notranslate"><span class="pre">dfvScatter.info()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">dfvScatter.info_patchlevel()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.instate"><code class="docutils literal notranslate"><span class="pre">dfvScatter.instate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.keys"><code class="docutils literal notranslate"><span class="pre">dfvScatter.keys()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.lift"><code class="docutils literal notranslate"><span class="pre">dfvScatter.lift()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.location"><code class="docutils literal notranslate"><span class="pre">dfvScatter.location()</span></code></a></li>
@@ -883,6 +890,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.new_csv"><code class="docutils literal notranslate"><span class="pre">dfvScatter.new_csv()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.new_df"><code class="docutils literal notranslate"><span class="pre">dfvScatter.new_df()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.next_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.next_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.next_y2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.next_y2()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.option_add"><code class="docutils literal notranslate"><span class="pre">dfvScatter.option_add()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.option_clear"><code class="docutils literal notranslate"><span class="pre">dfvScatter.option_clear()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.option_get"><code class="docutils literal notranslate"><span class="pre">dfvScatter.option_get()</span></code></a></li>
@@ -899,6 +907,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.place_info"><code class="docutils literal notranslate"><span class="pre">dfvScatter.place_info()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.place_slaves"><code class="docutils literal notranslate"><span class="pre">dfvScatter.place_slaves()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.prev_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.prev_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.prev_y2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.prev_y2()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.propagate"><code class="docutils literal notranslate"><span class="pre">dfvScatter.propagate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.quit"><code class="docutils literal notranslate"><span class="pre">dfvScatter.quit()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.redraw"><code class="docutils literal notranslate"><span class="pre">dfvScatter.redraw()</span></code></a></li>
@@ -924,7 +933,6 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.spinned_x"><code class="docutils literal notranslate"><span class="pre">dfvScatter.spinned_x()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.spinned_y"><code class="docutils literal notranslate"><span class="pre">dfvScatter.spinned_y()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.spinned_y2"><code class="docutils literal notranslate"><span class="pre">dfvScatter.spinned_y2()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.state"><code class="docutils literal notranslate"><span class="pre">dfvScatter.state()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_bisque"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_bisque()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_focusFollowsMouse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dfvscatter.html#dfvue.dfvscatter.dfvScatter.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_focusNext()</span></code></a></li>
@@ -1069,12 +1077,10 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_rowconfigure"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_rowconfigure()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_size"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.grid_slaves"><code class="docutils literal notranslate"><span class="pre">Treeview.grid_slaves()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.identify"><code class="docutils literal notranslate"><span class="pre">Treeview.identify()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.image_names"><code class="docutils literal notranslate"><span class="pre">Treeview.image_names()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.image_types"><code class="docutils literal notranslate"><span class="pre">Treeview.image_types()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.info"><code class="docutils literal notranslate"><span class="pre">Treeview.info()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">Treeview.info_patchlevel()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.instate"><code class="docutils literal notranslate"><span class="pre">Treeview.instate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.keys"><code class="docutils literal notranslate"><span class="pre">Treeview.keys()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.lift"><code class="docutils literal notranslate"><span class="pre">Treeview.lift()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.location"><code class="docutils literal notranslate"><span class="pre">Treeview.location()</span></code></a></li>
@@ -1109,7 +1115,6 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.setvar"><code class="docutils literal notranslate"><span class="pre">Treeview.setvar()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.size"><code class="docutils literal notranslate"><span class="pre">Treeview.size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.slaves"><code class="docutils literal notranslate"><span class="pre">Treeview.slaves()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.state"><code class="docutils literal notranslate"><span class="pre">Treeview.state()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_bisque"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_bisque()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_focusFollowsMouse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="ncvwidgets.html#dfvue.ncvwidgets.Treeview.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">Treeview.tk_focusNext()</span></code></a></li>

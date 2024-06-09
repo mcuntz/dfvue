@@ -422,6 +422,7 @@ France.</p>
 <dl class="simple">
 <dt>History</dt><dd><ul class="simple">
 <li><p>Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</p></li>
+<li><p>Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz</p></li>
 </ul>
 </dd>
 </dl>
@@ -438,7 +439,7 @@ France.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">newwin</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">newwin</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="bp">self</span><span class="o">.</span><span class="n">rowwin</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;New Window&quot;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">command</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">clone_dfvmain</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="p">))</span>
 </pre></div>

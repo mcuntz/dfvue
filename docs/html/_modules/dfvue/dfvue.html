@@ -332,17 +332,14 @@ document.write(`
 <span class="sd">History</span>
 <span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
 <span class="sd">      adapted ncvue.py</span>
+<span class="sd">    * Moved to customtkinter, Jun 2024, Matthias</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">platform</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
-<span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="c1"># import matplotlib as mpl</span>
-<span class="c1"># mpl.use(&#39;TkAgg&#39;)</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">customtkinter</span> <span class="k">as</span> <span class="nn">ctk</span>
 <span class="kn">from</span> <span class="nn">.dfvmain</span> <span class="kn">import</span> <span class="n">dfvMain</span>
 
 
@@ -401,46 +398,10 @@ document.write(`
     <span class="n">bundle_dir</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_MEIPASS&#39;</span><span class="p">,</span>
                          <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
 
-    <span class="n">top</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+    <span class="c1"># ctk.set_appearance_mode(&quot;system&quot;)  # system, light, dark</span>
+
+    <span class="n">top</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTk</span><span class="p">()</span>
     <span class="n">top</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>
-    <span class="c1"># top.option_add(&quot;*Font&quot;, &quot;Helvetica 10&quot;)</span>
-
-    <span class="c1"># Check light/dark mode</span>
-    <span class="c1"># https://stackoverflow.com/questions/65294987/detect-os-dark-mode-in-python</span>
-
-    <span class="c1"># style = ttk.Style()</span>
-    <span class="c1"># print(style.theme_names(), style.theme_use())</span>
-    <span class="k">if</span> <span class="n">ios</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
-        <span class="n">theme</span> <span class="o">=</span> <span class="s1">&#39;aqua&#39;</span>
-        <span class="n">style</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">style</span><span class="o">.</span><span class="n">theme_use</span><span class="p">(</span><span class="n">theme</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="k">pass</span>
-    <span class="k">elif</span> <span class="n">ios</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
-        <span class="n">top</span><span class="o">.</span><span class="n">option_add</span><span class="p">(</span><span class="s2">&quot;*Font&quot;</span><span class="p">,</span> <span class="s2">&quot;Helvetica 10&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-        <span class="c1"># standard Windows themes</span>
-        <span class="c1"># (&#39;winnative&#39;, &#39;clam&#39;, &#39;alt&#39;, &#39;default&#39;, &#39;classic&#39;, &#39;vista&#39;,</span>
-        <span class="c1">#  &#39;xpnative&#39;)</span>
-        <span class="c1"># theme = &#39;vista&#39;</span>
-        <span class="c1"># style = ttk.Style()</span>
-        <span class="c1"># style.theme_use(theme)</span>
-
-        <span class="c1"># &#39;azure&#39; v2.x, &#39;sun-valley&#39;, &#39;forest&#39; of rdbende</span>
-        <span class="n">top</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="n">bundle_dir</span> <span class="o">+</span> <span class="s1">&#39;/themes/azure-2.0/azure.tcl&#39;</span><span class="p">)</span>
-        <span class="n">theme</span> <span class="o">=</span> <span class="s1">&#39;light&#39;</span>  <span class="c1"># light, dark</span>
-        <span class="n">top</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;set_theme&quot;</span><span class="p">,</span> <span class="n">theme</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">ios</span> <span class="o">==</span> <span class="s1">&#39;Linux&#39;</span><span class="p">:</span>
-        <span class="c1"># standard Linux schemes</span>
-        <span class="c1"># theme = &#39;clam&#39;  # &#39;clam&#39;, &#39;alt&#39;, &#39;default&#39;, &#39;classic&#39;</span>
-        <span class="c1"># style = ttk.Style()</span>
-        <span class="c1"># style.theme_use(theme)</span>
-
-        <span class="c1"># &#39;azure&#39; v2.x, &#39;sun-valley&#39;, &#39;forest&#39; of rdbende</span>
-        <span class="n">top</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="n">bundle_dir</span> <span class="o">+</span> <span class="s1">&#39;/themes/azure-2.0/azure.tcl&#39;</span><span class="p">)</span>
-        <span class="n">theme</span> <span class="o">=</span> <span class="s1">&#39;light&#39;</span>  <span class="c1"># light, dark</span>
-        <span class="n">top</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;set_theme&quot;</span><span class="p">,</span> <span class="n">theme</span><span class="p">)</span>
 
     <span class="c1"># set titlebar and taskbar icon only if &quot;standalone&quot;,</span>
     <span class="c1"># i.e. not ipython or jupyter</span>
@@ -454,7 +415,7 @@ document.write(`
     <span class="k">else</span><span class="p">:</span>
         <span class="n">icon</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">()</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkToplevel</span><span class="p">()</span>
     <span class="n">root</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvOne&#39;</span>
     <span class="k">if</span> <span class="n">csvfile</span><span class="p">:</span>
         <span class="n">tit</span> <span class="o">=</span> <span class="s2">&quot;dfvue &quot;</span> <span class="o">+</span> <span class="n">csvfile</span>
@@ -465,7 +426,6 @@ document.write(`
 
     <span class="c1"># Connect csv file and add information to top</span>
     <span class="n">top</span><span class="o">.</span><span class="n">os</span> <span class="o">=</span> <span class="n">ios</span>           <span class="c1"># operating system</span>
-    <span class="n">top</span><span class="o">.</span><span class="n">theme</span> <span class="o">=</span> <span class="n">theme</span>      <span class="c1"># current theme</span>
     <span class="n">top</span><span class="o">.</span><span class="n">icon</span> <span class="o">=</span> <span class="n">icon</span>        <span class="c1"># app icon</span>
     <span class="n">top</span><span class="o">.</span><span class="n">csvfile</span> <span class="o">=</span> <span class="n">csvfile</span>  <span class="c1"># file name or file handle</span>
     <span class="n">top</span><span class="o">.</span><span class="n">newcsvfile</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># new file after command line</span>
@@ -488,6 +448,7 @@ document.write(`
 
     <span class="c1"># 1st plotting window</span>
     <span class="n">main_frame</span> <span class="o">=</span> <span class="n">dfvMain</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="n">main_frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">S</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
 
     <span class="n">top</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span></div>
 

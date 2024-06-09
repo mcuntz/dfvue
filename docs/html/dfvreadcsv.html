@@ -384,6 +384,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.bind_all"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind_all()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.bind_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind_class()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.bindtags"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bindtags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.block_update_dimensions_event"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.block_update_dimensions_event()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.cancel"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.cancel()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.cget"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.cget()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.client"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.client()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.clipboard_append"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.clipboard_append()</span></code></a></li>
@@ -491,6 +493,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.unbind"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.unbind_all"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind_all()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.unbind_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind_class()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.unblock_update_dimensions_event"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unblock_update_dimensions_event()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.update"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.update()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.update_idletasks"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.update_idletasks()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.wait_variable"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wait_variable()</span></code></a></li>
@@ -628,13 +631,14 @@ France.</p>
 <dl class="simple">
 <dt>History</dt><dd><ul class="simple">
 <li><p>Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</p></li>
+<li><p>Moved to customtkinter, Jun 2024, Matthias</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dfvReadcsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvreadcsv.html#dfvReadcsv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Toplevel</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTkToplevel</span></code></p>
 <p>Window for reading csv files.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
@@ -675,7 +679,7 @@ France.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.bindtags" title="dfvue.dfvreadcsv.dfvReadcsv.bindtags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bindtags</span></code></a>([tagList])</p></td>
 <td><p>Set or get the list of bindtags for this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.cget" title="dfvue.dfvreadcsv.dfvReadcsv.cget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cget</span></code></a>(key)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.cget" title="dfvue.dfvreadcsv.dfvReadcsv.cget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cget</span></code></a>(attribute_name)</p></td>
 <td><p>Return the resource value for a KEY given as string.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.client" title="dfvue.dfvreadcsv.dfvReadcsv.client"><code class="xref py py-obj docutils literal notranslate"><span class="pre">client</span></code></a>([name])</p></td>
@@ -702,7 +706,7 @@ France.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.config" title="dfvue.dfvreadcsv.dfvReadcsv.config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">config</span></code></a>([cnf])</p></td>
 <td><p>Configure resources of a widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.configure" title="dfvue.dfvreadcsv.dfvReadcsv.configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">configure</span></code></a>([cnf])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.configure" title="dfvue.dfvreadcsv.dfvReadcsv.configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">configure</span></code></a>(**kwargs)</p></td>
 <td><p>Configure resources of a widget.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.deiconify" title="dfvue.dfvreadcsv.dfvReadcsv.deiconify"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deiconify</span></code></a>()</p></td>
@@ -753,7 +757,7 @@ France.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.frame" title="dfvue.dfvreadcsv.dfvReadcsv.frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frame</span></code></a>()</p></td>
 <td><p>Return identifier for decorative frame of this widget if present.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.geometry" title="dfvue.dfvreadcsv.dfvReadcsv.geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geometry</span></code></a>([newGeometry])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.geometry" title="dfvue.dfvreadcsv.dfvReadcsv.geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geometry</span></code></a>([geometry_string])</p></td>
 <td><p>Set geometry to NEWGEOMETRY of the form =widthxheight+x+y.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvreadcsv.dfvReadcsv.getboolean" title="dfvue.dfvreadcsv.dfvReadcsv.getboolean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getboolean</span></code></a>(s)</p></td>
@@ -1249,6 +1253,12 @@ France.</p>
 </table>
 <table class="table">
 <tbody>
+<tr class="row-odd"><td><p><strong>block_update_dimensions_event</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>cancel</strong></p></td>
+<td></td>
+</tr>
 <tr class="row-odd"><td><p><strong>getdouble</strong></p></td>
 <td></td>
 </tr>
@@ -1259,6 +1269,9 @@ France.</p>
 <td></td>
 </tr>
 <tr class="row-even"><td><p><strong>read_final</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>unblock_update_dimensions_event</strong></p></td>
 <td></td>
 </tr>
 </tbody>
@@ -1410,8 +1423,18 @@ processed (see bind).</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv.block_update_dimensions_event">
+<span class="sig-name descname"><span class="pre">block_update_dimensions_event</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.block_update_dimensions_event" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv.cancel">
+<span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvreadcsv.html#dfvReadcsv.cancel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.cancel" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv.cget">
-<span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.cget" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.cget" title="Link to this definition">#</a></dt>
 <dd><p>Return the resource value for a KEY given as string.</p>
 </dd></dl>
 
@@ -1489,7 +1512,7 @@ the allowed keyword arguments call the method keys.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv.configure">
-<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.configure" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.configure" title="Link to this definition">#</a></dt>
 <dd><p>Configure resources of a widget.</p>
 <p>The values for resources are specified as keyword
 arguments. To get an overview about
@@ -1622,7 +1645,7 @@ once the widget is managed again.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv.geometry">
-<span class="sig-name descname"><span class="pre">geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newGeometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.geometry" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.geometry" title="Link to this definition">#</a></dt>
 <dd><p>Set geometry to NEWGEOMETRY of the form =widthxheight+x+y. Return
 current value if None is given.</p>
 </dd></dl>
@@ -2037,7 +2060,7 @@ be given which will be executed before FUNC.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv.resizable">
-<span class="sig-name descname"><span class="pre">resizable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.resizable" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">resizable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.resizable" title="Link to this definition">#</a></dt>
 <dd><p>Instruct the window manager whether this width can be resized
 in WIDTH or HEIGHT. Both values are boolean values.</p>
 </dd></dl>
@@ -2246,6 +2269,11 @@ unbound.</p>
 <dd><p>Unbind for all widgets with bindtag CLASSNAME for event SEQUENCE
 all functions.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv.unblock_update_dimensions_event">
+<span class="sig-name descname"><span class="pre">unblock_update_dimensions_event</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvreadcsv.dfvReadcsv.unblock_update_dimensions_event" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvreadcsv.dfvReadcsv.update">
@@ -2938,6 +2966,8 @@ and forgotten by the window manager. Re-draw it with wm_deiconify.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.bind_all"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind_all()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.bind_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bind_class()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.bindtags"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.bindtags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.block_update_dimensions_event"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.block_update_dimensions_event()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.cancel"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.cancel()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.cget"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.cget()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.client"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.client()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.clipboard_append"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.clipboard_append()</span></code></a></li>
@@ -3045,6 +3075,7 @@ and forgotten by the window manager. Re-draw it with wm_deiconify.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.unbind"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.unbind_all"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind_all()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.unbind_class"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unbind_class()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.unblock_update_dimensions_event"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.unblock_update_dimensions_event()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.update"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.update()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.update_idletasks"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.update_idletasks()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvreadcsv.dfvReadcsv.wait_variable"><code class="docutils literal notranslate"><span class="pre">dfvReadcsv.wait_variable()</span></code></a></li>
