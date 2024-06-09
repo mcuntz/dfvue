@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+v2.1 (??? 2024)
+    * Increased size of ReadCSV window to fit widgets on Windows.
+
 v2.0 (Jun 2024)
     * Exclusively use CustomTkinter.
     * Updated documentation with new screenshots.
