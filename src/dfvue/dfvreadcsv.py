@@ -462,7 +462,7 @@ class dfvReadcsv(ctk.CTkToplevel):
 
         self.name = 'dfvReadcsv'
         self.title("Read csv file")
-        self.geometry('1000x515+100+10')
+        self.geometry('1000x540+100+10')
 
         # copy for ease of use
         self.csvfile = self.top.csvfile
