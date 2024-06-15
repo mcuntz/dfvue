@@ -25,11 +25,26 @@ The following classes are provided:
 
 History
     * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
-    * Moved to customtkinter, Jun 2024, Matthias
+    * Use CustomTkinter, Jun 2024, Matthias Cuntz
+    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
 
 """
 import tkinter as tk
-import customtkinter as ctk
+import tkinter.ttk as ttk
+import tkinter.font as tkfont
+try:
+    from customtkinter import CTkToplevel as Toplevel
+    from customtkinter import CTkFrame as Frame
+    from customtkinter import CTkLabel as Label
+    from customtkinter import CTkButton as Button
+    ihavectk = True
+except ModuleNotFoundError:
+    from tkinter import Toplevel
+    from tkinter.ttk import Frame
+    from tkinter.ttk import Label
+    from tkinter.ttk import Button
+    ihavectk = False
 from collections.abc import Iterable
 import pandas as pd
 from .ncvwidgets import add_entry, add_tooltip, Treeview, callurl
@@ -444,7 +459,7 @@ def _parse_entry(text):
     return tt
 
 
-class dfvReadcsv(ctk.CTkToplevel):
+class dfvReadcsv(Toplevel):
     """
     Window for reading csv files.
 
@@ -462,7 +477,10 @@ class dfvReadcsv(ctk.CTkToplevel):
 
         self.name = 'dfvReadcsv'
         self.title("Read csv file")
-        self.geometry('1000x540+100+10')
+        if ihavectk:
+            self.geometry('1000x540+100+10')
+        else:
+            self.geometry('1000x490+100+10')
 
         # copy for ease of use
         self.csvfile = self.top.csvfile
@@ -477,13 +495,13 @@ class dfvReadcsv(ctk.CTkToplevel):
         self.cols = self.top.cols
 
         # space
-        rootspace = ctk.CTkFrame(self)
+        rootspace = Frame(self)
         rootspace.pack(side='top', fill='x')
-        rootspacespace = ctk.CTkLabel(rootspace, text=" ")
+        rootspacespace = Label(rootspace, text=" ")
         rootspacespace.pack(side='left')
 
         # 1. row - treeview current DataFrame
-        self.rowtree = ctk.CTkFrame(self)
+        self.rowtree = Frame(self)
         self.rowtree.pack(side='top', fill='x')
         self.nrows = 10
         if self.df is None:
@@ -497,36 +515,49 @@ class dfvReadcsv(ctk.CTkToplevel):
         self.new_tree(df)
 
         # space
-        treespace = ctk.CTkFrame(self)
+        treespace = Frame(self)
         treespace.pack(side='top', fill='x')
-        treespacespace = ctk.CTkLabel(treespace, text=" ")
+        treespacespace = Label(treespace, text=" ")
         treespacespace.pack(side='left')
 
         # label for read_csv options
-        opthead = ctk.CTkFrame(self)
+        opthead = Frame(self)
         opthead.pack(side='top', fill='x')
-        optheadlabel1 = ctk.CTkLabel(opthead, text='Options for ')
+        optheadlabel1 = Label(opthead, text='Options for ')
         optheadlabel1.pack(side='left')
-        # https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118
-        optheadlabel2 = ctk.CTkLabel(opthead, text='pandas.read_csv',
-                                     text_color=('blue', 'lightblue'))
+        if ihavectk:
+            optheadlabel2 = Label(opthead, text='pandas.read_csv',
+                                  text_color=('blue', 'lightblue'))
+        else:
+            # https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118
+            ttk.Style().configure('blue.TLabel', foreground='#0096FF')
+            optheadlabel2 = Label(opthead, text='pandas.read_csv',
+                                  style='blue.TLabel')
+            # https://stackoverflow.com/questions/3655449/underline-text-in-tkinter-label-widget
+            font = tkfont.Font(optheadlabel2, optheadlabel2.cget("font"))
+            font.configure(underline=True)
+            optheadlabel2.configure(font=font)
         optheadlabel2.pack(side='left')
-        # https://stackoverflow.com/questions/3655449/underline-text-in-tkinter-label-widget
         optheadlabel2.bind("<Button-1>",
                            lambda e:
                            callurl("https://pandas.pydata.org/docs/reference/"
                                    "api/pandas.read_csv.html"))
-        optheadlabel3 = ctk.CTkLabel(opthead, text=' (date_format: see ')
+        optheadlabel3 = Label(opthead, text=' (date_format: see ')
         optheadlabel3.pack(side='left')
-        optheadlabel4 = ctk.CTkLabel(opthead, text='strftime',
-                                     text_color=('blue', 'lightblue'))
+        if ihavectk:
+            optheadlabel4 = Label(opthead, text='strftime',
+                                  text_color=('blue', 'lightblue'))
+        else:
+            optheadlabel4 = Label(opthead, text='strftime',
+                                  style='blue.TLabel')
+            optheadlabel4.configure(font=font)
         optheadlabel4.pack(side='left')
         optheadlabel4.bind("<Button-1>",
                            lambda e:
                            callurl("https://docs.python.org/3/library/"
                                    "datetime.html#"
                                    "strftime-and-strptime-behavior"))
-        optheadlabel5 = ctk.CTkLabel(opthead, text=')')
+        optheadlabel5 = Label(opthead, text=')')
         optheadlabel5.pack(side='left')
 
         # option fields
@@ -541,10 +572,15 @@ class dfvReadcsv(ctk.CTkToplevel):
         noptrow = nopt // 4
         if (nopt % 5) > 0:
             noptrow += 1
-        entrywidth = 85  # px
-        padlabel = 3     # characters
-        padxlabel = 5    # px
-        self.rowopt = ctk.CTkFrame(self)
+        if ihavectk:
+            entrywidth = 85  # px
+            padlabel = 3     # characters
+            padxlabel = 5    # px
+        else:
+            entrywidth = 8  # characters
+            padlabel = 5   # characters
+            padxlabel = 5   # px            
+        self.rowopt = Frame(self)
         self.rowopt.pack(side='top', fill='x')
         for nr in range(noptrow):
             ostart = oend
@@ -565,14 +601,14 @@ class dfvReadcsv(ctk.CTkToplevel):
         self.set_command_line_options(defaults=self.newcsvfile)
 
         # add cancel and read buttons to last row
-        self.rowdone = ctk.CTkFrame(self)
+        self.rowdone = Frame(self)
         self.rowdone.pack(side='top', fill='x')
-        self.done = ctk.CTkButton(self.rowdone, text="Read csv",
+        self.done = Button(self.rowdone, text="Read csv",
                                   command=self.read_final)
         self.donetip = add_tooltip(self.done, 'Finished reading csv')
         self.done.pack(side='right', padx=10, pady=5)
 
-        self.cancel = ctk.CTkButton(self.rowdone, text="Cancel",
+        self.cancel = Button(self.rowdone, text="Cancel",
                                     command=self.cancel)
         self.canceltip = add_tooltip(self.cancel, 'Cancel reading csv file')
         self.cancel.pack(side='right', pady=5)
@@ -641,8 +677,6 @@ class dfvReadcsv(ctk.CTkToplevel):
         self.tree.destroy()
         self.read_df(nrows=4 * self.nrows)
         self.new_tree(self.df)
-        # self.tree = ctk.CTkLabel(self)
-        # self.tree.grid(row=1, column=0, rowspan=12, columnspan=5)
 
     def read_df(self, nrows=None):
         """

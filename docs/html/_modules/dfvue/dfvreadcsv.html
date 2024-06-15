@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=fc79ae44"></script>
+    <script src="../../_static/documentation_options.js?v=2ce3c55e"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -335,11 +335,26 @@ document.write(`
 
 <span class="sd">History</span>
 <span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
-<span class="sd">    * Moved to customtkinter, Jun 2024, Matthias</span>
+<span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
+<span class="sd">    * Use mix of grid and pack layout manager, Jun 2024, Matthias</span>
+<span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
-<span class="kn">import</span> <span class="nn">customtkinter</span> <span class="k">as</span> <span class="nn">ctk</span>
+<span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
+<span class="kn">import</span> <span class="nn">tkinter.font</span> <span class="k">as</span> <span class="nn">tkfont</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkToplevel</span> <span class="k">as</span> <span class="n">Toplevel</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkFrame</span> <span class="k">as</span> <span class="n">Frame</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkLabel</span> <span class="k">as</span> <span class="n">Label</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkButton</span> <span class="k">as</span> <span class="n">Button</span>
+    <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Toplevel</span>
+    <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Frame</span>
+    <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Label</span>
+    <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Button</span>
+    <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">.ncvwidgets</span> <span class="kn">import</span> <span class="n">add_entry</span><span class="p">,</span> <span class="n">add_tooltip</span><span class="p">,</span> <span class="n">Treeview</span><span class="p">,</span> <span class="n">callurl</span>
@@ -756,7 +771,7 @@ document.write(`
 
 <div class="viewcode-block" id="dfvReadcsv">
 <a class="viewcode-back" href="../../dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv">[docs]</a>
-<span class="k">class</span> <span class="nc">dfvReadcsv</span><span class="p">(</span><span class="n">ctk</span><span class="o">.</span><span class="n">CTkToplevel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">dfvReadcsv</span><span class="p">(</span><span class="n">Toplevel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Window for reading csv files.</span>
 
@@ -774,7 +789,10 @@ document.write(`
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvReadcsv&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Read csv file&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x515+100+10&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x540+100+10&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x490+100+10&#39;</span><span class="p">)</span>
 
         <span class="c1"># copy for ease of use</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span>
@@ -789,13 +807,13 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">cols</span>
 
         <span class="c1"># space</span>
-        <span class="n">rootspace</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">rootspace</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">rootspace</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-        <span class="n">rootspacespace</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">rootspace</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="n">rootspacespace</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">rootspace</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
         <span class="n">rootspacespace</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 
         <span class="c1"># 1. row - treeview current DataFrame</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rowtree</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rowtree</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowtree</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">10</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -809,36 +827,49 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">new_tree</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
         <span class="c1"># space</span>
-        <span class="n">treespace</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">treespace</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">treespace</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-        <span class="n">treespacespace</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">treespace</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="n">treespacespace</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">treespace</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
         <span class="n">treespacespace</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 
         <span class="c1"># label for read_csv options</span>
-        <span class="n">opthead</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">opthead</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">opthead</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-        <span class="n">optheadlabel1</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Options for &#39;</span><span class="p">)</span>
+        <span class="n">optheadlabel1</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Options for &#39;</span><span class="p">)</span>
         <span class="n">optheadlabel1</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="c1"># https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118</span>
-        <span class="n">optheadlabel2</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;pandas.read_csv&#39;</span><span class="p">,</span>
-                                     <span class="n">text_color</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="n">optheadlabel2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;pandas.read_csv&#39;</span><span class="p">,</span>
+                                  <span class="n">text_color</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118</span>
+            <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s1">&#39;blue.TLabel&#39;</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#0096FF&#39;</span><span class="p">)</span>
+            <span class="n">optheadlabel2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;pandas.read_csv&#39;</span><span class="p">,</span>
+                                  <span class="n">style</span><span class="o">=</span><span class="s1">&#39;blue.TLabel&#39;</span><span class="p">)</span>
+            <span class="c1"># https://stackoverflow.com/questions/3655449/underline-text-in-tkinter-label-widget</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">tkfont</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">optheadlabel2</span><span class="p">,</span> <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">))</span>
+            <span class="n">font</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">underline</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
         <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="c1"># https://stackoverflow.com/questions/3655449/underline-text-in-tkinter-label-widget</span>
         <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Button-1&gt;&quot;</span><span class="p">,</span>
                            <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span>
                            <span class="n">callurl</span><span class="p">(</span><span class="s2">&quot;https://pandas.pydata.org/docs/reference/&quot;</span>
                                    <span class="s2">&quot;api/pandas.read_csv.html&quot;</span><span class="p">))</span>
-        <span class="n">optheadlabel3</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39; (date_format: see &#39;</span><span class="p">)</span>
+        <span class="n">optheadlabel3</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39; (date_format: see &#39;</span><span class="p">)</span>
         <span class="n">optheadlabel3</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="n">optheadlabel4</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;strftime&#39;</span><span class="p">,</span>
-                                     <span class="n">text_color</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="n">optheadlabel4</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;strftime&#39;</span><span class="p">,</span>
+                                  <span class="n">text_color</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">optheadlabel4</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;strftime&#39;</span><span class="p">,</span>
+                                  <span class="n">style</span><span class="o">=</span><span class="s1">&#39;blue.TLabel&#39;</span><span class="p">)</span>
+            <span class="n">optheadlabel4</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
         <span class="n">optheadlabel4</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
         <span class="n">optheadlabel4</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Button-1&gt;&quot;</span><span class="p">,</span>
                            <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span>
                            <span class="n">callurl</span><span class="p">(</span><span class="s2">&quot;https://docs.python.org/3/library/&quot;</span>
                                    <span class="s2">&quot;datetime.html#&quot;</span>
                                    <span class="s2">&quot;strftime-and-strptime-behavior&quot;</span><span class="p">))</span>
-        <span class="n">optheadlabel5</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+        <span class="n">optheadlabel5</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
         <span class="n">optheadlabel5</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 
         <span class="c1"># option fields</span>
@@ -853,10 +884,15 @@ document.write(`
         <span class="n">noptrow</span> <span class="o">=</span> <span class="n">nopt</span> <span class="o">//</span> <span class="mi">4</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">nopt</span> <span class="o">%</span> <span class="mi">5</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">noptrow</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">entrywidth</span> <span class="o">=</span> <span class="mi">85</span>  <span class="c1"># px</span>
-        <span class="n">padlabel</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># characters</span>
-        <span class="n">padxlabel</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># px</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rowopt</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="n">entrywidth</span> <span class="o">=</span> <span class="mi">85</span>  <span class="c1"># px</span>
+            <span class="n">padlabel</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># characters</span>
+            <span class="n">padxlabel</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># px</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">entrywidth</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># characters</span>
+            <span class="n">padlabel</span> <span class="o">=</span> <span class="mi">5</span>   <span class="c1"># characters</span>
+            <span class="n">padxlabel</span> <span class="o">=</span> <span class="mi">5</span>   <span class="c1"># px            </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rowopt</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowopt</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">nr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">noptrow</span><span class="p">):</span>
             <span class="n">ostart</span> <span class="o">=</span> <span class="n">oend</span>
@@ -877,14 +913,14 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">set_command_line_options</span><span class="p">(</span><span class="n">defaults</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">newcsvfile</span><span class="p">)</span>
 
         <span class="c1"># add cancel and read buttons to last row</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Read csv&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Read csv&quot;</span><span class="p">,</span>
                                   <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_final</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">donetip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">,</span> <span class="s1">&#39;Finished reading csv&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">cancel</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Cancel&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cancel</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Cancel&quot;</span><span class="p">,</span>
                                     <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">canceltip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="p">,</span> <span class="s1">&#39;Cancel reading csv file&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -962,8 +998,6 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">read_df</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">nrows</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">new_tree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">)</span></div>
 
-        <span class="c1"># self.tree = ctk.CTkLabel(self)</span>
-        <span class="c1"># self.tree.grid(row=1, column=0, rowspan=12, columnspan=5)</span>
 
 <div class="viewcode-block" id="dfvReadcsv.read_df">
 <a class="viewcode-back" href="../../dfvreadcsv.html#dfvue.dfvreadcsv.dfvReadcsv.read_df">[docs]</a>

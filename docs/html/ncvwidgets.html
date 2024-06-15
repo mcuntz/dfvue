@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="_static/documentation_options.js?v=fc79ae44"></script>
+    <script src="_static/documentation_options.js?v=2ce3c55e"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -584,22 +584,22 @@ France.</p>
 <td><p>A tooltip that pops up when a mouse hovers over an anchor widget.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.ncvwidgets.add_checkbutton" title="dfvue.ncvwidgets.add_checkbutton"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_checkbutton</span></code></a>(frame[, label, value, ...])</p></td>
-<td><p>Add a left-aligned ctk.CTkCheckBox.</p></td>
+<td><p>Add a left-aligned Checkbutton.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.ncvwidgets.add_combobox" title="dfvue.ncvwidgets.add_combobox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_combobox</span></code></a>(frame[, label, values, ...])</p></td>
-<td><p>Add a left-aligned ctk.CTkComboBox with a ctk.CTkLabel before.</p></td>
+<td><p>Add a left-aligned Combobox with a Label before.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.ncvwidgets.add_entry" title="dfvue.ncvwidgets.add_entry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_entry</span></code></a>(frame[, label, text, command, ...])</p></td>
-<td><p>Add a left-aligned ctk.CTkEntry with a ctk.CTkLabel before.</p></td>
+<td><p>Add a left-aligned Entry with a Label before.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.ncvwidgets.add_imagemenu" title="dfvue.ncvwidgets.add_imagemenu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_imagemenu</span></code></a>(frame[, label, values, ...])</p></td>
-<td><p>Add a left-aligned menu with menubuttons having text and images with a ctk.CTkLabel before.</p></td>
+<td><p>Add a left-aligned menu with menubuttons having text and images with a Label before.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.ncvwidgets.add_menu" title="dfvue.ncvwidgets.add_menu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_menu</span></code></a>(frame[, label, values, command, ...])</p></td>
-<td><p>Add a left-aligned menu with menubuttons with a ctk.CTkLabel before.</p></td>
+<td><p>Add a left-aligned menu with menubuttons with a Label before.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.ncvwidgets.add_scale" title="dfvue.ncvwidgets.add_scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_scale</span></code></a>(frame[, label, ini, tooltip])</p></td>
-<td><p>Add a left-aligned ctk.CTkSlider with a ctk.CTkLabel before.</p></td>
+<td><p>Add a left-aligned Scale with a Label before.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.ncvwidgets.add_spinbox" title="dfvue.ncvwidgets.add_spinbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_spinbox</span></code></a>(frame[, label, values, command, ...])</p></td>
 <td><p>Add a left-aligned tk.Spinbox with a ttk.Label before.</p></td>
@@ -629,8 +629,9 @@ Jul 2023, Matthias Cuntz</p></li>
 <li><p>Added Treeview class with optional horizontal and vertical scroolbars,
 Jul 2023, Matthias Cuntz</p></li>
 <li><p>Added callurl function, Dec 2023, Matthias Cuntz</p></li>
-<li><p>Moved to customtkinter, Jun 2024, Matthias</p></li>
+<li><p>Use CustomTkinter, Jun 2024, Matthias Cuntz</p></li>
 <li><p>Use mix of grid and pack layout manager, Jun 2024, Matthias</p></li>
+<li><p>Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</p></li>
 </ul>
 </dd>
 </dl>
@@ -2434,7 +2435,7 @@ in the parent.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="dfvue.ncvwidgets.add_checkbutton">
 <span class="sig-name descname"><span class="pre">add_checkbutton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tooltip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/ncvwidgets.html#add_checkbutton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.ncvwidgets.add_checkbutton" title="Link to this definition">#</a></dt>
-<dd><p>Add a left-aligned ctk.CTkCheckBox.</p>
+<dd><p>Add a left-aligned Checkbutton.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2445,7 +2446,7 @@ in the parent.</p>
 checkbutton changes (default: None).</p></li>
 <li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the checkbutton (default: “” = no tooltip)</p></li>
-<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to ctk.CTkCheckBox</p></li>
+<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Checkbutton</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -2458,7 +2459,7 @@ control variable tracking current state of checkbutton</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">inv_xlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_x</span> <span class="o">=</span> <span class="n">add_checkbutton</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;invert x&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked</span><span class="p">)</span>
@@ -2469,7 +2470,7 @@ control variable tracking current state of checkbutton</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="dfvue.ncvwidgets.add_combobox">
 <span class="sig-name descname"><span class="pre">add_combobox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tooltip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/ncvwidgets.html#add_combobox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.ncvwidgets.add_combobox" title="Link to this definition">#</a></dt>
-<dd><p>Add a left-aligned ctk.CTkComboBox with a ctk.CTkLabel before.</p>
+<dd><p>Add a left-aligned Combobox with a Label before.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2480,19 +2481,19 @@ control variable tracking current state of checkbutton</p></li>
 &lt;&lt;ComboboxSelected&gt;&gt; (default: None).</p></li>
 <li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the combobox (default: “” = no tooltip)</p></li>
-<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to ctk.CTkComboBox</p></li>
+<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Combobox</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><em>tk.StringVar, ctk.CTkComboBox</em> – variable for the text before the combobox, combobox widget</p></li>
+<li><p><em>tk.StringVar, Combobox</em> – variable for the text before the combobox, combobox widget</p></li>
 <li><p><em>tk.StringVar</em> – variable for the text of the tooltip, if given.</p></li>
 </ul>
 </p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">xlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">add_combobox</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected</span><span class="p">)</span>
@@ -2503,7 +2504,7 @@ the combobox (default: “” = no tooltip)</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="dfvue.ncvwidgets.add_entry">
 <span class="sig-name descname"><span class="pre">add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tooltip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labelwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/ncvwidgets.html#add_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.ncvwidgets.add_entry" title="Link to this definition">#</a></dt>
-<dd><p>Add a left-aligned ctk.CTkEntry with a ctk.CTkLabel before.</p>
+<dd><p>Add a left-aligned Entry with a Label before.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2519,7 +2520,7 @@ the entry (default: “” = no tooltip)</p></li>
 <li><p><strong>padlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>optional</em>) – Prepend number of spaces to create distance to other widgets (default: 0)</p></li>
 <li><p><strong>padx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>optional</em>) – Extra space in px added left and right of the label text (default: 1)</p></li>
 <li><p><strong>labelwidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>optional</em>) – If given, set width of Label</p></li>
-<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to ctk.CTkEntry</p></li>
+<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Entry</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -2532,7 +2533,7 @@ variable for the text in the entry area</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowxyopt</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowxyopt</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowxyopt</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">lslbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="bp">self</span><span class="o">.</span><span class="n">rowxyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
@@ -2545,7 +2546,7 @@ variable for the text in the entry area</p></li>
 <dt class="sig sig-object py" id="dfvue.ncvwidgets.add_imagemenu">
 <span class="sig-name descname"><span class="pre">add_imagemenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tooltip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/ncvwidgets.html#add_imagemenu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.ncvwidgets.add_imagemenu" title="Link to this definition">#</a></dt>
 <dd><p>Add a left-aligned menu with menubuttons having text and images
-with a ctk.CTkLabel before.</p>
+with a Label before.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2569,7 +2570,7 @@ the menu (default: “” = no tooltip)</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowcmap</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowcmap</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowcmap</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">cmaplbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">add_imagemenu</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="bp">self</span><span class="o">.</span><span class="n">rowcmap</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;cmap&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cmaps</span><span class="p">,</span>
@@ -2583,7 +2584,7 @@ the menu (default: “” = no tooltip)</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="dfvue.ncvwidgets.add_menu">
 <span class="sig-name descname"><span class="pre">add_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tooltip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/ncvwidgets.html#add_menu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.ncvwidgets.add_menu" title="Link to this definition">#</a></dt>
-<dd><p>Add a left-aligned menu with menubuttons with a ctk.CTkLabel before.</p>
+<dd><p>Add a left-aligned menu with menubuttons with a Label before.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2593,7 +2594,7 @@ the menu (default: “” = no tooltip)</p></li>
 <li><p><strong>command</strong> (<em>function</em><em>, </em><em>optional</em>) – Handler function to be called if new menu entry chosen (default: None).</p></li>
 <li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the menu (default: “” = no tooltip)</p></li>
-<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to the main ctk.CTkOptionMenu</p></li>
+<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to the main Menubutton</p></li>
 <li><p><strong>tk.StringVar</strong> – variable for the text of the tooltip, if given.</p></li>
 </ul>
 </dd>
@@ -2601,11 +2602,11 @@ the menu (default: “” = no tooltip)</p></li>
 <dd class="field-even"><p>variable for the text before the menu, main tt.Menubutton widget</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tk.StringVar, ctk.CTkOptionMenu</p>
+<dd class="field-odd"><p>tk.StringVar, Menubutton</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">xlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">add_combobox</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected</span><span class="p">)</span>
@@ -2616,7 +2617,7 @@ the menu (default: “” = no tooltip)</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="dfvue.ncvwidgets.add_scale">
 <span class="sig-name descname"><span class="pre">add_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ini</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tooltip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/ncvwidgets.html#add_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.ncvwidgets.add_scale" title="Link to this definition">#</a></dt>
-<dd><p>Add a left-aligned ctk.CTkSlider with a ctk.CTkLabel before.</p>
+<dd><p>Add a left-aligned Scale with a Label before.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2625,12 +2626,12 @@ the menu (default: “” = no tooltip)</p></li>
 <li><p><strong>ini</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – Initial value of scale (default: 0)</p></li>
 <li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the scale (default: “” = no tooltip)</p></li>
-<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to ctk.CTkSlider</p></li>
+<li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Scale</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><em>tk.StringVar, tk.DoubleVar, ctk.CTkSlider</em> – variable for the text before the scale,
+<li><p><em>tk.StringVar, tk.DoubleVar, Scale</em> – variable for the text before the scale,
 value of scale,
 scale widget</p></li>
 <li><p><em>tk.StringVar</em> – variable for the text of the tooltip, if given.</p></li>
@@ -2639,7 +2640,7 @@ scale widget</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">xlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">add_scale</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="bp">self</span><span class="o">.</span><span class="n">rowzxy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected</span><span class="p">)</span>
@@ -2729,12 +2730,12 @@ the parent widget (default: “” = no tooltip)</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">opthead</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">opthead</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">opthead</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">optheadlabel1</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Options for&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">optheadlabel1</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Options for&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">optheadlabel1</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s1">&#39;blue.TLabel&#39;</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">optheadlabel2</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;pandas.read_csv&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">optheadlabel2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">opthead</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;pandas.read_csv&#39;</span><span class="p">,</span>
 <span class="gp">... </span>                             <span class="n">style</span><span class="o">=</span><span class="s1">&#39;blue.TLabel&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">optheadlabel2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">font</span> <span class="o">=</span> <span class="n">tkfont</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">optheadlabel2</span><span class="p">,</span> <span class="n">optheadlabel2</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">))</span>

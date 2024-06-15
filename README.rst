@@ -340,9 +340,8 @@ styles, marker symbols and color notations are supported.
 Installation
 ------------
 
-``dfvue`` is an application written in Python. If you have Python
-installed, then the best is to install ``dfvue`` within the Python
-universe. The easiest way to install ``dfvue`` is thence via `pip`:
+``dfvue`` is an application written in Python. It can be installed
+with `pip`:
 
 .. code-block:: bash
 
@@ -354,14 +353,24 @@ or via Conda_:
 
    conda install -c conda-forge dfvue
 
-We also provide a standalone `macOS app`_ and a `Windows executable`_
-that come with everything needed to run ``dfvue`` including
-Python. The macOS app should work from macOS 10.13 (High Sierra)
-onward (tested on mac OS X 10.15, macOS 11, 12, and 13). Drop me a
-message if it does not work on newer operating systems.
+``dfvue`` uses CustomTkinter_ if it is installed. CustomTkinter_ is not on Conda_. One might install ``dfvue`` with `pip` in a conda environment to use CustomTkinter_:
 
-See the installation instructions_ in the documentation_ for more
-information.
+.. code-block:: bash
+
+   conda install pip
+   python -m pip install dfvue
+
+It this looks ugly on Linux (see `this thread`_), `pip uninstall
+customtkinter`, or `pip uninstall dfvue` and reinstall it with conda,
+which then uses the Azure_ theme by rdbende_.
+
+..
+   We also provide a standalone `macOS app`_ and a `Windows executable`_
+   that come with everything needed to run ``dfvue`` including
+   Python. The macOS app should work from macOS 10.13 (High Sierra)
+   onward (tested on mac OS X 10.15, macOS 11, 12, and 13). Drop me a
+   message if it does not work on newer operating systems.
+
 
 
 License
@@ -372,7 +381,9 @@ for details.
 
 Copyright (c) 2023- Matthias Cuntz
 
-``dfvue`` uses CustomTkinter_ by `Tom Schimansky`_.
+``dfvue`` uses CustomTkinter_ by `Tom Schimansky`_ if installed, and
+otherwise the Azure_ theme (v2.0) by rdbende_, for example in conda
+environments.
 
 ..
    Standalone applications are produced with `cx_Freeze`_, currently
@@ -387,7 +398,6 @@ Copyright (c) 2023- Matthias Cuntz
 .. _Windows executable: http://www.macu.de/extra/dfvue-3.7-amd64.msi
 .. _documentation: https://mcuntz.github.io/dfvue/
 .. _Conda: https://docs.conda.io/projects/conda/en/latest/
-.. _instructions: https://mcuntz.github.io/dfvue/html/install.html
 .. _LICENSE: https://github.com/mcuntz/dfvue/blob/main/LICENSE
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
 .. _Marcelo Duarte: https://github.com/marcelotduarte
@@ -398,3 +408,6 @@ Copyright (c) 2023- Matthias Cuntz
 .. _europe-fluxdata.eu: http://www.europe-fluxdata.eu
 .. _CustomTkinter: https://customtkinter.tomschimansky.com
 .. _Tom Schimansky: https://github.com/TomSchimansky
+.. _Azure: https://github.com/rdbende/Azure-ttk-theme
+.. _rdbende: https://github.com/rdbende
+.. _this thread: https://github.com/ContinuumIO/anaconda-issues/issues/6833

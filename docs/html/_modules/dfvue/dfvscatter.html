@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=fc79ae44"></script>
+    <script src="../../_static/documentation_options.js?v=2ce3c55e"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -332,12 +332,24 @@ document.write(`
 
 <span class="sd">History</span>
 <span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
-<span class="sd">    * Moved to customtkinter, Jun 2024, Matthias</span>
+<span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
 <span class="sd">    * Use mix of grid and pack layout manager, Jun 2024, Matthias</span>
+<span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
-<span class="kn">import</span> <span class="nn">customtkinter</span> <span class="k">as</span> <span class="nn">ctk</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkFrame</span> <span class="k">as</span> <span class="n">Frame</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkButton</span> <span class="k">as</span> <span class="n">Button</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkLabel</span> <span class="k">as</span> <span class="n">Label</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkComboBox</span> <span class="k">as</span> <span class="n">Combobox</span>
+    <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Frame</span>
+    <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Button</span>
+    <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Label</span>
+    <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Combobox</span>
+    <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -357,7 +369,7 @@ document.write(`
 
 <div class="viewcode-block" id="dfvScatter">
 <a class="viewcode-back" href="../../dfvscatter.html#dfvue.dfvscatter.dfvScatter">[docs]</a>
-<span class="k">class</span> <span class="nc">dfvScatter</span><span class="p">(</span><span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">dfvScatter</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Panel for scatter and line plots.</span>
 
@@ -428,21 +440,31 @@ document.write(`
                  <span class="s2">&quot;+ (plus), x (x), X (x (filled)),</span><span class="se">\n</span><span class="s2">&quot;</span>
                  <span class="s2">&quot;D (diamond), d (thin_diamond),</span><span class="se">\n</span><span class="s2">&quot;</span>
                  <span class="s2">&quot;| (vline), _ (hline), or None&quot;</span><span class="p">)</span>
-        <span class="c1"># height of plotting canvas</span>
-        <span class="n">canvasheight</span> <span class="o">=</span> <span class="mi">550</span>
-        <span class="c1"># width of combo boxes in px</span>
-        <span class="n">combowidth</span> <span class="o">=</span> <span class="mi">288</span>  <span class="c1"># px</span>
-        <span class="c1"># widths of entry widgets in px</span>
-        <span class="n">ewsmall</span> <span class="o">=</span> <span class="mi">20</span>
-        <span class="n">ewmed</span> <span class="o">=</span> <span class="mi">45</span>
-        <span class="n">ewbig</span> <span class="o">=</span> <span class="mi">70</span>
-
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="c1"># height of plotting canvas in px</span>
+            <span class="n">canvasheight</span> <span class="o">=</span> <span class="mi">550</span>
+            <span class="c1"># width of combo boxes in px</span>
+            <span class="n">combowidth</span> <span class="o">=</span> <span class="mi">288</span>
+            <span class="c1"># widths of entry widgets in px</span>
+            <span class="n">ewsmall</span> <span class="o">=</span> <span class="mi">20</span>
+            <span class="n">ewmed</span> <span class="o">=</span> <span class="mi">45</span>
+            <span class="n">ewbig</span> <span class="o">=</span> <span class="mi">70</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># height of plotting canvas</span>
+            <span class="n">canvasheight</span> <span class="o">=</span> <span class="mi">550</span>
+            <span class="c1"># width of combo boxes in characters</span>
+            <span class="n">combowidth</span> <span class="o">=</span> <span class="mi">25</span>
+            <span class="c1"># widths of entry widgets in characters</span>
+            <span class="n">ewsmall</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="n">ewmed</span> <span class="o">=</span> <span class="mi">4</span>
+            <span class="n">ewbig</span> <span class="o">=</span> <span class="mi">7</span>
+            
         <span class="c1"># open file and new window</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">newfile</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Open File&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newfile</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Open File&quot;</span><span class="p">,</span>
                                      <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">new_csv</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">newfiletip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">newfile</span><span class="p">,</span> <span class="s1">&#39;Open a new csv file&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">newfile</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">newwin</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newwin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;New Window&quot;</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">clone_dfvmain</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">newwintip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span>
@@ -460,11 +482,12 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">tkcanvas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">get_tk_widget</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tkcanvas</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
                            <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">NSEW</span><span class="p">)</span>
+        <span class="c1"># if ihavectk:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">minsize</span><span class="o">=</span><span class="n">canvasheight</span><span class="p">)</span>
 
         <span class="c1"># matplotlib toolbar</span>
         <span class="c1"># toolbar uses pack internally -&gt; put into frame</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">toolwin</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolwin</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span> <span class="o">=</span> <span class="n">NavigationToolbar2Tk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">toolwin</span><span class="p">,</span>
                                             <span class="n">pack_toolbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
@@ -472,7 +495,7 @@ document.write(`
 
         <span class="c1"># x-axis and left y-axis</span>
         <span class="c1"># block with x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">blockx</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blockx</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blockx</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
         <span class="c1"># x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xtip</span> <span class="o">=</span> <span class="n">add_combobox</span><span class="p">(</span>
@@ -489,25 +512,29 @@ document.write(`
              <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Invert x-axis&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inv_xframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="c1"># block with y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
         <span class="c1"># y label</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ylbl</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ylbl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
-        <span class="n">ylab</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ylbl</span><span class="p">)</span>
+        <span class="n">ylab</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ylbl</span><span class="p">)</span>
         <span class="n">ylab</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
         <span class="c1"># previous and next buttons</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                                      <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prev_y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bprev_ytip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bprev_y</span><span class="p">,</span> <span class="s1">&#39;Previous variable&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                     <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">next_y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">next_y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bnext_ytip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bnext_y</span><span class="p">,</span> <span class="s1">&#39;Next variable&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
         <span class="c1"># y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkComboBox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span>
-                                 <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span>
+                              <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_y</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ytip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;Choose variable of y-axis&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
         <span class="c1"># invert y</span>
@@ -519,13 +546,13 @@ document.write(`
              <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Invert y-axis&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inv_yframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="c1"># redraw button</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Redraw&quot;</span><span class="p">,</span>
-                                     <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">redraw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Redraw&quot;</span><span class="p">,</span>
+                              <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">redraw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bredrawtip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span><span class="p">,</span> <span class="s1">&#39;Redraw, resetting zoom&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
 
         <span class="c1"># options for lhs y-axis</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lsframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lslbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lstip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewmed</span><span class="p">,</span>
@@ -566,8 +593,8 @@ document.write(`
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker edge width&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mewframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="c1"># redraw button</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bsort</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Sort vars&quot;</span><span class="p">,</span>
-                                   <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sortvars</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bsort</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Sort vars&quot;</span><span class="p">,</span>
+                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sortvars</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bsorttip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bsort</span><span class="p">,</span> <span class="s1">&#39;Sort variable names&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bsort</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
 
@@ -575,25 +602,29 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">minsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
         <span class="c1"># right y2-axis</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
         <span class="c1"># y label</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ylbl2</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ylbl2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">)</span>
-        <span class="n">ylab2</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ylbl2</span><span class="p">)</span>
+        <span class="n">ylab2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ylbl2</span><span class="p">)</span>
         <span class="n">ylab2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
         <span class="c1"># previous and next buttons</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                      <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prev_y2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prev_y2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2tip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2</span><span class="p">,</span> <span class="s1">&#39;Previous variable&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                      <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">next_y2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">next_y2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2tip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2</span><span class="p">,</span> <span class="s1">&#39;Next variable&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
         <span class="c1"># y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y2</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkComboBox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
-                                  <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_y2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span>
+                               <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_y2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_y2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y2tip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">,</span>
                                  <span class="s1">&#39;Choose variable of right-hand-side y-axis&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
@@ -613,7 +644,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">same_yframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
 
         <span class="c1"># options for rhs y-axis 2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ls2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls2tip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewmed</span><span class="p">,</span>
@@ -652,8 +683,8 @@ document.write(`
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker edge width&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mew2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="c1"># Quit button</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bquit</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Quit&quot;</span><span class="p">,</span>
-                                   <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">destroy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bquit</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Quit&quot;</span><span class="p">,</span>
+                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">destroy</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bquittip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bquit</span><span class="p">,</span> <span class="s1">&#39;Quit dfvue&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bquit</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
 
@@ -780,8 +811,11 @@ document.write(`
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
-        <span class="n">idx</span>  <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
@@ -800,8 +834,11 @@ document.write(`
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
-        <span class="n">idx</span>  <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span>
         <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
@@ -830,8 +867,11 @@ document.write(`
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
-        <span class="n">idx</span>  <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         <span class="n">idx</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
@@ -842,16 +882,19 @@ document.write(`
 <a class="viewcode-back" href="../../dfvscatter.html#dfvue.dfvscatter.dfvScatter.prev_y2">[docs]</a>
     <span class="k">def</span> <span class="nf">prev_y2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Command called if previous button for the right-hand-side y-variable was</span>
-<span class="sd">        pressed.</span>
+<span class="sd">        Command called if previous button for the right-hand-side</span>
+<span class="sd">        y-variable was pressed.</span>
 
 <span class="sd">        Resets dimensions of right-hand-side y-variable.</span>
 <span class="sd">        Redraws plot.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
-        <span class="n">idx</span>  <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span>
         <span class="n">idx</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
@@ -927,13 +970,22 @@ document.write(`
             <span class="c1"># set variables</span>
             <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span>
             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">columns</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
             <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">columns</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
             <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">columns</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span></div>
 
 
@@ -1037,11 +1089,20 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">tit</span><span class="p">)</span>
         <span class="c1"># set variables</span>
         <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">columns</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">columns</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">columns</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
 
 

@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="_static/documentation_options.js?v=fc79ae44"></script>
+    <script src="_static/documentation_options.js?v=2ce3c55e"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -381,6 +381,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-line-panel">Scatter/Line panel</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
             </nav>
@@ -631,12 +632,34 @@ e.g. ‘o’ for circles, to get a scatter plot. A large variety of line
 styles, marker symbols and color notations are supported.</p>
 </section>
 </section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is an application written in Python. It can be installed
+with <cite>pip</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dfvue
+</pre></div>
+</div>
+<p>or via <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>dfvue
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> if it is installed. <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> is not on <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>. One might install <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> with <cite>pip</cite> in a conda environment to use <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>pip
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dfvue
+</pre></div>
+</div>
+<p>It this looks ugly on Linux (see <a class="reference external" href="https://github.com/ContinuumIO/anaconda-issues/issues/6833">this thread</a>), <cite>pip uninstall
+customtkinter</cite>, or <cite>pip uninstall dfvue</cite> and reinstall it with conda,
+which then uses the <a class="reference external" href="https://github.com/rdbende/Azure-ttk-theme">Azure</a> theme by <a class="reference external" href="https://github.com/rdbende">rdbende</a>.</p>
+</section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is distributed under the MIT License. See the <a class="reference external" href="https://github.com/mcuntz/dfvue/blob/main/LICENSE">LICENSE</a> file
 for details.</p>
 <p>Copyright (c) 2023- Matthias Cuntz</p>
-<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> by <a class="reference external" href="https://github.com/TomSchimansky">Tom Schimansky</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> by <a class="reference external" href="https://github.com/TomSchimansky">Tom Schimansky</a> if installed, and
+otherwise the <a class="reference external" href="https://github.com/rdbende/Azure-ttk-theme">Azure</a> theme (v2.0) by <a class="reference external" href="https://github.com/rdbende">rdbende</a>, for example in conda
+environments.</p>
 </section>
 </section>
 
@@ -695,6 +718,7 @@ for details.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-line-panel">Scatter/Line panel</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
   </nav></div>

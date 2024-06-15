@@ -1,7 +1,9 @@
 Changelog
 ---------
 
-v2.1 (??? 2024)
+v3.0 (??? 2024)
+    * Use Azure theme if CustomTkinter is not installed such as in
+      conda environments.
     * Increased size of ReadCSV window to fit widgets on Windows.
 
 v2.0 (Jun 2024)

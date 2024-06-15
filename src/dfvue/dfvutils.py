@@ -25,10 +25,16 @@ The following functions are provided:
 History
     * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
     * Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz
+    * Use CustomTkinter, Jun 2024, Matthias Cuntz
+    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
 
 """
 import tkinter as tk
-import customtkinter as ctk
+try:
+    from customtkinter import CTkToplevel as Toplevel
+except ModuleNotFoundError:
+    from tkinter import Toplevel
 import numpy as np
 import matplotlib.dates as mpld
 import dfvue
@@ -70,7 +76,7 @@ def clone_dfvmain(widget):
         import sys
         sys.exit()
 
-    root = ctk.CTkToplevel()
+    root = Toplevel()
     root.name = 'dfvClone'
     root.top = widget.top
     if root.top.csvfile:

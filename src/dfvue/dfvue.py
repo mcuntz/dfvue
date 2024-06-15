@@ -22,14 +22,24 @@ The following functions are provided:
 History
     * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
       adapted ncvue.py
-    * Moved to customtkinter, Jun 2024, Matthias
+    * Use CustomTkinter, Jun 2024, Matthias Cuntz
+    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
 
 """
 import os
 import platform
 import sys
 import tkinter as tk
-import customtkinter as ctk
+import tkinter.ttk as ttk
+try:
+    from customtkinter import CTk as Tk
+    from customtkinter import CTkToplevel as Toplevel
+    ihavectk = True
+except ModuleNotFoundError:
+    from tkinter import Tk
+    from tkinter import Toplevel
+    ihavectk = False
 from .dfvmain import dfvMain
 
 
@@ -86,10 +96,44 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
     bundle_dir = getattr(sys, '_MEIPASS',
                          os.path.abspath(os.path.dirname(__file__)))
 
-    # ctk.set_appearance_mode("system")  # system, light, dark
-
-    top = ctk.CTk()
+    top = Tk()
     top.withdraw()
+
+    if not ihavectk:
+        # style = ttk.Style()
+        # print(style.theme_names(), style.theme_use())
+        if ios == 'Darwin':
+            theme = 'aqua'
+            style = ttk.Style()
+            try:
+                style.theme_use(theme)
+            except:
+                pass
+        elif ios == 'Windows':
+            top.option_add("*Font", "Helvetica 10")
+            plt.rc('font', size=13)
+            # standard Windows themes
+            # ('winnative', 'clam', 'alt', 'default', 'classic', 'vista',
+            #  'xpnative')
+            # theme = 'vista'
+            # style = ttk.Style()
+            # style.theme_use(theme)
+
+            # 'azure' v2.x, 'sun-valley', 'forest' of rdbende
+            top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
+            theme = 'light'  # light, dark
+            top.tk.call("set_theme", theme)
+        elif ios == 'Linux':
+            # standard Linux schemes
+            # theme = 'clam'  # 'clam', 'alt', 'default', 'classic'
+            # style = ttk.Style()
+            # style.theme_use(theme)
+
+            # 'azure' v2.x, 'sun-valley', 'forest' of rdbende
+            top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
+            theme = 'light'  # light, dark
+            top.tk.call("set_theme", theme)
+    # ctk.set_appearance_mode("system")  # system, light, dark
 
     # set titlebar and taskbar icon only if "standalone",
     # i.e. not ipython or jupyter
@@ -103,7 +147,7 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
     else:
         icon = None
 
-    root = ctk.CTkToplevel()
+    root = Toplevel()
     root.name = 'dfvOne'
     if csvfile:
         tit = "dfvue " + csvfile

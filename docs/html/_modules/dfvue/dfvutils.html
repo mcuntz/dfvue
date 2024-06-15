@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=fc79ae44"></script>
+    <script src="../../_static/documentation_options.js?v=2ce3c55e"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -335,10 +335,15 @@ document.write(`
 <span class="sd">History</span>
 <span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
 <span class="sd">    * Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz</span>
+<span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
+<span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
-<span class="kn">import</span> <span class="nn">customtkinter</span> <span class="k">as</span> <span class="nn">ctk</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkToplevel</span> <span class="k">as</span> <span class="n">Toplevel</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Toplevel</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mpld</span>
 <span class="kn">import</span> <span class="nn">dfvue</span>
@@ -382,7 +387,7 @@ document.write(`
         <span class="kn">import</span> <span class="nn">sys</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 
-    <span class="n">root</span> <span class="o">=</span> <span class="n">ctk</span><span class="o">.</span><span class="n">CTkToplevel</span><span class="p">()</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">Toplevel</span><span class="p">()</span>
     <span class="n">root</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvClone&#39;</span>
     <span class="n">root</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">top</span>
     <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span><span class="p">:</span>

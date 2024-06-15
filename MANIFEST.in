@@ -1,6 +1,7 @@
 prune **
 include src/dfvue/*.py
 graft src/dfvue/images
+graft src/dfvue/themes
 graft tests
 
 include AUTHORS.rst CHANGELOG.rst LICENSE README.rst pyproject.toml setup.cfg

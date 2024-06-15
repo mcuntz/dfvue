@@ -22,12 +22,24 @@ The following classes are provided:
 
 History
     * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
-    * Moved to customtkinter, Jun 2024, Matthias
-    * Use mix of grid and pack layout manager, Jun 2024, Matthias
+    * Use CustomTkinter, Jun 2024, Matthias Cuntz
+    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
 
 """
 import tkinter as tk
-import customtkinter as ctk
+try:
+    from customtkinter import CTkFrame as Frame
+    from customtkinter import CTkButton as Button
+    from customtkinter import CTkLabel as Label
+    from customtkinter import CTkComboBox as Combobox
+    ihavectk = True
+except ModuleNotFoundError:
+    from tkinter.ttk import Frame
+    from tkinter.ttk import Button
+    from tkinter.ttk import Label
+    from tkinter.ttk import Combobox
+    ihavectk = False
 from tkinter import filedialog
 import numpy as np
 import pandas as pd
@@ -45,7 +57,7 @@ except OSError:
 __all__ = ['dfvScatter']
 
 
-class dfvScatter(ctk.CTkFrame):
+class dfvScatter(Frame):
     """
     Panel for scatter and line plots.
 
@@ -116,21 +128,31 @@ class dfvScatter(ctk.CTkFrame):
                  "+ (plus), x (x), X (x (filled)),\n"
                  "D (diamond), d (thin_diamond),\n"
                  "| (vline), _ (hline), or None")
-        # height of plotting canvas
-        canvasheight = 550
-        # width of combo boxes in px
-        combowidth = 288  # px
-        # widths of entry widgets in px
-        ewsmall = 20
-        ewmed = 45
-        ewbig = 70
-
+        if ihavectk:
+            # height of plotting canvas in px
+            canvasheight = 550
+            # width of combo boxes in px
+            combowidth = 288
+            # widths of entry widgets in px
+            ewsmall = 20
+            ewmed = 45
+            ewbig = 70
+        else:
+            # height of plotting canvas
+            canvasheight = 550
+            # width of combo boxes in characters
+            combowidth = 25
+            # widths of entry widgets in characters
+            ewsmall = 3
+            ewmed = 4
+            ewbig = 7
+            
         # open file and new window
-        self.newfile = ctk.CTkButton(self, text="Open File",
+        self.newfile = Button(self, text="Open File",
                                      command=self.new_csv)
         self.newfiletip = add_tooltip(self.newfile, 'Open a new csv file')
         self.newfile.grid(row=0, column=0, sticky=tk.W)
-        self.newwin = ctk.CTkButton(
+        self.newwin = Button(
             self, text="New Window",
             command=partial(clone_dfvmain, self.master))
         self.newwintip = add_tooltip(
@@ -148,11 +170,12 @@ class dfvScatter(ctk.CTkFrame):
         self.tkcanvas = self.canvas.get_tk_widget()
         self.tkcanvas.grid(row=1, column=0, rowspan=12, columnspan=9,
                            sticky=tk.NSEW)
+        # if ihavectk:
         self.rowconfigure(1, minsize=canvasheight)
 
         # matplotlib toolbar
         # toolbar uses pack internally -> put into frame
-        self.toolwin = ctk.CTkFrame(self)
+        self.toolwin = Frame(self)
         self.toolbar = NavigationToolbar2Tk(self.canvas, self.toolwin,
                                             pack_toolbar=True)
         self.toolbar.update()
@@ -160,7 +183,7 @@ class dfvScatter(ctk.CTkFrame):
 
         # x-axis and left y-axis
         # block with x
-        self.blockx = ctk.CTkFrame(self)
+        self.blockx = Frame(self)
         self.blockx.grid(row=14, column=0, columnspan=3, sticky=tk.W)
         # x
         self.xframe, self.xlbl, self.x, self.xtip = add_combobox(
@@ -177,25 +200,29 @@ class dfvScatter(ctk.CTkFrame):
              tooltip="Invert x-axis")
         self.inv_xframe.pack(side=tk.LEFT)
         # block with y
-        self.blocky = ctk.CTkFrame(self)
+        self.blocky = Frame(self)
         self.blocky.grid(row=14, column=3, columnspan=4, sticky=tk.W)
         # y label
         self.ylbl = tk.StringVar()
         self.ylbl.set("y")
-        ylab = ctk.CTkLabel(self.blocky, textvariable=self.ylbl)
+        ylab = Label(self.blocky, textvariable=self.ylbl)
         ylab.pack(side='left')
         # previous and next buttons
-        self.bprev_y = ctk.CTkButton(self.blocky, text="<", width=1,
+        self.bprev_y = Button(self.blocky, text="<", width=1,
                                      command=self.prev_y)
         self.bprev_ytip = add_tooltip(self.bprev_y, 'Previous variable')
         self.bprev_y.pack(side='left')
-        self.bnext_y = ctk.CTkButton(self.blocky, text=">", width=1,
-                                     command=self.next_y)
+        self.bnext_y = Button(self.blocky, text=">", width=1,
+                              command=self.next_y)
         self.bnext_ytip = add_tooltip(self.bnext_y, 'Next variable')
         self.bnext_y.pack(side='left')
         # y
-        self.y = ctk.CTkComboBox(self.blocky, values=columns, width=combowidth,
-                                 command=self.selected_y)
+        if ihavectk:
+            self.y = Combobox(self.blocky, values=columns, width=combowidth,
+                              command=self.selected_y)
+        else:
+            self.y = Combobox(self.blocky, values=columns, width=combowidth)
+            self.y.bind("<<ComboboxSelected>>", self.selected_y)
         self.ytip = add_tooltip(self.y, 'Choose variable of y-axis')
         self.y.pack(side='left')
         # invert y
@@ -207,13 +234,13 @@ class dfvScatter(ctk.CTkFrame):
              tooltip="Invert y-axis")
         self.inv_yframe.pack(side=tk.LEFT)
         # redraw button
-        self.bredraw = ctk.CTkButton(self, text="Redraw",
-                                     command=self.redraw)
+        self.bredraw = Button(self, text="Redraw",
+                              command=self.redraw)
         self.bredrawtip = add_tooltip(self.bredraw, 'Redraw, resetting zoom')
         self.bredraw.grid(row=14, column=8, sticky=tk.E)
 
         # options for lhs y-axis
-        self.blockyopt = ctk.CTkFrame(self)
+        self.blockyopt = Frame(self)
         self.blockyopt.grid(row=15, column=0, columnspan=6, sticky=tk.W)
         self.lsframe, self.lslbl, self.ls, self.lstip = add_entry(
             self.blockyopt, label="ls", text='-', width=ewmed,
@@ -254,8 +281,8 @@ class dfvScatter(ctk.CTkFrame):
             command=self.entered_y, tooltip="Marker edge width")
         self.mewframe.pack(side=tk.LEFT)
         # redraw button
-        self.bsort = ctk.CTkButton(self, text="Sort vars",
-                                   command=self.sortvars)
+        self.bsort = Button(self, text="Sort vars",
+                            command=self.sortvars)
         self.bsorttip = add_tooltip(self.bsort, 'Sort variable names')
         self.bsort.grid(row=15, column=8, sticky=tk.E)
 
@@ -263,25 +290,29 @@ class dfvScatter(ctk.CTkFrame):
         self.rowconfigure(16, minsize=20)
 
         # right y2-axis
-        self.blocky2 = ctk.CTkFrame(self)
+        self.blocky2 = Frame(self)
         self.blocky2.grid(row=17, column=0, columnspan=4, sticky=tk.W)
         # y label
         self.ylbl2 = tk.StringVar()
         self.ylbl2.set("y2")
-        ylab2 = ctk.CTkLabel(self.blocky2, textvariable=self.ylbl2)
+        ylab2 = Label(self.blocky2, textvariable=self.ylbl2)
         ylab2.pack(side='left')
         # previous and next buttons
-        self.bprev_y2 = ctk.CTkButton(self.blocky2, text="<", width=1,
-                                      command=self.prev_y2)
+        self.bprev_y2 = Button(self.blocky2, text="<", width=1,
+                               command=self.prev_y2)
         self.bprev_y2tip = add_tooltip(self.bprev_y2, 'Previous variable')
         self.bprev_y2.pack(side='left')
-        self.bnext_y2 = ctk.CTkButton(self.blocky2, text=">", width=1,
-                                      command=self.next_y2)
+        self.bnext_y2 = Button(self.blocky2, text=">", width=1,
+                               command=self.next_y2)
         self.bnext_y2tip = add_tooltip(self.bnext_y2, 'Next variable')
         self.bnext_y2.pack(side='left')
         # y
-        self.y2 = ctk.CTkComboBox(self.blocky2, values=columns,
-                                  width=combowidth, command=self.selected_y2)
+        if ihavectk:
+            self.y2 = Combobox(self.blocky2, values=columns, width=combowidth,
+                               command=self.selected_y2)
+        else:
+            self.y2 = Combobox(self.blocky2, values=columns, width=combowidth)
+            self.y2.bind("<<ComboboxSelected>>", self.selected_y2)
         self.y2tip = add_tooltip(self.y2,
                                  'Choose variable of right-hand-side y-axis')
         self.y2.pack(side='left')
@@ -301,7 +332,7 @@ class dfvScatter(ctk.CTkFrame):
         self.same_yframe.pack(side=tk.LEFT)
 
         # options for rhs y-axis 2
-        self.blocky2opt = ctk.CTkFrame(self)
+        self.blocky2opt = Frame(self)
         self.blocky2opt.grid(row=18, column=0, columnspan=6, sticky=tk.W)
         self.ls2frame, self.ls2lbl, self.ls2, self.ls2tip = add_entry(
             self.blocky2opt, label="ls", text='-', width=ewmed,
@@ -340,8 +371,8 @@ class dfvScatter(ctk.CTkFrame):
             command=self.entered_y2, tooltip="Marker edge width")
         self.mew2frame.pack(side=tk.LEFT)
         # Quit button
-        self.bquit = ctk.CTkButton(self, text="Quit",
-                                   command=self.master.top.destroy)
+        self.bquit = Button(self, text="Quit",
+                            command=self.master.top.destroy)
         self.bquittip = add_tooltip(self.bquit, 'Quit dfvue')
         self.bquit.grid(row=18, column=8, sticky=tk.E)
 
@@ -442,8 +473,11 @@ class dfvScatter(ctk.CTkFrame):
 
         """
         y = self.y.get()
-        cols = self.y.cget("values")
-        idx  = cols.index(y)
+        if ihavectk:
+            cols = self.y.cget("values")
+        else:
+            cols = self.y["values"]
+        idx = cols.index(y)
         idx += 1
         if idx < len(cols):
             self.y.set(cols[idx])
@@ -459,8 +493,11 @@ class dfvScatter(ctk.CTkFrame):
 
         """
         y2 = self.y2.get()
-        cols = self.y2.cget("values")
-        idx  = cols.index(y2)
+        if ihavectk:
+            cols = self.y2.cget("values")
+        else:
+            cols = self.y2["values"]
+        idx = cols.index(y2)
         idx += 1
         if idx < len(cols):
             self.y2.set(cols[idx])
@@ -486,8 +523,11 @@ class dfvScatter(ctk.CTkFrame):
 
         """
         y = self.y.get()
-        cols = self.y.cget("values")
-        idx  = cols.index(y)
+        if ihavectk:
+            cols = self.y.cget("values")
+        else:
+            cols = self.y["values"]
+        idx = cols.index(y)
         idx -= 1
         if idx > 0:
             self.y.set(cols[idx])
@@ -495,16 +535,19 @@ class dfvScatter(ctk.CTkFrame):
 
     def prev_y2(self):
         """
-        Command called if previous button for the right-hand-side y-variable was
-        pressed.
+        Command called if previous button for the right-hand-side
+        y-variable was pressed.
 
         Resets dimensions of right-hand-side y-variable.
         Redraws plot.
 
         """
         y2 = self.y2.get()
-        cols = self.y2.cget("values")
-        idx  = cols.index(y2)
+        if ihavectk:
+            cols = self.y2.cget("values")
+        else:
+            cols = self.y2["values"]
+        idx = cols.index(y2)
         idx -= 1
         if idx > 0:
             self.y2.set(cols[idx])
@@ -568,13 +611,22 @@ class dfvScatter(ctk.CTkFrame):
             # set variables
             columns = [''] + self.cols
             x = self.x.get()
-            self.x.configure(values=columns)
+            if ihavectk:
+                self.x.configure(values=columns)
+            else:
+                self.x['values'] = columns
             self.x.set(x)
             y = self.y.get()
-            self.y.configure(values=columns)
+            if ihavectk:
+                self.y.configure(values=columns)
+            else:
+                self.y['values'] = columns
             self.y.set(y)
             y2 = self.y2.get()
-            self.y2.configure(values=columns)
+            if ihavectk:
+                self.y2.configure(values=columns)
+            else:
+                self.y2['values'] = columns
             self.y2.set(y2)
 
     def spinned_x(self, event=None):
@@ -663,11 +715,20 @@ class dfvScatter(ctk.CTkFrame):
         self.master.master.title(tit)
         # set variables
         columns = [''] + self.cols
-        self.x.configure(values=columns)
+        if ihavectk:
+            self.x.configure(values=columns)
+        else:
+            self.x['values'] = columns
         self.x.set(columns[0])
-        self.y.configure(values=columns)
+        if ihavectk:
+            self.y.configure(values=columns)
+        else:
+            self.y['values'] = columns
         self.y.set(columns[0])
-        self.y2.configure(values=columns)
+        if ihavectk:
+            self.y2.configure(values=columns)
+        else:
+            self.y2['values'] = columns
         self.y2.set(columns[0])
 
     def reset(self):

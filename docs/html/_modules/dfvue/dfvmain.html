@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=fc79ae44"></script>
+    <script src="../../_static/documentation_options.js?v=2ce3c55e"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -330,11 +330,18 @@ document.write(`
 
 <span class="sd">History</span>
 <span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
-<span class="sd">    * Moved to customtkinter, Jun 2024, Matthias</span>
+<span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
+<span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
-<span class="kn">import</span> <span class="nn">customtkinter</span> <span class="k">as</span> <span class="nn">ctk</span>
+<span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">customtkinter</span> <span class="kn">import</span> <span class="n">CTkTabview</span> <span class="k">as</span> <span class="n">Frame</span>
+    <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Frame</span>
+    <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="kn">from</span> <span class="nn">.dfvscatter</span> <span class="kn">import</span> <span class="n">dfvScatter</span>
 
 
@@ -347,7 +354,7 @@ document.write(`
 
 <div class="viewcode-block" id="dfvMain">
 <a class="viewcode-back" href="../../dfvmain.html#dfvue.dfvmain.dfvMain">[docs]</a>
-<span class="k">class</span> <span class="nc">dfvMain</span><span class="p">(</span><span class="n">ctk</span><span class="o">.</span><span class="n">CTkTabview</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">dfvMain</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Main dfvue notebook window with the plotting panels.</span>
 
@@ -368,14 +375,21 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="n">master</span>      <span class="c1"># master window, i.e. root</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">top</span>    <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">top</span>  <span class="c1"># top window</span>
 
-        <span class="n">stab</span> <span class="o">=</span> <span class="s1">&#39;Scatter/Line&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">stab</span><span class="p">)</span>
-        <span class="n">itab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="n">stab</span><span class="p">)</span>
-        <span class="n">itab</span><span class="o">.</span><span class="n">name</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-        <span class="n">itab</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span>
-        <span class="n">itab</span><span class="o">.</span><span class="n">top</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span> <span class="o">=</span> <span class="n">dfvScatter</span><span class="p">(</span><span class="n">itab</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">S</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">N</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+            <span class="n">stab</span> <span class="o">=</span> <span class="s1">&#39;Scatter/Line&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">stab</span><span class="p">)</span>
+            <span class="n">itab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="n">stab</span><span class="p">)</span>
+            <span class="n">itab</span><span class="o">.</span><span class="n">name</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">itab</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span>
+            <span class="n">itab</span><span class="o">.</span><span class="n">top</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span> <span class="o">=</span> <span class="n">dfvScatter</span><span class="p">(</span><span class="n">itab</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">S</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Notebook for tabs for future plot types</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">S</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span> <span class="o">=</span> <span class="n">dfvScatter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
 </pre></div>
 
