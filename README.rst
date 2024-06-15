@@ -360,9 +360,16 @@ or via Conda_:
    conda install pip
    python -m pip install dfvue
 
-It this looks ugly on Linux (see `this thread`_), `pip uninstall
+If this looks ugly on Linux (see `this thread`_), `pip uninstall
 customtkinter`, or `pip uninstall dfvue` and reinstall it with conda,
 which then uses the Azure_ theme by rdbende_.
+
+If the fonts in ``dfvue`` (and any other tkinter GUI) still look
+ugly, one can try to reinstall Tk with FreeType support via Xft:
+
+.. code-block:: bash
+
+   conda install -c conda-forge tk=*=xft_*
 
 ..
    We also provide a standalone `macOS app`_ and a `Windows executable`_
