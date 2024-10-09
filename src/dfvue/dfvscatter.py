@@ -42,6 +42,7 @@ except ModuleNotFoundError:
     from tkinter.ttk import Combobox
     ihavectk = False
 from tkinter import filedialog
+import warnings
 import numpy as np
 import pandas as pd
 from .dfvutils import clone_dfvmain, format_coord_scatter, vardim2var
@@ -461,7 +462,9 @@ class dfvScatter(Frame):
         Read new DataFrame.
 
         """
-        self.top.df = pd.read_csv(self.top.csvfile[0], nrows=40)
+        with warnings.catch_warnings():
+            warnings.simplefilter(action='ignore', category=FutureWarning)
+            self.top.df = pd.read_csv(self.top.csvfile[0], nrows=40)
         self.readcsvwin = dfvReadcsv(self.top, callback=self.reset)
 
     def next_y(self):
@@ -999,7 +1002,6 @@ class dfvScatter(Frame):
             # plot
             # y-axis
             try:
-                # , picker=True, pickradius=5)
                 self.line_y = self.axes.plot(xx, yy)
             except Exception:
                 estr = ('Scatter: x (' + vx + ') and y (' + vy + ')'
@@ -1010,7 +1012,6 @@ class dfvScatter(Frame):
             self.axes.yaxis.set_label_text(ylab)
             # y2-axis
             try:
-                # , picker=True, pickradius=5)
                 self.line_y2 = self.axes2.plot(xx, yy2)
             except Exception:
                 estr  = 'Scatter: x (' + vx + ') and y2 (' + vy2 + ')'

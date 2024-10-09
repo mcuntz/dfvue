@@ -352,6 +352,7 @@ document.write(`
     <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Combobox</span>
     <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">.dfvutils</span> <span class="kn">import</span> <span class="n">clone_dfvmain</span><span class="p">,</span> <span class="n">format_coord_scatter</span><span class="p">,</span> <span class="n">vardim2var</span>
@@ -796,7 +797,9 @@ document.write(`
 <span class="sd">        Read new DataFrame.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">readcsvwin</span> <span class="o">=</span> <span class="n">dfvReadcsv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">)</span></div>
 
 
@@ -1385,7 +1388,6 @@ document.write(`
             <span class="c1"># plot</span>
             <span class="c1"># y-axis</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="c1"># , picker=True, pickradius=5)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">line_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="n">estr</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Scatter: x (&#39;</span> <span class="o">+</span> <span class="n">vx</span> <span class="o">+</span> <span class="s1">&#39;) and y (&#39;</span> <span class="o">+</span> <span class="n">vy</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
@@ -1396,7 +1398,6 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="n">ylab</span><span class="p">)</span>
             <span class="c1"># y2-axis</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="c1"># , picker=True, pickradius=5)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">line_y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy2</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="n">estr</span>  <span class="o">=</span> <span class="s1">&#39;Scatter: x (&#39;</span> <span class="o">+</span> <span class="n">vx</span> <span class="o">+</span> <span class="s1">&#39;) and y2 (&#39;</span> <span class="o">+</span> <span class="n">vy2</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>

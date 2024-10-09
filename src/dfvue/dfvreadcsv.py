@@ -47,6 +47,7 @@ except ModuleNotFoundError:
     from tkinter.ttk import Button
     ihavectk = False
 from collections.abc import Iterable
+import warnings
 import pandas as pd
 from .ncvwidgets import add_entry, add_tooltip, Treeview, callurl
 
@@ -717,18 +718,38 @@ class dfvReadcsv(Toplevel):
                     date, format=opts['date_format'])
                 opts['date_parser'] = date_parser
                 del opts['date_format']
+        # iparsedates = False
+        # if pd.__version__ > '2.0':
+        #     if 'parse_dates' in opts:
+        #         if not all(o.__hash__ is not None
+        #                    for o in opts['parse_dates']):
+        #             # parse_date is list of int, list of list, or dict
+        #             iparsedates = True
+        #             parse_dates = opts['parse_dates']
+        #             # del opts['parse_dates']
+        #             if 'date_format' in opts:
+        #                 date_format = opts['date_format']
+        #                 # del opts['date_format']
+        #             if 'index_col' in opts:
+        #                 index_col = opts['index_col']
+        #                 # del opts['index_col']
+        # # Testing
         # try:
         #     self.df = pd.read_csv(self.csvfile, **opts)
         # except TypeError:
         #     print('Did not work')
         #     pass
-        if (nrows is None) and (len(self.csvfile) > 1):
-            dfl = []
-            for cfile in self.csvfile:
-                dfl.append(pd.read_csv(cfile, **opts))
-            self.df = pd.concat(dfl)
-        else:
-            self.df = pd.read_csv(self.csvfile[0], **opts)
+        with warnings.catch_warnings():
+            warnings.simplefilter(action='ignore', category=FutureWarning)
+            if (nrows is None) and (len(self.csvfile) > 1):
+                dfl = []
+                for cfile in self.csvfile:
+                    dfl.append(pd.read_csv(cfile, **opts))
+                self.df = pd.concat(dfl)
+            else:
+                self.df = pd.read_csv(self.csvfile[0], **opts)
+        # if iparsedates:
+        #     True
 
     def read_final(self, event=None):
         self.tree.destroy()

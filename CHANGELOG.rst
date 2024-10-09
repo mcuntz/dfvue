@@ -2,7 +2,8 @@ Changelog
 ---------
 
 v5.0 (??? 2024)
-    * Move from token to trusted publisher on PyPI. 
+    * Move from token to trusted publisher on PyPI.
+    * Silence FutureWarning from `pandas.read_csv`.
 
 v4.0 (Oct 2024)
     * Allow multiple input files that will be concatenated.
