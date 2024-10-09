@@ -335,6 +335,7 @@ document.write(`
 <span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
 <span class="sd">    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</span>
 <span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
+<span class="sd">    * Allow multiple input files, Oct 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -365,8 +366,8 @@ document.write(`
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    csvfile : str, optional</span>
-<span class="sd">        Name of csv file (default: &#39;&#39;).</span>
+<span class="sd">    csvfile : str or list of str, optional</span>
+<span class="sd">        Name(s) of csv file (default: &#39;&#39;).</span>
 <span class="sd">    sep : str, optional</span>
 <span class="sd">        Delimiter to use.</span>
 <span class="sd">    index_col : str, optional</span>
@@ -461,8 +462,10 @@ document.write(`
 
     <span class="n">root</span> <span class="o">=</span> <span class="n">Toplevel</span><span class="p">()</span>
     <span class="n">root</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvOne&#39;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">csvfile</span> <span class="o">=</span> <span class="p">[</span><span class="n">csvfile</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">csvfile</span><span class="p">:</span>
-        <span class="n">tit</span> <span class="o">=</span> <span class="s2">&quot;dfvue &quot;</span> <span class="o">+</span> <span class="n">csvfile</span>
+        <span class="n">tit</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;dfvue </span><span class="si">{</span><span class="n">csvfile</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">tit</span> <span class="o">=</span> <span class="s2">&quot;dfvue&quot;</span>
     <span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">tit</span><span class="p">)</span>

@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# configuration file to build documentation of dfvue, created by
-# sphinx-quickstart
+# configuration file to build documentation
 #
 import datetime
 import warnings
 import os
 import sys
-# this line is needed, if dfvue is not installed yet
+# this line is needed, if package is not installed yet
 sys.path.insert(
     0, os.path.dirname(os.path.abspath(__file__)) + '/../../src')
 from dfvue import __version__ as ver
@@ -70,7 +69,7 @@ numpydoc_class_members_toctree = False
 # for the covmodels alot of classmembers show up...
 numpydoc_show_inherited_class_members = True
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = ["."]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -131,6 +130,7 @@ html_theme_options = {
     "use_issues_button": True,
     "use_repository_button": True,
     "use_download_button": True,
+    "navigation_with_keys": False,
 }
 
 # # Add any paths that contain custom static files (such as style sheets) here,
@@ -210,19 +210,20 @@ suppress_warnings = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    "Python":      ("https://docs.python.org/3/",                    None),
-    "NumPy":       ("https://numpy.org/doc/stable/",                 None),
-    "SciPy":       ("https://docs.scipy.org/doc/scipy/reference/",   None),
-    "matplotlib":  ("https://matplotlib.org/stable/",                None),
-    "Pandas":      ("https://pandas.pydata.org/docs/",               None),
-    "cython":      ("https://cython.readthedocs.io/en/latest/",      None),
-    "cftime":      ("https://unidata.github.io/cftime/",             None),
-    # "netcdf4-python": ("https://unidata.github.io/netcdf4-python/",  None),
-    "openpyxl":    ("https://openpyxl.readthedocs.io/en/stable/",    None),
-    "Sphinx":      ("https://www.sphinx-doc.org/en/master/",         None),
-    "schwimmbad":  ("https://schwimmbad.readthedocs.io/en/latest/",  None),
-    "mpi4py":      ("https://mpi4py.readthedocs.io/en/latest/",      None),
-    "emcee":       ("https://emcee.readthedocs.io/en/latest/",       None),
-    "partialwrap": ("https://mcuntz.github.io/partialwrap/html/",    None),
-    "pyeee":       ("https://pyeee.readthedocs.io/en/latest/",       None),
+    "Python": ("https://docs.python.org/3/", None),
+    "NumPy": ("https://numpy.org/doc/stable/", None),
+    "SciPy": ("https://docs.scipy.org/doc/scipy/", None),
+    "matplotlib": ("https://matplotlib.org/stable/", None),
+    "Pandas": ("https://pandas.pydata.org/docs/", None),
+    "cython": ("https://cython.readthedocs.io/en/latest/", None),
+    "cftime": ("https://unidata.github.io/cftime/", None),
+    # "netcdf4-python": ("https://unidata.github.io/netcdf4-python/", None),
+    "openpyxl": ("https://openpyxl.readthedocs.io/en/stable/", None),
+    "Sphinx": ("https://www.sphinx-doc.org/en/master/", None),
+    "schwimmbad": ("https://schwimmbad.readthedocs.io/en/latest/", None),
+    "mpi4py": ("https://mpi4py.readthedocs.io/en/latest/", None),
+    "emcee": ("https://emcee.readthedocs.io/en/latest/", None),
+    "partialwrap": ("https://mcuntz.github.io/partialwrap/html/", None),
+    "pyeee": ("https://pyeee.readthedocs.io/en/latest/", None),
+    "hesseflux": ("https://mcuntz.github.io/hesseflux/html/", None),
 }

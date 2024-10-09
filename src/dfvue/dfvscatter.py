@@ -25,6 +25,7 @@ History
     * Use CustomTkinter, Jun 2024, Matthias Cuntz
     * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
     * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+    * Allow multiple input files, Oct 2024, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -449,7 +450,7 @@ class dfvScatter(Frame):
         """
         # get new csv file name
         self.top.csvfile = filedialog.askopenfilename(
-            parent=self, title='Choose csv file', multiple=False)
+            parent=self, title='Choose csv file(s)', multiple=True)
 
         if self.top.csvfile:
             self.top.newcsvfile = True
@@ -460,7 +461,7 @@ class dfvScatter(Frame):
         Read new DataFrame.
 
         """
-        self.top.df = pd.read_csv(self.top.csvfile, nrows=40)
+        self.top.df = pd.read_csv(self.top.csvfile[0], nrows=40)
         self.readcsvwin = dfvReadcsv(self.top, callback=self.reset)
 
     def next_y(self):
@@ -709,7 +710,7 @@ class dfvScatter(Frame):
         self.missing_value = self.top.missing_value
         self.cols = self.top.cols
         if self.top.csvfile:
-            tit = "dfvue " + self.top.csvfile
+            tit = f"dfvue {self.top.csvfile}"
         else:
             tit = "dfvue"
         self.master.master.title(tit)

@@ -28,6 +28,7 @@ History
     * Use CustomTkinter, Jun 2024, Matthias Cuntz
     * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
     * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+    * Allow list in window title in clone_dfvmain, Oct 2024, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -80,7 +81,7 @@ def clone_dfvmain(widget):
     root.name = 'dfvClone'
     root.top = widget.top
     if root.top.csvfile:
-        tit = "Secondary dfvue " + root.top.csvfile
+        tit = f"Secondary dfvue {root.top.csvfile}"
     else:
         tit = "Secondary dfvue"
     root.title(tit)

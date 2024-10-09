@@ -39,8 +39,9 @@ About dfvue
 
 ``dfvue`` is a minimal GUI for a quick view of csv files. It uses an
 input panel similar to Microsoft Excel to check visually that the csv
-file is read correctly. It provides most options of pandas' read_csv_
-method to be very versatile on the possible csv format.
+file is read correctly. It provides most options of the
+`pandas.read_csv`_ method to be very versatile on the possible csv
+format.
 
 ``dfvue`` is a Python script that can be called from within Python or
 as a command line tool. It is not supposed to produce
@@ -59,7 +60,7 @@ Quick usage guide
 
 .. code-block:: bash
 
-   dfvue csv_file.csv
+   dfvue csv_file*.csv
 
 or from within Python:
 
@@ -68,8 +69,9 @@ or from within Python:
    from dfvue import dfvue
    dfvue('csv_file.csv')
 
-where the csv file is optional. The latter can be left out and a csv
-file can be opened with the "Open File" button from within ``dfvue``.
+where the csv file is optional. The latter can be left out and csv
+file(s) can be opened with the "Open File" button from within
+``dfvue``.
 
 Note, ``dfvue`` uses the `TkAgg` backend of `matplotlib`. It must be
 called before any other call to `matplotlib`. This also means that you
@@ -101,7 +103,7 @@ General layout
 ^^^^^^^^^^^^^^
 
 On opening, ``dfvue`` presents currently only one panel for producing
-scatter/line plots. This is the look in macOS light mode (higher
+scatter/line plots. Here is the look in macOS light mode (higher
 resolution images can be found in the documentation_):
 
 .. image:: https://mcuntz.github.io/dfvue/images/scatter_panel_light_small.png
@@ -130,36 +132,39 @@ The "Read csv file" window opens when a csv file is given.
    :align: left
    :alt: Read csv file window
 
-The csv file can be given on the command line:
+One or several csv files can be given on the command line:
 
 .. code-block:: bash
 
-   dfvue csv_file.csv
+   dfvue csv_file*.csv
 
-from within Python:
+or from within Python:
 
 .. code-block:: python
 
    from dfvue import dfvue
    dfvue('csv_file.csv')
 
-or being selected from the "Choose csv file" selector that opens when
-hitting the button "Open File".
+or being selected from the "Choose csv file(s)" selector that opens
+when hitting the button "Open File".
 
-The "Read csv file" window reads the first 40 rows of the csv file
-with pandas' read_csv_ method using the options given in the pane. It
-shows the resulting `pandas.DataFrame`_ in tabulated format. Changing
-focus from one option entry to another, for example by hitting the
-<tab> key, re-reads the first 40 rows of the csv file with
-`pandas.read_csv`_ using the selected options in the form. Hitting
-<enter> or <return> within the window reads the entire csv file using
-the selected options and returns to the plotting panels. This is the
-same than pressing the "Read csv" button in the lower right corner.
+The "Read csv file(s)" window reads the first 40 rows of the (first)
+csv file with the `pandas.read_csv`_ method using the options given in
+the pane. It shows the resulting `pandas.DataFrame`_ in tabulated
+format. Changing focus from one option entry to another, for example
+by hitting the <tab> key, re-reads the first 40 rows of the csv file
+with `pandas.read_csv`_ using the selected options in the
+form. Hitting <enter> or <return> within the window reads the entire
+csv file(s) using the selected options and returns to the plotting
+panels. This is the same than pressing the "Read csv" button in the
+lower right corner. Multiple csv files will be read one by one with
+`pandas.read_csv`_ using the same options and then concatenated with
+`pandas.concat`_.
 
-The options in the form are pandas' read_csv_ default options except
-for `parse_date`, which is set to `True` instead of `False`
-here. Hover over the entry boxes to see explanations of the options in
-the tooltip.
+The options in the form are default options of `pandas.read_csv`_
+except for `parse_date`, which is set to `True` instead of
+`False`. Hover over the entry boxes to see explanations of the options
+in the tooltips.
 
 If the csv file includes a Date/Time column, it is best to set this
 column as the index of the `pandas.DataFrame`_ by using
@@ -168,7 +173,7 @@ type `datetime64[ns]` in the plot panels.  This is then correctly
 interpreted by the underlying Matplotlib when plotting, zooming, or
 panning the axes.
 
-`missing_value` is not an option of pandas' read_csv_. It is here for
+`missing_value` is not an option of `pandas.read_csv`_. It is here for
 convenience and any number entered in `missing_value` will be added to
 pandas `na_values`.
 
@@ -353,7 +358,9 @@ or via Conda_:
 
    conda install -c conda-forge dfvue
 
-``dfvue`` uses CustomTkinter_ if it is installed. CustomTkinter_ is not on Conda_. One might install ``dfvue`` with `pip` in a conda environment to use CustomTkinter_:
+``dfvue`` uses CustomTkinter_ if it is installed. CustomTkinter_ is
+not on Conda_. One might install ``dfvue`` with `pip` in a conda
+environment to use CustomTkinter_:
 
 .. code-block:: bash
 
@@ -398,6 +405,7 @@ environments.
 
 
 .. _read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+.. _pandas.concat: https://pandas.pydata.org/docs/reference/api/pandas.concat.html
 .. _pandas.read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 .. _pandas.DataFrame: https://pandas.pydata.org/docs/reference/frame.html
 .. _pandas.to_datetime: https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html

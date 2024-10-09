@@ -414,6 +414,7 @@ adapted ncvue.py</p></li>
 <li><p>Use CustomTkinter, Jun 2024, Matthias Cuntz</p></li>
 <li><p>Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</p></li>
 <li><p>Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</p></li>
+<li><p>Allow multiple input files, Oct 2024, Matthias Cuntz</p></li>
 </ul>
 </dd>
 </dl>
@@ -424,15 +425,15 @@ adapted ncvue.py</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csvfile</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Name of csv file (default: ‘’).</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Delimiter to use.</p></li>
-<li><p><strong>index_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Column(s) to use as index, either given as column index
+<li><p><strong>csvfile</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Name(s) of csv file (default: ‘’).</p></li>
+<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Delimiter to use.</p></li>
+<li><p><strong>index_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Column(s) to use as index, either given as column index
 or string name.</p></li>
-<li><p><strong>skiprows</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Line numbers to skip (0-indexed, must include comma,
+<li><p><strong>skiprows</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Line numbers to skip (0-indexed, must include comma,
 e.g. “1,” for skipping the second row) or
 number of lines to skip (int, without comma) at the start
 of the file.</p></li>
-<li><p><strong>parse_dates</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – <p>boolean. If True -&gt; try parsing the index.</p>
+<li><p><strong>parse_dates</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – <p>boolean. If True -&gt; try parsing the index.</p>
 <p>list of int or names. e.g. If 1, 2, 3
 -&gt; try parsing columns 1, 2, 3 each as a separate date column.</p>
 <p>list of lists. e.g. If [1, 3] -&gt; combine columns 1 and 3 and
@@ -440,10 +441,10 @@ parse as a single date column.</p>
 <p>dict, e.g. “foo” : [1, 3] -&gt; parse columns 1, 3 as date and
 call result</p>
 </p></li>
-<li><p><strong>date_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Will parse dates according to this format.
+<li><p><strong>date_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Will parse dates according to this format.
 For example: “%%Y-%%m-%%d %%H:%%M%%S”. See
 <a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior</a></p></li>
-<li><p><strong>missing_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>optional</em>) – Missing or undefined value set to NaN.</p></li>
+<li><p><strong>missing_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Missing or undefined value set to NaN.</p></li>
 </ul>
 </dd>
 </dl>

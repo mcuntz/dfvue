@@ -338,6 +338,7 @@ document.write(`
 <span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
 <span class="sd">    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</span>
 <span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
+<span class="sd">    * Concat multiple input files, Oct 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
@@ -509,7 +510,9 @@ document.write(`
 <span class="sd">    Skip spaces after delimiter.&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;skiprows&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;list-like, int or callable, optional</span>
-<span class="sd">    Line numbers to skip (0-indexed, must include comma, e.g. 1, for skipping the second row) or number of lines to skip (int, without comma) at the start of the file.</span>
+<span class="sd">    Line numbers to skip (0-indexed, must include comma, e.g. 1, for skipping</span>
+<span class="sd">the second row) or number of lines to skip (int, without comma) at the start of</span>
+<span class="sd">the file.</span>
 <span class="sd">    If callable, the callable function will be evaluated against the row</span>
 <span class="sd">indices, returning True if the row should be skipped and False otherwise.</span>
 <span class="sd">An example of a valid callable argument would be lambda x: x in [0, 2].&quot;&quot;&quot;</span><span class="p">,</span>
@@ -889,9 +892,9 @@ document.write(`
             <span class="n">padlabel</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># characters</span>
             <span class="n">padxlabel</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># px</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">entrywidth</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># characters</span>
-            <span class="n">padlabel</span> <span class="o">=</span> <span class="mi">5</span>   <span class="c1"># characters</span>
-            <span class="n">padxlabel</span> <span class="o">=</span> <span class="mi">5</span>   <span class="c1"># px            </span>
+            <span class="n">entrywidth</span> <span class="o">=</span> <span class="mi">8</span>   <span class="c1"># characters</span>
+            <span class="n">padlabel</span> <span class="o">=</span> <span class="mi">5</span>     <span class="c1"># characters</span>
+            <span class="n">padxlabel</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># px</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowopt</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowopt</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">nr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">noptrow</span><span class="p">):</span>
@@ -916,12 +919,12 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Read csv&quot;</span><span class="p">,</span>
-                                  <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_final</span><span class="p">)</span>
+                           <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_final</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">donetip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">,</span> <span class="s1">&#39;Finished reading csv&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cancel</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowdone</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Cancel&quot;</span><span class="p">,</span>
-                                    <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="p">)</span>
+                             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">canceltip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="p">,</span> <span class="s1">&#39;Cancel reading csv file&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
@@ -939,7 +942,8 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span>
         <span class="c1"># do not self.destroy() with ctk.CTkButton, leading to</span>
-        <span class="c1"># &#39;invalid command name &quot;.!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas&quot;&#39;</span>
+        <span class="c1"># &#39;invalid command name</span>
+        <span class="c1">#     &quot;.!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas&quot;&#39;</span>
         <span class="c1"># self.destroy() works with ttk.Button</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span></div>
 
@@ -1041,7 +1045,13 @@ document.write(`
         <span class="c1"># except TypeError:</span>
         <span class="c1">#     print(&#39;Did not work&#39;)</span>
         <span class="c1">#     pass</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="p">(</span><span class="n">nrows</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">dfl</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">cfile</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span><span class="p">:</span>
+                <span class="n">dfl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cfile</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfl</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="dfvReadcsv.read_final">
@@ -1071,7 +1081,8 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span>
         <span class="c1"># do not self.destroy() with ctk.CTkButton, leading to</span>
-        <span class="c1"># &#39;invalid command name &quot;.!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas&quot;&#39;</span>
+        <span class="c1"># &#39;invalid command name</span>
+        <span class="c1">#     &quot;.!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas&quot;&#39;</span>
         <span class="c1"># self.destroy() works with ttk.Button</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span></div>
 

@@ -28,6 +28,7 @@ History
     * Use CustomTkinter, Jun 2024, Matthias Cuntz
     * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
     * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+    * Concat multiple input files, Oct 2024, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -199,7 +200,9 @@ of 'False'.""",
     Skip spaces after delimiter.""",
     'skiprows':
     """list-like, int or callable, optional
-    Line numbers to skip (0-indexed, must include comma, e.g. 1, for skipping the second row) or number of lines to skip (int, without comma) at the start of the file.
+    Line numbers to skip (0-indexed, must include comma, e.g. 1, for skipping
+the second row) or number of lines to skip (int, without comma) at the start of
+the file.
     If callable, the callable function will be evaluated against the row
 indices, returning True if the row should be skipped and False otherwise.
 An example of a valid callable argument would be lambda x: x in [0, 2].""",
@@ -577,9 +580,9 @@ class dfvReadcsv(Toplevel):
             padlabel = 3     # characters
             padxlabel = 5    # px
         else:
-            entrywidth = 8  # characters
-            padlabel = 5   # characters
-            padxlabel = 5   # px            
+            entrywidth = 8   # characters
+            padlabel = 5     # characters
+            padxlabel = 5    # px
         self.rowopt = Frame(self)
         self.rowopt.pack(side='top', fill='x')
         for nr in range(noptrow):
@@ -604,12 +607,12 @@ class dfvReadcsv(Toplevel):
         self.rowdone = Frame(self)
         self.rowdone.pack(side='top', fill='x')
         self.done = Button(self.rowdone, text="Read csv",
-                                  command=self.read_final)
+                           command=self.read_final)
         self.donetip = add_tooltip(self.done, 'Finished reading csv')
         self.done.pack(side='right', padx=10, pady=5)
 
         self.cancel = Button(self.rowdone, text="Cancel",
-                                    command=self.cancel)
+                             command=self.cancel)
         self.canceltip = add_tooltip(self.cancel, 'Cancel reading csv file')
         self.cancel.pack(side='right', pady=5)
 
@@ -625,7 +628,8 @@ class dfvReadcsv(Toplevel):
         if self.callback is not None:
             self.callback()
         # do not self.destroy() with ctk.CTkButton, leading to
-        # 'invalid command name ".!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas"'
+        # 'invalid command name
+        #     ".!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas"'
         # self.destroy() works with ttk.Button
         self.withdraw()
 
@@ -718,7 +722,13 @@ class dfvReadcsv(Toplevel):
         # except TypeError:
         #     print('Did not work')
         #     pass
-        self.df = pd.read_csv(self.csvfile, **opts)
+        if (nrows is None) and (len(self.csvfile) > 1):
+            dfl = []
+            for cfile in self.csvfile:
+                dfl.append(pd.read_csv(cfile, **opts))
+            self.df = pd.concat(dfl)
+        else:
+            self.df = pd.read_csv(self.csvfile[0], **opts)
 
     def read_final(self, event=None):
         self.tree.destroy()
@@ -745,7 +755,8 @@ class dfvReadcsv(Toplevel):
         if self.callback is not None:
             self.callback()
         # do not self.destroy() with ctk.CTkButton, leading to
-        # 'invalid command name ".!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas"'
+        # 'invalid command name
+        #     ".!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas"'
         # self.destroy() works with ttk.Button
         self.withdraw()
 

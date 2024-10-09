@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+v4.0 (Oct 2024)
+    * Allow multiple input files that will be concatenated.
+
 v3.0 (Jun 2024)
     * Use Azure theme if CustomTkinter is not installed such as in
       conda environments.

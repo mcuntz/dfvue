@@ -21,7 +21,8 @@ Example command line:
 :license: MIT License, see LICENSE for details.
 
 History
-    * Written Jul 2023 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Written Jul 2023 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Allow multiple input files, Oct 2024, Matthias Cuntz
 
 """
 from dfvue import dfvue
@@ -79,8 +80,8 @@ def main():
                         default=missing_value, dest='missing_value',
                         metavar='missing_value', help=hstr)
     parser.add_argument('csvfile', nargs='*', default=None,
-                        metavar='csv_file',
-                        help='Delimited text file')
+                        metavar='csv_file(s)',
+                        help='Delimited text file(s)')
 
     args = parser.parse_args()
     sep = args.sep
@@ -92,11 +93,6 @@ def main():
     csvfile = args.csvfile
 
     del parser, args
-
-    if len(csvfile) > 0:
-        csvfile = csvfile[0]
-    else:
-        csvfile = ''
 
     # This must be before any other call to matplotlib
     # because it uses the TkAgg backend.

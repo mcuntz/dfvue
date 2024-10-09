@@ -596,6 +596,7 @@ France.</p>
 <li><p>Use CustomTkinter, Jun 2024, Matthias Cuntz</p></li>
 <li><p>Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</p></li>
 <li><p>Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</p></li>
+<li><p>Allow multiple input files, Oct 2024, Matthias Cuntz</p></li>
 </ul>
 </dd>
 </dl>
@@ -1253,7 +1254,7 @@ processed (see bind).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvscatter.dfvScatter.cget">
-<span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#dfvue.dfvscatter.dfvScatter.cget" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#dfvue.dfvscatter.dfvScatter.cget" title="Link to this definition">#</a></dt>
 <dd><p>basic cget with bg_color, width, height support, calls cget of tkinter.Frame</p>
 </dd></dl>
 
@@ -2283,7 +2284,7 @@ BooleanVar must be given.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvscatter.dfvScatter.winfo_children">
-<span class="sig-name descname"><span class="pre">winfo_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#dfvue.dfvscatter.dfvScatter.winfo_children" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">winfo_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#dfvue.dfvscatter.dfvScatter.winfo_children" title="Link to this definition">#</a></dt>
 <dd><p>winfo_children of CTkFrame without self.canvas widget,
 because it’s not a child but part of the CTkFrame itself</p>
 </dd></dl>

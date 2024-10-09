@@ -25,6 +25,7 @@ History
     * Use CustomTkinter, Jun 2024, Matthias Cuntz
     * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
     * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+    * Allow multiple input files, Oct 2024, Matthias Cuntz
 
 """
 import os
@@ -53,8 +54,8 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
 
     Parameters
     ----------
-    csvfile : str, optional
-        Name of csv file (default: '').
+    csvfile : str or list of str, optional
+        Name(s) of csv file (default: '').
     sep : str, optional
         Delimiter to use.
     index_col : str, optional
@@ -149,8 +150,10 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
 
     root = Toplevel()
     root.name = 'dfvOne'
+    if isinstance(csvfile, str):
+        csvfile = [csvfile]
     if csvfile:
-        tit = "dfvue " + csvfile
+        tit = f"dfvue {csvfile}"
     else:
         tit = "dfvue"
     root.title(tit)

@@ -410,8 +410,9 @@ document.write(`
 <h2>About dfvue<a class="headerlink" href="#about-dfvue" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is a minimal GUI for a quick view of csv files. It uses an
 input panel similar to Microsoft Excel to check visually that the csv
-file is read correctly. It provides most options of pandas’ <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a>
-method to be very versatile on the possible csv format.</p>
+file is read correctly. It provides most options of the
+<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a> method to be very versatile on the possible csv
+format.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is a Python script that can be called from within Python or
 as a command line tool. It is not supposed to produce
 publication-ready plots but rather provide a quick overview of the csv
@@ -424,7 +425,7 @@ file.</p>
 <section id="quick-usage-guide">
 <h2>Quick usage guide<a class="headerlink" href="#quick-usage-guide" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> can be run from the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dfvue<span class="w"> </span>csv_file.csv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dfvue<span class="w"> </span>csv_file*.csv
 </pre></div>
 </div>
 <p>or from within Python:</p>
@@ -432,8 +433,9 @@ file.</p>
 <span class="n">dfvue</span><span class="p">(</span><span class="s1">&#39;csv_file.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>where the csv file is optional. The latter can be left out and a csv
-file can be opened with the “Open File” button from within <code class="docutils literal notranslate"><span class="pre">dfvue</span></code>.</p>
+<p>where the csv file is optional. The latter can be left out and csv
+file(s) can be opened with the “Open File” button from within
+<code class="docutils literal notranslate"><span class="pre">dfvue</span></code>.</p>
 <p>Note, <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses the <cite>TkAgg</cite> backend of <cite>matplotlib</cite>. It must be
 called before any other call to <cite>matplotlib</cite>. This also means that you
 cannot launch it from within <cite>iPython</cite> if it was launched with
@@ -442,7 +444,7 @@ or using <cite>ipython –gui tk</cite>.</p>
 <section id="general-layout">
 <h3>General layout<a class="headerlink" href="#general-layout" title="Link to this heading">#</a></h3>
 <p>On opening, <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> presents currently only one panel for producing
-scatter/line plots. This is the look in macOS light mode (click on
+scatter/line plots. Here is the look in macOS light mode (click on
 figures to open larger pictures):</p>
 <a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/scatter_panel_light.png"><img alt="Graphical documentation of dfvue layout" class="align-left" src="https://mcuntz.github.io/dfvue/images/scatter_panel_light.png" style="width: 860px;" />
 </a>
@@ -458,37 +460,40 @@ windows with the button “Open File”.</p>
 <p>The “Read csv file” window opens when a csv file is given.</p>
 <a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/read_csv_panel.png"><img alt="Read csv file window" class="align-left" src="https://mcuntz.github.io/dfvue/images/read_csv_panel.png" style="width: 860px;" />
 </a>
-<p>The csv file can be given on the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dfvue<span class="w"> </span>csv_file.csv
+<p>One or several csv files can be given on the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dfvue<span class="w"> </span>csv_file*.csv
 </pre></div>
 </div>
-<p>from within Python:</p>
+<p>or from within Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dfvue</span> <span class="kn">import</span> <span class="n">dfvue</span>
 <span class="n">dfvue</span><span class="p">(</span><span class="s1">&#39;csv_file.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>or being selected from the “Choose csv file” selector that opens when
-hitting the button “Open File”.</p>
-<p>The “Read csv file” window reads the first 40 rows of the csv file
-with pandas’ <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a> method using the options given in the pane. It
-shows the resulting <a class="reference external" href="https://pandas.pydata.org/docs/reference/frame.html">pandas.DataFrame</a> in tabulated format. Changing
-focus from one option entry to another, for example by hitting the
-&lt;tab&gt; key, re-reads the first 40 rows of the csv file with
-<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a> using the selected options in the form. Hitting
-&lt;enter&gt; or &lt;return&gt; within the window reads the entire csv file using
-the selected options and returns to the plotting panels. This is the
-same than pressing the “Read csv” button in the lower right corner.</p>
-<p>The options in the form are pandas’ <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a> default options except
-for <cite>parse_date</cite>, which is set to <cite>True</cite> instead of <cite>False</cite>
-here. Hover over the entry boxes to see explanations of the options in
-the tooltip.</p>
+<p>or being selected from the “Choose csv file(s)” selector that opens
+when hitting the button “Open File”.</p>
+<p>The “Read csv file(s)” window reads the first 40 rows of the (first)
+csv file with the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a> method using the options given in
+the pane. It shows the resulting <a class="reference external" href="https://pandas.pydata.org/docs/reference/frame.html">pandas.DataFrame</a> in tabulated
+format. Changing focus from one option entry to another, for example
+by hitting the &lt;tab&gt; key, re-reads the first 40 rows of the csv file
+with <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a> using the selected options in the
+form. Hitting &lt;enter&gt; or &lt;return&gt; within the window reads the entire
+csv file(s) using the selected options and returns to the plotting
+panels. This is the same than pressing the “Read csv” button in the
+lower right corner. Multiple csv files will be read one by one with
+<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a> using the same options and then concatenated with
+<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">pandas.concat</a>.</p>
+<p>The options in the form are default options of <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a>
+except for <cite>parse_date</cite>, which is set to <cite>True</cite> instead of
+<cite>False</cite>. Hover over the entry boxes to see explanations of the options
+in the tooltips.</p>
 <p>If the csv file includes a Date/Time column, it is best to set this
 column as the index of the <a class="reference external" href="https://pandas.pydata.org/docs/reference/frame.html">pandas.DataFrame</a> by using
 <cite>index_col</cite>. Correct <cite>datetime</cite> is indicated if the index has the data
 type <cite>datetime64[ns]</cite> in the plot panels.  This is then correctly
 interpreted by the underlying Matplotlib when plotting, zooming, or
 panning the axes.</p>
-<p><cite>missing_value</cite> is not an option of pandas’ <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a>. It is here for
+<p><cite>missing_value</cite> is not an option of <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a>. It is here for
 convenience and any number entered in <cite>missing_value</cite> will be added to
 pandas <cite>na_values</cite>.</p>
 </section>
@@ -643,7 +648,9 @@ with <cite>pip</cite>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>dfvue
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> if it is installed. <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> is not on <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>. One might install <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> with <cite>pip</cite> in a conda environment to use <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> if it is installed. <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> is
+not on <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>. One might install <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> with <cite>pip</cite> in a conda
+environment to use <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>pip
 python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dfvue
 </pre></div>
