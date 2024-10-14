@@ -148,10 +148,10 @@ class dfvScatter(Frame):
             ewsmall = 3
             ewmed = 4
             ewbig = 7
-            
+
         # open file and new window
         self.newfile = Button(self, text="Open File",
-                                     command=self.new_csv)
+                              command=self.new_csv)
         self.newfiletip = add_tooltip(self.newfile, 'Open a new csv file')
         self.newfile.grid(row=0, column=0, sticky=tk.W)
         self.newwin = Button(
@@ -211,7 +211,7 @@ class dfvScatter(Frame):
         ylab.pack(side='left')
         # previous and next buttons
         self.bprev_y = Button(self.blocky, text="<", width=1,
-                                     command=self.prev_y)
+                              command=self.prev_y)
         self.bprev_ytip = add_tooltip(self.bprev_y, 'Previous variable')
         self.bprev_y.pack(side='left')
         self.bnext_y = Button(self.blocky, text=">", width=1,

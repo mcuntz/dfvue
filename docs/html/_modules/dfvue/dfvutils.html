@@ -333,12 +333,14 @@ document.write(`
 <span class="sd">   vardim2var</span>
 
 <span class="sd">History</span>
-<span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
-<span class="sd">    * Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz</span>
-<span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
-<span class="sd">    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</span>
-<span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
-<span class="sd">    * Allow list in window title in clone_dfvmain, Oct 2024, Matthias Cuntz</span>
+<span class="sd">   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
+<span class="sd">   * Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz</span>
+<span class="sd">   * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Allow list in window title in clone_dfvmain, Oct 2024, Matthias Cuntz</span>
+<span class="sd">   * Remove [ms] from check for datetime in format_coord on axes2,</span>
+<span class="sd">     Oct 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
@@ -449,20 +451,19 @@ document.write(`
 
     <span class="c1"># Special treatment for datetime</span>
     <span class="c1"># https://stackoverflow.com/questions/49267011/matplotlib-datetime-from-event-coordinates</span>
-    <span class="k">if</span> <span class="n">xdtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;&lt;M8[ms]&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">xdtype</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;datetime64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
         <span class="n">xstr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">xstr</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ydtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;&lt;M8[ms]&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ydtype</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;datetime64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
         <span class="n">ystr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">ax_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ystr</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ax_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">y2dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;&lt;M8[ms]&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">y2dtype</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;datetime64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
         <span class="n">y2str</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">y2str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">out</span>  <span class="o">=</span> <span class="s1">&#39;Left: (&#39;</span> <span class="o">+</span> <span class="n">xstr</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">ystr</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
-    <span class="n">out</span> <span class="o">+=</span> <span class="s1">&#39; Right: (&#39;</span> <span class="o">+</span> <span class="n">xstr</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">y2str</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Left: (</span><span class="si">{</span><span class="n">xstr</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">ystr</span><span class="si">}</span><span class="s1">) Right: (</span><span class="si">{</span><span class="n">xstr</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">y2str</span><span class="si">}</span><span class="s1">)&#39;</span>
     <span class="k">return</span> <span class="n">out</span></div>
 
 

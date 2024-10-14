@@ -750,6 +750,9 @@ class dfvReadcsv(Toplevel):
                 self.df = pd.read_csv(self.csvfile[0], **opts)
         # if iparsedates:
         #     True
+        # # Transformation
+        # if nrows is None:
+        #     self.df = self.df.resample('1D').mean().squeeze()
 
     def read_final(self, event=None):
         self.tree.destroy()

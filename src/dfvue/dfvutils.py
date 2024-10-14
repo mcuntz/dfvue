@@ -23,12 +23,14 @@ The following functions are provided:
    vardim2var
 
 History
-    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
-    * Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz
-    * Use CustomTkinter, Jun 2024, Matthias Cuntz
-    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
-    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
-    * Allow list in window title in clone_dfvmain, Oct 2024, Matthias Cuntz
+   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Use dfvMain directly for cloning window, Jun 2014, Matthias Cuntz
+   * Use CustomTkinter, Jun 2024, Matthias Cuntz
+   * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+   * Allow list in window title in clone_dfvmain, Oct 2024, Matthias Cuntz
+   * Remove [ms] from check for datetime in format_coord on axes2,
+     Oct 2024, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -134,20 +136,19 @@ def format_coord_scatter(x, y, ax, ax2, xdtype, ydtype, y2dtype):
 
     # Special treatment for datetime
     # https://stackoverflow.com/questions/49267011/matplotlib-datetime-from-event-coordinates
-    if xdtype == np.dtype('<M8[ms]'):
+    if xdtype.type == np.dtype('datetime64').type:
         xstr = mpld.num2date(x).strftime('%Y-%m-%d %H:%M:%S')
     else:
         xstr  = '{:.3g}'.format(x)
-    if ydtype == np.dtype('<M8[ms]'):
+    if ydtype.type == np.dtype('datetime64').type:
         ystr = mpld.num2date(ax_coord[1]).strftime('%Y-%m-%d %H:%M:%S')
     else:
         ystr  = '{:.3g}'.format(ax_coord[1])
-    if y2dtype == np.dtype('<M8[ms]'):
+    if y2dtype.type == np.dtype('datetime64').type:
         y2str = mpld.num2date(y).strftime('%Y-%m-%d %H:%M:%S')
     else:
         y2str = '{:.3g}'.format(y)
-    out  = 'Left: (' + xstr + ', ' + ystr + ')'
-    out += ' Right: (' + xstr + ', ' + y2str + ')'
+    out = f'Left: ({xstr}, {ystr}) Right: ({xstr}, {y2str})'
     return out
 
 
