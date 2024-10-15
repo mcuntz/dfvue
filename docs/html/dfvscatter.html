@@ -44,7 +44,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'dfvscatter';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dfvue" href="dfvue.html" />
+    <link rel="next" title="dfvtransform" href="dfvtransform.html" />
     <link rel="prev" title="dfvreadcsv" href="dfvreadcsv.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -152,6 +152,7 @@
 <li class="toctree-l2"><a class="reference internal" href="dfvmain.html">dfvmain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">dfvscatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvtransform.html">dfvtransform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvue.html">dfvue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvutils.html">dfvutils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html">ncvwidgets</a></li>
@@ -494,6 +495,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.tk_setPalette"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_setPalette()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.tk_strictMotif"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_strictMotif()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.tkraise"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tkraise()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.transform_df"><code class="docutils literal notranslate"><span class="pre">dfvScatter.transform_df()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.unbind"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.unbind_all"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind_all()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.unbind_class"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind_class()</span></code></a></li>
@@ -976,178 +978,181 @@ all axes, resetting zoom, etc.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.tkraise" title="dfvue.dfvscatter.dfvScatter.tkraise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tkraise</span></code></a>([aboveThis])</p></td>
 <td><p>Raise this widget in the stacking order.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.unbind" title="dfvue.dfvscatter.dfvScatter.unbind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbind</span></code></a>([sequence, funcid])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.transform_df" title="dfvue.dfvscatter.dfvScatter.transform_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform_df</span></code></a>()</p></td>
+<td><p>Manipulate DataFrame.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.unbind" title="dfvue.dfvscatter.dfvScatter.unbind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbind</span></code></a>([sequence, funcid])</p></td>
 <td><p>called on the tkinter.Canvas</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.unbind_all" title="dfvue.dfvscatter.dfvScatter.unbind_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbind_all</span></code></a>(sequence)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.unbind_all" title="dfvue.dfvscatter.dfvScatter.unbind_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbind_all</span></code></a>(sequence)</p></td>
 <td><p>Unbind for all widgets for event SEQUENCE all functions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.unbind_class" title="dfvue.dfvscatter.dfvScatter.unbind_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbind_class</span></code></a>(className, sequence)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.unbind_class" title="dfvue.dfvscatter.dfvScatter.unbind_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unbind_class</span></code></a>(className, sequence)</p></td>
 <td><p>Unbind for all widgets with bindtag CLASSNAME for event SEQUENCE all functions.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.update" title="dfvue.dfvscatter.dfvScatter.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.update" title="dfvue.dfvscatter.dfvScatter.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>()</p></td>
 <td><p>Enter event loop until all pending events have been processed by Tcl.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.update_idletasks" title="dfvue.dfvscatter.dfvScatter.update_idletasks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_idletasks</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.update_idletasks" title="dfvue.dfvscatter.dfvScatter.update_idletasks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_idletasks</span></code></a>()</p></td>
 <td><p>Enter event loop until all idle callbacks have been called.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.wait_variable" title="dfvue.dfvscatter.dfvScatter.wait_variable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_variable</span></code></a>([name])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.wait_variable" title="dfvue.dfvscatter.dfvScatter.wait_variable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_variable</span></code></a>([name])</p></td>
 <td><p>Wait until the variable is modified.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.wait_visibility" title="dfvue.dfvscatter.dfvScatter.wait_visibility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_visibility</span></code></a>([window])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.wait_visibility" title="dfvue.dfvscatter.dfvScatter.wait_visibility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_visibility</span></code></a>([window])</p></td>
 <td><p>Wait until the visibility of a WIDGET changes (e.g. it appears).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.wait_window" title="dfvue.dfvscatter.dfvScatter.wait_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_window</span></code></a>([window])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.wait_window" title="dfvue.dfvscatter.dfvScatter.wait_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_window</span></code></a>([window])</p></td>
 <td><p>Wait until a WIDGET is destroyed.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.waitvar" title="dfvue.dfvscatter.dfvScatter.waitvar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">waitvar</span></code></a>([name])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.waitvar" title="dfvue.dfvscatter.dfvScatter.waitvar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">waitvar</span></code></a>([name])</p></td>
 <td><p>Wait until the variable is modified.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_atom" title="dfvue.dfvscatter.dfvScatter.winfo_atom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_atom</span></code></a>(name[, displayof])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_atom" title="dfvue.dfvscatter.dfvScatter.winfo_atom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_atom</span></code></a>(name[, displayof])</p></td>
 <td><p>Return integer which represents atom NAME.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_atomname" title="dfvue.dfvscatter.dfvScatter.winfo_atomname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_atomname</span></code></a>(id[, displayof])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_atomname" title="dfvue.dfvscatter.dfvScatter.winfo_atomname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_atomname</span></code></a>(id[, displayof])</p></td>
 <td><p>Return name of atom with identifier ID.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_cells" title="dfvue.dfvscatter.dfvScatter.winfo_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_cells</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_cells" title="dfvue.dfvscatter.dfvScatter.winfo_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_cells</span></code></a>()</p></td>
 <td><p>Return number of cells in the colormap for this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_children" title="dfvue.dfvscatter.dfvScatter.winfo_children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_children</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_children" title="dfvue.dfvscatter.dfvScatter.winfo_children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_children</span></code></a>()</p></td>
 <td><p>winfo_children of CTkFrame without self.canvas widget, because it's not a child but part of the CTkFrame itself</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_class" title="dfvue.dfvscatter.dfvScatter.winfo_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_class</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_class" title="dfvue.dfvscatter.dfvScatter.winfo_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_class</span></code></a>()</p></td>
 <td><p>Return window class name of this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_colormapfull" title="dfvue.dfvscatter.dfvScatter.winfo_colormapfull"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_colormapfull</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_colormapfull" title="dfvue.dfvscatter.dfvScatter.winfo_colormapfull"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_colormapfull</span></code></a>()</p></td>
 <td><p>Return True if at the last color request the colormap was full.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_containing" title="dfvue.dfvscatter.dfvScatter.winfo_containing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_containing</span></code></a>(rootX, rootY[, displayof])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_containing" title="dfvue.dfvscatter.dfvScatter.winfo_containing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_containing</span></code></a>(rootX, rootY[, displayof])</p></td>
 <td><p>Return the widget which is at the root coordinates ROOTX, ROOTY.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_depth" title="dfvue.dfvscatter.dfvScatter.winfo_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_depth</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_depth" title="dfvue.dfvscatter.dfvScatter.winfo_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_depth</span></code></a>()</p></td>
 <td><p>Return the number of bits per pixel.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_exists" title="dfvue.dfvscatter.dfvScatter.winfo_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_exists</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_exists" title="dfvue.dfvscatter.dfvScatter.winfo_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_exists</span></code></a>()</p></td>
 <td><p>Return true if this widget exists.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_fpixels" title="dfvue.dfvscatter.dfvScatter.winfo_fpixels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_fpixels</span></code></a>(number)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_fpixels" title="dfvue.dfvscatter.dfvScatter.winfo_fpixels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_fpixels</span></code></a>(number)</p></td>
 <td><p>Return the number of pixels for the given distance NUMBER (e.g. &quot;3c&quot;) as float.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_geometry" title="dfvue.dfvscatter.dfvScatter.winfo_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_geometry</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_geometry" title="dfvue.dfvscatter.dfvScatter.winfo_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_geometry</span></code></a>()</p></td>
 <td><p>Return geometry string for this widget in the form &quot;widthxheight+X+Y&quot;.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_height" title="dfvue.dfvscatter.dfvScatter.winfo_height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_height</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_height" title="dfvue.dfvscatter.dfvScatter.winfo_height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_height</span></code></a>()</p></td>
 <td><p>Return height of this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_id" title="dfvue.dfvscatter.dfvScatter.winfo_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_id</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_id" title="dfvue.dfvscatter.dfvScatter.winfo_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_id</span></code></a>()</p></td>
 <td><p>Return identifier ID for this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_interps" title="dfvue.dfvscatter.dfvScatter.winfo_interps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_interps</span></code></a>([displayof])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_interps" title="dfvue.dfvscatter.dfvScatter.winfo_interps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_interps</span></code></a>([displayof])</p></td>
 <td><p>Return the name of all Tcl interpreters for this display.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_ismapped" title="dfvue.dfvscatter.dfvScatter.winfo_ismapped"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_ismapped</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_ismapped" title="dfvue.dfvscatter.dfvScatter.winfo_ismapped"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_ismapped</span></code></a>()</p></td>
 <td><p>Return true if this widget is mapped.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_manager" title="dfvue.dfvscatter.dfvScatter.winfo_manager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_manager</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_manager" title="dfvue.dfvscatter.dfvScatter.winfo_manager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_manager</span></code></a>()</p></td>
 <td><p>Return the window manager name for this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_name" title="dfvue.dfvscatter.dfvScatter.winfo_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_name</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_name" title="dfvue.dfvscatter.dfvScatter.winfo_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_name</span></code></a>()</p></td>
 <td><p>Return the name of this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_parent" title="dfvue.dfvscatter.dfvScatter.winfo_parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_parent</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_parent" title="dfvue.dfvscatter.dfvScatter.winfo_parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_parent</span></code></a>()</p></td>
 <td><p>Return the name of the parent of this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pathname" title="dfvue.dfvscatter.dfvScatter.winfo_pathname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pathname</span></code></a>(id[, displayof])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pathname" title="dfvue.dfvscatter.dfvScatter.winfo_pathname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pathname</span></code></a>(id[, displayof])</p></td>
 <td><p>Return the pathname of the widget given by ID.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pixels" title="dfvue.dfvscatter.dfvScatter.winfo_pixels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pixels</span></code></a>(number)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pixels" title="dfvue.dfvscatter.dfvScatter.winfo_pixels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pixels</span></code></a>(number)</p></td>
 <td><p>Rounded integer value of winfo_fpixels.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pointerx" title="dfvue.dfvscatter.dfvScatter.winfo_pointerx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pointerx</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pointerx" title="dfvue.dfvscatter.dfvScatter.winfo_pointerx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pointerx</span></code></a>()</p></td>
 <td><p>Return the x coordinate of the pointer on the root window.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pointerxy" title="dfvue.dfvscatter.dfvScatter.winfo_pointerxy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pointerxy</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pointerxy" title="dfvue.dfvscatter.dfvScatter.winfo_pointerxy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pointerxy</span></code></a>()</p></td>
 <td><p>Return a tuple of x and y coordinates of the pointer on the root window.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pointery" title="dfvue.dfvscatter.dfvScatter.winfo_pointery"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pointery</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_pointery" title="dfvue.dfvscatter.dfvScatter.winfo_pointery"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_pointery</span></code></a>()</p></td>
 <td><p>Return the y coordinate of the pointer on the root window.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_reqheight" title="dfvue.dfvscatter.dfvScatter.winfo_reqheight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_reqheight</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_reqheight" title="dfvue.dfvscatter.dfvScatter.winfo_reqheight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_reqheight</span></code></a>()</p></td>
 <td><p>Return requested height of this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_reqwidth" title="dfvue.dfvscatter.dfvScatter.winfo_reqwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_reqwidth</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_reqwidth" title="dfvue.dfvscatter.dfvScatter.winfo_reqwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_reqwidth</span></code></a>()</p></td>
 <td><p>Return requested width of this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_rgb" title="dfvue.dfvscatter.dfvScatter.winfo_rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_rgb</span></code></a>(color)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_rgb" title="dfvue.dfvscatter.dfvScatter.winfo_rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_rgb</span></code></a>(color)</p></td>
 <td><p>Return a tuple of integer RGB values in range(65536) for color in this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_rootx" title="dfvue.dfvscatter.dfvScatter.winfo_rootx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_rootx</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_rootx" title="dfvue.dfvscatter.dfvScatter.winfo_rootx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_rootx</span></code></a>()</p></td>
 <td><p>Return x coordinate of upper left corner of this widget on the root window.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_rooty" title="dfvue.dfvscatter.dfvScatter.winfo_rooty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_rooty</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_rooty" title="dfvue.dfvscatter.dfvScatter.winfo_rooty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_rooty</span></code></a>()</p></td>
 <td><p>Return y coordinate of upper left corner of this widget on the root window.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screen" title="dfvue.dfvscatter.dfvScatter.winfo_screen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screen</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screen" title="dfvue.dfvscatter.dfvScatter.winfo_screen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screen</span></code></a>()</p></td>
 <td><p>Return the screen name of this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screencells" title="dfvue.dfvscatter.dfvScatter.winfo_screencells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screencells</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screencells" title="dfvue.dfvscatter.dfvScatter.winfo_screencells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screencells</span></code></a>()</p></td>
 <td><p>Return the number of the cells in the colormap of the screen of this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screendepth" title="dfvue.dfvscatter.dfvScatter.winfo_screendepth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screendepth</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screendepth" title="dfvue.dfvscatter.dfvScatter.winfo_screendepth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screendepth</span></code></a>()</p></td>
 <td><p>Return the number of bits per pixel of the root window of the screen of this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenheight" title="dfvue.dfvscatter.dfvScatter.winfo_screenheight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenheight</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenheight" title="dfvue.dfvscatter.dfvScatter.winfo_screenheight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenheight</span></code></a>()</p></td>
 <td><p>Return the number of pixels of the height of the screen of this widget in pixel.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenmmheight" title="dfvue.dfvscatter.dfvScatter.winfo_screenmmheight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenmmheight</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenmmheight" title="dfvue.dfvscatter.dfvScatter.winfo_screenmmheight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenmmheight</span></code></a>()</p></td>
 <td><p>Return the number of pixels of the height of the screen of this widget in mm.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenmmwidth" title="dfvue.dfvscatter.dfvScatter.winfo_screenmmwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenmmwidth</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenmmwidth" title="dfvue.dfvscatter.dfvScatter.winfo_screenmmwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenmmwidth</span></code></a>()</p></td>
 <td><p>Return the number of pixels of the width of the screen of this widget in mm.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenvisual" title="dfvue.dfvscatter.dfvScatter.winfo_screenvisual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenvisual</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenvisual" title="dfvue.dfvscatter.dfvScatter.winfo_screenvisual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenvisual</span></code></a>()</p></td>
 <td><p>Return one of the strings directcolor, grayscale, pseudocolor, staticcolor, staticgray, or truecolor for the default colormodel of this screen.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenwidth" title="dfvue.dfvscatter.dfvScatter.winfo_screenwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenwidth</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_screenwidth" title="dfvue.dfvscatter.dfvScatter.winfo_screenwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_screenwidth</span></code></a>()</p></td>
 <td><p>Return the number of pixels of the width of the screen of this widget in pixel.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_server" title="dfvue.dfvscatter.dfvScatter.winfo_server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_server</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_server" title="dfvue.dfvscatter.dfvScatter.winfo_server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_server</span></code></a>()</p></td>
 <td><p>Return information of the X-Server of the screen of this widget in the form &quot;XmajorRminor vendor vendorVersion&quot;.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_toplevel" title="dfvue.dfvscatter.dfvScatter.winfo_toplevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_toplevel</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_toplevel" title="dfvue.dfvscatter.dfvScatter.winfo_toplevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_toplevel</span></code></a>()</p></td>
 <td><p>Return the toplevel widget of this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_viewable" title="dfvue.dfvscatter.dfvScatter.winfo_viewable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_viewable</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_viewable" title="dfvue.dfvscatter.dfvScatter.winfo_viewable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_viewable</span></code></a>()</p></td>
 <td><p>Return true if the widget and all its higher ancestors are mapped.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_visual" title="dfvue.dfvscatter.dfvScatter.winfo_visual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_visual</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_visual" title="dfvue.dfvscatter.dfvScatter.winfo_visual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_visual</span></code></a>()</p></td>
 <td><p>Return one of the strings directcolor, grayscale, pseudocolor, staticcolor, staticgray, or truecolor for the colormodel of this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_visualid" title="dfvue.dfvscatter.dfvScatter.winfo_visualid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_visualid</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_visualid" title="dfvue.dfvscatter.dfvScatter.winfo_visualid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_visualid</span></code></a>()</p></td>
 <td><p>Return the X identifier for the visual for this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_visualsavailable" title="dfvue.dfvscatter.dfvScatter.winfo_visualsavailable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_visualsavailable</span></code></a>([includeids])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_visualsavailable" title="dfvue.dfvscatter.dfvScatter.winfo_visualsavailable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_visualsavailable</span></code></a>([includeids])</p></td>
 <td><p>Return a list of all visuals available for the screen of this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_vrootheight" title="dfvue.dfvscatter.dfvScatter.winfo_vrootheight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_vrootheight</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_vrootheight" title="dfvue.dfvscatter.dfvScatter.winfo_vrootheight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_vrootheight</span></code></a>()</p></td>
 <td><p>Return the height of the virtual root window associated with this widget in pixels.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_vrootwidth" title="dfvue.dfvscatter.dfvScatter.winfo_vrootwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_vrootwidth</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_vrootwidth" title="dfvue.dfvscatter.dfvScatter.winfo_vrootwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_vrootwidth</span></code></a>()</p></td>
 <td><p>Return the width of the virtual root window associated with this widget in pixel.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_vrootx" title="dfvue.dfvscatter.dfvScatter.winfo_vrootx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_vrootx</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_vrootx" title="dfvue.dfvscatter.dfvScatter.winfo_vrootx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_vrootx</span></code></a>()</p></td>
 <td><p>Return the x offset of the virtual root relative to the root window of the screen of this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_vrooty" title="dfvue.dfvscatter.dfvScatter.winfo_vrooty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_vrooty</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_vrooty" title="dfvue.dfvscatter.dfvScatter.winfo_vrooty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_vrooty</span></code></a>()</p></td>
 <td><p>Return the y offset of the virtual root relative to the root window of the screen of this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_width" title="dfvue.dfvscatter.dfvScatter.winfo_width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_width</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_width" title="dfvue.dfvscatter.dfvScatter.winfo_width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_width</span></code></a>()</p></td>
 <td><p>Return the width of this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_x" title="dfvue.dfvscatter.dfvScatter.winfo_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_x</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_x" title="dfvue.dfvscatter.dfvScatter.winfo_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_x</span></code></a>()</p></td>
 <td><p>Return the x coordinate of the upper left corner of this widget in the parent.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_y" title="dfvue.dfvscatter.dfvScatter.winfo_y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_y</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscatter.dfvScatter.winfo_y" title="dfvue.dfvscatter.dfvScatter.winfo_y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">winfo_y</span></code></a>()</p></td>
 <td><p>Return the y coordinate of the upper left corner of this widget in the parent.</p></td>
 </tr>
 </tbody>
@@ -2201,6 +2206,12 @@ Returns the set value.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvscatter.dfvScatter.transform_df">
+<span class="sig-name descname"><span class="pre">transform_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscatter.html#dfvScatter.transform_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscatter.dfvScatter.transform_df" title="Link to this definition">#</a></dt>
+<dd><p>Manipulate DataFrame.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvscatter.dfvScatter.unbind">
 <span class="sig-name descname"><span class="pre">unbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvscatter.dfvScatter.unbind" title="Link to this definition">#</a></dt>
 <dd><p>called on the tkinter.Canvas</p>
@@ -2609,11 +2620,11 @@ in the parent.</p>
       </div>
     </a>
     <a class="right-next"
-       href="dfvue.html"
+       href="dfvtransform.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">dfvue</p>
+        <p class="prev-next-title">dfvtransform</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2756,6 +2767,7 @@ in the parent.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.tk_setPalette"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_setPalette()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.tk_strictMotif"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tk_strictMotif()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.tkraise"><code class="docutils literal notranslate"><span class="pre">dfvScatter.tkraise()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.transform_df"><code class="docutils literal notranslate"><span class="pre">dfvScatter.transform_df()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.unbind"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.unbind_all"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind_all()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscatter.dfvScatter.unbind_class"><code class="docutils literal notranslate"><span class="pre">dfvScatter.unbind_class()</span></code></a></li>

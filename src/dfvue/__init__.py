@@ -14,6 +14,7 @@ Subpackages
    dfvmain
    dfvreadcsv
    dfvscatter
+   dfvtransform
    dfvue
    dfvutils
    ncvwidgets
@@ -52,6 +53,9 @@ from .dfvreadcsv import dfvReadcsv
 # scatter/line panel
 from .dfvscatter import dfvScatter
 
+# manipulate DataFrame
+from .dfvtransform import dfvTransform
+
 # main window with panels
 from .dfvmain import dfvMain
 
@@ -70,6 +74,7 @@ __all__ = ['TooltipBase', 'OnHoverTooltipBase', 'Hovertip',
            'read_csvopts', 'read_csvdefaults', 'read_csvhelp',
            'dfvReadcsv',
            'dfvScatter',
+           'dfvTransform',
            'dfvMain',
            'dfvue',
            ]

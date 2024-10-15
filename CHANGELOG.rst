@@ -1,7 +1,8 @@
 Changelog
 ---------
 
-v5.0 (??? 2024)
+v5.0 (Oct 2024)
+   * `Transform` window to manipulate DataFrame.
    * Correct datetime formatting in coordinate printing.
    * Move from token to trusted publisher on PyPI.
    * Silence FutureWarning from `pandas.read_csv`.

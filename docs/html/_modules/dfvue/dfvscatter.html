@@ -151,6 +151,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../dfvmain.html">dfvmain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvreadcsv.html">dfvreadcsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvscatter.html">dfvscatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvtransform.html">dfvtransform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvue.html">dfvue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvutils.html">dfvutils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../ncvwidgets.html">ncvwidgets</a></li>
@@ -359,6 +360,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">.ncvwidgets</span> <span class="kn">import</span> <span class="n">add_checkbutton</span><span class="p">,</span> <span class="n">add_combobox</span><span class="p">,</span> <span class="n">add_entry</span>
 <span class="kn">from</span> <span class="nn">.ncvwidgets</span> <span class="kn">import</span> <span class="n">add_tooltip</span>
 <span class="kn">from</span> <span class="nn">.dfvreadcsv</span> <span class="kn">import</span> <span class="n">dfvReadcsv</span>
+<span class="kn">from</span> <span class="nn">.dfvtransform</span> <span class="kn">import</span> <span class="n">dfvTransform</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-dark&#39;</span><span class="p">)</span>
@@ -594,6 +596,11 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mew&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewsmall</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker edge width&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mewframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="c1"># Transform data frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Transform&quot;</span><span class="p">,</span>
+                                <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transform_df</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformtip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="s1">&#39;Manipulate DataFrame&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
         <span class="c1"># redraw button</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bsort</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Sort vars&quot;</span><span class="p">,</span>
                             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sortvars</span><span class="p">)</span>
@@ -1035,6 +1042,16 @@ document.write(`
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">redraw</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="dfvScatter.transform_df">
+<a class="viewcode-back" href="../../dfvscatter.html#dfvue.dfvscatter.dfvScatter.transform_df">[docs]</a>
+    <span class="k">def</span> <span class="nf">transform_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Manipulate DataFrame.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">dfvTransform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">)</span></div>
 
 
     <span class="c1">#</span>

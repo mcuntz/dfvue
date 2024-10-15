@@ -49,6 +49,7 @@ from .dfvutils import clone_dfvmain, format_coord_scatter, vardim2var
 from .ncvwidgets import add_checkbutton, add_combobox, add_entry
 from .ncvwidgets import add_tooltip
 from .dfvreadcsv import dfvReadcsv
+from .dfvtransform import dfvTransform
 from matplotlib import pyplot as plt
 try:
     plt.style.use('seaborn-v0_8-dark')
@@ -282,6 +283,11 @@ class dfvScatter(Frame):
             self.blockyopt, label="mew", text='1', width=ewsmall,
             command=self.entered_y, tooltip="Marker edge width")
         self.mewframe.pack(side=tk.LEFT)
+        # Transform data frame
+        self.transform = Button(self, text="Transform",
+                                command=self.transform_df)
+        self.transformtip = add_tooltip(self.transform, 'Manipulate DataFrame')
+        self.transform.grid(row=16, column=8, sticky=tk.E)
         # redraw button
         self.bsort = Button(self, text="Sort vars",
                             command=self.sortvars)
@@ -667,6 +673,13 @@ class dfvScatter(Frame):
 
         """
         self.redraw()
+
+    def transform_df(self):
+        """
+        Manipulate DataFrame.
+
+        """
+        self.df = dfvTransform(self.top, callback=self.reset)
 
     #
     # Methods

@@ -13,6 +13,7 @@ API
    dfvmain.rst
    dfvreadcsv.rst
    dfvscatter.rst
+   dfvtransform.rst
    dfvue.rst
    dfvutils.rst
    ncvwidgets.rst
