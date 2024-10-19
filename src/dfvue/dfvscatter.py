@@ -284,7 +284,7 @@ class dfvScatter(Frame):
             command=self.entered_y, tooltip="Marker edge width")
         self.mewframe.pack(side=tk.LEFT)
         # Transform data frame
-        self.transform = Button(self, text="Transform",
+        self.transform = Button(self, text="Transform df",
                                 command=self.transform_df)
         self.transformtip = add_tooltip(self.transform, 'Manipulate DataFrame')
         self.transform.grid(row=16, column=8, sticky=tk.E)

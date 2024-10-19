@@ -86,7 +86,7 @@ class dfvTransform(Toplevel):
                              font=("Helvetica", 18), wrap='none')
         else:
             # characters
-            self.text = Text(self.rowtext, height=24, width=88,
+            self.text = Text(self.rowtext, height=22, width=88,
                              font=("Helvetica", 18), wrap='none')
         # self.text = Text(self.rowtext, height=24, width=88,
         #                  font=("Helvetica", 18), wrap='none')
