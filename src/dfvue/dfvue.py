@@ -26,6 +26,7 @@ History
     * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
     * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
     * Allow multiple input files, Oct 2024, Matthias Cuntz
+    * Import pyplot for Windows, Oct 2024, Matthias Cuntz
 
 """
 import os
@@ -41,6 +42,7 @@ except ModuleNotFoundError:
     from tkinter import Tk
     from tkinter import Toplevel
     ihavectk = False
+from matplotlib import pyplot as plt
 from .dfvmain import dfvMain
 
 

@@ -2,6 +2,7 @@ Changelog
 ---------
 
 v5.0 (Oct 2024)
+   * pyplot was not imported on Windows in `dfvue`.
    * `Transform` window to manipulate DataFrame.
    * Correct datetime formatting in coordinate printing.
    * Move from token to trusted publisher on PyPI.
