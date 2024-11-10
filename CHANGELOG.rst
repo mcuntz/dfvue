@@ -1,10 +1,8 @@
 Changelog
 ---------
 
-v5.1 (Oct 2024)
+v5.0 (Nov 2024)
    * Back to pack layout manager for resizing of plotting window.
-
-v5.0 (Oct 2024)
    * pyplot was not imported on Windows in `dfvue`.
    * `Transform` window to manipulate DataFrame.
    * Correct datetime formatting in coordinate printing.
