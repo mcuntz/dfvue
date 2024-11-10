@@ -20,13 +20,14 @@ The following functions are provided:
    dfvue
 
 History
-    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
-      adapted ncvue.py
-    * Use CustomTkinter, Jun 2024, Matthias Cuntz
-    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
-    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
-    * Allow multiple input files, Oct 2024, Matthias Cuntz
-    * Import pyplot for Windows, Oct 2024, Matthias Cuntz
+   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+     adapted ncvue.py
+   * Use CustomTkinter, Jun 2024, Matthias Cuntz
+   * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+   * Allow multiple input files, Oct 2024, Matthias Cuntz
+   * Import pyplot for Windows, Oct 2024, Matthias Cuntz
+   * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
 
 """
 import os
@@ -185,6 +186,6 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
 
     # 1st plotting window
     main_frame = dfvMain(root)
-    main_frame.grid(sticky=tk.W + tk.E + tk.S + tk.N)
+    main_frame.pack(fill=tk.BOTH, expand=1)
 
     top.mainloop()

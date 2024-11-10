@@ -31,6 +31,7 @@ History
    * Allow list in window title in clone_dfvmain, Oct 2024, Matthias Cuntz
    * Remove [ms] from check for datetime in format_coord on axes2,
      Oct 2024, Matthias Cuntz
+   * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -89,9 +90,19 @@ def clone_dfvmain(widget):
     root.title(tit)
     root.geometry('1000x800+150+100')
 
-    cls = dfvue.dfvMain
+    # https://stackoverflow.com/questions/46505982/is-there-a-way-to-clone-a-tkinter-widget
+    cls = widget.__class__
     clone = cls(root)
-    clone.grid(sticky=tk.W + tk.E + tk.S + tk.N)
+    try:
+        for key in widget.configure():
+            if key != 'class':
+                clone.configure({key: widget.cget(key)})
+    except TypeError:
+        cls = dfvue.dfvMain
+        clone = cls(root)
+        clone.pack(fill=tk.BOTH, expand=1)
+
+    return clone
 
 
 #

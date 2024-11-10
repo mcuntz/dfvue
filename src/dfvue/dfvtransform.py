@@ -19,7 +19,7 @@ The following classes are provided:
    dfvTransform
 
 History
-    * Written Oct 2024 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Written Oct 2024 by Matthias Cuntz (mc (at) macu (dot) de)
 
 """
 try:

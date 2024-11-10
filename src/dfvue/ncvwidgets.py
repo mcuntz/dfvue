@@ -29,24 +29,23 @@ The following functions are provided:
    Treeview
 
 History
-    * Written Nov-Dec 2020 by Matthias Cuntz (mc (at) macu (dot) de)
-    * Added tooltips to all widgets with class Tooltip,
-      Jan 2021, Matthias Cuntz
-    * Added add_tooltip widget, Jan 2021, Matthias Cuntz
-    * add_spinbox returns also label widget, Jan 2021, Matthias Cuntz
-    * padlabel for add_entry to add space to previous widget,
-      Jul 2023, Matthias Cuntz
-    * labelwidth for add_entry to align columns with pack,
-      Jul 2023, Matthias Cuntz
-    * Replace tk constants with strings such as tk.LEFT with 'left',
-      Jul 2023, Matthias Cuntz
-    * Use Hovertip from local copy of tooltip.py, Jul 2023, Matthias Cuntz
-    * Added Treeview class with optional horizontal and vertical scroolbars,
-      Jul 2023, Matthias Cuntz
-    * Added callurl function, Dec 2023, Matthias Cuntz
-    * Use CustomTkinter, Jun 2024, Matthias Cuntz
-    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
-    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+   * Written Nov-Dec 2020 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Added tooltips to all widgets with class Tooltip,
+     Jan 2021, Matthias Cuntz
+   * Added add_tooltip widget, Jan 2021, Matthias Cuntz
+   * add_spinbox returns also label widget, Jan 2021, Matthias Cuntz
+   * padlabel for add_entry to add space to previous widget,
+     Jul 2023, Matthias Cuntz
+   * labelwidth for add_entry to align columns with pack,
+     Jul 2023, Matthias Cuntz
+   * Replace tk constants with strings such as tk.LEFT with 'left',
+     Jul 2023, Matthias Cuntz
+   * Use Hovertip from local copy of tooltip.py, Jul 2023, Matthias Cuntz
+   * Added Treeview class with optional horizontal and vertical scroolbars,
+     Jul 2023, Matthias Cuntz
+   * Added callurl function, Dec 2023, Matthias Cuntz
+   * Use CustomTkinter, Jun 2024, Matthias Cuntz
+   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
 
 """
 import tkinter as tk

@@ -24,11 +24,11 @@ The following classes are provided:
    dfvReadcsv
 
 History
-    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
-    * Use CustomTkinter, Jun 2024, Matthias Cuntz
-    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
-    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
-    * Concat multiple input files, Oct 2024, Matthias Cuntz
+   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Use CustomTkinter, Jun 2024, Matthias Cuntz
+   * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+   * Concat multiple input files, Oct 2024, Matthias Cuntz
 
 """
 import tkinter as tk

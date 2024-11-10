@@ -21,11 +21,12 @@ The following classes are provided:
    dfvScatter
 
 History
-    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
-    * Use CustomTkinter, Jun 2024, Matthias Cuntz
-    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
-    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
-    * Allow multiple input files, Oct 2024, Matthias Cuntz
+   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Use CustomTkinter, Jun 2024, Matthias Cuntz
+   * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+   * Allow multiple input files, Oct 2024, Matthias Cuntz
+   * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -151,16 +152,18 @@ class dfvScatter(Frame):
             ewbig = 7
 
         # open file and new window
-        self.newfile = Button(self, text="Open File",
+        self.rowwin = Frame(self)
+        self.rowwin.pack(side=tk.TOP, fill=tk.X)
+        self.newfile = Button(self.rowwin, text="Open File",
                               command=self.new_csv)
         self.newfiletip = add_tooltip(self.newfile, 'Open a new csv file')
-        self.newfile.grid(row=0, column=0, sticky=tk.W)
+        self.newfile.pack(side=tk.LEFT)
         self.newwin = Button(
-            self, text="New Window",
+            self.rowwin, text="New Window",
             command=partial(clone_dfvmain, self.master))
         self.newwintip = add_tooltip(
             self.newwin, 'Open secondary dfvue window')
-        self.newwin.grid(row=0, column=8, sticky=tk.E)
+        self.newwin.pack(side=tk.RIGHT)
 
         # plotting canvas
         self.figure = Figure(facecolor="white", figsize=(1, 1))
@@ -171,23 +174,21 @@ class dfvScatter(Frame):
         self.canvas = FigureCanvasTkAgg(self.figure, master=self)
         self.canvas.draw()
         self.tkcanvas = self.canvas.get_tk_widget()
-        self.tkcanvas.grid(row=1, column=0, rowspan=12, columnspan=9,
-                           sticky=tk.NSEW)
-        # if ihavectk:
-        self.rowconfigure(1, minsize=canvasheight)
+        self.tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
 
         # matplotlib toolbar
         # toolbar uses pack internally -> put into frame
-        self.toolwin = Frame(self)
-        self.toolbar = NavigationToolbar2Tk(self.canvas, self.toolwin,
+        self.toolbar = NavigationToolbar2Tk(self.canvas, self,
                                             pack_toolbar=True)
         self.toolbar.update()
-        self.toolwin.grid(row=13, column=0, columnspan=9, sticky=tk.W)
+        self.toolbar.pack(side=tk.TOP, fill=tk.X)
 
         # x-axis and left y-axis
+        self.rowxy = Frame(self)
+        self.rowxy.pack(side=tk.TOP, fill=tk.X)
         # block with x
-        self.blockx = Frame(self)
-        self.blockx.grid(row=14, column=0, columnspan=3, sticky=tk.W)
+        self.blockx = Frame(self.rowxy)
+        self.blockx.pack(side=tk.LEFT)
         # x
         self.xframe, self.xlbl, self.x, self.xtip = add_combobox(
             self.blockx, label="x", values=columns, command=self.selected_x,
@@ -203,8 +204,8 @@ class dfvScatter(Frame):
              tooltip="Invert x-axis")
         self.inv_xframe.pack(side=tk.LEFT)
         # block with y
-        self.blocky = Frame(self)
-        self.blocky.grid(row=14, column=3, columnspan=4, sticky=tk.W)
+        self.blocky = Frame(self.rowxy)
+        self.blocky.pack(side=tk.LEFT)
         # y label
         self.ylbl = tk.StringVar()
         self.ylbl.set("y")
@@ -237,14 +238,16 @@ class dfvScatter(Frame):
              tooltip="Invert y-axis")
         self.inv_yframe.pack(side=tk.LEFT)
         # redraw button
-        self.bredraw = Button(self, text="Redraw",
+        self.bredraw = Button(self.rowxy, text="Redraw",
                               command=self.redraw)
         self.bredrawtip = add_tooltip(self.bredraw, 'Redraw, resetting zoom')
-        self.bredraw.grid(row=14, column=8, sticky=tk.E)
+        self.bredraw.pack(side=tk.RIGHT)
 
         # options for lhs y-axis
-        self.blockyopt = Frame(self)
-        self.blockyopt.grid(row=15, column=0, columnspan=6, sticky=tk.W)
+        self.rowxyopt = Frame(self)
+        self.rowxyopt.pack(side=tk.TOP, fill=tk.X)
+        self.blockyopt = Frame(self.rowxyopt)
+        self.blockyopt.pack(side=tk.LEFT)
         self.lsframe, self.lslbl, self.ls, self.lstip = add_entry(
             self.blockyopt, label="ls", text='-', width=ewmed,
             command=self.entered_y,
@@ -283,23 +286,25 @@ class dfvScatter(Frame):
             self.blockyopt, label="mew", text='1', width=ewsmall,
             command=self.entered_y, tooltip="Marker edge width")
         self.mewframe.pack(side=tk.LEFT)
-        # Transform data frame
-        self.transform = Button(self, text="Transform df",
-                                command=self.transform_df)
-        self.transformtip = add_tooltip(self.transform, 'Manipulate DataFrame')
-        self.transform.grid(row=16, column=8, sticky=tk.E)
         # redraw button
-        self.bsort = Button(self, text="Sort vars",
+        self.bsort = Button(self.rowxyopt, text="Sort vars",
                             command=self.sortvars)
         self.bsorttip = add_tooltip(self.bsort, 'Sort variable names')
-        self.bsort.grid(row=15, column=8, sticky=tk.E)
+        self.bsort.pack(side=tk.RIGHT)
 
-        # empty row
-        self.rowconfigure(16, minsize=20)
+        # Transform data frame
+        self.rowtransform = Frame(self)
+        self.rowtransform.pack(side=tk.TOP, fill=tk.X)
+        self.transform = Button(self.rowtransform, text="Transform df",
+                                command=self.transform_df)
+        self.transformtip = add_tooltip(self.transform, 'Manipulate DataFrame')
+        self.transform.pack(side=tk.RIGHT)
 
         # right y2-axis
-        self.blocky2 = Frame(self)
-        self.blocky2.grid(row=17, column=0, columnspan=4, sticky=tk.W)
+        self.rowyy2 = Frame(self)
+        self.rowyy2.pack(side=tk.TOP, fill=tk.X)
+        self.blocky2 = Frame(self.rowyy2)
+        self.blocky2.pack(side=tk.TOP, fill=tk.X)
         # y label
         self.ylbl2 = tk.StringVar()
         self.ylbl2.set("y2")
@@ -340,8 +345,10 @@ class dfvScatter(Frame):
         self.same_yframe.pack(side=tk.LEFT)
 
         # options for rhs y-axis 2
-        self.blocky2opt = Frame(self)
-        self.blocky2opt.grid(row=18, column=0, columnspan=6, sticky=tk.W)
+        self.rowy2opt = Frame(self)
+        self.rowy2opt.pack(side=tk.TOP, fill=tk.X)
+        self.blocky2opt = Frame(self.rowy2opt)
+        self.blocky2opt.pack(side=tk.TOP, fill=tk.X)
         self.ls2frame, self.ls2lbl, self.ls2, self.ls2tip = add_entry(
             self.blocky2opt, label="ls", text='-', width=ewmed,
             command=self.entered_y2,
@@ -378,11 +385,14 @@ class dfvScatter(Frame):
             self.blocky2opt, label="mew", text='1', width=ewsmall,
             command=self.entered_y2, tooltip="Marker edge width")
         self.mew2frame.pack(side=tk.LEFT)
+
         # Quit button
-        self.bquit = Button(self, text="Quit",
+        self.rowquit = Frame(self)
+        self.rowquit.pack(side=tk.TOP, fill=tk.X)
+        self.bquit = Button(self.rowquit, text="Quit",
                             command=self.master.top.destroy)
         self.bquittip = add_tooltip(self.bquit, 'Quit dfvue')
-        self.bquit.grid(row=18, column=8, sticky=tk.E)
+        self.bquit.pack(side=tk.RIGHT, fill=tk.X)
 
         if self.csvfile and (self.master.master.name == 'dfvOne'):
             self.new_df()

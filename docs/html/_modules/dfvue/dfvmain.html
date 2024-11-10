@@ -330,10 +330,11 @@ document.write(`
 <span class="sd">   dfvMain</span>
 
 <span class="sd">History</span>
-<span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
-<span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
-<span class="sd">    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</span>
-<span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
+<span class="sd">   * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
@@ -385,12 +386,13 @@ document.write(`
             <span class="n">itab</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span>
             <span class="n">itab</span><span class="o">.</span><span class="n">top</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span> <span class="o">=</span> <span class="n">dfvScatter</span><span class="p">(</span><span class="n">itab</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">S</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Notebook for tabs for future plot types</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">S</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span> <span class="o">=</span> <span class="n">dfvScatter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_scatter</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
 </pre></div>

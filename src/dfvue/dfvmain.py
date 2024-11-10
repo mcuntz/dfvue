@@ -19,10 +19,11 @@ The following classes are provided:
    dfvMain
 
 History
-    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
-    * Use CustomTkinter, Jun 2024, Matthias Cuntz
-    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
-    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Use CustomTkinter, Jun 2024, Matthias Cuntz
+   * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
+   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+   * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -72,10 +73,11 @@ class dfvMain(Frame):
             itab.master = self.master
             itab.top    = self.top
             self.tab_scatter = dfvScatter(itab)
-            self.tab_scatter.grid(sticky=tk.W + tk.E + tk.S + tk.N)
+            self.tab_scatter.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         else:
             # Notebook for tabs for future plot types
             self.tabs = ttk.Notebook(self)
-            self.tabs.grid(sticky=tk.W + tk.E + tk.S + tk.N)
+            self.tabs.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
             self.tab_scatter = dfvScatter(self)
+            self.tab_scatter.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
             self.tabs.add(self.tab_scatter, text=self.tab_scatter.name)

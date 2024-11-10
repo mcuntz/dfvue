@@ -20,7 +20,7 @@ Subpackages
    ncvwidgets
 
 History
-    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
 
 """
 # version, author

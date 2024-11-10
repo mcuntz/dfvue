@@ -331,12 +331,14 @@ document.write(`
 <span class="sd">   dfvue</span>
 
 <span class="sd">History</span>
-<span class="sd">    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
-<span class="sd">      adapted ncvue.py</span>
-<span class="sd">    * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
-<span class="sd">    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</span>
-<span class="sd">    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
-<span class="sd">    * Allow multiple input files, Oct 2024, Matthias Cuntz</span>
+<span class="sd">   * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)</span>
+<span class="sd">     adapted ncvue.py</span>
+<span class="sd">   * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Allow multiple input files, Oct 2024, Matthias Cuntz</span>
+<span class="sd">   * Import pyplot for Windows, Oct 2024, Matthias Cuntz</span>
+<span class="sd">   * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -352,6 +354,7 @@ document.write(`
     <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span>
     <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Toplevel</span>
     <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">.dfvmain</span> <span class="kn">import</span> <span class="n">dfvMain</span>
 
 
@@ -496,7 +499,7 @@ document.write(`
 
     <span class="c1"># 1st plotting window</span>
     <span class="n">main_frame</span> <span class="o">=</span> <span class="n">dfvMain</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-    <span class="n">main_frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">S</span> <span class="o">+</span> <span class="n">tk</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">main_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">top</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span></div>
 
