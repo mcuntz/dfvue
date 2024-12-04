@@ -8,7 +8,7 @@ This module was written by Matthias Cuntz while at Institut National de
 Recherche pour l'Agriculture, l'Alimentation et l'Environnement (INRAE), Nancy,
 France.
 
-:copyright: Copyright 2020-2023 Matthias Cuntz - mc (at) macu (dot) de
+:copyright: Copyright 2020- Matthias Cuntz - mc (at) macu (dot) de
 :license: MIT License, see LICENSE for details.
 
 .. moduleauthor:: Matthias Cuntz
@@ -47,10 +47,11 @@ History
    * Use CustomTkinter, Jun 2024, Matthias Cuntz
    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
    * Small bugfix in Combobox if no CustomTkinter, Nov 2024, Matthias Cuntz
-   * Return also frames for all add_* functions, which should be packed
-     accordingly, Dec 2024, Matthias Cuntz
-   * Bugfix: returned wrong frame in add_spinbox, Dec 2024, Matthias Cuntz
-   * 
+   * Pass width to Checkbutton if CustomTkinter, Dec 2024, Matthias Cuntz
+   * Pass padx for space between label and combobox, Dec 2024, Matthias Cuntz
+   * Use CustomTkinter also in add_menu and add_scale,
+     Dec 2024, Matthias Cuntz
+   * Bugfix: did not make new frame in add_spinbox, Dec 2024, Matthias Cuntz
 
 """
 import tkinter as tk

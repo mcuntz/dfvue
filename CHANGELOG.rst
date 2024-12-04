@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+v6.0 (??? 2024)
+   * Sync `ncvwidgets` with developments in `ncvue`.
+
 v5.0 (Nov 2024)
    * Back to pack layout manager for resizing of plotting window.
    * pyplot was not imported on Windows in `dfvue`.
