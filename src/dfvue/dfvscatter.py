@@ -133,8 +133,6 @@ class dfvScatter(Frame):
                  "D (diamond), d (thin_diamond),\n"
                  "| (vline), _ (hline), or None")
         if ihavectk:
-            # height of plotting canvas in px
-            canvasheight = 550
             # width of combo boxes in px
             combowidth = 288
             # widths of entry widgets in px
@@ -142,8 +140,6 @@ class dfvScatter(Frame):
             ewmed = 45
             ewbig = 70
         else:
-            # height of plotting canvas
-            canvasheight = 550
             # width of combo boxes in characters
             combowidth = 25
             # widths of entry widgets in characters
@@ -196,7 +192,6 @@ class dfvScatter(Frame):
             tooltip="Choose variable of x-axis.\nTake index if 'None' (fast).")
         self.xframe.pack(side=tk.LEFT)
         # invert x
-        self.line_x = []
         (self.inv_xframe, self.inv_xlbl, self.inv_x,
          self.inv_xtip) = add_checkbutton(
              self.blockx, label="invert x", value=False,
@@ -988,9 +983,7 @@ class dfvScatter(Frame):
 
         # Clear both axes first, otherwise x-axis shows only if
         # line2 is chosen.
-        # if (x != self.x0) or (y != self.y0):
         self.axes.clear()
-        # if (x != self.x0) or (y2 != self.y20):
         self.axes2.clear()
         self.axes2.yaxis.set_label_position("right")
         self.axes2.yaxis.tick_right()
@@ -1049,9 +1042,6 @@ class dfvScatter(Frame):
             self.redraw_y()
             self.redraw_y2()
             # redraw
-            # self.x0  = x
-            # self.y0  = y
-            # self.y20 = y2
             self.canvas.draw()
             self.toolbar.update()
         else:

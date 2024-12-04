@@ -46,6 +46,11 @@ History
    * Added callurl function, Dec 2023, Matthias Cuntz
    * Use CustomTkinter, Jun 2024, Matthias Cuntz
    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
+   * Small bugfix in Combobox if no CustomTkinter, Nov 2024, Matthias Cuntz
+   * Return also frames for all add_* functions, which should be packed
+     accordingly, Dec 2024, Matthias Cuntz
+   * Bugfix: returned wrong frame in add_spinbox, Dec 2024, Matthias Cuntz
+   * 
 
 """
 import tkinter as tk
@@ -71,6 +76,7 @@ except ModuleNotFoundError:
     from tkinter.ttk import Scrollbar
     ihavectk = False
 import webbrowser
+
 from .tooltip import Hovertip
 
 
@@ -197,6 +203,9 @@ def add_checkbutton(frame, label="", value=False, command=None, tooltip="",
     check_label = tk.StringVar()
     check_label.set(label)
     bvar = tk.BooleanVar(value=value)
+    if ihavectk and ('width' not in kwargs):
+        width = len(label) * 9
+        kwargs.update({'width': width})
     cb = Checkbutton(iframe, variable=bvar, textvariable=check_label,
                      command=command, **kwargs)
     cb.pack(side='left', padx=3)
@@ -228,6 +237,8 @@ def add_combobox(frame, label="", values=[], command=None, tooltip="",
     tooltip : str, optional
         Tooltip appearing after one second when hovering over
         the combobox (default: "" = no tooltip)
+    padx : int, optional
+        Extra space in px added left and right of the label text (default: 1)
     **kwargs : option=value pairs, optional
         All other options will be passed to Combobox
 
@@ -250,13 +261,18 @@ def add_combobox(frame, label="", values=[], command=None, tooltip="",
     width = kwargs.pop('width', 25)
     cb_label = tk.StringVar()
     cb_label.set(label)
-    label = Label(iframe, textvariable=cb_label)
+    lkwargs = {'textvariable': cb_label}
+    if ihavectk:
+        lkwargs.update({'padx': kwargs.pop('padx', 1)})
+    else:
+        _ = kwargs.pop('padx', 1)
+    label = Label(iframe, **lkwargs)
     label.pack(side='left')
     if ihavectk:
         cb = Combobox(iframe, values=values, width=width, command=command,
                       **kwargs)
     else:
-        cb = ttk.Combobox(frame, values=values, width=width, **kwargs)
+        cb = ttk.Combobox(iframe, values=values, width=width, **kwargs)
         # long = len(max(values, key=len))
         # cb.configure(width=(max(20, long//2)))
         if command is not None:
@@ -327,6 +343,11 @@ def add_entry(frame, label="", text="", command=None, tooltip="",
     lkwargs = {'textvariable': entry_label}
     if labelwidth is not None:
         lkwargs.update({'width': labelwidth})
+    # if labelwidth is None:
+    #     labelwidth = len(lab)
+    #     if ihavectk:
+    #         labelwidth *= 9
+    # lkwargs.update({'width': labelwidth})
     if ihavectk:
         lkwargs.update({'padx': kwargs.pop('padx', 1)})
     else:
@@ -483,12 +504,15 @@ def add_menu(frame, label="", values=[], command=None, tooltip="", **kwargs):
     mb_label.set(label)
     label = Label(iframe, textvariable=mb_label)
     label.pack(side='left')
-    mb = Menubutton(iframe, text=values[0], compound='left')
-    sb = tk.Menu(mb, tearoff=False)
-    mb.config(menu=sb)
-    for i, v in enumerate(values):
-        sb.add_command(label=v, compound='left',
-                       command=partial(command, v))
+    if ihavectk:
+        mb = Menubutton(iframe, values=values, command=command, **kwargs)
+    else:
+        mb = Menubutton(iframe, text=values[0], compound='left', **kwargs)
+        sb = tk.Menu(mb, tearoff=False)
+        mb.config(menu=sb)
+        for i, v in enumerate(values):
+            sb.add_command(label=v, compound='left',
+                           command=partial(command, v))
     mb.pack(side='left')
     if tooltip:
         ttip = tk.StringVar()
@@ -541,6 +565,20 @@ def add_scale(frame, label="", ini=0, tooltip="", **kwargs):
     label.pack(side='left')
     s_val = tk.DoubleVar()
     s_val.set(ini)
+    if 'from_' not in kwargs:
+        kwargs.update({'from_': 0})
+    if 'to' not in kwargs:
+        kwargs.update({'to': 100})
+    if ihavectk:
+        kwargs.update({'number_of_steps': kwargs['to'] - kwargs['from_'] + 1})
+        length = kwargs.pop('length', -1)
+        orient = kwargs.pop('orient', tk.HORIZONTAL)
+        if length < 0:
+            length = 100
+        if orient == tk.HORIZONTAL:
+            kwargs.update({'width': length})
+        if orient == tk.VERTICAL:
+            kwargs.update({'height': length})
     s = Scale(iframe, variable=s_val, **kwargs)
     s.pack(side='left')
     if tooltip:
