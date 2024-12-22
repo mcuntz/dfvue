@@ -13,38 +13,42 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=628480d8" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=2ce3c55e"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/documentation_options.js?v=4cce97ca"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/dfvue/ncvwidgets';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="5.1.dev3" />
   </head>
   
   
@@ -52,31 +56,16 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -84,7 +73,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -92,10 +80,15 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -106,7 +99,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -121,6 +115,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="../../index.html">
   
@@ -134,20 +130,16 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">dfvue</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../package.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../package.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvmain.html">dfvmain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvreadcsv.html">dfvreadcsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvscatter.html">dfvscatter</a></li>
@@ -156,7 +148,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../dfvutils.html">dfvutils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../ncvwidgets.html">ncvwidgets</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
 </ul>
@@ -167,14 +159,19 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -183,14 +180,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -265,24 +262,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 
 </div></div>
       
@@ -319,7 +308,7 @@ document.write(`
 <span class="sd">Recherche pour l&#39;Agriculture, l&#39;Alimentation et l&#39;Environnement (INRAE), Nancy,</span>
 <span class="sd">France.</span>
 
-<span class="sd">:copyright: Copyright 2020-2023 Matthias Cuntz - mc (at) macu (dot) de</span>
+<span class="sd">:copyright: Copyright 2020- Matthias Cuntz - mc (at) macu (dot) de</span>
 <span class="sd">:license: MIT License, see LICENSE for details.</span>
 
 <span class="sd">.. moduleauthor:: Matthias Cuntz</span>
@@ -357,6 +346,12 @@ document.write(`
 <span class="sd">   * Added callurl function, Dec 2023, Matthias Cuntz</span>
 <span class="sd">   * Use CustomTkinter, Jun 2024, Matthias Cuntz</span>
 <span class="sd">   * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</span>
+<span class="sd">   * Small bugfix in Combobox if no CustomTkinter, Nov 2024, Matthias Cuntz</span>
+<span class="sd">   * Pass width to Checkbutton if CustomTkinter, Dec 2024, Matthias Cuntz</span>
+<span class="sd">   * Pass padx for space between label and combobox, Dec 2024, Matthias Cuntz</span>
+<span class="sd">   * Use CustomTkinter also in add_menu and add_scale,</span>
+<span class="sd">     Dec 2024, Matthias Cuntz</span>
+<span class="sd">   * Bugfix: did not make new frame in add_spinbox, Dec 2024, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
@@ -382,6 +377,7 @@ document.write(`
     <span class="kn">from</span> <span class="nn">tkinter.ttk</span> <span class="kn">import</span> <span class="n">Scrollbar</span>
     <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="kn">import</span> <span class="nn">webbrowser</span>
+
 <span class="kn">from</span> <span class="nn">.tooltip</span> <span class="kn">import</span> <span class="n">Hovertip</span>
 
 
@@ -519,6 +515,9 @@ document.write(`
     <span class="n">check_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
     <span class="n">check_label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
     <span class="n">bvar</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">BooleanVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ihavectk</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;width&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="o">*</span> <span class="mi">9</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">width</span><span class="p">})</span>
     <span class="n">cb</span> <span class="o">=</span> <span class="n">Checkbutton</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">bvar</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">check_label</span><span class="p">,</span>
                      <span class="n">command</span><span class="o">=</span><span class="n">command</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">cb</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -553,6 +552,8 @@ document.write(`
 <span class="sd">    tooltip : str, optional</span>
 <span class="sd">        Tooltip appearing after one second when hovering over</span>
 <span class="sd">        the combobox (default: &quot;&quot; = no tooltip)</span>
+<span class="sd">    padx : int, optional</span>
+<span class="sd">        Extra space in px added left and right of the label text (default: 1)</span>
 <span class="sd">    **kwargs : option=value pairs, optional</span>
 <span class="sd">        All other options will be passed to Combobox</span>
 
@@ -575,13 +576,18 @@ document.write(`
     <span class="n">width</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
     <span class="n">cb_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
     <span class="n">cb_label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">cb_label</span><span class="p">)</span>
+    <span class="n">lkwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textvariable&#39;</span><span class="p">:</span> <span class="n">cb_label</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+        <span class="n">lkwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;padx&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;padx&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;padx&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="o">**</span><span class="n">lkwargs</span><span class="p">)</span>
     <span class="n">label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
         <span class="n">cb</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">command</span><span class="p">,</span>
                       <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">cb</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="c1"># long = len(max(values, key=len))</span>
         <span class="c1"># cb.configure(width=(max(20, long//2)))</span>
         <span class="k">if</span> <span class="n">command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -655,6 +661,11 @@ document.write(`
     <span class="n">lkwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textvariable&#39;</span><span class="p">:</span> <span class="n">entry_label</span><span class="p">}</span>
     <span class="k">if</span> <span class="n">labelwidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">lkwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">labelwidth</span><span class="p">})</span>
+    <span class="c1"># if labelwidth is None:</span>
+    <span class="c1">#     labelwidth = len(lab)</span>
+    <span class="c1">#     if ihavectk:</span>
+    <span class="c1">#         labelwidth *= 9</span>
+    <span class="c1"># lkwargs.update({&#39;width&#39;: labelwidth})</span>
     <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
         <span class="n">lkwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;padx&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;padx&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)})</span>
     <span class="k">else</span><span class="p">:</span>
@@ -817,12 +828,15 @@ document.write(`
     <span class="n">mb_label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
     <span class="n">label</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">mb_label</span><span class="p">)</span>
     <span class="n">label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-    <span class="n">mb</span> <span class="o">=</span> <span class="n">Menubutton</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">compound</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-    <span class="n">sb</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">mb</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">mb</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">menu</span><span class="o">=</span><span class="n">sb</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
-        <span class="n">sb</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">compound</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
-                       <span class="n">command</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+        <span class="n">mb</span> <span class="o">=</span> <span class="n">Menubutton</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">command</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mb</span> <span class="o">=</span> <span class="n">Menubutton</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">compound</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">sb</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">mb</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">mb</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">menu</span><span class="o">=</span><span class="n">sb</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+            <span class="n">sb</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">compound</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+                           <span class="n">command</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
     <span class="n">mb</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">tooltip</span><span class="p">:</span>
         <span class="n">ttip</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
@@ -878,6 +892,20 @@ document.write(`
     <span class="n">label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
     <span class="n">s_val</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">DoubleVar</span><span class="p">()</span>
     <span class="n">s_val</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ini</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;from_&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;from_&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+    <span class="k">if</span> <span class="s1">&#39;to&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;to&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">})</span>
+    <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;number_of_steps&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;to&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;from_&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">orient</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;orient&#39;</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span>
+        <span class="k">if</span> <span class="n">orient</span> <span class="o">==</span> <span class="n">tk</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">length</span><span class="p">})</span>
+        <span class="k">if</span> <span class="n">orient</span> <span class="o">==</span> <span class="n">tk</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="n">length</span><span class="p">})</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">iframe</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">s_val</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">s</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">tooltip</span><span class="p">:</span>
@@ -1067,7 +1095,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
 </div>
@@ -1076,8 +1104,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -1122,8 +1148,8 @@ By Matthias Cuntz
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

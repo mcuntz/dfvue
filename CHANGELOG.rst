@@ -1,7 +1,8 @@
 Changelog
 ---------
 
-v6.0 (??? 2024)
+v6.0 (Dec 2024)
+   * Make standalone packages.
    * Sync `ncvwidgets` with developments in `ncvue`.
 
 v5.0 (Nov 2024)
