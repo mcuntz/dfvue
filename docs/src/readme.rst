@@ -11,7 +11,6 @@ A simple GUI to view csv files
       higher resolution images can be found in the documentation_
     with
       click on figures to open larger pictures
-    remove section "Installation"
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.10372631.svg
   :target: https://doi.org/10.5281/zenodo.10372631
@@ -359,24 +358,52 @@ or via Conda_:
    conda install -c conda-forge dfvue
 
 ``dfvue`` uses CustomTkinter_ if it is installed. CustomTkinter_ is
-not on Conda_. One might install ``dfvue`` with `pip` in a conda
-environment to use CustomTkinter_:
+not on Conda_.
 
-.. code-block:: bash
+..
+   One might install ``dfvue`` with `pip` in a conda environment to
+   use CustomTkinter_:
 
-   conda install pip
-   python -m pip install dfvue
+   .. code-block:: bash
 
-If this looks ugly on Linux (see `this thread`_), `pip uninstall
-customtkinter`, or `pip uninstall dfvue` and reinstall it with conda,
-which then uses the Azure_ theme by rdbende_.
+      conda install pip
+      python -m pip install dfvue
 
-If the fonts in ``dfvue`` (and any other tkinter GUI) still look
-ugly, one can try to reinstall Tk with FreeType support via Xft:
+   If this looks ugly on Linux (see `this thread`_), `pip uninstall
+   customtkinter`, or `pip uninstall dfvue` and reinstall it with conda,
+   which then uses the Azure_ theme by rdbende_.
 
-.. code-block:: bash
+   If the fonts in ``dfvue`` (and any other tkinter GUI) still look
+   ugly, one can try to reinstall Tk with FreeType support via Xft:
 
-   conda install -c conda-forge tk=*=xft_*
+   .. code-block:: bash
+
+      conda install -c conda-forge tk=*=xft_*
+
+Sometimes `tkinter` is not enabled in the system's Python version. One
+has to, for example, ``sudo apt install python3-tk`` or ``sudo apt
+install python-tk`` on Linux or ``brew install python3 python-tk`` on
+macOS with Homebrew_.
+
+We also provide standalone macOS applications that come with
+everything needed to run ``dfvue`` including Python:
+
+  - `dfvue 6.0 (Aqua, Intel)`_ for macOS 14+ [Sonoma] in Aqua look on
+    Intel processors
+  - `dfvue 6.0 (Aqua, ARM)`_ for macOS 14+ [Sonoma] in Aqua look on
+    ARM processors
+  - `dfvue 6.0 (CustomTkinter, Intel)`_ for macOS 14+ [Sonoma] in
+    CustomTkinter look on Intel processors
+  - `dfvue 6.0 (CustomTkinter, ARM)`_ for macOS 14+ [Sonoma] in
+    CustomTkinter look on ARM processors
+
+..
+   - `Windows executable`_ (Windows 10)
+
+`dfvue > 6.0` is either for Intel processors or for Apple
+Silicon (ARM) chips. It comes in the standard Aqua look or uses the
+CustomTkinter_ UI-library. The apps >= v6.0 are notarized by Apple and
+might take a short while on first opening.
 
 
 License
@@ -387,34 +414,41 @@ for details.
 
 Copyright (c) 2023- Matthias Cuntz
 
-``dfvue`` uses CustomTkinter_ by `Tom Schimansky`_ if installed, and
-otherwise the Azure_ theme (v2.0) by rdbende_, for example in conda
-environments.
+``dfvue`` uses CustomTkinter_ if installed. Otherwise it uses the
+Azure_ 2.0 theme by rdbende_ on Linux and Windows.
+
+Standalone applications are produced with `cx_Freeze`_, currently
+maintained by `Marcelo Duarte`_.
 
 ..
    Standalone applications are produced with `cx_Freeze`_, currently
    maintained by `Marcelo Duarte`_.
 
 
-.. _read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+.. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
+.. _dfvue 6.0 (Aqua, Intel): http://www.macu.de/extra/dfvue-6.0.aqua.intel.dmg
+.. _dfvue 6.0 (Aqua, ARM): http://www.macu.de/extra/dfvue-6.0.aqua.arm64.dmg
+.. _dfvue 6.0 (CustomTkinter, Intel): http://www.macu.de/extra/dfvue-6.0.ctkinter.intel.dmg
+.. _dfvue 6.0 (CustomTkinter, ARM): http://www.macu.de/extra/dfvue-6.0.ctkinter.arm64.dmg
+.. _documentation: https://mcuntz.github.io/dfvue/
+.. _europe-fluxdata.eu: http://www.europe-fluxdata.eu
+.. _macOS app: http://www.macu.de/extra/dfvue-4.0.dmg
 .. _pandas.concat: https://pandas.pydata.org/docs/reference/api/pandas.concat.html
 .. _pandas.read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 .. _pandas.DataFrame: https://pandas.pydata.org/docs/reference/frame.html
 .. _pandas.to_datetime: https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html
-.. _macOS app: http://www.macu.de/extra/dfvue-4.0.dmg
-.. _Windows executable: http://www.macu.de/extra/dfvue-3.7-amd64.msi
-.. _documentation: https://mcuntz.github.io/dfvue/
-.. _Conda: https://docs.conda.io/projects/conda/en/latest/
-.. _LICENSE: https://github.com/mcuntz/dfvue/blob/main/LICENSE
-.. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
-.. _Marcelo Duarte: https://github.com/marcelotduarte
-.. _ISO8601: https://en.wikipedia.org/wiki/ISO_8601
-.. _strftime: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
-.. _FLUXNET: https://fluxnet.org
-.. _ICOS: https://www.icos-cp.eu
-.. _europe-fluxdata.eu: http://www.europe-fluxdata.eu
-.. _CustomTkinter: https://customtkinter.tomschimansky.com
-.. _Tom Schimansky: https://github.com/TomSchimansky
-.. _Azure: https://github.com/rdbende/Azure-ttk-theme
+.. _read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 .. _rdbende: https://github.com/rdbende
+.. _strftime: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
 .. _this thread: https://github.com/ContinuumIO/anaconda-issues/issues/6833
+.. _Azure: https://github.com/rdbende/Azure-ttk-theme
+.. _Conda: https://docs.conda.io/projects/conda/en/latest/
+.. _CustomTkinter: https://customtkinter.tomschimansky.com
+.. _FLUXNET: https://fluxnet.org
+.. _Homebrew: https://brew.sh
+.. _ICOS: https://www.icos-cp.eu
+.. _ISO8601: https://en.wikipedia.org/wiki/ISO_8601
+.. _LICENSE: https://github.com/mcuntz/dfvue/blob/main/LICENSE
+.. _Marcelo Duarte: https://github.com/marcelotduarte
+.. _Tom Schimansky: https://github.com/TomSchimansky
+.. _Windows executable: http://www.macu.de/extra/dfvue-3.7-amd64.msi
