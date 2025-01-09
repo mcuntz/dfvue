@@ -29,6 +29,7 @@ History
    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
    * Concat multiple input files, Oct 2024, Matthias Cuntz
+   * Add low_memory to read_csvopts, Jan 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -65,7 +66,7 @@ read_csvopts = ['sep', 'index_col', 'usecols', 'skiprows', 'nrows',
                 'comment', 'skipfooter',
                 'thousands', 'decimal', 'lineterminator',
                 'quotechar', 'doublequote',
-                'dayfirst', 'encoding'
+                'dayfirst', 'encoding', 'low_memory'
                 ]
 read_csvopts.append('missing_value')
 """

@@ -28,6 +28,8 @@ History
    * Allow multiple input files, Oct 2024, Matthias Cuntz
    * Import pyplot for Windows, Oct 2024, Matthias Cuntz
    * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
+   * Pass Pandas DataFrame directly to dfvue, Jan 2025, Matthias Cuntz
+   * Bugfix for checking if csvfile was given, Jan 2025, Matthias Cuntz
 
 """
 import os
@@ -50,13 +52,15 @@ from .dfvmain import dfvMain
 __all__ = ['dfvue']
 
 
-def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
+def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
           parse_dates=True, date_format=None, missing_value=None):
     """
     The main function to start the data frame GUI.
 
     Parameters
     ----------
+    df : pandas.DataFrame, optional
+        Pandas DataFrame will be used if no csvfile given
     csvfile : str or list of str, optional
         Name(s) of csv file (default: '').
     sep : str, optional
@@ -155,7 +159,7 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
     root.name = 'dfvOne'
     if isinstance(csvfile, str):
         csvfile = [csvfile]
-    if csvfile:
+    if csvfile[0]:
         tit = f"dfvue {csvfile}"
     else:
         tit = "dfvue"
@@ -167,16 +171,23 @@ def dfvue(csvfile='', sep='', index_col=None, skiprows=None,
     top.icon = icon        # app icon
     top.csvfile = csvfile  # file name or file handle
     top.newcsvfile = True  # new file after command line
-    if csvfile:
+    if csvfile[0]:
         top.newcsvfile = False
-    top.df = None          # pandas.DataFrame of csvfile
+    top.df = df            # pandas.DataFrame of csvfile
+    # variable list
+    if df is not None:
+        top.newcsvfile = False
+        rows = top.df.shape[0]
+        top.cols = [ f'{cc} ({rows} {top.df[cc].dtype.name})'
+                     for cc in top.df.columns ]
+    else:
+        top.cols = []
     top.sep = sep
     top.index_col = index_col
     top.skiprows = skiprows
     top.parse_dates = parse_dates
     top.date_format = date_format
     top.missing_value = missing_value
-    top.cols = []          # variable list
     root.top = top
 
     def on_closing():

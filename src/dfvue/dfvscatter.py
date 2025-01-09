@@ -27,6 +27,7 @@ History
    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
    * Allow multiple input files, Oct 2024, Matthias Cuntz
    * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
+   * Bugfix for checking if csvfile was given, Jan 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -389,7 +390,7 @@ class dfvScatter(Frame):
         self.bquittip = add_tooltip(self.bquit, 'Quit dfvue')
         self.bquit.pack(side=tk.RIGHT, fill=tk.X)
 
-        if self.csvfile and (self.master.master.name == 'dfvOne'):
+        if self.csvfile[0] and (self.master.master.name == 'dfvOne'):
             self.new_df()
 
     #
@@ -464,7 +465,7 @@ class dfvScatter(Frame):
         self.top.csvfile = filedialog.askopenfilename(
             parent=self, title='Choose csv file(s)', multiple=True)
 
-        if self.top.csvfile:
+        if self.top.csvfile[0]:
             self.top.newcsvfile = True
             self.new_df()
 
@@ -730,7 +731,7 @@ class dfvScatter(Frame):
         self.date_format = self.top.date_format
         self.missing_value = self.top.missing_value
         self.cols = self.top.cols
-        if self.top.csvfile:
+        if self.top.csvfile[0]:
             tit = f"dfvue {self.top.csvfile}"
         else:
             tit = "dfvue"

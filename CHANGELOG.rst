@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+v6.1 (??? 2025)
+   * Possibility to pass `pandas.DataFrame` directly to dfvue in
+     Python.
+   * Bugfix when checking if csvfile was given.
+   * Add low_memory to read_csv switches.
+
 v6.0 (Dec 2024)
    * Make standalone packages.
    * Sync `ncvwidgets` with developments in `ncvue`.
