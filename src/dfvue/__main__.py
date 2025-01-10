@@ -23,6 +23,7 @@ Example command line:
 History
    * Written Jul 2023 2023 by Matthias Cuntz (mc (at) macu (dot) de)
    * Allow multiple input files, Oct 2024, Matthias Cuntz
+   * Default [''] for csvfile instead of None, Jan 2025, Matthias Cuntz
 
 """
 from dfvue import dfvue
@@ -79,7 +80,7 @@ def main():
     parser.add_argument('-m', '--missing_value', action='store', type=str,
                         default=missing_value, dest='missing_value',
                         metavar='missing_value', help=hstr)
-    parser.add_argument('csvfile', nargs='*', default=None,
+    parser.add_argument('csvfile', nargs='*', default=[''],
                         metavar='csv_file(s)',
                         help='Delimited text file(s)')
 

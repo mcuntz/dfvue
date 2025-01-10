@@ -2,6 +2,7 @@ Changelog
 ---------
 
 v6.1 (??? 2025)
+   * Bugfix when no file given on command line.
    * Possibility to pass `pandas.DataFrame` directly to dfvue in
      Python.
    * Bugfix when checking if csvfile was given.
