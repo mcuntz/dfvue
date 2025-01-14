@@ -30,6 +30,7 @@ History
    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
    * Concat multiple input files, Oct 2024, Matthias Cuntz
    * Add low_memory to read_csvopts, Jan 2025, Matthias Cuntz
+   * Keep na_values as str, Jan 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -48,6 +49,7 @@ except ModuleNotFoundError:
     from tkinter.ttk import Button
     ihavectk = False
 from collections.abc import Iterable
+from math import isnan
 import warnings
 import pandas as pd
 from .ncvwidgets import add_entry, add_tooltip, Treeview, callurl
@@ -461,6 +463,12 @@ def _parse_entry(text):
             except ValueError:
                 # str
                 tt = text
+            try:
+                if isnan(tt):
+                    # keep NaN string
+                    tt = text
+            except TypeError:
+                pass
     return tt
 
 
