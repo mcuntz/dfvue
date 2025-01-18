@@ -28,6 +28,8 @@ History
    * Allow multiple input files, Oct 2024, Matthias Cuntz
    * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
    * Bugfix for checking if csvfile was given, Jan 2025, Matthias Cuntz
+   * Removed addition of index to column names in sortvars,
+     Jan 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -617,13 +619,14 @@ class dfvScatter(Frame):
             rows = self.df.shape[0]
             columns = [ f'{cc} ({rows} {self.df[cc].dtype.name})'
                         for cc in columns ]
-            if self.df.index.name is not None:
-                idx = (f'{self.df.index.name}'
-                       f' (index {rows} {self.df.index.dtype.name})')
-            else:
-                idx = f'index ({rows} {self.df.index.dtype.name})'
-            self.cols = [idx]
-            self.cols.extend(columns)
+            # if self.df.index.name is not None:
+            #     idx = (f'{self.df.index.name}'
+            #            f' (index {rows} {self.df.index.dtype.name})')
+            # else:
+            #     idx = f'index ({rows} {self.df.index.dtype.name})'
+            # self.cols = [idx]
+            # self.cols.extend(columns)
+            self.cols = columns
             # set variables
             columns = [''] + self.cols
             x = self.x.get()

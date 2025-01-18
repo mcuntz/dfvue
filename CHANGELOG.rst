@@ -2,6 +2,8 @@ Changelog
 ---------
 
 v6.1 (??? 2025)
+   * Removed addition of index to column names when sorting variable
+     names.
    * Keep NaN values as str when reading csv.
    * Bugfix when no file given on command line.
    * Possibility to pass `pandas.DataFrame` directly to dfvue in
