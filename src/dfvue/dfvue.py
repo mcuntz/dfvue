@@ -30,6 +30,7 @@ History
    * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
    * Pass Pandas DataFrame directly to dfvue, Jan 2025, Matthias Cuntz
    * Bugfix for checking if csvfile was given, Jan 2025, Matthias Cuntz
+   * Use own ncvue-blue theme for customtkinter, Jan 2025, Matthias Cuntz
 
 """
 import os
@@ -38,6 +39,7 @@ import sys
 import tkinter as tk
 import tkinter.ttk as ttk
 try:
+    import customtkinter
     from customtkinter import CTk as Tk
     from customtkinter import CTkToplevel as Toplevel
     ihavectk = True
@@ -141,7 +143,15 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
             top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
             theme = 'light'  # light, dark
             top.tk.call("set_theme", theme)
-    # ctk.set_appearance_mode("system")  # system, light, dark
+
+    if ihavectk:
+        # customtkinter.set_default_color_theme("blue")
+        # customtkinter.set_default_color_theme("dark-blue")
+        # customtkinter.set_default_color_theme("green")
+        # customtkinter.set_default_color_theme(
+        #     f'{bundle_dir}/themes/customtkinter/dark-blue.json')
+        customtkinter.set_default_color_theme(
+            f'{bundle_dir}/themes/customtkinter/ncvue-blue.json')
 
     # set titlebar and taskbar icon only if "standalone",
     # i.e. not ipython or jupyter
