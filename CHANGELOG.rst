@@ -2,6 +2,9 @@ Changelog
 ---------
 
 v6.1 (??? 2025)
+   * Add xlim, ylim, and y2lim options.
+   * Increased number of digits in format_coord_scatter.
+   * Use ncvue theme with customtkinter.
    * Removed addition of index to column names when sorting variable
      names.
    * Keep NaN values as str when reading csv.

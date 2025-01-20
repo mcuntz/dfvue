@@ -31,6 +31,7 @@ History
    * Concat multiple input files, Oct 2024, Matthias Cuntz
    * Add low_memory to read_csvopts, Jan 2025, Matthias Cuntz
    * Keep na_values as str, Jan 2025, Matthias Cuntz
+   * Moved parse_entry to dfvutils, Jan 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -49,9 +50,10 @@ except ModuleNotFoundError:
     from tkinter.ttk import Button
     ihavectk = False
 from collections.abc import Iterable
-from math import isnan
+from math import isfinite
 import warnings
 import pandas as pd
+from .dfvutils import parse_entry
 from .ncvwidgets import add_entry, add_tooltip, Treeview, callurl
 
 
@@ -424,54 +426,6 @@ Tooltips for pandas.read_csv options from pandas v2.0.3
 """
 
 
-def _parse_entry(text):
-    """
-    Determine and convert to correct data type from text string
-
-    Parse entry field to None, bool, int, float, list, dict
-
-    """
-    if text == 'None':
-        # None
-        tt = None
-    elif text == 'True':
-        # bool True
-        tt = True
-    elif text == 'False':
-        # bool False
-        tt = False
-    elif ':' in text:
-        # dict or str
-        try:
-            tt = eval(f'{{{text}}}')
-        except SyntaxError:
-            tt = text
-    elif ',' in text:
-        # list or str
-        try:
-            tt = eval(f'[{text}]')
-        except SyntaxError:
-            tt = text
-    else:
-        try:
-            # int
-            tt = int(text)
-        except ValueError:
-            try:
-                # float
-                tt = float(text)
-            except ValueError:
-                # str
-                tt = text
-            try:
-                if isnan(tt):
-                    # keep NaN string
-                    tt = text
-            except TypeError:
-                pass
-    return tt
-
-
 class dfvReadcsv(Toplevel):
     """
     Window for reading csv files.
@@ -700,7 +654,7 @@ class dfvReadcsv(Toplevel):
         opts = {}
         for oo in read_csvopts:
             text = self.opt[oo].get()
-            tt = _parse_entry(text)
+            tt = parse_entry(text)
             if (tt != '') and (tt is not None):
                 opts.update({oo: tt})
         # skipfooter does not work with nrows

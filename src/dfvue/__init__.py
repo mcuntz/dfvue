@@ -37,7 +37,7 @@ from .tooltip import TooltipBase, OnHoverTooltipBase, Hovertip
 
 # general helper functions
 from .dfvutils import clone_dfvmain, format_coord_scatter, list_intersection
-from .dfvutils import vardim2var
+from .dfvutils import parse_entry, vardim2var
 
 # adding widgets with labels, etc.
 from .ncvwidgets import callurl, Tooltip
@@ -66,7 +66,7 @@ from .dfvue import dfvue
 __all__ = ['TooltipBase', 'OnHoverTooltipBase', 'Hovertip',
            'clone_dfvmain',
            'format_coord_scatter',
-           'list_intersection', 'vardim2var',
+           'list_intersection', 'parse_entry', 'vardim2var',
            'Tooltip',
            'add_checkbutton', 'add_combobox', 'add_entry', 'add_imagemenu',
            'add_menu', 'add_scale', 'add_spinbox', 'add_tooltip',
