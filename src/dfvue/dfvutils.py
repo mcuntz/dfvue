@@ -20,6 +20,7 @@ The following functions are provided:
    clone_dfvmain
    format_coord_scatter
    list_intersection
+   parse_entry
    vardim2var
 
 History
@@ -32,6 +33,8 @@ History
    * Remove [ms] from check for datetime in format_coord on axes2,
      Oct 2024, Matthias Cuntz
    * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
+   * Increased digits in format_coord_scatter, Jan 2025, Matthias Cuntz
+   * Add parse_entry from dfvreadcsv, Jan 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -39,6 +42,7 @@ try:
     from customtkinter import CTkToplevel as Toplevel
 except ModuleNotFoundError:
     from tkinter import Toplevel
+from math import isfinite
 import numpy as np
 import matplotlib.dates as mpld
 import dfvue
@@ -150,15 +154,15 @@ def format_coord_scatter(x, y, ax, ax2, xdtype, ydtype, y2dtype):
     if xdtype.type == np.dtype('datetime64').type:
         xstr = mpld.num2date(x).strftime('%Y-%m-%d %H:%M:%S')
     else:
-        xstr  = '{:.3g}'.format(x)
+        xstr  = '{:.6g}'.format(x)
     if ydtype.type == np.dtype('datetime64').type:
         ystr = mpld.num2date(ax_coord[1]).strftime('%Y-%m-%d %H:%M:%S')
     else:
-        ystr  = '{:.3g}'.format(ax_coord[1])
+        ystr  = '{:.6g}'.format(ax_coord[1])
     if y2dtype.type == np.dtype('datetime64').type:
         y2str = mpld.num2date(y).strftime('%Y-%m-%d %H:%M:%S')
     else:
-        y2str = '{:.3g}'.format(y)
+        y2str = '{:.6g}'.format(y)
     out = f'Left: ({xstr}, {ystr}) Right: ({xstr}, {y2str})'
     return out
 
@@ -198,6 +202,70 @@ def list_intersection(lst1, lst2):
         return list(set(lst1).intersection(lst2))
     else:
         return [ ll for ll in lst1 if ll in lst2 ]
+
+
+def parse_entry(text):
+    """
+    Convert text string to correct data type
+
+    Parse an entry field to None, bool, int, float, list, dict
+
+    Parameters
+    ----------
+    text : str
+        String from entry field
+
+    Returns
+    -------
+    None, bool, int, float, list, dict
+
+    Examples
+    --------
+    >>> parse_entry('7')
+    7
+    >>> parse_entry('7,3')
+    [7, 3]
+
+    """
+    if text == 'None':
+        # None
+        tt = None
+    elif text == 'True':
+        # bool True
+        tt = True
+    elif text == 'False':
+        # bool False
+        tt = False
+    elif ':' in text:
+        # dict or str
+        try:
+            tt = eval(f'{{{text}}}')
+        except SyntaxError:
+            tt = text
+    elif ',' in text:
+        # list or str
+        try:
+            tt = eval(f'[{text}]')
+        except SyntaxError:
+            tt = text
+    else:
+        try:
+            # int
+            tt = int(text)
+        except ValueError:
+            try:
+                # float
+                tt = float(text)
+            except ValueError:
+                # str
+                tt = text
+            try:
+                if not isfinite(tt):
+                    # keep NaN and Inf string
+                    tt = text
+            except TypeError:
+                pass
+    return tt
 
 
 def vardim2var(vardim):
