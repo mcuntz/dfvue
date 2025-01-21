@@ -20,7 +20,7 @@ On macOS, use minimal virtual environment
 
 Check in Windows Powershell
     $env:PYTHONPATH = "C:/Users/mcuntz/prog/github/dfvue"
-    python.exe -m dfvue
+    python -m dfvue
 Executable for testing
     python cx_freeze_setup.py build
 macOS app
@@ -28,7 +28,7 @@ macOS app
 macOS dmg
     python cx_freeze_setup.py bdist_dmg
 Windows installer
-    python.exe cx_freeze_setup.py bdist_msi
+    python cx_freeze_setup.py bdist_msi
 
 '''
 import os

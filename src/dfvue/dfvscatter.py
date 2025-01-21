@@ -173,11 +173,11 @@ class dfvScatter(Frame):
             ew2big = 100
         else:
             # width of combo boxes in characters
-            combowidth = 25
+            combowidth = 35  # 25
             # widths of entry widgets in characters
             ewsmall = 3
-            ewmed = 4
-            ewbig = 7
+            ewmed = 5  # 4
+            ewbig = 8  # 7
             ew2big = 10
 
         # open file and new window
