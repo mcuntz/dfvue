@@ -24,7 +24,7 @@ A simple GUI to view csv files
    :target: https://anaconda.org/conda-forge/dfvue
    :alt: Conda version
 
-.. image:: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
    :target: https://github.com/mcuntz/dfvue/blob/master/LICENSE
    :alt: License
 
@@ -426,13 +426,13 @@ maintained by `Marcelo Duarte`_.
 
 
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
-.. _dfvue 6.0 (Aqua, Intel): http://www.macu.de/extra/dfvue-6.0.aqua.intel.dmg
-.. _dfvue 6.0 (Aqua, ARM): http://www.macu.de/extra/dfvue-6.0.aqua.arm64.dmg
-.. _dfvue 6.0 (CustomTkinter, Intel): http://www.macu.de/extra/dfvue-6.0.ctkinter.intel.dmg
-.. _dfvue 6.0 (CustomTkinter, ARM): http://www.macu.de/extra/dfvue-6.0.ctkinter.arm64.dmg
+.. _dfvue 6.0 (Aqua, Intel): https://www.macu.de/extra/dfvue-6.0.aqua.intel.dmg
+.. _dfvue 6.0 (Aqua, ARM): https://www.macu.de/extra/dfvue-6.0.aqua.arm64.dmg
+.. _dfvue 6.0 (CustomTkinter, Intel): https://www.macu.de/extra/dfvue-6.0.ctkinter.intel.dmg
+.. _dfvue 6.0 (CustomTkinter, ARM): https://www.macu.de/extra/dfvue-6.0.ctkinter.arm64.dmg
 .. _documentation: https://mcuntz.github.io/dfvue/
-.. _europe-fluxdata.eu: http://www.europe-fluxdata.eu
-.. _macOS app: http://www.macu.de/extra/dfvue-4.0.dmg
+.. _europe-fluxdata.eu: https://www.europe-fluxdata.eu
+.. _macOS app: https://www.macu.de/extra/dfvue-4.0.dmg
 .. _pandas.concat: https://pandas.pydata.org/docs/reference/api/pandas.concat.html
 .. _pandas.read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 .. _pandas.DataFrame: https://pandas.pydata.org/docs/reference/frame.html
@@ -451,4 +451,4 @@ maintained by `Marcelo Duarte`_.
 .. _LICENSE: https://github.com/mcuntz/dfvue/blob/main/LICENSE
 .. _Marcelo Duarte: https://github.com/marcelotduarte
 .. _Tom Schimansky: https://github.com/TomSchimansky
-.. _Windows executable: http://www.macu.de/extra/dfvue-3.7-amd64.msi
+.. _Windows executable: https://www.macu.de/extra/dfvue-3.7-amd64.msi

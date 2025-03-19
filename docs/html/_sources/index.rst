@@ -1,6 +1,6 @@
-========
+--------
 Contents
-========
+--------
 
 .. image:: ../images/scatter_panel_dark_multiline_screenshot.png
    :width: 860 px
