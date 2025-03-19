@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-v6.1 (??? 2025)
+v6.1 (Mar 2025)
    * Larger entry fields for Windows.
    * Add xlim, ylim, and y2lim options.
    * Increased number of digits in format_coord_scatter.
