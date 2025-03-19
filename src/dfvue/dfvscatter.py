@@ -91,7 +91,6 @@ def _minmax_ylim(ylim, ylim2):
     return ymin, ymax
 
 
-
 class dfvScatter(Frame):
     """
     Panel for scatter and line plots.
