@@ -27,6 +27,10 @@ macOS app
     python cx_freeze_setup.py bdist_mac
 macOS dmg
     python cx_freeze_setup.py bdist_dmg
+    cd build
+    xcrun notarytool submit dfvue-6.1.aqua.intel.dmg --keychain-profile "notarytool-password"
+    xcrun notarytool log 6d0cb58d-867d-4f91-a3e6-98c27c58f3e9 --keychain-profile "notarytool-password" developer_log.json
+    xcrun stapler staple dfvue-6.1.aqua.intel.dmg
 Windows installer
     python cx_freeze_setup.py bdist_msi
 
