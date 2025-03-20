@@ -390,11 +390,11 @@ everything needed to run ``dfvue`` including Python:
 
   - `dfvue 6.1 (Aqua, Intel)`_ for macOS 14+ [Sonoma] in Aqua look on
     Intel processors
-  - `dfvue 6.0 (Aqua, ARM)`_ for macOS 14+ [Sonoma] in Aqua look on
+  - `dfvue 6.1 (Aqua, ARM)`_ for macOS 14+ [Sonoma] in Aqua look on
     ARM processors
   - `dfvue 6.1 (CustomTkinter, Intel)`_ for macOS 14+ [Sonoma] in
     CustomTkinter look on Intel processors
-  - `dfvue 6.0 (CustomTkinter, ARM)`_ for macOS 14+ [Sonoma] in
+  - `dfvue 6.1 (CustomTkinter, ARM)`_ for macOS 14+ [Sonoma] in
     CustomTkinter look on ARM processors
 
 ..
@@ -427,9 +427,9 @@ maintained by `Marcelo Duarte`_.
 
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
 .. _dfvue 6.1 (Aqua, Intel): https://www.macu.de/extra/dfvue-6.1.aqua.intel.dmg
-.. _dfvue 6.0 (Aqua, ARM): https://www.macu.de/extra/dfvue-6.0.aqua.arm64.dmg
-.. _dfvue 6.1 (CustomTkinter, Intel): https://www.macu.de/extra/dfvue-6.1.ctkinter.intel.dmg
-.. _dfvue 6.0 (CustomTkinter, ARM): https://www.macu.de/extra/dfvue-6.0.ctkinter.arm64.dmg
+.. _dfvue 6.1 (Aqua, ARM): https://www.macu.de/extra/dfvue-6.1.aqua.arm64.dmg
+.. _dfvue 6.1 (CustomTkinter, Intel): https://www.macu.de/extra/dfvue-6.1.ctk.intel.dmg
+.. _dfvue 6.1 (CustomTkinter, ARM): https://www.macu.de/extra/dfvue-6.1.ctk.arm64.dmg
 .. _documentation: https://mcuntz.github.io/dfvue/
 .. _europe-fluxdata.eu: https://www.europe-fluxdata.eu
 .. _macOS app: https://www.macu.de/extra/dfvue-4.0.dmg
