@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+v6.x (??? 2025)
+   * Separate rows for x- and ylims.
+   * Reduce entry fields for non-Windows.
+
 v6.1 (Mar 2025)
    * Larger entry fields for Windows.
    * Add xlim, ylim, and y2lim options.

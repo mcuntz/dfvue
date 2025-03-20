@@ -33,6 +33,7 @@ History
    * Add xlim, ylim, and y2lim options, Jan 2025, Matthias Cuntz
 
 """
+import platform
 import tkinter as tk
 try:
     from customtkinter import CTkFrame as Frame
@@ -171,13 +172,24 @@ class dfvScatter(Frame):
             ewbig = 70
             ew2big = 100
         else:
-            # width of combo boxes in characters
-            combowidth = 35  # 25
-            # widths of entry widgets in characters
-            ewsmall = 3
-            ewmed = 5  # 4
-            ewbig = 8  # 7
-            ew2big = 10
+            ios = platform.system()
+            if ios == 'Windows':
+                # width of combo boxes in characters
+                combowidth = 35  # 25
+                # widths of entry widgets in characters
+                ewsmall = 3
+                ewmed = 5  # 4
+                ewbig = 8  # 7
+                ew2big = 10
+            else:
+                # width of combo boxes in characters
+                combowidth = 25
+                # widths of entry widgets in characters
+                ewsmall = 2
+                ewmed = 4
+                ewbig = 7
+                ew2big = 10
+
 
         # open file and new window
         self.rowwin = Frame(self)
@@ -318,38 +330,43 @@ class dfvScatter(Frame):
             self.blockyopt, label="mew", text='1', width=ewsmall,
             command=self.entered_y, tooltip="Marker edge width")
         self.mewframe.pack(side=tk.LEFT)
-        self.space2lbl = tk.StringVar()
-        self.space2lbl.set(" ")
-        space2lab = Label(self.blockyopt, textvariable=self.space2lbl)
-        space2lab.pack(side='left')
+        self.bsort = Button(self.rowxyopt, text="Sort vars",
+                            command=self.sortvars)
+        self.bsorttip = add_tooltip(self.bsort, 'Sort variable names')
+        self.bsort.pack(side=tk.RIGHT)
+        
+        # Transform data frame
+        self.rowtransform = Frame(self)
+        self.rowtransform.pack(side=tk.TOP, fill=tk.X)
+        # block with x
+        self.blockxlim = Frame(self.rowtransform)
+        self.blockxlim.pack(side=tk.LEFT)
         self.xlimframe, self.xlimlbl, self.xlim, self.xlimtip = add_entry(
-            self.blockyopt, label="xlim", text='None', width=ew2big,
+            self.blockxlim, label="xlim", text='None', width=ew2big,
             command=self.entered_y,
             tooltip="xmin, xmax\nSet to None for free scaling.")
         self.xlimframe.pack(side=tk.LEFT)
         self.space3lbl = tk.StringVar()
         self.space3lbl.set(" ")
-        space3lab = Label(self.blockyopt, textvariable=self.space3lbl)
+        space3lab = Label(self.blockxlim, textvariable=self.space3lbl)
         space3lab.pack(side='left')
         self.ylimframe, self.ylimlbl, self.ylim, self.ylimtip = add_entry(
-            self.blockyopt, label="ylim", text='None', width=ew2big,
+            self.blockxlim, label="ylim", text='None', width=ew2big,
             command=self.entered_y,
             tooltip="ymin, ymax\nSet to None for free scaling.")
         self.ylimframe.pack(side=tk.LEFT)
-
-        # redraw button
-        self.bsort = Button(self.rowxyopt, text="Sort vars",
-                            command=self.sortvars)
-        self.bsorttip = add_tooltip(self.bsort, 'Sort variable names')
-        self.bsort.pack(side=tk.RIGHT)
-
-        # Transform data frame
-        self.rowtransform = Frame(self)
-        self.rowtransform.pack(side=tk.TOP, fill=tk.X)
         self.transform = Button(self.rowtransform, text="Transform df",
                                 command=self.transform_df)
         self.transformtip = add_tooltip(self.transform, 'Manipulate DataFrame')
         self.transform.pack(side=tk.RIGHT)
+
+        # empty row
+        self.rowspace = Frame(self)
+        self.rowspace.pack(side=tk.TOP, fill=tk.X)
+        self.space4lbl = tk.StringVar()
+        self.space4lbl.set(" ")
+        space4lab = Label(self.rowspace, textvariable=self.space4lbl)
+        space4lab.pack(side='left')
 
         # right y2-axis
         self.rowyy2 = Frame(self)
@@ -436,19 +453,18 @@ class dfvScatter(Frame):
             self.blocky2opt, label="mew", text='1', width=ewsmall,
             command=self.entered_y2, tooltip="Marker edge width")
         self.mew2frame.pack(side=tk.LEFT)
-        self.space4lbl = tk.StringVar()
-        self.space4lbl.set(" ")
-        space4lab = Label(self.blocky2opt, textvariable=self.space4lbl)
-        space4lab.pack(side='left')
-        self.y2limframe, self.y2limlbl, self.y2lim, self.y2limtip = add_entry(
-            self.blocky2opt, label="y2lim", text='None', width=ew2big,
-            command=self.entered_y2,
-            tooltip="y2min, y2max\nSet to None for free scaling.")
-        self.y2limframe.pack(side=tk.LEFT)
 
         # Quit button
         self.rowquit = Frame(self)
         self.rowquit.pack(side=tk.TOP, fill=tk.X)
+        # block with y2lim
+        self.blocky2lim = Frame(self.rowquit)
+        self.blocky2lim.pack(side=tk.LEFT)
+        self.y2limframe, self.y2limlbl, self.y2lim, self.y2limtip = add_entry(
+            self.blocky2lim, label="y2lim", text='None', width=ew2big,
+            command=self.entered_y2,
+            tooltip="y2min, y2max\nSet to None for free scaling.")
+        self.y2limframe.pack(side=tk.LEFT)
         self.bquit = Button(self.rowquit, text="Quit",
                             command=self.master.top.destroy)
         self.bquittip = add_tooltip(self.bquit, 'Quit dfvue')
