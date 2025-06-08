@@ -15,29 +15,26 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=628480d8" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=6d282135"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -48,7 +45,6 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="6.2.dev2" />
   </head>
   
   
@@ -64,8 +60,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -73,6 +80,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -80,8 +88,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -99,8 +107,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -130,11 +137,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -159,14 +170,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -262,16 +268,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -331,21 +345,18 @@
 <span class="sd">   * Removed addition of index to column names in sortvars,</span>
 <span class="sd">     Jan 2025, Matthias Cuntz</span>
 <span class="sd">   * Add xlim, ylim, and y2lim options, Jan 2025, Matthias Cuntz</span>
+<span class="sd">   * Use add_button, add_label, add_combobox from ncvwidgets,</span>
+<span class="sd">     Jun 2025, Matthias Cuntz</span>
+<span class="sd">   * Bugfix for setting axes limits, Jun 2025, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">customtkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CTkFrame</span> <span class="k">as</span> <span class="n">Frame</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">customtkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CTkButton</span> <span class="k">as</span> <span class="n">Button</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">customtkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CTkLabel</span> <span class="k">as</span> <span class="n">Label</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">customtkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CTkComboBox</span> <span class="k">as</span> <span class="n">Combobox</span>
     <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.ttk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Frame</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.ttk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Button</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.ttk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Label</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.ttk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Combobox</span>
     <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">filedialog</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
@@ -354,7 +365,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">.dfvutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">clone_dfvmain</span><span class="p">,</span> <span class="n">format_coord_scatter</span><span class="p">,</span> <span class="n">vardim2var</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.dfvutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_entry</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.ncvwidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_checkbutton</span><span class="p">,</span> <span class="n">add_combobox</span><span class="p">,</span> <span class="n">add_entry</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.ncvwidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_tooltip</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.ncvwidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_label</span><span class="p">,</span> <span class="n">add_button</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.dfvreadcsv</span><span class="w"> </span><span class="kn">import</span> <span class="n">dfvReadcsv</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.dfvtransform</span><span class="w"> </span><span class="kn">import</span> <span class="n">dfvTransform</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
@@ -473,6 +484,10 @@
             <span class="n">ewmed</span> <span class="o">=</span> <span class="mi">45</span>
             <span class="n">ewbig</span> <span class="o">=</span> <span class="mi">70</span>
             <span class="n">ew2big</span> <span class="o">=</span> <span class="mi">100</span>
+            <span class="c1"># pad between label and entry</span>
+            <span class="n">padx</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="c1"># width of animation and variables buttons</span>
+            <span class="n">bwidth</span> <span class="o">=</span> <span class="mi">35</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ios</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">ios</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
@@ -485,26 +500,27 @@
                 <span class="n">ew2big</span> <span class="o">=</span> <span class="mi">10</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># width of combo boxes in characters</span>
-                <span class="n">combowidth</span> <span class="o">=</span> <span class="mi">25</span>
+                <span class="n">combowidth</span> <span class="o">=</span> <span class="mi">28</span>
                 <span class="c1"># widths of entry widgets in characters</span>
-                <span class="n">ewsmall</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="n">ewsmall</span> <span class="o">=</span> <span class="mi">3</span>
                 <span class="n">ewmed</span> <span class="o">=</span> <span class="mi">4</span>
                 <span class="n">ewbig</span> <span class="o">=</span> <span class="mi">7</span>
                 <span class="n">ew2big</span> <span class="o">=</span> <span class="mi">10</span>
-
+            <span class="c1"># pad between label and entry (not used)</span>
+            <span class="n">padx</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="c1"># width of animation and variables buttons</span>
+            <span class="n">bwidth</span> <span class="o">=</span> <span class="mi">1</span>
 
         <span class="c1"># open file and new window</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowwin</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowwin</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">newfile</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowwin</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Open File&quot;</span><span class="p">,</span>
-                              <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">new_csv</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">newfiletip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">newfile</span><span class="p">,</span> <span class="s1">&#39;Open a new csv file&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">newfile</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">newwin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rowwin</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;New Window&quot;</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">clone_dfvmain</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">newwintip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">newwin</span><span class="p">,</span> <span class="s1">&#39;Open secondary dfvue window&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newfile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newfiletip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rowwin</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Open File&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">new_csv</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Open a new csv file&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newwin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newwintip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rowwin</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;New Window&#39;</span><span class="p">,</span> <span class="n">nopack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">clone_dfvmain</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="p">),</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Open secondary dfvue window&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">newwin</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">)</span>
 
         <span class="c1"># plotting canvas</span>
@@ -525,68 +541,58 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
-        <span class="c1"># x-axis and left y-axis</span>
+        <span class="c1"># 1. row: x-axis and left y-axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowxy</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowxy</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
         <span class="c1"># block with x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blockx</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowxy</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blockx</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="c1"># x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xtip</span> <span class="o">=</span> <span class="n">add_combobox</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockx</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_x</span><span class="p">,</span>
-            <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Choose variable of x-axis.</span><span class="se">\n</span><span class="s2">Take index if &#39;None&#39; (fast).&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="c1"># invert x</span>
-        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inv_xframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_xlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_x</span><span class="p">,</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">inv_xtip</span><span class="p">)</span> <span class="o">=</span> <span class="n">add_checkbutton</span><span class="p">(</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">blockx</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;invert x&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_x</span><span class="p">,</span>
-             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Invert x-axis&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inv_xframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_xlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_xtip</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">add_checkbutton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blockx</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;invert x&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_x</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Invert x-axis&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inv_xframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="c1"># space1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">space1lbl</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">space1lbl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;   &quot;</span><span class="p">)</span>
-        <span class="n">space1lab</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowxy</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">space1lbl</span><span class="p">)</span>
-        <span class="n">space1lab</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># space</span>
+        <span class="n">space1</span> <span class="o">=</span> <span class="n">add_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowxy</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+
         <span class="c1"># block with y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowxy</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="c1"># y label</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ylbl</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ylbl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
-        <span class="n">ylab</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ylbl</span><span class="p">)</span>
-        <span class="n">ylab</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="c1"># previous and next buttons</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                              <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prev_y</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_ytip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bprev_y</span><span class="p">,</span> <span class="s1">&#39;Previous variable&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                              <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">next_y</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_ytip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bnext_y</span><span class="p">,</span> <span class="s1">&#39;Next variable&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="c1"># y</span>
+        <span class="c1"># lhs y-axis</span>
+        <span class="n">lkwargs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span>
-                              <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_y</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_y</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ytip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;Choose variable of y-axis&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="c1"># invert y</span>
+            <span class="n">lkwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;padx&#39;</span><span class="p">:</span> <span class="n">padx</span><span class="p">})</span>
+        <span class="n">ylab</span> <span class="o">=</span> <span class="n">add_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">lkwargs</span><span class="p">)</span>
+        <span class="n">spacep</span> <span class="o">=</span> <span class="n">add_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bprev_ytip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prev_y</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">bwidth</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Previous variable&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bnext_ytip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">next_y</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">bwidth</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Next variable&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ytip</span> <span class="o">=</span> <span class="n">add_combobox</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_y</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Choose variable of y-axis&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">line_y</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inv_yframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_ylbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_y</span><span class="p">,</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">inv_ytip</span><span class="p">)</span> <span class="o">=</span> <span class="n">add_checkbutton</span><span class="p">(</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;invert y&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_y</span><span class="p">,</span>
-             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Invert y-axis&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inv_yframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_ylbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_ytip</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">add_checkbutton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;invert y&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Inert y-axis&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inv_yframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
+
         <span class="c1"># redraw button</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowxy</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Redraw&quot;</span><span class="p">,</span>
-                              <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">redraw</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bredrawtip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span><span class="p">,</span> <span class="s1">&#39;Redraw, resetting zoom&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bredrawtip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rowxy</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Redraw&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">redraw</span><span class="p">,</span> <span class="n">nopack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Redraw, resetting zoom&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">)</span>
 
         <span class="c1"># options for lhs y-axis</span>
@@ -596,47 +602,47 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lsframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lslbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lstip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewmed</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Line style: -, --, -., :, or None&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lsframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lwframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lwlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lwtip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;lw&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewsmall</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Line width&quot;</span><span class="p">)</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Line width&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lwframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lcframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lclbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lctip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewbig</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Line color:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">ctstr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lcframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">markerframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">markerlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">marker</span><span class="p">,</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">markertip</span><span class="p">)</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;marker&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewmed</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker symbol:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">mtstr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">markerframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">msframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mslbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mstip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewsmall</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker size&quot;</span><span class="p">)</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker size&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">msframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mfcframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mfclbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mfc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mfctip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mfc&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewbig</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker fill color:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">ctstr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mfcframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mecframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meclbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mectip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mec&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewbig</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker edge color:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">ctstr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mecframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mewframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mewlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mew</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mewtip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockyopt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mew&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewsmall</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker edge width&quot;</span><span class="p">)</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker edge width&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mewframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bsort</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowxyopt</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Sort vars&quot;</span><span class="p">,</span>
-                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sortvars</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bsorttip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bsort</span><span class="p">,</span> <span class="s1">&#39;Sort variable names&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bsort</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bsorttip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rowxyopt</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Sort vars&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sortvars</span><span class="p">,</span> <span class="n">nopack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Sort variable names&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bsort</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">)</span>
-        
+
         <span class="c1"># Transform data frame</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowtransform</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowtransform</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
@@ -645,73 +651,56 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">blockxlim</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xlimframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlimlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlimtip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockxlim</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;xlim&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ew2big</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;xmin, xmax</span><span class="se">\n</span><span class="s2">Set to None for free scaling.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xlimframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">space3lbl</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">space3lbl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-        <span class="n">space3lab</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blockxlim</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">space3lbl</span><span class="p">)</span>
-        <span class="n">space3lab</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        <span class="n">space3</span> <span class="o">=</span> <span class="n">add_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blockxlim</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ylimframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylimlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylimtip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blockxlim</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ylim&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ew2big</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;ymin, ymax</span><span class="se">\n</span><span class="s2">Set to None for free scaling.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ylimframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowtransform</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Transform df&quot;</span><span class="p">,</span>
-                                <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transform_df</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">transformtip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="s1">&#39;Manipulate DataFrame&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformtip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rowtransform</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Transform df&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transform_df</span><span class="p">,</span>
+            <span class="n">nopack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Manipulate DataFrame&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">)</span>
 
         <span class="c1"># empty row</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowspace</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowspace</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">space4lbl</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">space4lbl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-        <span class="n">space4lab</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowspace</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">space4lbl</span><span class="p">)</span>
-        <span class="n">space4lab</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        <span class="n">space4</span> <span class="o">=</span> <span class="n">add_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowspace</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># right y2-axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowyy2</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rowyy2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowyy2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
-        <span class="c1"># y label</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ylbl2</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ylbl2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">)</span>
-        <span class="n">ylab2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ylbl2</span><span class="p">)</span>
-        <span class="n">ylab2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="c1"># previous and next buttons</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                               <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prev_y2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2tip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2</span><span class="p">,</span> <span class="s1">&#39;Previous variable&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                               <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">next_y2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2tip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2</span><span class="p">,</span> <span class="s1">&#39;Next variable&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="c1"># y</span>
+        <span class="c1"># rhs y-axis</span>
+        <span class="n">lkwargs2</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span>
-                               <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_y2</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span> <span class="o">=</span> <span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_y2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y2tip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">,</span>
-                                 <span class="s1">&#39;Choose variable of right-hand-side y-axis&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-        <span class="c1"># invert y2</span>
+            <span class="n">lkwargs2</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;padx&#39;</span><span class="p">:</span> <span class="n">padx</span><span class="p">})</span>
+        <span class="n">y2lab</span> <span class="o">=</span> <span class="n">add_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;y2&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">lkwargs2</span><span class="p">)</span>
+        <span class="n">spacep2</span> <span class="o">=</span> <span class="n">add_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bprev_y2tip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prev_y2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">bwidth</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Previous variable&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bnext_y2tip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">next_y2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">bwidth</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Next variable&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2tip</span> <span class="o">=</span> <span class="n">add_combobox</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_y2</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">combowidth</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Choose variable of right y-axis&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">line_y2</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inv_y2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_y2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_y2</span><span class="p">,</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">inv_y2tip</span><span class="p">)</span> <span class="o">=</span> <span class="n">add_checkbutton</span><span class="p">(</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;invert y2&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_y2</span><span class="p">,</span>
-             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Invert right-hand-side y-axis&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inv_y2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_y2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_y2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_y2tip</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">add_checkbutton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;invert y2&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Invert right y-axis&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inv_y2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="n">tstr</span> <span class="o">=</span> <span class="s2">&quot;Same limits for left-hand-side and right-hand-side y-axes&quot;</span>
-        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">same_yframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">same_ylbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">same_y</span><span class="p">,</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">same_ytip</span><span class="p">)</span> <span class="o">=</span> <span class="n">add_checkbutton</span><span class="p">(</span>
-             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;same y-axes&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_yy2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="n">tstr</span><span class="p">)</span>
+        <span class="n">tstr</span> <span class="o">=</span> <span class="s1">&#39;Same limits for left-hand-side and right-hand-side y-axes&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">same_yframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">same_ylbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">same_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">same_ytip</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">add_checkbutton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;same y-axes&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_yy2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="n">tstr</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">same_yframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
 
         <span class="c1"># options for rhs y-axis 2</span>
@@ -721,38 +710,38 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ls2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ls2tip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewmed</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Line style: -, --, -., :, or None&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ls2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lw2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lw2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lw2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lw2tip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;lw&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewsmall</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Line width&quot;</span><span class="p">)</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Line width&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lw2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lc2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lc2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lc2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lc2tip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewbig</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Line color:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">ctstr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lc2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">marker2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">marker2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">marker2</span><span class="p">,</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">marker2tip</span><span class="p">)</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;marker&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewmed</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker symbol:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">mtstr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">marker2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ms2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ms2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ms2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ms2tip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewsmall</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker size&quot;</span><span class="p">)</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker size&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ms2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mfc2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mfc2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mfc2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mfc2tip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mfc&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewbig</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mfc&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewbig</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker fill color:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">ctstr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mfc2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mec2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mec2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mec2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mec2tip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mec&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewbig</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mec&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewbig</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker edge color:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">ctstr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mec2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mew2frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mew2lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mew2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mew2tip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mew&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewsmall</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">blocky2opt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mew&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ewsmall</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Marker edge width&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mew2frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
 
@@ -764,13 +753,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">blocky2lim</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y2limframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2limlbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2lim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2limtip</span> <span class="o">=</span> <span class="n">add_entry</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blocky2lim</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;y2lim&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">ew2big</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entered_y2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">padx</span><span class="p">,</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;y2min, y2max</span><span class="se">\n</span><span class="s2">Set to None for free scaling.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y2limframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bquit</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowquit</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Quit&quot;</span><span class="p">,</span>
-                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">destroy</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bquittip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bquit</span><span class="p">,</span> <span class="s1">&#39;Quit dfvue&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bquit</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bquit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bquittip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rowquit</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Quit&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">destroy</span><span class="p">,</span>
+            <span class="n">nopack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Quit dfvue&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bquit</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;dfvOne&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">new_df</span><span class="p">()</span>
@@ -1238,8 +1228,8 @@
                 <span class="k">if</span> <span class="p">(</span><span class="n">ymin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ymax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
                     <span class="n">ylim</span>  <span class="o">=</span> <span class="p">[</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">]</span>
                     <span class="n">ylim2</span> <span class="o">=</span> <span class="p">[</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">]</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim2</span><span class="p">)</span>
             <span class="c1"># invert y-axis</span>
             <span class="k">if</span> <span class="n">inv_y</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
@@ -1347,8 +1337,8 @@
                 <span class="k">if</span> <span class="p">(</span><span class="n">ymin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ymax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
                     <span class="n">ylim</span>  <span class="o">=</span> <span class="p">[</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">]</span>
                     <span class="n">ylim2</span> <span class="o">=</span> <span class="p">[</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">]</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim2</span><span class="p">)</span>
             <span class="c1"># invert y-axis</span>
             <span class="n">ylim</span> <span class="o">=</span> <span class="n">ylim2</span>
             <span class="k">if</span> <span class="n">inv_y2</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
@@ -1526,8 +1516,8 @@ By Matthias Cuntz
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

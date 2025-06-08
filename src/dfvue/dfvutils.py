@@ -51,6 +51,7 @@ import dfvue
 __all__ = ['clone_dfvmain',
            'format_coord_scatter',
            'list_intersection',
+           'parse_entry',
            'vardim2var']
 
 

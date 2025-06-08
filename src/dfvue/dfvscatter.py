@@ -31,21 +31,18 @@ History
    * Removed addition of index to column names in sortvars,
      Jan 2025, Matthias Cuntz
    * Add xlim, ylim, and y2lim options, Jan 2025, Matthias Cuntz
+   * Use add_button, add_label, add_combobox from ncvwidgets,
+     Jun 2025, Matthias Cuntz
+   * Bugfix for setting axes limits, Jun 2025, Matthias Cuntz
 
 """
 import platform
 import tkinter as tk
 try:
     from customtkinter import CTkFrame as Frame
-    from customtkinter import CTkButton as Button
-    from customtkinter import CTkLabel as Label
-    from customtkinter import CTkComboBox as Combobox
     ihavectk = True
 except ModuleNotFoundError:
     from tkinter.ttk import Frame
-    from tkinter.ttk import Button
-    from tkinter.ttk import Label
-    from tkinter.ttk import Combobox
     ihavectk = False
 from tkinter import filedialog
 import warnings
@@ -54,7 +51,7 @@ import pandas as pd
 from .dfvutils import clone_dfvmain, format_coord_scatter, vardim2var
 from .dfvutils import parse_entry
 from .ncvwidgets import add_checkbutton, add_combobox, add_entry
-from .ncvwidgets import add_tooltip
+from .ncvwidgets import add_label, add_button
 from .dfvreadcsv import dfvReadcsv
 from .dfvtransform import dfvTransform
 from matplotlib import pyplot as plt
@@ -171,6 +168,10 @@ class dfvScatter(Frame):
             ewmed = 45
             ewbig = 70
             ew2big = 100
+            # pad between label and entry
+            padx = 3
+            # width of animation and variables buttons
+            bwidth = 35
         else:
             ios = platform.system()
             if ios == 'Windows':
@@ -183,26 +184,27 @@ class dfvScatter(Frame):
                 ew2big = 10
             else:
                 # width of combo boxes in characters
-                combowidth = 25
+                combowidth = 28
                 # widths of entry widgets in characters
-                ewsmall = 2
+                ewsmall = 3
                 ewmed = 4
                 ewbig = 7
                 ew2big = 10
-
+            # pad between label and entry (not used)
+            padx = 3
+            # width of animation and variables buttons
+            bwidth = 1
 
         # open file and new window
         self.rowwin = Frame(self)
         self.rowwin.pack(side=tk.TOP, fill=tk.X)
-        self.newfile = Button(self.rowwin, text="Open File",
-                              command=self.new_csv)
-        self.newfiletip = add_tooltip(self.newfile, 'Open a new csv file')
-        self.newfile.pack(side=tk.LEFT)
-        self.newwin = Button(
-            self.rowwin, text="New Window",
-            command=partial(clone_dfvmain, self.master))
-        self.newwintip = add_tooltip(
-            self.newwin, 'Open secondary dfvue window')
+        self.newfile, self.newfiletip = add_button(
+            self.rowwin, text='Open File', command=self.new_csv,
+            tooltip='Open a new csv file')
+        self.newwin, self.newwintip = add_button(
+            self.rowwin, text='New Window', nopack=True,
+            command=partial(clone_dfvmain, self.master),
+            tooltip='Open secondary dfvue window')
         self.newwin.pack(side=tk.RIGHT)
 
         # plotting canvas
@@ -223,68 +225,58 @@ class dfvScatter(Frame):
         self.toolbar.update()
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
 
-        # x-axis and left y-axis
+        # 1. row: x-axis and left y-axis
         self.rowxy = Frame(self)
         self.rowxy.pack(side=tk.TOP, fill=tk.X)
+
         # block with x
         self.blockx = Frame(self.rowxy)
         self.blockx.pack(side=tk.LEFT)
         # x
         self.xframe, self.xlbl, self.x, self.xtip = add_combobox(
             self.blockx, label="x", values=columns, command=self.selected_x,
-            width=combowidth,
+            width=combowidth, padx=padx,
             tooltip="Choose variable of x-axis.\nTake index if 'None' (fast).")
         self.xframe.pack(side=tk.LEFT)
         # invert x
-        (self.inv_xframe, self.inv_xlbl, self.inv_x,
-         self.inv_xtip) = add_checkbutton(
-             self.blockx, label="invert x", value=False,
-             command=self.checked_x,
-             tooltip="Invert x-axis")
+        self.inv_xframe, self.inv_xlbl, self.inv_x, self.inv_xtip = (
+            add_checkbutton(self.blockx, label="invert x", value=False,
+                            command=self.checked_x, tooltip="Invert x-axis"))
         self.inv_xframe.pack(side=tk.LEFT)
-        # space1
-        self.space1lbl = tk.StringVar()
-        self.space1lbl.set("   ")
-        space1lab = Label(self.rowxy, textvariable=self.space1lbl)
-        space1lab.pack(side='left')
+        
+        # space
+        space1 = add_label(self.rowxy, text=' ' * 1)
+
         # block with y
         self.blocky = Frame(self.rowxy)
         self.blocky.pack(side=tk.LEFT)
-        # y label
-        self.ylbl = tk.StringVar()
-        self.ylbl.set("y")
-        ylab = Label(self.blocky, textvariable=self.ylbl)
-        ylab.pack(side='left')
-        # previous and next buttons
-        self.bprev_y = Button(self.blocky, text="<", width=1,
-                              command=self.prev_y)
-        self.bprev_ytip = add_tooltip(self.bprev_y, 'Previous variable')
-        self.bprev_y.pack(side='left')
-        self.bnext_y = Button(self.blocky, text=">", width=1,
-                              command=self.next_y)
-        self.bnext_ytip = add_tooltip(self.bnext_y, 'Next variable')
-        self.bnext_y.pack(side='left')
-        # y
+        # lhs y-axis
+        lkwargs = {}
         if ihavectk:
-            self.y = Combobox(self.blocky, values=columns, width=combowidth,
-                              command=self.selected_y)
-        else:
-            self.y = Combobox(self.blocky, values=columns, width=combowidth)
-            self.y.bind("<<ComboboxSelected>>", self.selected_y)
-        self.ytip = add_tooltip(self.y, 'Choose variable of y-axis')
-        self.y.pack(side='left')
-        # invert y
+            lkwargs.update({'padx': padx})
+        ylab = add_label(self.blocky, text='y', **lkwargs)
+        spacep = add_label(self.blocky, text=' ' * 1)
+        self.bprev_y, self.bprev_ytip = add_button(
+            self.blocky, text='<', command=self.prev_y, width=bwidth,
+            tooltip='Previous variable')
+        self.bnext_y, self.bnext_ytip = add_button(
+            self.blocky, text='>', command=self.next_y, width=bwidth,
+            tooltip='Next variable')
+        self.yframe, self.ylbl, self.y, self.ytip = add_combobox(
+            self.blocky, label='', values=columns, command=self.selected_y,
+            width=combowidth, padx=0,
+            tooltip='Choose variable of y-axis')
+        self.yframe.pack(side=tk.LEFT)
         self.line_y = []
-        (self.inv_yframe, self.inv_ylbl, self.inv_y,
-         self.inv_ytip) = add_checkbutton(
-             self.blocky, label="invert y", value=False,
-             command=self.checked_y,
-             tooltip="Invert y-axis")
+        self.inv_yframe, self.inv_ylbl, self.inv_y, self.inv_ytip = (
+            add_checkbutton(self.blocky, label='invert y', value=False,
+                            command=self.checked_y, tooltip='Inert y-axis'))
         self.inv_yframe.pack(side=tk.LEFT)
+
         # redraw button
-        self.bredraw = Button(self.rowxy, text="Redraw",
-                              command=self.redraw)
-        self.bredrawtip = add_tooltip(self.bredraw, 'Redraw, resetting zoom')
+        self.bredraw, self.bredrawtip = add_button(
+            self.rowxy, text='Redraw', command=self.redraw, nopack=True,
+            tooltip='Redraw, resetting zoom')
         self.bredraw.pack(side=tk.RIGHT)
 
         # options for lhs y-axis
@@ -294,47 +286,47 @@ class dfvScatter(Frame):
         self.blockyopt.pack(side=tk.LEFT)
         self.lsframe, self.lslbl, self.ls, self.lstip = add_entry(
             self.blockyopt, label="ls", text='-', width=ewmed,
-            command=self.entered_y,
+            command=self.entered_y, padx=padx,
             tooltip="Line style: -, --, -., :, or None")
         self.lsframe.pack(side=tk.LEFT)
         self.lwframe, self.lwlbl, self.lw, self.lwtip = add_entry(
             self.blockyopt, label="lw", text='1', width=ewsmall,
-            command=self.entered_y, tooltip="Line width")
+            command=self.entered_y, tooltip="Line width", padx=padx)
         self.lwframe.pack(side=tk.LEFT)
         self.lcframe, self.lclbl, self.lc, self.lctip = add_entry(
             self.blockyopt, label="c", text=col1, width=ewbig,
-            command=self.entered_y,
+            command=self.entered_y, padx=padx,
             tooltip="Line color:\n" + ctstr)
         self.lcframe.pack(side=tk.LEFT)
         (self.markerframe, self.markerlbl, self.marker,
          self.markertip) = add_entry(
             self.blockyopt, label="marker", text='None', width=ewmed,
-            command=self.entered_y,
+            command=self.entered_y, padx=padx,
             tooltip="Marker symbol:\n" + mtstr)
         self.markerframe.pack(side=tk.LEFT)
         self.msframe, self.mslbl, self.ms, self.mstip = add_entry(
             self.blockyopt, label="ms", text='1', width=ewsmall,
-            command=self.entered_y, tooltip="Marker size")
+            command=self.entered_y, tooltip="Marker size", padx=padx)
         self.msframe.pack(side=tk.LEFT)
         self.mfcframe, self.mfclbl, self.mfc, self.mfctip = add_entry(
             self.blockyopt, label="mfc", text=col1, width=ewbig,
-            command=self.entered_y,
+            command=self.entered_y, padx=padx,
             tooltip="Marker fill color:\n" + ctstr)
         self.mfcframe.pack(side=tk.LEFT)
         self.mecframe, self.meclbl, self.mec, self.mectip = add_entry(
             self.blockyopt, label="mec", text=col1, width=ewbig,
-            command=self.entered_y,
+            command=self.entered_y, padx=padx,
             tooltip="Marker edge color:\n" + ctstr)
         self.mecframe.pack(side=tk.LEFT)
         self.mewframe, self.mewlbl, self.mew, self.mewtip = add_entry(
             self.blockyopt, label="mew", text='1', width=ewsmall,
-            command=self.entered_y, tooltip="Marker edge width")
+            command=self.entered_y, tooltip="Marker edge width", padx=padx)
         self.mewframe.pack(side=tk.LEFT)
-        self.bsort = Button(self.rowxyopt, text="Sort vars",
-                            command=self.sortvars)
-        self.bsorttip = add_tooltip(self.bsort, 'Sort variable names')
+        self.bsort, self.bsorttip = add_button(
+            self.rowxyopt, text='Sort vars', command=self.sortvars, nopack=True,
+            tooltip='Sort variable names')
         self.bsort.pack(side=tk.RIGHT)
-        
+
         # Transform data frame
         self.rowtransform = Frame(self)
         self.rowtransform.pack(side=tk.TOP, fill=tk.X)
@@ -343,73 +335,56 @@ class dfvScatter(Frame):
         self.blockxlim.pack(side=tk.LEFT)
         self.xlimframe, self.xlimlbl, self.xlim, self.xlimtip = add_entry(
             self.blockxlim, label="xlim", text='None', width=ew2big,
-            command=self.entered_y,
+            command=self.entered_y, padx=padx,
             tooltip="xmin, xmax\nSet to None for free scaling.")
         self.xlimframe.pack(side=tk.LEFT)
-        self.space3lbl = tk.StringVar()
-        self.space3lbl.set(" ")
-        space3lab = Label(self.blockxlim, textvariable=self.space3lbl)
-        space3lab.pack(side='left')
+        space3 = add_label(self.blockxlim, text=' ' * 3)
         self.ylimframe, self.ylimlbl, self.ylim, self.ylimtip = add_entry(
             self.blockxlim, label="ylim", text='None', width=ew2big,
-            command=self.entered_y,
+            command=self.entered_y, padx=padx,
             tooltip="ymin, ymax\nSet to None for free scaling.")
         self.ylimframe.pack(side=tk.LEFT)
-        self.transform = Button(self.rowtransform, text="Transform df",
-                                command=self.transform_df)
-        self.transformtip = add_tooltip(self.transform, 'Manipulate DataFrame')
+        self.transform, self.transformtip = add_button(
+            self.rowtransform, text='Transform df', command=self.transform_df,
+            nopack=True, tooltip='Manipulate DataFrame')
         self.transform.pack(side=tk.RIGHT)
 
         # empty row
         self.rowspace = Frame(self)
         self.rowspace.pack(side=tk.TOP, fill=tk.X)
-        self.space4lbl = tk.StringVar()
-        self.space4lbl.set(" ")
-        space4lab = Label(self.rowspace, textvariable=self.space4lbl)
-        space4lab.pack(side='left')
+        space4 = add_label(self.rowspace, text=' ' * 1)
 
         # right y2-axis
         self.rowyy2 = Frame(self)
         self.rowyy2.pack(side=tk.TOP, fill=tk.X)
         self.blocky2 = Frame(self.rowyy2)
         self.blocky2.pack(side=tk.TOP, fill=tk.X)
-        # y label
-        self.ylbl2 = tk.StringVar()
-        self.ylbl2.set("y2")
-        ylab2 = Label(self.blocky2, textvariable=self.ylbl2)
-        ylab2.pack(side='left')
-        # previous and next buttons
-        self.bprev_y2 = Button(self.blocky2, text="<", width=1,
-                               command=self.prev_y2)
-        self.bprev_y2tip = add_tooltip(self.bprev_y2, 'Previous variable')
-        self.bprev_y2.pack(side='left')
-        self.bnext_y2 = Button(self.blocky2, text=">", width=1,
-                               command=self.next_y2)
-        self.bnext_y2tip = add_tooltip(self.bnext_y2, 'Next variable')
-        self.bnext_y2.pack(side='left')
-        # y
+        # rhs y-axis
+        lkwargs2 = {}
         if ihavectk:
-            self.y2 = Combobox(self.blocky2, values=columns, width=combowidth,
-                               command=self.selected_y2)
-        else:
-            self.y2 = Combobox(self.blocky2, values=columns, width=combowidth)
-            self.y2.bind("<<ComboboxSelected>>", self.selected_y2)
-        self.y2tip = add_tooltip(self.y2,
-                                 'Choose variable of right-hand-side y-axis')
-        self.y2.pack(side='left')
-        # invert y2
+            lkwargs2.update({'padx': padx})
+        y2lab = add_label(self.blocky2, text='y2', **lkwargs2)
+        spacep2 = add_label(self.blocky2, text=' ' * 1)
+        self.bprev_y2, self.bprev_y2tip = add_button(
+            self.blocky2, text='<', command=self.prev_y2, width=bwidth,
+            tooltip='Previous variable')
+        self.bnext_y2, self.bnext_y2tip = add_button(
+            self.blocky2, text='>', command=self.next_y2, width=bwidth,
+            tooltip='Next variable')
+        self.y2frame, self.y2lbl, self.y2, self.y2tip = add_combobox(
+            self.blocky2, label='', values=columns, command=self.selected_y2,
+            width=combowidth, padx=0,
+            tooltip='Choose variable of right y-axis')
+        self.y2frame.pack(side=tk.LEFT)
         self.line_y2 = []
-        (self.inv_y2frame, self.inv_y2lbl, self.inv_y2,
-         self.inv_y2tip) = add_checkbutton(
-             self.blocky2, label="invert y2", value=False,
-             command=self.checked_y2,
-             tooltip="Invert right-hand-side y-axis")
+        self.inv_y2frame, self.inv_y2lbl, self.inv_y2, self.inv_y2tip = (
+            add_checkbutton(self.blocky2, label='invert y2', value=False,
+                            command=self.checked_y2, tooltip='Invert right y-axis'))
         self.inv_y2frame.pack(side=tk.LEFT)
-        tstr = "Same limits for left-hand-side and right-hand-side y-axes"
-        (self.same_yframe, self.same_ylbl, self.same_y,
-         self.same_ytip) = add_checkbutton(
-             self.blocky2, label="same y-axes", value=False,
-             command=self.checked_yy2, tooltip=tstr)
+        tstr = 'Same limits for left-hand-side and right-hand-side y-axes'
+        self.same_yframe, self.same_ylbl, self.same_y, self.same_ytip = (
+            add_checkbutton(self.blocky2, label='same y-axes', value=False,
+                            command=self.checked_yy2, tooltip=tstr))
         self.same_yframe.pack(side=tk.LEFT)
 
         # options for rhs y-axis 2
@@ -419,38 +394,38 @@ class dfvScatter(Frame):
         self.blocky2opt.pack(side=tk.TOP, fill=tk.X)
         self.ls2frame, self.ls2lbl, self.ls2, self.ls2tip = add_entry(
             self.blocky2opt, label="ls", text='-', width=ewmed,
-            command=self.entered_y2,
+            command=self.entered_y2, padx=padx,
             tooltip="Line style: -, --, -., :, or None")
         self.ls2frame.pack(side=tk.LEFT)
         self.lw2frame, self.lw2lbl, self.lw2, self.lw2tip = add_entry(
             self.blocky2opt, label="lw", text='1', width=ewsmall,
-            command=self.entered_y2, tooltip="Line width")
+            command=self.entered_y2, tooltip="Line width", padx=padx)
         self.lw2frame.pack(side=tk.LEFT)
         self.lc2frame, self.lc2lbl, self.lc2, self.lc2tip = add_entry(
             self.blocky2opt, label="c", text=col2, width=ewbig,
-            command=self.entered_y2,
+            command=self.entered_y2, padx=padx,
             tooltip="Line color:\n" + ctstr)
         self.lc2frame.pack(side=tk.LEFT)
         (self.marker2frame, self.marker2lbl, self.marker2,
          self.marker2tip) = add_entry(
             self.blocky2opt, label="marker", text='None', width=ewmed,
-            command=self.entered_y2,
+            command=self.entered_y2, padx=padx,
             tooltip="Marker symbol:\n" + mtstr)
         self.marker2frame.pack(side=tk.LEFT)
         self.ms2frame, self.ms2lbl, self.ms2, self.ms2tip = add_entry(
             self.blocky2opt, label="ms", text='1', width=ewsmall,
-            command=self.entered_y2, tooltip="Marker size")
+            command=self.entered_y2, tooltip="Marker size", padx=padx)
         self.ms2frame.pack(side=tk.LEFT)
         self.mfc2frame, self.mfc2lbl, self.mfc2, self.mfc2tip = add_entry(
-            self.blocky2opt, label="mfc", text=col2, width=ewbig,
+            self.blocky2opt, label="mfc", text=col2, width=ewbig, padx=padx,
             command=self.entered_y2, tooltip="Marker fill color:\n" + ctstr)
         self.mfc2frame.pack(side=tk.LEFT)
         self.mec2frame, self.mec2lbl, self.mec2, self.mec2tip = add_entry(
-            self.blocky2opt, label="mec", text=col2, width=ewbig,
+            self.blocky2opt, label="mec", text=col2, width=ewbig, padx=padx,
             command=self.entered_y2, tooltip="Marker edge color:\n" + ctstr)
         self.mec2frame.pack(side=tk.LEFT)
         self.mew2frame, self.mew2lbl, self.mew2, self.mew2tip = add_entry(
-            self.blocky2opt, label="mew", text='1', width=ewsmall,
+            self.blocky2opt, label="mew", text='1', width=ewsmall, padx=padx,
             command=self.entered_y2, tooltip="Marker edge width")
         self.mew2frame.pack(side=tk.LEFT)
 
@@ -462,13 +437,14 @@ class dfvScatter(Frame):
         self.blocky2lim.pack(side=tk.LEFT)
         self.y2limframe, self.y2limlbl, self.y2lim, self.y2limtip = add_entry(
             self.blocky2lim, label="y2lim", text='None', width=ew2big,
-            command=self.entered_y2,
+            command=self.entered_y2, padx=padx,
             tooltip="y2min, y2max\nSet to None for free scaling.")
         self.y2limframe.pack(side=tk.LEFT)
-        self.bquit = Button(self.rowquit, text="Quit",
-                            command=self.master.top.destroy)
-        self.bquittip = add_tooltip(self.bquit, 'Quit dfvue')
-        self.bquit.pack(side=tk.RIGHT, fill=tk.X)
+
+        self.bquit, self.bquittip = add_button(
+            self.rowquit, text='Quit', command=self.master.top.destroy,
+            nopack=True, tooltip='Quit dfvue')
+        self.bquit.pack(side=tk.RIGHT)
 
         if self.csvfile[0] and (self.master.master.name == 'dfvOne'):
             self.new_df()
@@ -877,8 +853,8 @@ class dfvScatter(Frame):
                 if (ymin is not None) and (ymax is not None):
                     ylim  = [ymin, ymax]
                     ylim2 = [ymin, ymax]
-                    self.axes.set_ylim(ylim)
-                    self.axes2.set_ylim(ylim2)
+                self.axes.set_ylim(ylim)
+                self.axes2.set_ylim(ylim2)
             # invert y-axis
             if inv_y and (ylim[0] is not None):
                 if ylim[0] < ylim[1]:
@@ -983,8 +959,8 @@ class dfvScatter(Frame):
                 if (ymin is not None) and (ymax is not None):
                     ylim  = [ymin, ymax]
                     ylim2 = [ymin, ymax]
-                    self.axes.set_ylim(ylim)
-                    self.axes2.set_ylim(ylim2)
+                self.axes.set_ylim(ylim)
+                self.axes2.set_ylim(ylim2)
             # invert y-axis
             ylim = ylim2
             if inv_y2 and (ylim[0] is not None):
