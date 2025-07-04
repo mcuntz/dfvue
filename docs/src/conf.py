@@ -74,7 +74,7 @@ templates_path = ["."]
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 # source_suffix = [".rst", ".md"]
-source_suffix = ".rst"
+source_suffix = {'.rst': 'restructuredtext'}
 
 # The master toctree document.
 # --> this is the sitemap (or content-list in latex -> needs a heading)

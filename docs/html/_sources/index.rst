@@ -2,7 +2,7 @@
 Contents
 --------
 
-.. image:: ../images/scatter_panel_dark_multiline_screenshot.png
+.. image:: ../images/scatter_panel_dark_multiline.png
    :width: 860 px
    :align: left
    :alt: Scatter panel of dfvue

@@ -1,8 +1,9 @@
 Changelog
 ---------
 
-v6.x (??? 2025)
-   - Position of readcsv window relative to calling window.
+v6.2 (Jul 2025)
+   - Focus on first option upon calling of readcsv window.
+   - New position for readcsv window.
    - Bugfix for setting axes limits.
    - Use button, label, and combobox from ncvwidgets.
    - Use updated ncvue-blue CustomTkinter scheme.

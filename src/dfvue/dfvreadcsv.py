@@ -32,8 +32,8 @@ History
    * Add low_memory to read_csvopts, Jan 2025, Matthias Cuntz
    * Keep na_values as str, Jan 2025, Matthias Cuntz
    * Moved parse_entry to dfvutils, Jan 2025, Matthias Cuntz
-   * Move new window 10 points relative to calling window,
-     Jul 2025, Matthias Cuntz
+   * Move new window to the left, Jul 2025, Matthias Cuntz
+   * Focus on first option upon calling, Jul 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -446,17 +446,10 @@ class dfvReadcsv(Toplevel):
 
         self.name = 'dfvReadcsv'
         self.title("Read csv file")
-        x = top.winfo_x()
-        y = top.winfo_y()
-        dist = 10
-        xdist = max(x - dist, 0)
-        ydist = max(y - dist, 0)
         if ihavectk:
-            # self.geometry('1000x540+100+10')
-            self.geometry(f'1000x540+{xdist}+{ydist}')
+            self.geometry('1000x540+55+0')
         else:
-            # self.geometry('1000x490+100+10')
-            self.geometry(f'1000x490+{xdist}+{ydist}')
+            self.geometry('1000x490+55+0')
 
         # copy for ease of use
         self.csvfile = self.top.csvfile
@@ -589,9 +582,10 @@ class dfvReadcsv(Toplevel):
         self.canceltip = add_tooltip(self.cancel, 'Cancel reading csv file')
         self.cancel.pack(side='right', pady=5)
 
-        self.focus_force()
+        self.optframe[read_csvopts[0]].focus_force()
         
         self.read_again('')
+
 
     #
     # Event bindings

@@ -377,15 +377,16 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-gui-to-view-csv-files">A simple GUI to view csv files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-dfvue">About dfvue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-usage-guide">Quick usage guide</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-layout">General layout</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-csv-file">Reading a csv file</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-csv-file-with-options-on-the-command-line">Reading a csv file with options on the command line</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-pandas-read-csv-options">Examples of pandas.read_csv options</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-line-panel">Scatter/Line panel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transform-panel">Transform panel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
             </nav>
@@ -399,7 +400,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section id="dfvue">
-<h1>dfvue<a class="headerlink" href="#dfvue" title="Link to this heading">#</a></h1>
+<span id="readme"></span><h1>dfvue<a class="headerlink" href="#dfvue" title="Link to this heading">#</a></h1>
 <section id="a-simple-gui-to-view-csv-files">
 <h2>A simple GUI to view csv files<a class="headerlink" href="#a-simple-gui-to-view-csv-files" title="Link to this heading">#</a></h2>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.10372631"><img alt="Zenodo DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.10372631.svg" />
@@ -418,16 +419,47 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is a minimal GUI for a quick view of csv files. It uses an
 input panel similar to Microsoft Excel to check visually that the csv
 file is read correctly. It provides most options of the
-<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a> method to be very versatile on the possible csv
-format.</p>
+<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a> method to be very versatile on possible csv
+formats.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is a Python script that can be called from within Python or
 as a command line tool. It is not supposed to produce
 publication-ready plots but rather provide a quick overview of the csv
 file.</p>
-<p>The complete documentation for <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is available from:</p>
+<p>A more complete documentation for <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is available from:</p>
 <blockquote>
 <div><p><a class="reference external" href="https://mcuntz.github.io/dfvue/">https://mcuntz.github.io/dfvue/</a></p>
 </div></blockquote>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is an application written in Python. It can be installed
+with <cite>pip</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>customtkinter<span class="w"> </span>dfvue
+</pre></div>
+</div>
+<p>or via <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>dfvue
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> if it is installed. <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> is
+not on <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>.  One can install <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> with pip on <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>, which works well except for Linux.</p>
+<p>Sometimes <cite>tkinter</cite> is not enabled in the system’s Python version. One
+has to do, for example, <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-tk</span></code> on Linux or
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">python3</span> <span class="pre">python-tk</span></code> on macOS with <a class="reference external" href="https://brew.sh">Homebrew</a>.</p>
+<p>We also provide standalone applications for Windows and macOS that
+come with everything needed to run <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> including Python:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.macu.de/extra/dfvue-6.2-win64.msi">dfvue 6.2 Windows</a></p></li>
+<li><p><a class="reference external" href="https://www.macu.de/extra/dfvue-6.2.ctk.intel.dmg">dfvue 6.2 CTk Intel</a> and <a class="reference external" href="https://www.macu.de/extra/dfvue-6.2.ctk.arm.dmg">dfvue 6.2 CTk ARM</a> for Intel and ARM
+processors, resp., for macOS 15 [Sequoia] using <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a></p></li>
+<li><p><a class="reference external" href="https://www.macu.de/extra/dfvue-6.2.aqua.intel.dmg">dfvue 6.2 Intel</a> and <a class="reference external" href="https://www.macu.de/extra/dfvue-6.2.aqua.arm.dmg">dfvue 6.2 ARM</a> for in Aqua look</p></li>
+</ul>
+</div></blockquote>
+<p><cite>dfvue &gt; 6.0</cite> is either for Intel processors or for Apple
+Silicon (ARM) chips. It comes in the standard Aqua look or uses the
+<a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> UI-library. The apps &gt;= v6.0 are notarized by Apple and
+might take a short while on first opening.</p>
 </section>
 <section id="quick-usage-guide">
 <h2>Quick usage guide<a class="headerlink" href="#quick-usage-guide" title="Link to this heading">#</a></h2>
@@ -451,8 +483,8 @@ or using <cite>ipython –gui tk</cite>.</p>
 <section id="general-layout">
 <h3>General layout<a class="headerlink" href="#general-layout" title="Link to this heading">#</a></h3>
 <p>On opening, <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> presents currently only one panel for producing
-scatter/line plots. Here is the look in macOS light mode (click on
-figures to open larger pictures):</p>
+scatter/line plots. Here is the look in macOS light mode (higher
+resolution images can be found in the <a class="reference external" href="https://mcuntz.github.io/dfvue/">documentation</a>):</p>
 <a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/scatter_panel_light.png"><img alt="Graphical documentation of dfvue layout" class="align-left" src="https://mcuntz.github.io/dfvue/images/scatter_panel_light.png" style="width: 860px;" />
 </a>
 <p>The pane is organised in this fashion: the plotting canvas, the
@@ -538,7 +570,8 @@ pandas <cite>na_values</cite>.</p>
 </section>
 <section id="examples-of-pandas-read-csv-options">
 <h3>Examples of pandas.read_csv options<a class="headerlink" href="#examples-of-pandas-read-csv-options" title="Link to this heading">#</a></h3>
-<p>Here are some examples of csv files and the options for
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a> is very powerful and can read a lot of different
+formats. Here are some examples of csv files and the options for
 <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv</a>.</p>
 <p>The most simple csv file would be like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DATETIME</span><span class="p">,</span><span class="n">TA_1_1_1</span><span class="p">,</span><span class="n">RH_1_1</span><span class="p">,</span><span class="n">ALB_1_1_1</span>
@@ -548,8 +581,8 @@ pandas <cite>na_values</cite>.</p>
 </div>
 <p>This can simply be read by setting <cite>index_col=0</cite>. The first column
 including date and time can simply a be a <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> date, for example
-“2015-01-01 00:30:00” or “2015-01-01T00:30:00”, or be given by
-<cite>date_format</cite>, which would be “%Y-%m-%d %H:%M:%S” in this case. See
+‘2015-01-01 00:30:00’ or ‘2015-01-01T00:30:00’, or be given by
+<cite>date_format</cite>, which would be ‘%Y-%m-%d %H:%M:%S’ in this case. See
 the documentation of <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html">pandas.to_datetime</a> or <a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">strftime</a>.</p>
 <p>Command line options would be:</p>
 <blockquote>
@@ -557,7 +590,7 @@ the documentation of <a class="reference external" href="https://pandas.pydata.o
 </div></blockquote>
 <p>or</p>
 <blockquote>
-<div><p><cite>dfvue -i 0 -d “%Y-%m-%d %H:%M:%S” csv-file</cite></p>
+<div><p><cite>dfvue -i 0 -d ‘%Y-%m-%d %H:%M:%S’ csv-file</cite></p>
 </div></blockquote>
 <p>A common practice is to put a special value for measurement errors or
 similar such as -9999:</p>
@@ -573,23 +606,23 @@ line, this is:</p>
 </div></blockquote>
 <p>or</p>
 <blockquote>
-<div><p><cite>dfvue -i 0 -d “%Y-%m-%d %H:%M:%S” –missing_value=-9999 csv-file</cite></p>
+<div><p><cite>dfvue -i 0 -d ‘%Y-%m-%d %H:%M:%S’ -m ‘-9999’ csv-file</cite></p>
 </div></blockquote>
-<p>You have to use the long form <cite>–missing_value=-9999</cite> instead of the
-short form <cite>-m -9999</cite> in case of negative missing values because the
-command line would interpret <em>-9999</em> as a separate option in the
-second case and would fail.</p>
+<p>You have to use either put -9999 in quotes (<cite>-m ‘-9999</cite>) or use the
+long form <cite>–missing_value=-9999</cite> instead of the short form <cite>-m -9999</cite>
+in case of negative missing values because the command line would
+interpret <em>-9999</em> as a separate option and would fail.</p>
 <p>Date and time information can be given in different formats, for example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Date</span><span class="p">;</span><span class="n">rho</span> <span class="n">H1</span> <span class="p">(</span><span class="n">kg</span><span class="o">/</span><span class="n">m3</span><span class="p">);</span><span class="n">alb</span> <span class="n">H1</span> <span class="p">(</span><span class="o">-</span><span class="p">);</span><span class="n">T_Psy</span> <span class="n">H1</span> <span class="p">(</span><span class="n">degC</span><span class="p">);</span><span class="n">WS_EC</span> <span class="n">H1</span> <span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">);</span><span class="n">Prec</span> <span class="n">H1</span> <span class="p">(</span><span class="n">mm</span><span class="o">/</span><span class="mi">30</span><span class="nb">min</span><span class="p">)</span>
 <span class="mf">01.01.2015</span> <span class="mi">00</span><span class="p">:</span><span class="mi">30</span><span class="p">;</span><span class="mf">97.2958103396</span><span class="p">;</span><span class="o">-</span><span class="mi">9999</span><span class="p">;</span><span class="o">-</span><span class="mf">2.17794549084</span>
-<span class="mf">01.01.2015</span> <span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="p">;</span><span class="mf">98.2103903979</span><span class="p">,</span><span class="o">-</span><span class="mi">9999</span><span class="p">;</span><span class="o">-</span><span class="mf">2.02584908489</span>
+<span class="mf">01.01.2015</span> <span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="p">;</span><span class="mf">98.2103903979</span><span class="p">;</span><span class="o">-</span><span class="mi">9999</span><span class="p">;</span><span class="o">-</span><span class="mf">2.02584908489</span>
 </pre></div>
 </div>
 <p>which can be read by setting the date format:
 <cite>date_format=%d.%m.%Y %H:%M</cite>, <cite>index_col=0</cite>, <cite>missing_value=-9999</cite>, as
 well as the field separator <cite>sep=;</cite>. On the the command line, this is:</p>
 <blockquote>
-<div><p><cite>dfvue -s “;” -i 0 -d “%d.%m.%Y %H:%M” –missing_value=-9999 csv-file</cite></p>
+<div><p><cite>dfvue -s ‘;’ -i 0 -d ‘%d.%m.%Y %H:%M’ –missing_value=-9999 csv-file</cite></p>
 </div></blockquote>
 <p>Or in <a class="reference external" href="https://fluxnet.org">FLUXNET</a> / <a class="reference external" href="https://www.icos-cp.eu">ICOS</a> / <a class="reference external" href="https://www.europe-fluxdata.eu">europe-fluxdata.eu</a> format with a
 second row that shows the variable units:</p>
@@ -600,14 +633,14 @@ second row that shows the variable units:</p>
 </pre></div>
 </div>
 <p>which is read with <cite>date_format=%Y%M%d%H%M</cite>, <cite>index_col=0</cite>,
-<cite>skiprows=1,</cite>, and <cite>missing_value=-9999</cite>. Note the comma after “1” in
-<cite>skiprows</cite>. Without the command, skiprows would be the number of rows
+<cite>skiprows=1,</cite>, and <cite>missing_value=-9999</cite>. Note the comma after ‘1’ in
+<cite>skiprows</cite>. Without the command, <em>skiprows</em> would be the number of rows
 to skip at the beginning, i.e. the first row, which would be
 wrong. The comma indicates that <em>skiprows</em> is a list and hence a list
 of row indexes, that means <em>1</em> here and thus skip the second row. This
 would be on the command line</p>
 <blockquote>
-<div><p><cite>dfvue -i 0 -d “%Y%m%d%H%M” –skiprows=1, –missing_value=-9999 csv-file</cite></p>
+<div><p><cite>dfvue -i 0 -d ‘%Y%m%d%H%M’ –skiprows=1, –missing_value=-9999 csv-file</cite></p>
 </div></blockquote>
 <p>Date and time information can also be in different columns. Here the
 second column is the day-of-the-year:</p>
@@ -618,67 +651,45 @@ second column is the day-of-the-year:</p>
 </div>
 <p>which can be read by setting <cite>parse_dates=[0,1,2,3]</cite>, <cite>index_col=0</cite>,
 and <cite>date_format=%Y %j %H %M</cite>, as well as <cite>missing_value=-9999</cite>. Note
-the brackets “[]” around <cite>parse_dates</cite>. Without brackets it would
+the brackets ‘[]’ around <cite>parse_dates</cite>. Without brackets it would
 parse columns 0, 1, 2, and 3 each as a separate date column, whereas
 with brackets it combines columns 0, 1, 2, and 3 and parses it as a
-single date column, with index “0”. It will use a space between column
+single date column, with index ‘0’. It will use a space between column
 entries. Hence <cite>index_col=0</cite> sets this combined column as the index,
-parsing the dates with the format “%Y %j %H %M” with spaces between
+parsing the dates with the format ‘%Y %j %H %M’ with spaces between
 the <a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">strftime</a> formats.</p>
 <p>On the command line, this would be:</p>
 <blockquote>
-<div><p><cite>dfvue -i 0 -p [0,1,2,3] -d “%Y %j %H %M” –missing_value=-9999 csv-file</cite></p>
+<div><p><cite>dfvue -i 0 -p [0,1,2,3] -d ‘%Y %j %H %M’ –missing_value=-9999 csv-file</cite></p>
 </div></blockquote>
 <p>If you want to have spaces in the list of <cite>parse_dates</cite> on the command
-line, you have to use the long form: <cite>–parse_dates=”[0, 1, 2, 3]”</cite>.</p>
+line, you have to use the long form: <cite>–parse_dates=’[0, 1, 2, 3]’</cite>.</p>
 </section>
 <section id="scatter-line-panel">
 <h3>Scatter/Line panel<a class="headerlink" href="#scatter-line-panel" title="Link to this heading">#</a></h3>
-<p>Here is the Scatter/Line panel in macOS dark mode, describing all
+<p>Here is the Scatter/Line panel in macOS light mode, describing all
 buttons, sliders, entry boxes, spinboxes, and menus:</p>
-<a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/scatter_panel_dark.png"><img alt="Graphical documentation of Scatter/Line panel" class="align-left" src="https://mcuntz.github.io/dfvue/images/scatter_panel_dark.png" style="width: 860px;" />
+<a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/scatter_panel_light_multiline.png"><img alt="Graphical documentation of Scatter/Line panel" class="align-left" src="https://mcuntz.github.io/dfvue/images/scatter_panel_light_multiline.png" style="width: 860px;" />
 </a>
 <p>The default plot is a line plot with solid lines (line style ‘ls’ is
 ‘-‘). One can set line style ‘ls’ to None and set a marker symbol,
 e.g. ‘o’ for circles, to get a scatter plot. A large variety of line
 styles, marker symbols and color notations are supported.</p>
 </section>
+<section id="transform-panel">
+<h3>Transform panel<a class="headerlink" href="#transform-panel" title="Link to this heading">#</a></h3>
+<p>You can do calculations on the Pandas DataFrame. Use the “Transform df” button to open the transform panel:</p>
+<a class="reference internal image-reference" href="https://mcuntz.github.io/dfvue/images/transform_panel_light.png"><img alt="Graphical documentation of Scatter/Line panel" class="align-left" src="https://mcuntz.github.io/dfvue/images/transform_panel_light.png" style="width: 860px;" />
+</a>
+<p>You can do calculations with the DataFrame. The DataFrame is called
+self.df. Its column names are the names of the x, y, and y2 variables
+in the drop-down menus without (size, datatype).</p>
+<p>You can transform the DataFrame such as doing daily means of all
+columns. This transformation is preset in the transform panel for an
+easier start on writing DataFrame calculations and transformations:
+<cite>self.df = self.df.resample(‘1D’).mean().squeeze()</cite>.  Calculations can
+have multiple lines, import libraries, etc.</p>
 </section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is an application written in Python. It can be installed
-with <cite>pip</cite>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dfvue
-</pre></div>
-</div>
-<p>or via <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>dfvue
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> if it is installed. <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> is
-not on <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>.</p>
-<p>Sometimes <cite>tkinter</cite> is not enabled in the system’s Python version. One
-has to, for example, <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-tk</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span>
-<span class="pre">install</span> <span class="pre">python-tk</span></code> on Linux or <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">python3</span> <span class="pre">python-tk</span></code> on
-macOS with <a class="reference external" href="https://brew.sh">Homebrew</a>.</p>
-<p>We also provide standalone macOS applications that come with
-everything needed to run <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> including Python:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><a class="reference external" href="https://www.macu.de/extra/dfvue-6.1.aqua.intel.dmg">dfvue 6.1 (Aqua, Intel)</a> for macOS 14+ [Sonoma] in Aqua look on
-Intel processors</p></li>
-<li><p><a class="reference external" href="https://www.macu.de/extra/dfvue-6.1.aqua.arm64.dmg">dfvue 6.1 (Aqua, ARM)</a> for macOS 14+ [Sonoma] in Aqua look on
-ARM processors</p></li>
-<li><p><a class="reference external" href="https://www.macu.de/extra/dfvue-6.1.ctk.intel.dmg">dfvue 6.1 (CustomTkinter, Intel)</a> for macOS 14+ [Sonoma] in
-CustomTkinter look on Intel processors</p></li>
-<li><p><a class="reference external" href="https://www.macu.de/extra/dfvue-6.1.ctk.arm64.dmg">dfvue 6.1 (CustomTkinter, ARM)</a> for macOS 14+ [Sonoma] in
-CustomTkinter look on ARM processors</p></li>
-</ul>
-</div></blockquote>
-<p><cite>dfvue &gt; 6.0</cite> is either for Intel processors or for Apple
-Silicon (ARM) chips. It comes in the standard Aqua look or uses the
-<a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> UI-library. The apps &gt;= v6.0 are notarized by Apple and
-might take a short while on first opening.</p>
 </section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
@@ -739,15 +750,16 @@ maintained by <a class="reference external" href="https://github.com/marcelotdua
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-gui-to-view-csv-files">A simple GUI to view csv files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-dfvue">About dfvue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-usage-guide">Quick usage guide</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-layout">General layout</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-csv-file">Reading a csv file</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-csv-file-with-options-on-the-command-line">Reading a csv file with options on the command line</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-pandas-read-csv-options">Examples of pandas.read_csv options</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-line-panel">Scatter/Line panel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transform-panel">Transform panel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
   </nav></div>

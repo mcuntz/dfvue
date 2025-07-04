@@ -346,6 +346,8 @@ document.write(`
 <span class="sd">   * Add low_memory to read_csvopts, Jan 2025, Matthias Cuntz</span>
 <span class="sd">   * Keep na_values as str, Jan 2025, Matthias Cuntz</span>
 <span class="sd">   * Moved parse_entry to dfvutils, Jan 2025, Matthias Cuntz</span>
+<span class="sd">   * Move new window to the left, Jul 2025, Matthias Cuntz</span>
+<span class="sd">   * Focus on first option upon calling, Jul 2025, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
@@ -761,9 +763,9 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvReadcsv&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Read csv file&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x540+100+10&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x540+55+0&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x490+100+10&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x490+55+0&#39;</span><span class="p">)</span>
 
         <span class="c1"># copy for ease of use</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span>
@@ -896,9 +898,10 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">canceltip</span> <span class="o">=</span> <span class="n">add_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="p">,</span> <span class="s1">&#39;Cancel reading csv file&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">focus_force</span><span class="p">()</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">optframe</span><span class="p">[</span><span class="n">read_csvopts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">focus_force</span><span class="p">()</span>
+        
         <span class="bp">self</span><span class="o">.</span><span class="n">read_again</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
 
     <span class="c1">#</span>
     <span class="c1"># Event bindings</span>
