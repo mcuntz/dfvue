@@ -75,10 +75,9 @@ Sometimes `tkinter` is not enabled in the system's Python version. One
 has to do, for example, ``sudo apt install python3-tk`` on Linux or
 ``brew install python3 python-tk`` on macOS with Homebrew_.
 
-We also provide standalone applications for Windows and macOS that
+We also provide standalone applications for macOS that
 come with everything needed to run ``dfvue`` including Python:
 
-  - `dfvue 6.2 Windows`_
   - `dfvue 6.2 CTk Intel`_ and `dfvue 6.2 CTk ARM`_ for Intel and ARM
     processors, resp., for macOS 15 [Sequoia] using CustomTkinter_
   - `dfvue 6.2 Intel`_ and `dfvue 6.2 ARM`_ for in Aqua look
