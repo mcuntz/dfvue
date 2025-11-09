@@ -65,10 +65,6 @@ class dfvTransform(Toplevel):
         screen = dfvScreen(top)
         xsizet, ysizet, xoffsett, yoffsett = screen.transform_window_size()
         self.geometry(screen.transformwin)
-        # if ihavectk:
-        #     self.geometry('1000x540+100+10')
-        # else:
-        #     self.geometry('1000x490+100+10')
         self.focus()
         # self.after(200, self.focus) # 200ms if your CPU is too fast
         # self.after(200, self.lift)
@@ -96,14 +92,12 @@ class dfvTransform(Toplevel):
                              font=("Helvetica", 16), wrap='none')
         else:
             # characters
-            if screen.os == 'Linux':
-                fs = 12
-            else:
+            if screen.os == 'Darwin':
                 fs = 16
+            else:
+                fs = 12
             self.text = Text(self.rowtext, height=15, width=75,
                              font=("Helvetica", fs), wrap='none')
-        # self.text = Text(self.rowtext, height=24, width=88,
-        #                  font=("Helvetica", 18), wrap='none')
         self.vscroll = Scrollbar(self.rowtext, command=self.text.yview)
         self.hscroll = Scrollbar(self.rowtext, command=self.text.xview)
         self.text.configure(yscrollcommand=self.vscroll.set,
@@ -131,6 +125,8 @@ class dfvTransform(Toplevel):
         self.cancel.pack(side='right', pady=5)
 
         self.focus_force()
+
+        self.update()
 
     #
     # Event bindings

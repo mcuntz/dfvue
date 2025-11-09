@@ -449,10 +449,6 @@ class dfvReadcsv(Toplevel):
         self.title("Read csv file")
         screen = dfvScreen(top)
         self.geometry(screen.readcsvwin)
-        # if ihavectk:
-        #     self.geometry('1000x540+55+0')
-        # else:
-        #     self.geometry('1000x490+55+0')
         self.focus()
         # self.after(200, self.focus) # 200ms if your CPU is too fast
         # self.after(200, self.lift)
@@ -592,6 +588,7 @@ class dfvReadcsv(Toplevel):
         
         self.read_again('')
 
+        self.update()
 
     #
     # Event bindings

@@ -133,10 +133,10 @@ class dfvScreen(object):
         if self.ihavectk:
             ysize = 550
         else:
-            if self.os == 'Linux':
-                ysize = 620
-            else:
+            if self.os == 'Darwin':
                 ysize = 550
+            else:
+                ysize = 620
 
         xoffset = max(xoffset - 100, 0)
 
