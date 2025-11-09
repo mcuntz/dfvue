@@ -20,6 +20,7 @@ The following classes are provided:
 
 History
    * Written Oct 2024 by Matthias Cuntz (mc (at) macu (dot) de)
+   * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
 
 """
 try:
@@ -36,6 +37,7 @@ except ModuleNotFoundError:
     from tkinter import Text
     from tkinter.ttk import Scrollbar
     ihavectk = False
+from .dfvscreen import dfvScreen
 from .ncvwidgets import add_tooltip
 
 
@@ -60,10 +62,13 @@ class dfvTransform(Toplevel):
 
         self.name = 'dfvTransform'
         self.title("Manipulate DataFrame")
-        if ihavectk:
-            self.geometry('1000x540+100+10')
-        else:
-            self.geometry('1000x490+100+10')
+        screen = dfvScreen(top)
+        xsizet, ysizet, xoffsett, yoffsett = screen.transform_window_size()
+        self.geometry(screen.transformwin)
+        # if ihavectk:
+        #     self.geometry('1000x540+100+10')
+        # else:
+        #     self.geometry('1000x490+100+10')
 
         # copy for ease of use
         self.csvfile = self.top.csvfile
@@ -82,12 +87,15 @@ class dfvTransform(Toplevel):
         self.rowtext.pack(side='top', fill='x')
         if ihavectk:
             # px
-            self.text = Text(self.rowtext, height=500, width=985,
-                             font=("Helvetica", 18), wrap='none')
+            self.text = Text(self.rowtext,
+                             height=int(0.85 * ysizet), width=int(0.97 * xsizet),
+                             font=("Helvetica", 16), wrap='none')
         else:
             # characters
-            self.text = Text(self.rowtext, height=22, width=88,
-                             font=("Helvetica", 18), wrap='none')
+            self.text = Text(self.rowtext,
+                             height=int(15 * ysizet / 340),
+                             width=int(75 * xsizet / 700),
+                             font=("Helvetica", 16), wrap='none')
         # self.text = Text(self.rowtext, height=24, width=88,
         #                  font=("Helvetica", 18), wrap='none')
         self.vscroll = Scrollbar(self.rowtext, command=self.text.yview)
@@ -95,7 +103,8 @@ class dfvTransform(Toplevel):
         self.text.configure(yscrollcommand=self.vscroll.set,
                             xscrollcommand=self.hscroll.set)
         self.text.insert('1.0', '# Example daily mean if datetime index\n')
-        self.text.insert('2.0',
+        self.text.insert('2.0', 'import numpy as np\n')
+        self.text.insert('3.0',
                          "self.df = self.df.resample('1D').mean().squeeze()")
         self.text.pack(side='left')
         self.vscroll.pack(side='right', fill='y')

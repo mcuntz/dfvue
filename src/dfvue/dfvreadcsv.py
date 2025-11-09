@@ -34,6 +34,7 @@ History
    * Moved parse_entry to dfvutils, Jan 2025, Matthias Cuntz
    * Move new window to the left, Jul 2025, Matthias Cuntz
    * Focus on first option upon calling, Jul 2025, Matthias Cuntz
+   * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -52,9 +53,9 @@ except ModuleNotFoundError:
     from tkinter.ttk import Button
     ihavectk = False
 from collections.abc import Iterable
-from math import isfinite
 import warnings
 import pandas as pd
+from .dfvscreen import dfvScreen
 from .dfvutils import parse_entry
 from .ncvwidgets import add_entry, add_tooltip, Treeview, callurl
 
@@ -446,10 +447,12 @@ class dfvReadcsv(Toplevel):
 
         self.name = 'dfvReadcsv'
         self.title("Read csv file")
-        if ihavectk:
-            self.geometry('1000x540+55+0')
-        else:
-            self.geometry('1000x490+55+0')
+        screen = dfvScreen(top)
+        self.geometry(screen.readcsvwin)
+        # if ihavectk:
+        #     self.geometry('1000x540+55+0')
+        # else:
+        #     self.geometry('1000x490+55+0')
 
         # copy for ease of use
         self.csvfile = self.top.csvfile

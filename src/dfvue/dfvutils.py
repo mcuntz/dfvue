@@ -35,6 +35,7 @@ History
    * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
    * Increased digits in format_coord_scatter, Jan 2025, Matthias Cuntz
    * Add parse_entry from dfvreadcsv, Jan 2025, Matthias Cuntz
+   * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -45,6 +46,7 @@ except ModuleNotFoundError:
 from math import isfinite
 import numpy as np
 import matplotlib.dates as mpld
+from .dfvscreen import dfvScreen
 import dfvue
 
 
@@ -93,7 +95,8 @@ def clone_dfvmain(widget):
     else:
         tit = "Secondary dfvue"
     root.title(tit)
-    root.geometry('1000x800+150+100')
+    screen = dfvScreen(root.top)
+    root.geometry(screen.secondwin)
 
     # https://stackoverflow.com/questions/46505982/is-there-a-way-to-clone-a-tkinter-widget
     cls = widget.__class__

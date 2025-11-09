@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+v6.3 (Nov 2025)
+   - Use screen size to determine window sizes.
+
 v6.2 (Jul 2025)
    - Focus on first option upon calling of readcsv window.
    - New position for readcsv window.

@@ -31,6 +31,7 @@ History
    * Pass Pandas DataFrame directly to dfvue, Jan 2025, Matthias Cuntz
    * Bugfix for checking if csvfile was given, Jan 2025, Matthias Cuntz
    * Use own ncvue-blue theme for customtkinter, Jan 2025, Matthias Cuntz
+   * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
 
 """
 import os
@@ -49,7 +50,7 @@ except ModuleNotFoundError:
     ihavectk = False
 from matplotlib import pyplot as plt
 from .dfvmain import dfvMain
-
+from .dfvscreen import dfvScreen
 
 __all__ = ['dfvue']
 
@@ -101,15 +102,21 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
         # https://stackoverflow.com/questions/41315873/attempting-to-resolve-blurred-tkinter-text-scaling-on-windows-10-high-dpi-disp
         from ctypes import windll
         windll.shcore.SetProcessDpiAwareness(1)
+        # screensize = (windll.user32.GetSystemMetrics(0),
+        #               windll.user32.GetSystemMetrics(1))
 
     # Pyinstaller sets _MEIPASS if macOS app
     bundle_dir = getattr(sys, '_MEIPASS',
                          os.path.abspath(os.path.dirname(__file__)))
 
     top = Tk()
+    screen = dfvScreen(top)
     top.withdraw()
 
-    if not ihavectk:
+    if ihavectk:
+        customtkinter.set_default_color_theme(
+            f'{bundle_dir}/themes/customtkinter/ncvue-blue.json')
+    else:
         # style = ttk.Style()
         # print(style.theme_names(), style.theme_use())
         if ios == 'Darwin':
@@ -125,33 +132,17 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
             # standard Windows themes
             # ('winnative', 'clam', 'alt', 'default', 'classic', 'vista',
             #  'xpnative')
-            # theme = 'vista'
-            # style = ttk.Style()
-            # style.theme_use(theme)
-
-            # 'azure' v2.x, 'sun-valley', 'forest' of rdbende
+            # 'azure' v2.x of rdbende
             top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
             theme = 'light'  # light, dark
             top.tk.call("set_theme", theme)
         elif ios == 'Linux':
             # standard Linux schemes
             # theme = 'clam'  # 'clam', 'alt', 'default', 'classic'
-            # style = ttk.Style()
-            # style.theme_use(theme)
-
-            # 'azure' v2.x, 'sun-valley', 'forest' of rdbende
+            # 'azure' v2.x of rdbende
             top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
             theme = 'light'  # light, dark
             top.tk.call("set_theme", theme)
-
-    if ihavectk:
-        # customtkinter.set_default_color_theme("blue")
-        # customtkinter.set_default_color_theme("dark-blue")
-        # customtkinter.set_default_color_theme("green")
-        # customtkinter.set_default_color_theme(
-        #     f'{bundle_dir}/themes/customtkinter/dark-blue.json')
-        customtkinter.set_default_color_theme(
-            f'{bundle_dir}/themes/customtkinter/ncvue-blue.json')
 
     # set titlebar and taskbar icon only if "standalone",
     # i.e. not ipython or jupyter
@@ -174,7 +165,7 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
     else:
         tit = "dfvue"
     root.title(tit)
-    root.geometry('1000x800+110+0')
+    root.geometry(screen.stdwin)
 
     # Connect csv file and add information to top
     top.os = ios           # operating system

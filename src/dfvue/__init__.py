@@ -17,6 +17,7 @@ Subpackages
    dfvtransform
    dfvue
    dfvutils
+   dfvscreen
    ncvwidgets
 
 History
@@ -38,6 +39,9 @@ from .tooltip import TooltipBase, OnHoverTooltipBase, Hovertip
 # general helper functions
 from .dfvutils import clone_dfvmain, format_coord_scatter, list_intersection
 from .dfvutils import parse_entry, vardim2var
+
+# screen size and resolution
+from .dfvscreen import dfvScreen
 
 # adding widgets with labels, etc.
 from .ncvwidgets import callurl, Tooltip
@@ -67,6 +71,7 @@ __all__ = ['TooltipBase', 'OnHoverTooltipBase', 'Hovertip',
            'clone_dfvmain',
            'format_coord_scatter',
            'list_intersection', 'parse_entry', 'vardim2var',
+           'dfvScreen',
            'Tooltip',
            'add_checkbutton', 'add_combobox', 'add_entry', 'add_imagemenu',
            'add_menu', 'add_scale', 'add_spinbox', 'add_tooltip',
