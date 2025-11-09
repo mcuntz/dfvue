@@ -453,6 +453,9 @@ class dfvReadcsv(Toplevel):
         #     self.geometry('1000x540+55+0')
         # else:
         #     self.geometry('1000x490+55+0')
+        self.focus()
+        # self.after(200, self.focus) # 200ms if your CPU is too fast
+        # self.after(200, self.lift)
 
         # copy for ease of use
         self.csvfile = self.top.csvfile

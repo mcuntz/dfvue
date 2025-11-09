@@ -166,6 +166,9 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
         tit = "dfvue"
     root.title(tit)
     root.geometry(screen.stdwin)
+    # To make sure that it appears before any other window
+    # https://github.com/TomSchimansky/CustomTkinter/issues/1517
+    root.update()
 
     # Connect csv file and add information to top
     top.os = ios           # operating system
