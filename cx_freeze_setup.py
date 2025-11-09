@@ -17,6 +17,8 @@ On macOS, use minimal virtual environment
    #     python -m pip install customtkinter
    python -m pip install -ve ./
    python -m pip install cx_freeze
+Update if already installed:
+   python -m pip list --outdated --exclude-editable --exclude gdal | sed 1,2d | cut -d ' ' -f 1 | xargs python -m pip install --upgrade
 
 Check in Windows Powershell
     $env:PYTHONPATH = "C:/Users/mcuntz/prog/github/dfvue"
