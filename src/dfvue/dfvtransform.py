@@ -91,14 +91,17 @@ class dfvTransform(Toplevel):
         if ihavectk:
             # px
             self.text = Text(self.rowtext,
-                             height=int(0.85 * ysizet), width=int(0.97 * xsizet),
+                             height=int(0.85 * ysizet),
+                             width=int(0.97 * xsizet),
                              font=("Helvetica", 16), wrap='none')
         else:
             # characters
-            self.text = Text(self.rowtext,
-                             height=int(15 * ysizet / 340),
-                             width=int(75 * xsizet / 700),
-                             font=("Helvetica", 16), wrap='none')
+            if screen.os == 'Linux':
+                fs = 12
+            else:
+                fs = 16
+            self.text = Text(self.rowtext, height=15, width=75,
+                             font=("Helvetica", fs), wrap='none')
         # self.text = Text(self.rowtext, height=24, width=88,
         #                  font=("Helvetica", 18), wrap='none')
         self.vscroll = Scrollbar(self.rowtext, command=self.text.yview)

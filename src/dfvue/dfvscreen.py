@@ -20,11 +20,12 @@ History
    * Written Nov 2025 by Matthias Cuntz (mc (at) macu (dot) de)
 
 """
-# try:
-#     import customtkinter
-#     ihavectk = True
-# except ModuleNotFoundError:
-#     ihavectk = False
+import platform
+try:
+    import customtkinter
+    ihavectk = True
+except ModuleNotFoundError:
+    ihavectk = False
 
 
 __all__ = ['dfvScreen']
@@ -37,6 +38,9 @@ class dfvScreen(object):
     """
 
     def __init__(self, top, **kwargs):
+
+        self.ihavectk = ihavectk
+        self.os = platform.system()  # Windows, Darwin, Linux
 
         self.width = top.winfo_screenwidth()
         self.height = top.winfo_screenheight()
@@ -81,7 +85,7 @@ class dfvScreen(object):
         else:
             xsize = max(2 * self.width // 5, 1000)
             xoffset = self.width // 5
-            if (xsize + xoffset) > self.width:
+            if ((xsize + xoffset) > self.width) or (xsize == 1000):
                 xoffset = (self.width - xsize) // 2
 
         if self.height < 800:
@@ -115,9 +119,7 @@ class dfvScreen(object):
         xsize = 700
         ysize = 340
 
-        xoffset -= 50
-        if xoffset < 0:
-            xoffset = 0
+        xoffset = max(xoffset - 50, 0)
 
         return xsize, ysize, xoffset, yoffset
 
@@ -128,10 +130,14 @@ class dfvScreen(object):
         '''
         xsize, ysize, xoffset, yoffset = self.standard_window_size()
 
-        ysize = 550
+        if self.ihavectk:
+            ysize = 550
+        else:
+            if self.os == 'Linux':
+                ysize = 620
+            else:
+                ysize = 550
 
-        xoffset -= 100
-        if xoffset < 0:
-            xoffset = 0
+        xoffset = max(xoffset - 100, 0)
 
         return xsize, ysize, xoffset, yoffset
