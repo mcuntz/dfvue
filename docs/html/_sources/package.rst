@@ -10,10 +10,11 @@ API
 
 .. toctree::
 
-   dfvmain.rst
-   dfvreadcsv.rst
-   dfvscatter.rst
-   dfvtransform.rst
    dfvue.rst
+   dfvmain.rst
+   dfvscatter.rst
+   dfvreadcsv.rst
+   dfvtransform.rst
+   dfvscreen.rst
    dfvutils.rst
    ncvwidgets.rst

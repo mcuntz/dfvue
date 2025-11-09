@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>dfvue &#8212; dfvue</title>
+    <title>dfvscreen &#8212; dfvue</title>
   
   
   
@@ -44,11 +44,11 @@
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dfvue';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dfvscreen';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dfvmain" href="dfvmain.html" />
-    <link rel="prev" title="API" href="package.html" />
+    <link rel="next" title="dfvutils" href="dfvutils.html" />
+    <link rel="prev" title="dfvtransform" href="dfvtransform.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="6.3" />
@@ -141,12 +141,12 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">dfvue</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="package.html">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">dfvue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvue.html">dfvue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvmain.html">dfvmain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvscatter.html">dfvscatter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvtransform.html">dfvtransform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dfvscreen.html">dfvscreen</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">dfvscreen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvutils.html">dfvutils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html">ncvwidgets</a></li>
 </ul>
@@ -229,7 +229,7 @@
       
       
       
-      <li><a href="https://github.com/mcuntz/dfvue/edit/main/docs/dfvue.rst" target="_blank"
+      <li><a href="https://github.com/mcuntz/dfvue/edit/main/docs/dfvscreen.rst" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -246,7 +246,7 @@
       
       
       
-      <li><a href="https://github.com/mcuntz/dfvue/issues/new?title=Issue%20on%20page%20%2Fdfvue.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/mcuntz/dfvue/issues/new?title=Issue%20on%20page%20%2Fdfvscreen.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -276,7 +276,7 @@
       
       
       
-      <li><a href="_sources/dfvue.rst" target="_blank"
+      <li><a href="_sources/dfvscreen.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +352,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>dfvue</h1>
+    <h1>dfvscreen</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -362,7 +362,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvue.dfvue"><code class="docutils literal notranslate"><span class="pre">dfvue()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen"><code class="docutils literal notranslate"><span class="pre">dfvScreen</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.readcsv_window_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.scale"><code class="docutils literal notranslate"><span class="pre">dfvScreen.scale()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.secondary_window_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.standard_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.standard_window_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.transform_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.transform_window_size()</span></code></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -374,79 +381,91 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-dfvue.dfvue">
-<span id="dfvue"></span><h1>dfvue<a class="headerlink" href="#module-dfvue.dfvue" title="Link to this heading">#</a></h1>
-<p>Calling routine of dfvue</p>
-<p>The calling routine sets up the toplevel root window and gets an
-instance of the dfvMain class.</p>
+  <section id="module-dfvue.dfvscreen">
+<span id="dfvscreen"></span><h1>dfvscreen<a class="headerlink" href="#module-dfvue.dfvscreen" title="Link to this heading">#</a></h1>
+<p>dfvscreen class for screen size and resolution</p>
 <p>This module was written by Matthias Cuntz while at Institut National de
 Recherche pour l’Agriculture, l’Alimentation et l’Environnement (INRAE), Nancy,
 France.</p>
 <dl class="field-list simple">
 <dt class="field-odd">copyright<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Copyright 2023- Matthias Cuntz - mc (at) macu (dot) de</p>
+<dd class="field-odd"><p>Copyright 2025- Matthias Cuntz - mc (at) macu (dot) de</p>
 </dd>
 <dt class="field-even">license<span class="colon">:</span></dt>
 <dd class="field-even"><p>MIT License, see LICENSE for details.</p>
 </dd>
 </dl>
-<p>The following functions are provided:</p>
+<p>The following classes are provided:</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvue.dfvue" title="dfvue.dfvue.dfvue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dfvue</span></code></a>([df, csvfile, sep, index_col, ...])</p></td>
-<td><p>The main function to start the data frame GUI.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen" title="dfvue.dfvscreen.dfvScreen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dfvScreen</span></code></a>(top, **kwargs)</p></td>
+<td><p>Set window sizes and resolution</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="simple">
 <dt>History</dt><dd><ul class="simple">
-<li><p>Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
-adapted ncvue.py</p></li>
-<li><p>Use CustomTkinter, Jun 2024, Matthias Cuntz</p></li>
-<li><p>Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz</p></li>
-<li><p>Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz</p></li>
-<li><p>Allow multiple input files, Oct 2024, Matthias Cuntz</p></li>
-<li><p>Import pyplot for Windows, Oct 2024, Matthias Cuntz</p></li>
-<li><p>Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz</p></li>
-<li><p>Pass Pandas DataFrame directly to dfvue, Jan 2025, Matthias Cuntz</p></li>
-<li><p>Bugfix for checking if csvfile was given, Jan 2025, Matthias Cuntz</p></li>
-<li><p>Use own ncvue-blue theme for customtkinter, Jan 2025, Matthias Cuntz</p></li>
-<li><p>Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz</p></li>
+<li><p>Written Nov 2025 by Matthias Cuntz (mc (at) macu (dot) de)</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="dfvue.dfvue.dfvue">
-<span class="sig-name descname"><span class="pre">dfvue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiprows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvue.html#dfvue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvue.dfvue" title="Link to this definition">#</a></dt>
-<dd><p>The main function to start the data frame GUI.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><em>pandas.DataFrame</em></a><em>, </em><em>optional</em>) – Pandas DataFrame will be used if no csvfile given</p></li>
-<li><p><strong>csvfile</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Name(s) of csv file (default: ‘’).</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Delimiter to use.</p></li>
-<li><p><strong>index_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Column(s) to use as index, either given as column index
-or string name.</p></li>
-<li><p><strong>skiprows</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Line numbers to skip (0-indexed, must include comma,
-e.g. “1,” for skipping the second row) or
-number of lines to skip (int, without comma) at the start
-of the file.</p></li>
-<li><p><strong>parse_dates</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – <p>boolean. If True -&gt; try parsing the index.</p>
-<p>list of int or names. e.g. If 1, 2, 3
--&gt; try parsing columns 1, 2, 3 each as a separate date column.</p>
-<p>list of lists. e.g. If [1, 3] -&gt; combine columns 1 and 3 and
-parse as a single date column.</p>
-<p>dict, e.g. “foo” : [1, 3] -&gt; parse columns 1, 3 as date and
-call result</p>
-</p></li>
-<li><p><strong>date_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Will parse dates according to this format.
-For example: “%%Y-%%m-%%d %%H:%%M%%S”. See
-<a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior</a></p></li>
-<li><p><strong>missing_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Missing or undefined value set to NaN.</p></li>
-</ul>
-</dd>
-</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dfvScreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Set window sizes and resolution</p>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size" title="dfvue.dfvscreen.dfvScreen.readcsv_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">readcsv_window_size</span></code></a>()</p></td>
+<td><p>Set xsize, ysize, xoffset, yoffset of read csv file window</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.scale" title="dfvue.dfvscreen.dfvScreen.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(x)</p></td>
+<td><p>Scales <em>x</em> by current dpi over dpi of development screen</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size" title="dfvue.dfvscreen.dfvScreen.secondary_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">secondary_window_size</span></code></a>()</p></td>
+<td><p>Set xsize, ysize, xoffset, yoffset of secondary window</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.standard_window_size" title="dfvue.dfvscreen.dfvScreen.standard_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">standard_window_size</span></code></a>()</p></td>
+<td><p>Set xsize, ysize, xoffset, yoffset of standard window</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.transform_window_size" title="dfvue.dfvscreen.dfvScreen.transform_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform_window_size</span></code></a>()</p></td>
+<td><p>Set xsize, ysize, xoffset, yoffset of transform window</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.readcsv_window_size">
+<span class="sig-name descname"><span class="pre">readcsv_window_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.readcsv_window_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size" title="Link to this definition">#</a></dt>
+<dd><p>Set xsize, ysize, xoffset, yoffset of read csv file window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.scale" title="Link to this definition">#</a></dt>
+<dd><p>Scales <em>x</em> by current dpi over dpi of development screen</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.secondary_window_size">
+<span class="sig-name descname"><span class="pre">secondary_window_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.secondary_window_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size" title="Link to this definition">#</a></dt>
+<dd><p>Set xsize, ysize, xoffset, yoffset of secondary window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.standard_window_size">
+<span class="sig-name descname"><span class="pre">standard_window_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.standard_window_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.standard_window_size" title="Link to this definition">#</a></dt>
+<dd><p>Set xsize, ysize, xoffset, yoffset of standard window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.transform_window_size">
+<span class="sig-name descname"><span class="pre">transform_window_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.transform_window_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.transform_window_size" title="Link to this definition">#</a></dt>
+<dd><p>Set xsize, ysize, xoffset, yoffset of transform window</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -463,20 +482,20 @@ For example: “%%Y-%%m-%%d %%H:%%M%%S”. See
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="package.html"
+       href="dfvtransform.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">API</p>
+        <p class="prev-next-title">dfvtransform</p>
       </div>
     </a>
     <a class="right-next"
-       href="dfvmain.html"
+       href="dfvutils.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">dfvmain</p>
+        <p class="prev-next-title">dfvutils</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -497,7 +516,14 @@ For example: “%%Y-%%m-%%d %%H:%%M%%S”. See
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvue.dfvue"><code class="docutils literal notranslate"><span class="pre">dfvue()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen"><code class="docutils literal notranslate"><span class="pre">dfvScreen</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.readcsv_window_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.scale"><code class="docutils literal notranslate"><span class="pre">dfvScreen.scale()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.secondary_window_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.standard_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.standard_window_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.transform_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.transform_window_size()</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

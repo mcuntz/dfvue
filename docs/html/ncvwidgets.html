@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=6d282135"></script>
+    <script src="_static/documentation_options.js?v=2a60eea9"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
@@ -51,7 +51,7 @@
     <link rel="prev" title="dfvutils" href="dfvutils.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="6.2.dev2" />
+  <meta name="docsearch:version" content="6.3" />
   </head>
   
   
@@ -141,11 +141,12 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">dfvue</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="package.html">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="dfvmain.html">dfvmain</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dfvscatter.html">dfvscatter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dfvtransform.html">dfvtransform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvue.html">dfvue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvmain.html">dfvmain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvscatter.html">dfvscatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvtransform.html">dfvtransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvscreen.html">dfvscreen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvutils.html">dfvutils</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">ncvwidgets</a></li>
 </ul>
@@ -1308,7 +1309,7 @@ processed (see bind).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.ncvwidgets.Treeview.cget">
-<span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#dfvue.ncvwidgets.Treeview.cget" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#dfvue.ncvwidgets.Treeview.cget" title="Link to this definition">#</a></dt>
 <dd><p>basic cget with bg_color, width, height support, calls cget of tkinter.Frame</p>
 </dd></dl>
 
@@ -2139,7 +2140,7 @@ BooleanVar must be given.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.ncvwidgets.Treeview.winfo_children">
-<span class="sig-name descname"><span class="pre">winfo_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#dfvue.ncvwidgets.Treeview.winfo_children" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">winfo_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#dfvue.ncvwidgets.Treeview.winfo_children" title="Link to this definition">#</a></dt>
 <dd><p>winfo_children of CTkFrame without self.canvas widget,
 because it’s not a child but part of the CTkFrame itself</p>
 </dd></dl>
@@ -2449,11 +2450,11 @@ in the parent.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>CustomTkinter widget</em>) – Parent widget</p></li>
-<li><p><strong>itext</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears as a textvariable on the button (default: “”)
+<li><p><strong>itext</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears as a textvariable on the button (default: “”)
 If not textvariable needed, use text=’something’ instead.</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the checkbutton (default: “” = no tooltip)</p></li>
-<li><p><strong>nopack</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, button will not be packed left.</p></li>
+<li><p><strong>nopack</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, button will not be packed left.</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Button</p></li>
 </ul>
 </dd>
@@ -2485,11 +2486,11 @@ the checkbutton (default: “” = no tooltip)</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>CustomTkinter widget</em>) – Parent widget</p></li>
-<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears on the checkbutton (default: “”)</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>optional</em>) – Initial state of the checkbutton (default: False)</p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears on the checkbutton (default: “”)</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Initial state of the checkbutton (default: False)</p></li>
 <li><p><strong>command</strong> (<em>function</em><em>, </em><em>optional</em>) – Function to be called whenever the state of the
 checkbutton changes (default: None).</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the checkbutton (default: “” = no tooltip)</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Checkbutton</p></li>
 </ul>
@@ -2520,13 +2521,13 @@ control variable tracking current state of checkbutton</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>CustomTkinter widget</em>) – Parent widget</p></li>
-<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the combobox (default: “”)</p></li>
-<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – The choices that will appear in the drop-down menu (default: [])</p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the combobox (default: “”)</p></li>
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The choices that will appear in the drop-down menu (default: [])</p></li>
 <li><p><strong>command</strong> (<em>function</em><em>, </em><em>optional</em>) – Handler function to be bound to the combobox for the event
 &lt;&lt;ComboboxSelected&gt;&gt; (default: None).</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the combobox (default: “” = no tooltip)</p></li>
-<li><p><strong>padx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Extra space in px added left and right of the label text (default: 1)</p></li>
+<li><p><strong>padx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em>) – Extra space in px added left and right of the label text (default: 1)</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Combobox</p></li>
 </ul>
 </dd>
@@ -2555,18 +2556,18 @@ the combobox (default: “” = no tooltip)</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>CustomTkinter widget</em>) – Parent widget</p></li>
-<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the entry (default: “”)</p></li>
-<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Initial text in the entry area (default: “”)</p></li>
-<li><p><strong>command</strong> (<em>function</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>functions</em><em>, </em><em>optional</em>) – Handler function to be bound to the entry for the events
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the entry (default: “”)</p></li>
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Initial text in the entry area (default: “”)</p></li>
+<li><p><strong>command</strong> (<em>function</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><em>functions</em><em>, </em><em>optional</em>) – Handler function to be bound to the entry for the events
 ‘&lt;FocusOut&gt;’, &lt;Return&gt;, ‘&lt;Key-Return&gt;’, and &lt;KP_Enter&gt; (default: None).
 If list is given than command[0] is bound to ‘&lt;FocusOut&gt;’ and
 command[1] is bound to the 3 events</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the entry (default: “” = no tooltip)</p></li>
-<li><p><strong>padlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Prepend number of spaces to create distance to other widgets
+<li><p><strong>padlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em>) – Prepend number of spaces to create distance to other widgets
 (default: 0)</p></li>
-<li><p><strong>padx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Extra space in px added left and right of the label text (default: 1)</p></li>
-<li><p><strong>labelwidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – If given, set width of Label</p></li>
+<li><p><strong>padx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em>) – Extra space in px added left and right of the label text (default: 1)</p></li>
+<li><p><strong>labelwidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em>) – If given, set width of Label</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Entry</p></li>
 </ul>
 </dd>
@@ -2598,12 +2599,12 @@ with a Label before.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>tk widget</em>) – Parent widget</p></li>
-<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the menu (default: “”)</p></li>
-<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – The choices that will appear in the drop-down menu (default: [])</p></li>
-<li><p><strong>images</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – The images before the choices that will appear in the drop-down menu
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the menu (default: “”)</p></li>
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The choices that will appear in the drop-down menu (default: [])</p></li>
+<li><p><strong>images</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The images before the choices that will appear in the drop-down menu
 (default: [])</p></li>
 <li><p><strong>command</strong> (<em>function</em><em>, </em><em>optional</em>) – Handler function to be called if new menu entry chosen (default: None).</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the menu (default: “” = no tooltip)</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to the main ttk.Menubutton</p></li>
 <li><p><strong>tk.StringVar</strong> – variable for the text of the tooltip, if given.</p></li>
@@ -2636,7 +2637,7 @@ the menu (default: “” = no tooltip)</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>CustomTkinter widget</em>) – Parent widget</p></li>
-<li><p><strong>itext</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears as textvariable in the label (default: “”)
+<li><p><strong>itext</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears as textvariable in the label (default: “”)
 If not textvariable needed, use text=’something’ instead.</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to the Label function</p></li>
 </ul>
@@ -2666,10 +2667,10 @@ If not textvariable needed, use text=’something’ instead.</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>CustomTkinter widget</em>) – Parent widget</p></li>
-<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the menu (default: “”)</p></li>
-<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – The choices that will appear in the drop-down menu (default: [])</p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the menu (default: “”)</p></li>
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The choices that will appear in the drop-down menu (default: [])</p></li>
 <li><p><strong>command</strong> (<em>function</em><em>, </em><em>optional</em>) – Handler function to be called if new menu entry chosen (default: None).</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the menu (default: “” = no tooltip)</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to the main Menubutton</p></li>
 <li><p><strong>tk.StringVar</strong> – variable for the text of the tooltip, if given.</p></li>
@@ -2699,9 +2700,9 @@ the menu (default: “” = no tooltip)</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>CustomTkinter widget</em>) – Parent widget</p></li>
-<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the scale (default: “”)</p></li>
-<li><p><strong>ini</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – Initial value of scale (default: 0)</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the scale (default: “”)</p></li>
+<li><p><strong>ini</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Initial value of scale (default: 0)</p></li>
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the scale (default: “” = no tooltip)</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to Scale</p></li>
 </ul>
@@ -2733,11 +2734,11 @@ scale widget</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>tk widget</em>) – Parent widget</p></li>
-<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the spinbox (default: “”)</p></li>
-<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – The list of choices on the spinbox (default: [])</p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Text that appears in front of the spinbox (default: “”)</p></li>
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The list of choices on the spinbox (default: [])</p></li>
 <li><p><strong>command</strong> (<em>function</em><em>, </em><em>optional</em>) – Handler function bound to
 &lt;Return&gt;, ‘&lt;Key-Return&gt;’, &lt;KP_Enter&gt;, and ‘&lt;FocusOut&gt;’ (default: None).</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the spinbox (default: “” = no tooltip)</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to tk.Spinbox</p></li>
 </ul>
@@ -2771,7 +2772,7 @@ spinbox widget</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame</strong> (<em>tk widget</em>) – Parent widget</p></li>
-<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
+<li><p><strong>tooltip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Tooltip appearing after one second when hovering over
 the parent widget (default: “” = no tooltip)</p></li>
 <li><p><strong>**kwargs</strong> (<em>option=value pairs</em><em>, </em><em>optional</em>) – All other options will be passed to tk.StringVar</p></li>
 </ul>
@@ -2800,7 +2801,7 @@ the parent widget (default: “” = no tooltip)</p></li>
 <dd><p>Open url in external web browser</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – html url</p>
+<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – html url</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Opens <em>url</em> in external web browser</p>

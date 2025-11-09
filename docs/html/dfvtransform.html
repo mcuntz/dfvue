@@ -40,18 +40,18 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="_static/documentation_options.js?v=6d282135"></script>
+    <script src="_static/documentation_options.js?v=2a60eea9"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'dfvtransform';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dfvue" href="dfvue.html" />
-    <link rel="prev" title="dfvscatter" href="dfvscatter.html" />
+    <link rel="next" title="dfvscreen" href="dfvscreen.html" />
+    <link rel="prev" title="dfvreadcsv" href="dfvreadcsv.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="6.2.dev2" />
+  <meta name="docsearch:version" content="6.3" />
   </head>
   
   
@@ -141,11 +141,12 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">dfvue</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="package.html">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="dfvmain.html">dfvmain</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dfvscatter.html">dfvscatter</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">dfvtransform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvue.html">dfvue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvmain.html">dfvmain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvscatter.html">dfvscatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">dfvtransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfvscreen.html">dfvscreen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvutils.html">dfvutils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html">ncvwidgets</a></li>
 </ul>
@@ -607,6 +608,7 @@ France.</p>
 <dl class="simple">
 <dt>History</dt><dd><ul class="simple">
 <li><p>Written Oct 2024 by Matthias Cuntz (mc (at) macu (dot) de)</p></li>
+<li><p>Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz</p></li>
 </ul>
 </dd>
 </dl>
@@ -1399,7 +1401,7 @@ processed (see bind).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvtransform.dfvTransform.cget">
-<span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#dfvue.dfvtransform.dfvTransform.cget" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#dfvue.dfvtransform.dfvTransform.cget" title="Link to this definition">#</a></dt>
 <dd><p>Return the resource value for a KEY given as string.</p>
 </dd></dl>
 
@@ -1615,7 +1617,7 @@ once the widget is managed again.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvtransform.dfvTransform.geometry">
-<span class="sig-name descname"><span class="pre">geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvtransform.dfvTransform.geometry" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvtransform.dfvTransform.geometry" title="Link to this definition">#</a></dt>
 <dd><p>Set geometry to NEWGEOMETRY of the form =widthxheight+x+y. Return
 current value if None is given.</p>
 </dd></dl>
@@ -2008,7 +2010,7 @@ be given which will be executed before FUNC.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvtransform.dfvTransform.resizable">
-<span class="sig-name descname"><span class="pre">resizable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvtransform.dfvTransform.resizable" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">resizable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvtransform.dfvTransform.resizable" title="Link to this definition">#</a></dt>
 <dd><p>Instruct the window manager whether this width can be resized
 in WIDTH or HEIGHT. Both values are boolean values.</p>
 </dd></dl>
@@ -2860,20 +2862,20 @@ and forgotten by the window manager. Re-draw it with wm_deiconify.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="dfvscatter.html"
+       href="dfvreadcsv.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">dfvscatter</p>
+        <p class="prev-next-title">dfvreadcsv</p>
       </div>
     </a>
     <a class="right-next"
-       href="dfvue.html"
+       href="dfvscreen.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">dfvue</p>
+        <p class="prev-next-title">dfvscreen</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

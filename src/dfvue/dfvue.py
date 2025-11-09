@@ -49,8 +49,8 @@ except ModuleNotFoundError:
     from tkinter import Toplevel
     ihavectk = False
 from matplotlib import pyplot as plt
-from .dfvmain import dfvMain
 from .dfvscreen import dfvScreen
+from .dfvmain import dfvMain
 
 __all__ = ['dfvue']
 

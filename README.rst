@@ -3,14 +3,6 @@ dfvue
 
 A simple GUI to view csv files
 ------------------------------
-..
-  pandoc -f rst -o README.html -t html README.rst
-  As docs/src/readme.rst:
-    replace _small.png with .png
-    replace
-      higher resolution images can be found in the documentation_
-    with
-      click on figures to open larger pictures
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.10372631.svg
   :target: https://doi.org/10.5281/zenodo.10372631
@@ -69,23 +61,23 @@ or via Conda_:
    conda install -c conda-forge dfvue
 
 ``dfvue`` uses CustomTkinter_ if it is installed. CustomTkinter_ is
-not on Conda_.  One can install CustomTkinter_ with pip on Conda_, which works well except for Linux.
+not on Conda_. One can install CustomTkinter_ with pip on Conda_,
+which works well except for Linux.
 
 Sometimes `tkinter` is not enabled in the system's Python version. One
 has to do, for example, ``sudo apt install python3-tk`` on Linux or
 ``brew install python3 python-tk`` on macOS with Homebrew_.
 
-We also provide standalone applications for macOS that
+We also provide standalone applications for macOS and Windows that
 come with everything needed to run ``dfvue`` including Python:
 
-  - `dfvue 6.2 CTk Intel`_ and `dfvue 6.2 CTk ARM`_ for Intel and ARM
-    processors, resp., for macOS 15 [Sequoia] using CustomTkinter_
-  - `dfvue 6.2 Intel`_ and `dfvue 6.2 ARM`_ for in Aqua look
+  - macOS: `dfvue 6.3 Intel`_ and `dfvue 6.2 ARM`_ for Intel and ARM
+    processors, resp., for macOS 15+ [Sequoia]
+  - Windows: `dfvue 6.3`_, packaged on Windows 10
 
-`dfvue > 6.0` is either for Intel processors or for Apple
-Silicon (ARM) chips. It comes in the standard Aqua look or uses the
-CustomTkinter_ UI-library. The apps >= v6.0 are notarized by Apple and
-might take a short while on first opening.
+`dfvue > 6.0` on macOS is either for Intel processors or for Apple
+Silicon (ARM) chips. The apps are notarized by Apple and might take a
+short while on first opening.
 
 
 Quick usage guide
@@ -396,14 +388,11 @@ maintained by `Marcelo Duarte`_.
 
 
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
-.. _dfvue 6.2 Windows: https://www.macu.de/extra/dfvue-6.2-win64.msi
-.. _dfvue 6.2 CTk Intel: https://www.macu.de/extra/dfvue-6.2.ctk.intel.dmg
-.. _dfvue 6.2 CTk ARM: https://www.macu.de/extra/dfvue-6.2.ctk.arm.dmg
-.. _dfvue 6.2 Intel: https://www.macu.de/extra/dfvue-6.2.aqua.intel.dmg
-.. _dfvue 6.2 ARM: https://www.macu.de/extra/dfvue-6.2.aqua.arm.dmg
+.. _dfvue 6.3: https://www.macu.de/extra/dfvue-6.3.win64.msi
+.. _dfvue 6.3 Intel: https://www.macu.de/extra/dfvue-6.3.intel.dmg
+.. _dfvue 6.2 ARM: https://www.macu.de/extra/dfvue-6.2.ctk.arm.dmg
 .. _documentation: https://mcuntz.github.io/dfvue/
 .. _europe-fluxdata.eu: https://www.europe-fluxdata.eu
-.. _macOS app: https://www.macu.de/extra/dfvue-4.0.dmg
 .. _pandas.concat: https://pandas.pydata.org/docs/reference/api/pandas.concat.html
 .. _pandas.read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 .. _pandas.DataFrame: https://pandas.pydata.org/docs/reference/frame.html
@@ -411,7 +400,6 @@ maintained by `Marcelo Duarte`_.
 .. _read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 .. _rdbende: https://github.com/rdbende
 .. _strftime: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
-.. _this thread: https://github.com/ContinuumIO/anaconda-issues/issues/6833
 .. _Azure: https://github.com/rdbende/Azure-ttk-theme
 .. _Conda: https://docs.conda.io/projects/conda/en/latest/
 .. _CustomTkinter: https://customtkinter.tomschimansky.com
@@ -421,5 +409,3 @@ maintained by `Marcelo Duarte`_.
 .. _ISO8601: https://en.wikipedia.org/wiki/ISO_8601
 .. _LICENSE: https://github.com/mcuntz/dfvue/blob/main/LICENSE
 .. _Marcelo Duarte: https://github.com/marcelotduarte
-.. _Tom Schimansky: https://github.com/TomSchimansky
-.. _Windows executable: https://www.macu.de/extra/dfvue-3.7-amd64.msi

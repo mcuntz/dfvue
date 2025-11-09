@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=6d282135"></script>
+    <script src="../../_static/documentation_options.js?v=2a60eea9"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
@@ -48,7 +48,7 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="6.2.dev2" />
+  <meta name="docsearch:version" content="6.3" />
   </head>
   
   
@@ -140,11 +140,12 @@
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">dfvue</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../package.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../dfvmain.html">dfvmain</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dfvreadcsv.html">dfvreadcsv</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dfvscatter.html">dfvscatter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dfvtransform.html">dfvtransform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvue.html">dfvue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvmain.html">dfvmain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvscatter.html">dfvscatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvreadcsv.html">dfvreadcsv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvtransform.html">dfvtransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dfvscreen.html">dfvscreen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../dfvutils.html">dfvutils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../ncvwidgets.html">ncvwidgets</a></li>
 </ul>
@@ -320,6 +321,7 @@
 
 <span class="sd">History</span>
 <span class="sd">   * Written Oct 2024 by Matthias Cuntz (mc (at) macu (dot) de)</span>
+<span class="sd">   * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="k">try</span><span class="p">:</span>
@@ -336,6 +338,7 @@
     <span class="kn">from</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">Text</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.ttk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scrollbar</span>
     <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.dfvscreen</span><span class="w"> </span><span class="kn">import</span> <span class="n">dfvScreen</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.ncvwidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_tooltip</span>
 
 
@@ -362,10 +365,12 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvTransform&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Manipulate DataFrame&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x540+100+10&#39;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s1">&#39;1000x490+100+10&#39;</span><span class="p">)</span>
+        <span class="n">screen</span> <span class="o">=</span> <span class="n">dfvScreen</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+        <span class="n">xsizet</span><span class="p">,</span> <span class="n">ysizet</span><span class="p">,</span> <span class="n">xoffsett</span><span class="p">,</span> <span class="n">yoffsett</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">transform_window_size</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">transformwin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">focus</span><span class="p">()</span>
+        <span class="c1"># self.after(200, self.focus) # 200ms if your CPU is too fast</span>
+        <span class="c1"># self.after(200, self.lift)</span>
 
         <span class="c1"># copy for ease of use</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">csvfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">csvfile</span>
@@ -384,20 +389,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rowtext</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ihavectk</span><span class="p">:</span>
             <span class="c1"># px</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowtext</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">985</span><span class="p">,</span>
-                             <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="n">wrap</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowtext</span><span class="p">,</span>
+                             <span class="n">height</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.85</span> <span class="o">*</span> <span class="n">ysizet</span><span class="p">),</span>
+                             <span class="n">width</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.97</span> <span class="o">*</span> <span class="n">xsizet</span><span class="p">),</span>
+                             <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">wrap</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># characters</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowtext</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">88</span><span class="p">,</span>
-                             <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="n">wrap</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-        <span class="c1"># self.text = Text(self.rowtext, height=24, width=88,</span>
-        <span class="c1">#                  font=(&quot;Helvetica&quot;, 18), wrap=&#39;none&#39;)</span>
+            <span class="k">if</span> <span class="n">screen</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
+                <span class="n">fs</span> <span class="o">=</span> <span class="mi">16</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fs</span> <span class="o">=</span> <span class="mi">12</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowtext</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+                             <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="n">fs</span><span class="p">),</span> <span class="n">wrap</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vscroll</span> <span class="o">=</span> <span class="n">Scrollbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowtext</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">yview</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hscroll</span> <span class="o">=</span> <span class="n">Scrollbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rowtext</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">xview</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">yscrollcommand</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vscroll</span><span class="o">.</span><span class="n">set</span><span class="p">,</span>
                             <span class="n">xscrollcommand</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hscroll</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;# Example daily mean if datetime index</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;2.0&#39;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;import numpy as np</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;3.0&#39;</span><span class="p">,</span>
                          <span class="s2">&quot;self.df = self.df.resample(&#39;1D&#39;).mean().squeeze()&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vscroll</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
@@ -418,6 +428,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cancel</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">focus_force</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
     <span class="c1">#</span>
     <span class="c1"># Event bindings</span>
