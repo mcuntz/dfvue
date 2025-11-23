@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-v6.4 (??? 2025)
+v6.4 (Nov 2025)
    - Deduce datetime in xlim and ylim.
 
 v6.3 (Nov 2025)
