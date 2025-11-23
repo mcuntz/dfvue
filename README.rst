@@ -71,9 +71,9 @@ has to do, for example, ``sudo apt install python3-tk`` on Linux or
 We also provide standalone applications for macOS and Windows that
 come with everything needed to run ``dfvue`` including Python:
 
-  - macOS: `dfvue 6.3 Intel`_ and `dfvue 6.2 ARM`_ for Intel and ARM
+  - macOS: `dfvue 6.4 Intel`_ and `dfvue 6.4 ARM`_ for Intel and ARM
     processors, resp., for macOS 15+ [Sequoia]
-  - Windows: `dfvue 6.3`_, packaged on Windows 10
+  - Windows: `dfvue 6.4`_, packaged on Windows 10
 
 `dfvue > 6.0` on macOS is either for Intel processors or for Apple
 Silicon (ARM) chips. The apps are notarized by Apple and might take a
@@ -388,9 +388,9 @@ maintained by `Marcelo Duarte`_.
 
 
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
-.. _dfvue 6.3: https://www.macu.de/extra/dfvue-6.3.win64.msi
-.. _dfvue 6.3 Intel: https://www.macu.de/extra/dfvue-6.3.intel.dmg
-.. _dfvue 6.2 ARM: https://www.macu.de/extra/dfvue-6.2.ctk.arm.dmg
+.. _dfvue 6.4: https://www.macu.de/extra/dfvue-6.4-win64.msi
+.. _dfvue 6.4 Intel: https://www.macu.de/extra/dfvue-6.4.intel.dmg
+.. _dfvue 6.4 ARM: https://www.macu.de/extra/dfvue-6.4.arm64.dmg
 .. _documentation: https://mcuntz.github.io/dfvue/
 .. _europe-fluxdata.eu: https://www.europe-fluxdata.eu
 .. _pandas.concat: https://pandas.pydata.org/docs/reference/api/pandas.concat.html

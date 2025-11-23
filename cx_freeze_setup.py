@@ -36,6 +36,8 @@ macOS dmg
     scp dfvue-6.3.intel.dmg macu.de@ssh.strato.de:extra/
 Windows installer
     python cx_freeze_setup.py bdist_msi
+    cd dist
+    scp dfvue-6.4-win64.msi macu.de@ssh.strato.de:fr-hes/
 
 '''
 import os
