@@ -21,6 +21,7 @@ The following classes are provided:
 History
    * Written Oct 2024 by Matthias Cuntz (mc (at) macu (dot) de)
    * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
+   * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
 
 """
 try:
@@ -62,9 +63,8 @@ class dfvTransform(Toplevel):
 
         self.name = 'dfvTransform'
         self.title("Manipulate DataFrame")
-        screen = dfvScreen(top)
-        xsizet, ysizet, xoffsett, yoffsett = screen.transform_window_size()
-        self.geometry(screen.transformwin)
+        sc = dfvScreen(top)
+        sc.set_window_geometry(self, sc.transform_window_size())
         self.focus()
         # self.after(200, self.focus) # 200ms if your CPU is too fast
         # self.after(200, self.lift)
@@ -86,6 +86,7 @@ class dfvTransform(Toplevel):
         self.rowtext.pack(side='top', fill='x')
         if ihavectk:
             # px
+            xsizet, ysizet, xoffsett, yoffsett = sc.transform_window_size()
             self.text = Text(self.rowtext,
                              height=int(0.85 * ysizet),
                              width=int(0.97 * xsizet),

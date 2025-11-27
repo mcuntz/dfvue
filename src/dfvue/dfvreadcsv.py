@@ -35,6 +35,7 @@ History
    * Move new window to the left, Jul 2025, Matthias Cuntz
    * Focus on first option upon calling, Jul 2025, Matthias Cuntz
    * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
+   * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -447,8 +448,8 @@ class dfvReadcsv(Toplevel):
 
         self.name = 'dfvReadcsv'
         self.title("Read csv file")
-        screen = dfvScreen(top)
-        self.geometry(screen.readcsvwin)
+        sc = dfvScreen(top)
+        sc.set_window_geometry(self, sc.readcsv_window_size())
         self.focus()
         # self.after(200, self.focus) # 200ms if your CPU is too fast
         # self.after(200, self.lift)

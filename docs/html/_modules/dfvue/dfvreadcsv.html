@@ -336,6 +336,7 @@
 <span class="sd">   * Move new window to the left, Jul 2025, Matthias Cuntz</span>
 <span class="sd">   * Focus on first option upon calling, Jul 2025, Matthias Cuntz</span>
 <span class="sd">   * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz</span>
+<span class="sd">   * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
@@ -750,8 +751,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dfvReadcsv&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Read csv file&quot;</span><span class="p">)</span>
-        <span class="n">screen</span> <span class="o">=</span> <span class="n">dfvScreen</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">readcsvwin</span><span class="p">)</span>
+        <span class="n">sc</span> <span class="o">=</span> <span class="n">dfvScreen</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">set_window_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sc</span><span class="o">.</span><span class="n">readcsv_window_size</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">focus</span><span class="p">()</span>
         <span class="c1"># self.after(200, self.focus) # 200ms if your CPU is too fast</span>
         <span class="c1"># self.after(200, self.lift)</span>

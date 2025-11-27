@@ -37,6 +37,7 @@ History
    * Add parse_entry from dfvreadcsv, Jan 2025, Matthias Cuntz
    * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
    * Deduce datetime in parse_entry, Nov 2025, Matthias Cuntz
+   * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -96,8 +97,8 @@ def clone_dfvmain(widget):
     else:
         tit = "Secondary dfvue"
     root.title(tit)
-    screen = dfvScreen(root.top)
-    root.geometry(screen.secondwin)
+    sc = dfvScreen(root.top)
+    sc.set_window_geometry(root, sc.secondary_window_size())
 
     # https://stackoverflow.com/questions/46505982/is-there-a-way-to-clone-a-tkinter-widget
     cls = widget.__class__

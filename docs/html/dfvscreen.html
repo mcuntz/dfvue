@@ -363,9 +363,11 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen"><code class="docutils literal notranslate"><span class="pre">dfvScreen</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.get_window_geometry"><code class="docutils literal notranslate"><span class="pre">dfvScreen.get_window_geometry()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.readcsv_window_size()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.scale"><code class="docutils literal notranslate"><span class="pre">dfvScreen.scale()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.secondary_window_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.set_window_geometry"><code class="docutils literal notranslate"><span class="pre">dfvScreen.set_window_geometry()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.standard_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.standard_window_size()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.transform_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.transform_window_size()</span></code></a></li>
 </ul>
@@ -407,6 +409,9 @@ France.</p>
 <dl class="simple">
 <dt>History</dt><dd><ul class="simple">
 <li><p>Written Nov 2025 by Matthias Cuntz (mc (at) macu (dot) de)</p></li>
+<li><p>Add get/set_window_geometry from idle, Nov 2025, Matthias Cuntz</p></li>
+<li><p>Get size from fullscreen window to deal with multiple monitors,
+Nov 2025, Matthias Cuntz</p></li>
 </ul>
 </dd>
 </dl>
@@ -418,24 +423,40 @@ France.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size" title="dfvue.dfvscreen.dfvScreen.readcsv_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">readcsv_window_size</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.get_window_geometry" title="dfvue.dfvscreen.dfvScreen.get_window_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_window_geometry</span></code></a>(top)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size" title="dfvue.dfvscreen.dfvScreen.readcsv_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">readcsv_window_size</span></code></a>()</p></td>
 <td><p>Set xsize, ysize, xoffset, yoffset of read csv file window</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.scale" title="dfvue.dfvscreen.dfvScreen.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.scale" title="dfvue.dfvscreen.dfvScreen.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(x)</p></td>
 <td><p>Scales <em>x</em> by current dpi over dpi of development screen</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size" title="dfvue.dfvscreen.dfvScreen.secondary_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">secondary_window_size</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size" title="dfvue.dfvscreen.dfvScreen.secondary_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">secondary_window_size</span></code></a>()</p></td>
 <td><p>Set xsize, ysize, xoffset, yoffset of secondary window</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.standard_window_size" title="dfvue.dfvscreen.dfvScreen.standard_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">standard_window_size</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.standard_window_size" title="dfvue.dfvscreen.dfvScreen.standard_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">standard_window_size</span></code></a>()</p></td>
 <td><p>Set xsize, ysize, xoffset, yoffset of standard window</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.transform_window_size" title="dfvue.dfvscreen.dfvScreen.transform_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform_window_size</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvscreen.dfvScreen.transform_window_size" title="dfvue.dfvscreen.dfvScreen.transform_window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform_window_size</span></code></a>()</p></td>
 <td><p>Set xsize, ysize, xoffset, yoffset of transform window</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>set_window_geometry</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.get_window_geometry">
+<span class="sig-name descname"><span class="pre">get_window_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.get_window_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.get_window_geometry" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.readcsv_window_size">
 <span class="sig-name descname"><span class="pre">readcsv_window_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.readcsv_window_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size" title="Link to this definition">#</a></dt>
@@ -453,6 +474,11 @@ France.</p>
 <span class="sig-name descname"><span class="pre">secondary_window_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.secondary_window_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size" title="Link to this definition">#</a></dt>
 <dd><p>Set xsize, ysize, xoffset, yoffset of secondary window</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.set_window_geometry">
+<span class="sig-name descname"><span class="pre">set_window_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvscreen.html#dfvScreen.set_window_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvscreen.dfvScreen.set_window_geometry" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvscreen.dfvScreen.standard_window_size">
@@ -517,9 +543,11 @@ France.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen"><code class="docutils literal notranslate"><span class="pre">dfvScreen</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.get_window_geometry"><code class="docutils literal notranslate"><span class="pre">dfvScreen.get_window_geometry()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.readcsv_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.readcsv_window_size()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.scale"><code class="docutils literal notranslate"><span class="pre">dfvScreen.scale()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.secondary_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.secondary_window_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.set_window_geometry"><code class="docutils literal notranslate"><span class="pre">dfvScreen.set_window_geometry()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.standard_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.standard_window_size()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvscreen.dfvScreen.transform_window_size"><code class="docutils literal notranslate"><span class="pre">dfvScreen.transform_window_size()</span></code></a></li>
 </ul>

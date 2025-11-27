@@ -32,6 +32,7 @@ History
    * Bugfix for checking if csvfile was given, Jan 2025, Matthias Cuntz
    * Use own ncvue-blue theme for customtkinter, Jan 2025, Matthias Cuntz
    * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
+   * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
 
 """
 import os
@@ -110,7 +111,7 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
                          os.path.abspath(os.path.dirname(__file__)))
 
     top = Tk()
-    screen = dfvScreen(top)
+    sc = dfvScreen(top)
     top.withdraw()
 
     if ihavectk:
@@ -165,7 +166,7 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
     else:
         tit = "dfvue"
     root.title(tit)
-    root.geometry(screen.stdwin)
+    sc.set_window_geometry(root, sc.standard_window_size())
     # To make sure that it appears before any other window
     # https://github.com/TomSchimansky/CustomTkinter/issues/1517
     root.update()

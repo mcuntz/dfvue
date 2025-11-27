@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+v6.5 (??? 2025)
+   - Get size from fullscreen window to deal with multiple monitors.
+
 v6.4 (Nov 2025)
    - Deduce datetime in xlim and ylim.
 
