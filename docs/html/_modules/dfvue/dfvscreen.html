@@ -350,6 +350,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">os</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span>  <span class="c1"># Windows, Darwin, Linux</span>
 
         <span class="c1"># Get the monitor&#39;s size</span>
+        <span class="c1"># if (self.os == &#39;Darwin&#39;) or (self.os == &#39;Windows&#39;):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
             <span class="c1"># total width of all monitors if not on macOS</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span>
@@ -381,7 +382,7 @@
 <span class="sd">        Scales *x* by current dpi over dpi of development screen</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi_default</span></div>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi_default</span><span class="p">)</span></div>
 
 
     <span class="c1">#</span>
@@ -402,7 +403,6 @@
         <span class="n">top</span><span class="o">.</span><span class="n">wm_geometry</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:d}</span><span class="s2">x</span><span class="si">{:d}</span><span class="s2">+</span><span class="si">{:d}</span><span class="s2">+</span><span class="si">{:d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">geometry</span><span class="p">))</span></div>
 
 
-    
     <span class="c1">#</span>
     <span class="c1"># Window sizes</span>
     <span class="c1">#</span>
@@ -413,6 +413,12 @@
 <span class="sd">        Set xsize, ysize, xoffset, yoffset of standard window</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">800</span><span class="p">:</span>
+            <span class="n">ysize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ysize</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">//</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+        <span class="n">yoffset</span> <span class="o">=</span> <span class="mi">0</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
             <span class="n">xsize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
             <span class="n">xoffset</span> <span class="o">=</span> <span class="mi">0</span>
@@ -422,12 +428,8 @@
             <span class="k">if</span> <span class="p">((</span><span class="n">xsize</span> <span class="o">+</span> <span class="n">xoffset</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">xsize</span> <span class="o">==</span> <span class="mi">1000</span><span class="p">):</span>
                 <span class="n">xoffset</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">xsize</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">800</span><span class="p">:</span>
-            <span class="n">ysize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ysize</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">//</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
-        <span class="n">yoffset</span> <span class="o">=</span> <span class="mi">0</span>
-
+        <span class="c1"># ysize = 1200</span>
+        <span class="c1"># xsize = int(1.5 * ysize)</span>
         <span class="k">return</span> <span class="n">xsize</span><span class="p">,</span> <span class="n">ysize</span><span class="p">,</span> <span class="n">xoffset</span><span class="p">,</span> <span class="n">yoffset</span></div>
 
 

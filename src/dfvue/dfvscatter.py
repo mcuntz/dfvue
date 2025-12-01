@@ -35,6 +35,8 @@ History
      Jun 2025, Matthias Cuntz
    * Bugfix for setting axes limits, Jun 2025, Matthias Cuntz
    * Tooltip for xlim and ylim includes datetime, Nov 2025, Matthias Cuntz
+   * Draw canvas as last element so that UI controls are displayed
+     as long as possible, Dec 2025, Matthias Cuntz
 
 """
 import platform
@@ -202,7 +204,6 @@ class dfvScatter(Frame):
 
         # open file and new window
         self.rowwin = Frame(self)
-        self.rowwin.pack(side=tk.TOP, fill=tk.X)
         self.newfile, self.newfiletip = add_button(
             self.rowwin, text='Open File', command=self.new_csv,
             tooltip='Open a new csv file')
@@ -213,26 +214,26 @@ class dfvScatter(Frame):
         self.newwin.pack(side=tk.RIGHT)
 
         # plotting canvas
+        self.rowcanvas = Frame(self)
         self.figure = Figure(facecolor="white", figsize=(1, 1))
         self.axes   = self.figure.add_subplot(111)
         self.axes2  = self.axes.twinx()
         self.axes2.yaxis.set_label_position("right")
         self.axes2.yaxis.tick_right()
-        self.canvas = FigureCanvasTkAgg(self.figure, master=self)
+        self.canvas = FigureCanvasTkAgg(self.figure, master=self.rowcanvas)
         self.canvas.draw()
         self.tkcanvas = self.canvas.get_tk_widget()
-        self.tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+        self.tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
         # matplotlib toolbar
         # toolbar uses pack internally -> put into frame
-        self.toolbar = NavigationToolbar2Tk(self.canvas, self,
+        self.toolbar = NavigationToolbar2Tk(self.canvas, self.rowcanvas,
                                             pack_toolbar=True)
         self.toolbar.update()
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
 
         # 1. row: x-axis and left y-axis
         self.rowxy = Frame(self)
-        self.rowxy.pack(side=tk.TOP, fill=tk.X)
 
         # block with x
         self.blockx = Frame(self.rowxy)
@@ -286,7 +287,6 @@ class dfvScatter(Frame):
 
         # options for lhs y-axis
         self.rowxyopt = Frame(self)
-        self.rowxyopt.pack(side=tk.TOP, fill=tk.X)
         self.blockyopt = Frame(self.rowxyopt)
         self.blockyopt.pack(side=tk.LEFT)
         self.lsframe, self.lslbl, self.ls, self.lstip = add_entry(
@@ -334,7 +334,6 @@ class dfvScatter(Frame):
 
         # Transform data frame
         self.rowtransform = Frame(self)
-        self.rowtransform.pack(side=tk.TOP, fill=tk.X)
         # block with x
         self.blockxlim = Frame(self.rowtransform)
         self.blockxlim.pack(side=tk.LEFT)
@@ -354,12 +353,10 @@ class dfvScatter(Frame):
 
         # empty row
         self.rowspace = Frame(self)
-        self.rowspace.pack(side=tk.TOP, fill=tk.X)
         space4 = add_label(self.rowspace, text=' ' * 1)
 
         # right y2-axis
         self.rowyy2 = Frame(self)
-        self.rowyy2.pack(side=tk.TOP, fill=tk.X)
         self.blocky2 = Frame(self.rowyy2)
         self.blocky2.pack(side=tk.TOP, fill=tk.X)
         # rhs y-axis
@@ -392,7 +389,6 @@ class dfvScatter(Frame):
 
         # options for rhs y-axis 2
         self.rowy2opt = Frame(self)
-        self.rowy2opt.pack(side=tk.TOP, fill=tk.X)
         self.blocky2opt = Frame(self.rowy2opt)
         self.blocky2opt.pack(side=tk.TOP, fill=tk.X)
         self.ls2frame, self.ls2lbl, self.ls2, self.ls2tip = add_entry(
@@ -434,7 +430,6 @@ class dfvScatter(Frame):
 
         # Quit button
         self.rowquit = Frame(self)
-        self.rowquit.pack(side=tk.TOP, fill=tk.X)
         # block with y2lim
         self.blocky2lim = Frame(self.rowquit)
         self.blocky2lim.pack(side=tk.LEFT)
@@ -447,6 +442,18 @@ class dfvScatter(Frame):
             self.rowquit, text='Quit', command=self.master.top.destroy,
             nopack=True, tooltip='Quit dfvue')
         self.bquit.pack(side=tk.RIGHT)
+
+        # The canvas is rather flexible in its size, so we pack it last which makes
+        # sure the UI controls are displayed as long as possible.
+        self.rowquit.pack(side=tk.BOTTOM, fill=tk.X)
+        self.rowy2opt.pack(side=tk.BOTTOM, fill=tk.X)
+        self.rowyy2.pack(side=tk.BOTTOM, fill=tk.X)
+        self.rowspace.pack(side=tk.BOTTOM, fill=tk.X)
+        self.rowtransform.pack(side=tk.BOTTOM, fill=tk.X)
+        self.rowxyopt.pack(side=tk.BOTTOM, fill=tk.X)
+        self.rowxy.pack(side=tk.BOTTOM, fill=tk.X)
+        self.rowwin.pack(side=tk.TOP, fill=tk.X)
+        self.rowcanvas.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
         if self.csvfile[0] and (self.master.master.name == 'dfvOne'):
             self.new_df()

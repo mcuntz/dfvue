@@ -47,6 +47,7 @@ class dfvScreen(object):
         self.os = platform.system()  # Windows, Darwin, Linux
 
         # Get the monitor's size
+        # if (self.os == 'Darwin') or (self.os == 'Windows'):
         if self.os == 'Darwin':
             # total width of all monitors if not on macOS
             self.width = top.winfo_screenwidth()
@@ -76,7 +77,7 @@ class dfvScreen(object):
         Scales *x* by current dpi over dpi of development screen
 
         '''
-        return x * self.dpi / self.dpi_default
+        return int(x * self.dpi / self.dpi_default)
 
     #
     # Window size getter and setter (from idle)
@@ -90,7 +91,6 @@ class dfvScreen(object):
     def set_window_geometry(self, top, geometry):
         top.wm_geometry("{:d}x{:d}+{:d}+{:d}".format(*geometry))
 
-    
     #
     # Window sizes
     #
@@ -99,6 +99,12 @@ class dfvScreen(object):
         Set xsize, ysize, xoffset, yoffset of standard window
 
         '''
+        if self.height < 800:
+            ysize = self.height
+        else:
+            ysize = max(4 * self.height // 5, 800)
+        yoffset = 0
+
         if self.width < 1000:
             xsize = self.width
             xoffset = 0
@@ -108,12 +114,8 @@ class dfvScreen(object):
             if ((xsize + xoffset) > self.width) or (xsize == 1000):
                 xoffset = (self.width - xsize) // 2
 
-        if self.height < 800:
-            ysize = self.height
-        else:
-            ysize = max(4 * self.height // 5, 800)
-        yoffset = 0
-
+        # ysize = 1200
+        # xsize = int(1.5 * ysize)
         return xsize, ysize, xoffset, yoffset
 
     def secondary_window_size(self):
