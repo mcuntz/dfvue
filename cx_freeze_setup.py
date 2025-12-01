@@ -30,14 +30,14 @@ macOS app
 macOS dmg
     python cx_freeze_setup.py bdist_dmg
     cd build
-    xcrun notarytool submit dfvue-6.3.intel.dmg --keychain-profile "notarytool-password"
+    xcrun notarytool submit dfvue-6.5-intel.dmg --keychain-profile "notarytool-password"
     xcrun notarytool log 6d0cb58d-867d-4f91-a3e6-98c27c58f3e9 --keychain-profile "notarytool-password" developer_log.json
-    xcrun stapler staple dfvue-6.3.intel.dmg
-    scp dfvue-6.3.intel.dmg macu.de@ssh.strato.de:extra/
+    xcrun stapler staple dfvue-6.5-intel.dmg
+    scp dfvue-6.5-intel.dmg macu.de@ssh.strato.de:extra/
 Windows installer
     python cx_freeze_setup.py bdist_msi
     cd dist
-    scp dfvue-6.4-win64.msi macu.de@ssh.strato.de:fr-hes/
+    scp dfvue-6.5-win64.msi macu.de@ssh.strato.de:extra/
 
 '''
 import os
