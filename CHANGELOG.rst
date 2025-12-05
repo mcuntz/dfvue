@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+v6.6 (??? 202?)
+  - Corrected bug/typo in transfom window.
+  - Set window size on Linux systems that do not support
+    state('zoomed') on tkinter windows.
+
 v6.5 (Dec 2025)
    - Draw canvas as last element so that UI controls are displayed
      as long as possible.
