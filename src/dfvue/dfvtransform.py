@@ -93,7 +93,7 @@ class dfvTransform(Toplevel):
                              font=("Helvetica", 16), wrap='none')
         else:
             # characters
-            if screen.os == 'Darwin':
+            if sc.os == 'Darwin':
                 fs = 16
             else:
                 fs = 12
