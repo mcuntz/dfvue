@@ -2,6 +2,7 @@ Changelog
 ---------
 
 v6.6 (??? 202?)
+  - Finetuned sizes without CustomTkinter.
   - Corrected bug/typo in transfom window.
   - Set window size on Linux systems that do not support
     state('zoomed') on tkinter windows.
