@@ -30,7 +30,7 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=628480d8" />
   
   <!-- So that users can add custom icons -->
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=2a60eea9"></script>
+    <script src="../../_static/documentation_options.js?v=89ee641f"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
@@ -48,7 +48,7 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="6.3" />
+  <meta name="docsearch:version" content="6.6.dev0" />
   </head>
   
   
@@ -326,6 +326,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">customtkinter</span>
     <span class="n">ihavectk</span> <span class="o">=</span> <span class="kc">True</span>
@@ -355,8 +356,7 @@
             <span class="c1"># total width of all monitors if not on macOS</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">()</span>  <span class="c1"># includes title bar</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># ${HOMEBREW_CELLAR}/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/idlelib/zoomheight.py</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
             <span class="n">wm_state</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">wm_state</span><span class="p">()</span>
             <span class="n">top</span><span class="o">.</span><span class="n">wm_state</span><span class="p">(</span><span class="s1">&#39;zoomed&#39;</span><span class="p">)</span>  <span class="c1"># make fullscreen</span>
             <span class="c1"># size of window is now size of current monitor w/o titlebar</span>
@@ -365,6 +365,23 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_window_geometry</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
             <span class="c1"># print(&#39;winfo&#39;, self.width, self.height,</span>
             <span class="c1">#       top.winfo_screenwidth(), top.winfo_screenheight())</span>
+            <span class="n">top</span><span class="o">.</span><span class="n">wm_state</span><span class="p">(</span><span class="n">wm_state</span><span class="p">)</span>
+            <span class="n">top</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">wm_state</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">wm_state</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">top</span><span class="o">.</span><span class="n">wm_state</span><span class="p">(</span><span class="s1">&#39;zoomed&#39;</span><span class="p">)</span>  <span class="c1"># make fullscreen</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_window_geometry</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">tkinter</span><span class="o">.</span><span class="n">TclError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">(),</span> <span class="mi">1618</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">(),</span> <span class="mi">1000</span><span class="p">)</span>
+                <span class="c1"># if ihavectk:</span>
+                <span class="c1">#     top.wm_attributes(&#39;-fullscreen&#39;, True)</span>
+                <span class="c1">#     self.width, self.height, x, y = self.get_window_geometry(top)</span>
+                <span class="c1"># else:</span>
+                <span class="c1">#     self.width, self.height = top.maxsize()</span>
+            <span class="c1"># print(&#39;winfo&#39;, self.width, self.height,</span>
+            <span class="c1">#        top.winfo_screenwidth(), top.winfo_screenheight())</span>
             <span class="n">top</span><span class="o">.</span><span class="n">wm_state</span><span class="p">(</span><span class="n">wm_state</span><span class="p">)</span>
             <span class="n">top</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 

@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-v6.6 (??? 202?)
+v6.5.1 (Dec 2025)
   - Finetuned sizes without CustomTkinter.
   - Corrected bug/typo in transfom window.
   - Set window size on Linux systems that do not support
