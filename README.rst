@@ -73,7 +73,7 @@ come with everything needed to run ``dfvue`` including Python:
 
   - macOS: `dfvue 6.5.1 Intel`_ and `dfvue 6.5 ARM`_ for Intel and ARM
     processors, resp., for macOS 15+ [Sequoia]
-  - Windows: `dfvue 6.5`_, packaged on Windows 10
+  - Windows: `dfvue 6.5.1`_, packaged on Windows 10
 
 `dfvue > 6.0` on macOS is either for Intel processors or for Apple
 Silicon (ARM) chips. The apps are notarized by Apple and might take a
@@ -388,7 +388,7 @@ maintained by `Marcelo Duarte`_.
 
 
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
-.. _dfvue 6.5: https://www.macu.de/extra/dfvue-6.5-win64.msi
+.. _dfvue 6.5.1: https://www.macu.de/extra/dfvue-6.5.1-win64.msi
 .. _dfvue 6.5.1 Intel: https://www.macu.de/extra/dfvue-6.5.1-intel.dmg
 .. _dfvue 6.5 ARM: https://www.macu.de/extra/dfvue-6.5-arm64.dmg
 .. _documentation: https://mcuntz.github.io/dfvue/
