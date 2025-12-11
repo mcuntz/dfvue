@@ -21,6 +21,7 @@ History
    * Add get/set_window_geometry from idle, Nov 2025, Matthias Cuntz
    * Get size from fullscreen window to deal with multiple monitors,
      Nov 2025, Matthias Cuntz
+   * Update toplevel during zoom for Windows azure, Dec 2025, Matthias Cuntz
 
 """
 import platform
@@ -56,6 +57,7 @@ class dfvScreen(object):
         elif self.os == 'Windows':
             wm_state = top.wm_state()
             top.wm_state('zoomed')  # make fullscreen
+            top.update()
             # size of window is now size of current monitor w/o titlebar
             # self.height = top.winfo_height()  # excludes title bar
             # self.width = top.winfo_width()    # width of current monitor
@@ -68,6 +70,7 @@ class dfvScreen(object):
             wm_state = top.wm_state()
             try:
                 top.wm_state('zoomed')  # make fullscreen
+                top.update()
                 self.width, self.height, x, y = self.get_window_geometry(top)
             except tkinter.TclError:
                 self.width = min(top.winfo_screenwidth(), 1618)

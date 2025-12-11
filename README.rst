@@ -71,13 +71,28 @@ has to do, for example, ``sudo apt install python3-tk`` on Linux or
 We also provide standalone applications for macOS and Windows that
 come with everything needed to run ``dfvue`` including Python:
 
-  - macOS: `dfvue 6.5.1 Intel`_ and `dfvue 6.5.1 ARM`_ for Intel and ARM
-    processors, resp., for macOS 15+ [Sequoia]
-  - Windows: `dfvue 6.5.1`_, packaged on Windows 10
+  - macOS: `dfvue 6.5.1 Intel`_ and `dfvue 6.5.1 ARM`_ for Intel and
+    ARM processors, resp., for macOS 15+ [Sequoia and newer]. The same
+    packages without CustomTkinter_ are `dfvue 6.5.1 Intel aqua`_ and
+    `dfvue 6.5.1 ARM aqua`_ for Intel and ARM processors,
+    respectively.
+  - Windows: `dfvue 6.5.1`_, packaged on Windows 10. The same
+    package without CustomTkinter_ is `dfvue 6.5.1 azure`_
 
 `dfvue > 6.0` on macOS is either for Intel processors or for Apple
 Silicon (ARM) chips. The apps are notarized by Apple and might take a
 short while on first opening.
+
+Some people have problems with CustomTkinter's dropdown menus that do
+not use scrollbars, e.g. for selecting variables. In this case,
+uninstall CustomTkinter:
+
+.. code-block:: bash
+
+   python -m pip uninstall customtkinter
+
+or download the standalone package without it. This is less beautiful
+but uses scrollbars with menus and might work better on your setup.
 
 
 Quick usage guide
@@ -389,8 +404,11 @@ maintained by `Marcelo Duarte`_.
 
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
 .. _dfvue 6.5.1: https://www.macu.de/extra/dfvue-6.5.1-win64.msi
+.. _dfvue 6.5.1 azure: https://www.macu.de/extra/dfvue-6.5.1-win64-azure.msi
 .. _dfvue 6.5.1 Intel: https://www.macu.de/extra/dfvue-6.5.1-intel.dmg
+.. _dfvue 6.5.1 Intel aqua: https://www.macu.de/extra/dfvue-6.5.1-intel-aqua.dmg
 .. _dfvue 6.5.1 ARM: https://www.macu.de/extra/dfvue-6.5.1-arm64.dmg
+.. _dfvue 6.5.1 ARM aqua: https://www.macu.de/extra/dfvue-6.5.1-arm64-aqua.dmg
 .. _documentation: https://mcuntz.github.io/dfvue/
 .. _europe-fluxdata.eu: https://www.europe-fluxdata.eu
 .. _pandas.concat: https://pandas.pydata.org/docs/reference/api/pandas.concat.html

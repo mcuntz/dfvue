@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+v6.6 (??? 202?)
+  - Update toplevel during zoom for Windows azure.
+
 v6.5.1 (Dec 2025)
   - Finetuned sizes without CustomTkinter.
   - Corrected bug/typo in transfom window.
