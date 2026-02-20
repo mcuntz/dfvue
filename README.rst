@@ -71,9 +71,9 @@ has to do, for example, ``sudo apt install python3-tk`` on Linux or
 We also provide standalone applications for macOS and Windows that
 come with everything needed to run ``dfvue`` including Python:
 
-  - macOS: `dfvue 6.5.1 Intel`_ and `dfvue 6.5.1 ARM`_ for Intel and
+  - macOS: `dfvue 6.6 Intel`_ and `dfvue 6.5.1 ARM`_ for Intel and
     ARM processors, resp., for macOS 15+ [Sequoia and newer]. The same
-    packages without CustomTkinter_ are `dfvue 6.5.1 Intel aqua`_ and
+    packages without CustomTkinter_ are `dfvue 6.6 Intel aqua`_ and
     `dfvue 6.5.1 ARM aqua`_ for Intel and ARM processors,
     respectively.
   - Windows: `dfvue 6.5.1`_, packaged on Windows 10. The same
@@ -405,8 +405,8 @@ maintained by `Marcelo Duarte`_.
 .. _cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/
 .. _dfvue 6.5.1: https://www.macu.de/extra/dfvue-6.5.1-win64.msi
 .. _dfvue 6.5.1 azure: https://www.macu.de/extra/dfvue-6.5.1-win64-azure.msi
-.. _dfvue 6.5.1 Intel: https://www.macu.de/extra/dfvue-6.5.1-intel.dmg
-.. _dfvue 6.5.1 Intel aqua: https://www.macu.de/extra/dfvue-6.5.1-intel-aqua.dmg
+.. _dfvue 6.6 Intel: https://www.macu.de/extra/dfvue-6.6-intel.dmg
+.. _dfvue 6.6 Intel aqua: https://www.macu.de/extra/dfvue-6.6-intel-aqua.dmg
 .. _dfvue 6.5.1 ARM: https://www.macu.de/extra/dfvue-6.5.1-arm64.dmg
 .. _dfvue 6.5.1 ARM aqua: https://www.macu.de/extra/dfvue-6.5.1-arm64-aqua.dmg
 .. _documentation: https://mcuntz.github.io/dfvue/

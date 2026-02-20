@@ -339,6 +339,8 @@
 <span class="sd">   * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz</span>
 <span class="sd">   * Deduce datetime in parse_entry, Nov 2025, Matthias Cuntz</span>
 <span class="sd">   * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz</span>
+<span class="sd">   * Snap coordinates to nearest data points in format_coord_scatter,</span>
+<span class="sd">     Feb 2026, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
@@ -425,20 +427,21 @@
 
 <div class="viewcode-block" id="format_coord_scatter">
 <a class="viewcode-back" href="../../dfvutils.html#dfvue.dfvutils.format_coord_scatter">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">format_coord_scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">xdtype</span><span class="p">,</span> <span class="n">ydtype</span><span class="p">,</span> <span class="n">y2dtype</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_coord_scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="n">snap_coord</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Formatter function for scatter plot with left and right axis</span>
 <span class="sd">    having the same x-axis.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x, y : float</span>
+<span class="sd">    x, y2 : float</span>
 <span class="sd">        Data coordinates of `ax2`.</span>
 <span class="sd">    ax, ax2: matplotlib.axes._subplots.AxesSubplot</span>
 <span class="sd">        Matplotlib axes object for left-hand and right-hand y-axis, resp.</span>
-<span class="sd">    xdtype, ydtype, y2dtype: numpy.dtype</span>
-<span class="sd">        Numpy dtype of data of x-values (xdtype), left-hand side y-values</span>
-<span class="sd">        (ydtype), and right-hand side y-values (y2dtype)</span>
+<span class="sd">    xx, yy, yy2: ndarray</span>
+<span class="sd">        Numpy arrays with x-values, y-values, and y2-values</span>
+<span class="sd">    snap_coord: bool</span>
+<span class="sd">        If True, return coordinates of nearest data point instead of (x, y)</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -450,32 +453,94 @@
 <span class="sd">    &gt;&gt;&gt; ax2 = ax.twinx()</span>
 <span class="sd">    &gt;&gt;&gt; ax.plot(xx, yy)</span>
 <span class="sd">    &gt;&gt;&gt; ax2.plot(xx, yy2)</span>
-<span class="sd">    &gt;&gt;&gt; ax2.format_coord = lambda x, y: format_coord_scatter(</span>
-<span class="sd">    ...     x, y, ax, ax2, xx.dtype, yy.dtype, yy2.dtype)</span>
+<span class="sd">    &gt;&gt;&gt; ax2.format_coord = lambda x, y2: format_coord_scatter(</span>
+<span class="sd">    ...     x, y2, ax, ax2, xx, yy, yy2, snap_coord)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># convert to display coords</span>
     <span class="c1"># https://stackoverflow.com/questions/21583965/matplotlib-cursor-value-with-two-axes</span>
-    <span class="n">display_coord</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">transform</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="n">display_coord</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">transform</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">))</span>
     <span class="c1"># convert back to data coords with respect to ax</span>
     <span class="n">inv</span>      <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span>
     <span class="n">ax_coord</span> <span class="o">=</span> <span class="n">inv</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">display_coord</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">ax_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="n">xout</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">yout</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">x2out</span> <span class="o">=</span> <span class="n">x2</span>
+    <span class="n">y2out</span> <span class="o">=</span> <span class="n">y2</span>
+
+    <span class="k">if</span> <span class="n">snap_coord</span><span class="p">:</span>
+        <span class="c1"># change data into axes coordinates (0, 1)</span>
+        <span class="n">data2axes</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span> <span class="o">+</span> <span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span>
+        <span class="n">data2axes2</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">transData</span> <span class="o">+</span> <span class="n">ax2</span><span class="o">.</span><span class="n">transAxes</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span>
+        <span class="c1"># change axes into data coordinates</span>
+        <span class="n">axes2data</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span> <span class="o">+</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span>
+        <span class="n">axes2data2</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">transAxes</span> <span class="o">+</span> <span class="n">ax2</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span>
+
+        <span class="c1"># data point in axes coordinates</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data2axes</span><span class="o">.</span><span class="n">transform</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+        <span class="n">pos2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data2axes2</span><span class="o">.</span><span class="n">transform</span><span class="p">((</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)))</span>
+
+        <span class="c1"># Search nearest neighbour in axes coordinates</span>
+        <span class="c1"># and within current axes limits</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+            <span class="n">xarr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">xarr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">yy</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+            <span class="n">yarr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">yarr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+
+        <span class="n">x2arr</span> <span class="o">=</span> <span class="n">xarr</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">yy2</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+            <span class="n">y2arr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">yy2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y2arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">yy2</span><span class="p">)</span>
+
+        <span class="n">xlim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
+        <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+        <span class="n">ii</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">xarr</span> <span class="o">&gt;=</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">xarr</span> <span class="o">&lt;=</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span>
+                      <span class="p">(</span><span class="n">yarr</span> <span class="o">&gt;=</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">yarr</span> <span class="o">&lt;=</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">ii</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">aarr</span> <span class="o">=</span> <span class="n">data2axes</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">xarr</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">yarr</span><span class="p">[</span><span class="n">ii</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">aarr</span> <span class="o">-</span> <span class="n">pos</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">apos</span> <span class="o">=</span> <span class="n">aarr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist</span><span class="p">),</span> <span class="p">:]</span>
+            <span class="n">xout</span><span class="p">,</span> <span class="n">yout</span> <span class="o">=</span> <span class="n">axes2data</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">apos</span><span class="p">)</span>
+
+        <span class="n">x2lim</span> <span class="o">=</span> <span class="n">xlim</span>
+        <span class="n">y2lim</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+        <span class="n">ii</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">x2arr</span> <span class="o">&gt;=</span> <span class="n">x2lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x2arr</span> <span class="o">&lt;=</span> <span class="n">x2lim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span>
+                      <span class="p">(</span><span class="n">y2arr</span> <span class="o">&gt;=</span> <span class="n">y2lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y2arr</span> <span class="o">&lt;=</span> <span class="n">y2lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">ii</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">a2arr</span> <span class="o">=</span> <span class="n">data2axes2</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x2arr</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">y2arr</span><span class="p">[</span><span class="n">ii</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">dist2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a2arr</span> <span class="o">-</span> <span class="n">pos2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">apos2</span> <span class="o">=</span> <span class="n">a2arr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist2</span><span class="p">),</span> <span class="p">:]</span>
+            <span class="n">x2out</span><span class="p">,</span> <span class="n">y2out</span> <span class="o">=</span> <span class="n">axes2data2</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">apos2</span><span class="p">)</span>
 
     <span class="c1"># Special treatment for datetime</span>
-    <span class="c1"># https://stackoverflow.com/questions/49267011/matplotlib-datetime-from-event-coordinates</span>
-    <span class="k">if</span> <span class="n">xdtype</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;datetime64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
-        <span class="n">xstr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+        <span class="n">xstr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">xout</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">xstr</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.6g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ydtype</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;datetime64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
-        <span class="n">ystr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">ax_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+        <span class="n">xstr</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.6g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xout</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">yy</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+        <span class="n">ystr</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">yout</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">ystr</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.6g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ax_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">y2dtype</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;datetime64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
-        <span class="n">y2str</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+        <span class="n">ystr</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.6g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">yout</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+        <span class="n">x2str</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">x2out</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">y2str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.6g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Left: (</span><span class="si">{</span><span class="n">xstr</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">ystr</span><span class="si">}</span><span class="s1">) Right: (</span><span class="si">{</span><span class="n">xstr</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">y2str</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="n">x2str</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.6g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x2out</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">yy2</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+        <span class="n">y2str</span> <span class="o">=</span> <span class="n">mpld</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">y2out</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">y2str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.6g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y2out</span><span class="p">)</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Left: (</span><span class="si">{</span><span class="n">xstr</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">ystr</span><span class="si">}</span><span class="s1">) Right: (</span><span class="si">{</span><span class="n">x2str</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">y2str</span><span class="si">}</span><span class="s1">)&#39;</span>
+
     <span class="k">return</span> <span class="n">out</span></div>
 
 
@@ -665,7 +730,7 @@ By Matthias Cuntz
 
   <p class="copyright">
     
-      © Copyright 2023-2025, Matthias Cuntz.
+      © Copyright 2023-2026, Matthias Cuntz.
       <br/>
     
   </p>

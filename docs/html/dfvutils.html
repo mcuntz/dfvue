@@ -400,7 +400,7 @@ France.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvutils.clone_dfvmain" title="dfvue.dfvutils.clone_dfvmain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clone_dfvmain</span></code></a>(widget)</p></td>
 <td><p>Duplicate the main dfvue window.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvutils.format_coord_scatter" title="dfvue.dfvutils.format_coord_scatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format_coord_scatter</span></code></a>(x, y, ax, ax2, xdtype, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvutils.format_coord_scatter" title="dfvue.dfvutils.format_coord_scatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format_coord_scatter</span></code></a>(x, y2, ax, ax2, xx, yy, ...)</p></td>
 <td><p>Formatter function for scatter plot with left and right axis having the same x-axis.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvutils.list_intersection" title="dfvue.dfvutils.list_intersection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_intersection</span></code></a>(lst1, lst2)</p></td>
@@ -431,6 +431,8 @@ Oct 2024, Matthias Cuntz</p></li>
 <li><p>Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz</p></li>
 <li><p>Deduce datetime in parse_entry, Nov 2025, Matthias Cuntz</p></li>
 <li><p>Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz</p></li>
+<li><p>Snap coordinates to nearest data points in format_coord_scatter,
+Feb 2026, Matthias Cuntz</p></li>
 </ul>
 </dd>
 </dl>
@@ -456,22 +458,20 @@ Oct 2024, Matthias Cuntz</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="dfvue.dfvutils.format_coord_scatter">
-<span class="sig-name descname"><span class="pre">format_coord_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xdtype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydtype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvutils.html#format_coord_scatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvutils.format_coord_scatter" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">format_coord_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yy2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snap_coord</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvutils.html#format_coord_scatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvutils.format_coord_scatter" title="Link to this definition">#</a></dt>
 <dd><p>Formatter function for scatter plot with left and right axis
 having the same x-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Data coordinates of <cite>ax2</cite>.</p></li>
-<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Data coordinates of <cite>ax2</cite>.</p></li>
+<li><p><strong>y2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Data coordinates of <cite>ax2</cite>.</p></li>
 <li><p><strong>ax</strong> (<em>matplotlib.axes._subplots.AxesSubplot</em>) – Matplotlib axes object for left-hand and right-hand y-axis, resp.</p></li>
 <li><p><strong>ax2</strong> (<em>matplotlib.axes._subplots.AxesSubplot</em>) – Matplotlib axes object for left-hand and right-hand y-axis, resp.</p></li>
-<li><p><strong>xdtype</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.3)"><em>numpy.dtype</em></a>) – Numpy dtype of data of x-values (xdtype), left-hand side y-values
-(ydtype), and right-hand side y-values (y2dtype)</p></li>
-<li><p><strong>ydtype</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.3)"><em>numpy.dtype</em></a>) – Numpy dtype of data of x-values (xdtype), left-hand side y-values
-(ydtype), and right-hand side y-values (y2dtype)</p></li>
-<li><p><strong>y2dtype</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.3)"><em>numpy.dtype</em></a>) – Numpy dtype of data of x-values (xdtype), left-hand side y-values
-(ydtype), and right-hand side y-values (y2dtype)</p></li>
+<li><p><strong>xx</strong> (<em>ndarray</em>) – Numpy arrays with x-values, y-values, and y2-values</p></li>
+<li><p><strong>yy</strong> (<em>ndarray</em>) – Numpy arrays with x-values, y-values, and y2-values</p></li>
+<li><p><strong>yy2</strong> (<em>ndarray</em>) – Numpy arrays with x-values, y-values, and y2-values</p></li>
+<li><p><strong>snap_coord</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – If True, return coordinates of nearest data point instead of (x, y)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -483,8 +483,8 @@ having the same x-axis.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">format_coord</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">format_coord_scatter</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">yy</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">yy2</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">format_coord</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">:</span> <span class="n">format_coord_scatter</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="n">snap_coord</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -641,7 +641,7 @@ By Matthias Cuntz
 
   <p class="copyright">
     
-      © Copyright 2023-2025, Matthias Cuntz.
+      © Copyright 2023-2026, Matthias Cuntz.
       <br/>
     
   </p>

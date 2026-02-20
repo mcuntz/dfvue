@@ -38,6 +38,8 @@ History
    * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
    * Deduce datetime in parse_entry, Nov 2025, Matthias Cuntz
    * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
+   * Snap coordinates to nearest data points in format_coord_scatter,
+     Feb 2026, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -119,20 +121,21 @@ def clone_dfvmain(widget):
 # How to write the value of the data point below the pointer
 #
 
-def format_coord_scatter(x, y, ax, ax2, xdtype, ydtype, y2dtype):
+def format_coord_scatter(x, y2, ax, ax2, xx, yy, yy2, snap_coord):
     """
     Formatter function for scatter plot with left and right axis
     having the same x-axis.
 
     Parameters
     ----------
-    x, y : float
+    x, y2 : float
         Data coordinates of `ax2`.
     ax, ax2: matplotlib.axes._subplots.AxesSubplot
         Matplotlib axes object for left-hand and right-hand y-axis, resp.
-    xdtype, ydtype, y2dtype: numpy.dtype
-        Numpy dtype of data of x-values (xdtype), left-hand side y-values
-        (ydtype), and right-hand side y-values (y2dtype)
+    xx, yy, yy2: ndarray
+        Numpy arrays with x-values, y-values, and y2-values
+    snap_coord: bool
+        If True, return coordinates of nearest data point instead of (x, y)
 
     Returns
     -------
@@ -144,32 +147,94 @@ def format_coord_scatter(x, y, ax, ax2, xdtype, ydtype, y2dtype):
     >>> ax2 = ax.twinx()
     >>> ax.plot(xx, yy)
     >>> ax2.plot(xx, yy2)
-    >>> ax2.format_coord = lambda x, y: format_coord_scatter(
-    ...     x, y, ax, ax2, xx.dtype, yy.dtype, yy2.dtype)
+    >>> ax2.format_coord = lambda x, y2: format_coord_scatter(
+    ...     x, y2, ax, ax2, xx, yy, yy2, snap_coord)
 
     """
     # convert to display coords
     # https://stackoverflow.com/questions/21583965/matplotlib-cursor-value-with-two-axes
-    display_coord = ax2.transData.transform((x, y))
+    display_coord = ax2.transData.transform((x, y2))
     # convert back to data coords with respect to ax
     inv      = ax.transData.inverted()
     ax_coord = inv.transform(display_coord)
+    y = ax_coord[1]
+    x2 = x
+
+    xout = x
+    yout = y
+    x2out = x2
+    y2out = y2
+
+    if snap_coord:
+        # change data into axes coordinates (0, 1)
+        data2axes = ax.transData + ax.transAxes.inverted()
+        data2axes2 = ax2.transData + ax2.transAxes.inverted()
+        # change axes into data coordinates
+        axes2data = ax.transAxes + ax.transData.inverted()
+        axes2data2 = ax2.transAxes + ax2.transData.inverted()
+
+        # data point in axes coordinates
+        pos = np.array(data2axes.transform((x, y)))
+        pos2 = np.array(data2axes2.transform((x2, y2)))
+
+        # Search nearest neighbour in axes coordinates
+        # and within current axes limits
+        if np.issubdtype(xx.dtype, np.datetime64):
+            xarr = mpld.date2num(xx)
+        else:
+            xarr = np.array(xx)
+        if np.issubdtype(yy.dtype, np.datetime64):
+            yarr = mpld.date2num(yy)
+        else:
+            yarr = np.array(yy)
+
+        x2arr = xarr
+        if np.issubdtype(yy2.dtype, np.datetime64):
+            y2arr = mpld.date2num(yy2)
+        else:
+            y2arr = np.array(yy2)
+
+        xlim = ax.get_xlim()
+        ylim = ax.get_ylim()
+        ii = np.where((xarr >= xlim[0]) & (xarr <= xlim[1]) &
+                      (yarr >= ylim[0]) & (yarr <= ylim[1]))[0]
+        if ii.size > 0:
+            aarr = data2axes.transform(np.array([xarr[ii], yarr[ii]]).T)
+            dist = np.linalg.norm(aarr - pos, axis=1)
+            apos = aarr[np.argmin(dist), :]
+            xout, yout = axes2data.transform(apos)
+
+        x2lim = xlim
+        y2lim = ax2.get_ylim()
+        ii = np.where((x2arr >= x2lim[0]) & (x2arr <= x2lim[1]) &
+                      (y2arr >= y2lim[0]) & (y2arr <= y2lim[1]))[0]
+        if ii.size > 0:
+            a2arr = data2axes2.transform(np.array([x2arr[ii], y2arr[ii]]).T)
+            dist2 = np.linalg.norm(a2arr - pos2, axis=1)
+            apos2 = a2arr[np.argmin(dist2), :]
+            x2out, y2out = axes2data2.transform(apos2)
 
     # Special treatment for datetime
-    # https://stackoverflow.com/questions/49267011/matplotlib-datetime-from-event-coordinates
-    if xdtype.type == np.dtype('datetime64').type:
-        xstr = mpld.num2date(x).strftime('%Y-%m-%d %H:%M:%S')
+    if np.issubdtype(xx.dtype, np.datetime64):
+        xstr = mpld.num2date(xout).strftime('%Y-%m-%d %H:%M:%S')
     else:
-        xstr  = '{:.6g}'.format(x)
-    if ydtype.type == np.dtype('datetime64').type:
-        ystr = mpld.num2date(ax_coord[1]).strftime('%Y-%m-%d %H:%M:%S')
+        xstr  = '{:.6g}'.format(xout)
+    if np.issubdtype(yy.dtype, np.datetime64):
+        ystr = mpld.num2date(yout).strftime('%Y-%m-%d %H:%M:%S')
     else:
-        ystr  = '{:.6g}'.format(ax_coord[1])
-    if y2dtype.type == np.dtype('datetime64').type:
-        y2str = mpld.num2date(y).strftime('%Y-%m-%d %H:%M:%S')
+        ystr  = '{:.6g}'.format(yout)
+
+    if np.issubdtype(xx.dtype, np.datetime64):
+        x2str = mpld.num2date(x2out).strftime('%Y-%m-%d %H:%M:%S')
     else:
-        y2str = '{:.6g}'.format(y)
-    out = f'Left: ({xstr}, {ystr}) Right: ({xstr}, {y2str})'
+        x2str  = '{:.6g}'.format(x2out)
+    if np.issubdtype(yy2.dtype, np.datetime64):
+        y2str = mpld.num2date(y2out).strftime('%Y-%m-%d %H:%M:%S')
+    else:
+        y2str = '{:.6g}'.format(y2out)
+
+    out = f'Left: ({xstr}, {ystr}) Right: ({x2str}, {y2str})'
+
     return out
 
 

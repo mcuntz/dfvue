@@ -338,6 +338,7 @@
 <span class="sd">   * Tooltip for xlim and ylim includes datetime, Nov 2025, Matthias Cuntz</span>
 <span class="sd">   * Draw canvas as last element so that UI controls are displayed</span>
 <span class="sd">     as long as possible, Dec 2025, Matthias Cuntz</span>
+<span class="sd">   * Snap coordinates to nearest data points, Feb 2026, Matthias Cuntz</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
@@ -581,6 +582,12 @@
             <span class="n">add_checkbutton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;invert y&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checked_y</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Inert y-axis&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inv_yframe</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">tstr</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Snap displayed coordinates to data points (slow).</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;Nearest point will be determined in axes coordinates.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snap_frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">snap_lbl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">snap_coord</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">snap_tip</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">add_checkbutton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocky</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;snap coord&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">resnap</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="n">tstr</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snap_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
 
         <span class="c1"># redraw button</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bredraw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bredrawtip</span> <span class="o">=</span> <span class="n">add_button</span><span class="p">(</span>
@@ -1380,6 +1387,8 @@
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="c1"># rowy2</span>
         <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="c1"># snap coordinates</span>
+        <span class="n">snap_coord</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snap_coord</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="c1"># Clear both axes first, otherwise x-axis shows only if</span>
         <span class="c1"># line2 is chosen.</span>
@@ -1434,8 +1443,8 @@
                 <span class="n">estr</span> <span class="o">+=</span> <span class="s1">&#39; shapes do not match for plot:&#39;</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">estr</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">yy2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
                 <span class="k">return</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">format_coord</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">format_coord_scatter</span><span class="p">(</span>
-                <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">yy</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">yy2</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">format_coord</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">:</span> <span class="n">format_coord_scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="n">snap_coord</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="n">xlab</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="n">ylab2</span><span class="p">)</span>
             <span class="c1"># styles, invert, same axes, etc.</span>
@@ -1446,6 +1455,57 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">line_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="dfvScatter.resnap">
+<a class="viewcode-back" href="../../dfvscatter.html#dfvue.dfvscatter.dfvScatter.resnap">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resnap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Change axes.format_coord depending snap_coord checkbox.</span>
+
+<span class="sd">        Changes the behaviour of format_coord depending on snap_coord checkbox</span>
+<span class="sd">        without redrawing whole figure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># rowxy</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="c1"># rowy2</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="c1"># snap coordinates</span>
+        <span class="n">snap_coord</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snap_coord</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="c1"># set x, y, axes labels</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">y2</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+            <span class="c1"># y axis</span>
+            <span class="k">if</span> <span class="n">y</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="n">vy</span> <span class="o">=</span> <span class="n">vardim2var</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+                <span class="n">yy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">vy</span><span class="p">]</span>
+            <span class="c1"># y2 axis</span>
+            <span class="k">if</span> <span class="n">y2</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="n">vy2</span> <span class="o">=</span> <span class="n">vardim2var</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span>
+                <span class="n">yy2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">vy2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+                <span class="c1"># x axis</span>
+                <span class="n">vx</span> <span class="o">=</span> <span class="n">vardim2var</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">xx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">vx</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># set x to index if not selected</span>
+                <span class="n">xx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+            <span class="c1"># set y-axes to nan if not selected</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+                <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">y2</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+                <span class="n">yy2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="o">.</span><span class="n">format_coord</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">:</span> <span class="n">format_coord_scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes2</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">yy2</span><span class="p">,</span> <span class="n">snap_coord</span><span class="p">)</span>
+            <span class="c1"># styles, invert, same axes, etc.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">redraw_y</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">redraw_y2</span><span class="p">()</span>
+            <span class="c1"># redraw</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 </div>
@@ -1488,7 +1548,7 @@ By Matthias Cuntz
 
   <p class="copyright">
     
-      © Copyright 2023-2025, Matthias Cuntz.
+      © Copyright 2023-2026, Matthias Cuntz.
       <br/>
     
   </p>

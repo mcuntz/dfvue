@@ -110,6 +110,11 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
     bundle_dir = getattr(sys, '_MEIPASS',
                          os.path.abspath(os.path.dirname(__file__)))
 
+    # style = ttk.Style()
+    # print(style.layout("TMenubutton"))
+    # a = ttk.Checkbutton()
+    # print(a.winfo_class())
+
     top = Tk()
     sc = dfvScreen(top)
     top.withdraw()

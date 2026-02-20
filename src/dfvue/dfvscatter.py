@@ -37,6 +37,7 @@ History
    * Tooltip for xlim and ylim includes datetime, Nov 2025, Matthias Cuntz
    * Draw canvas as last element so that UI controls are displayed
      as long as possible, Dec 2025, Matthias Cuntz
+   * Snap coordinates to nearest data points, Feb 2026, Matthias Cuntz
 
 """
 import platform
@@ -278,6 +279,12 @@ class dfvScatter(Frame):
             add_checkbutton(self.blocky, label='invert y', value=False,
                             command=self.checked_y, tooltip='Inert y-axis'))
         self.inv_yframe.pack(side=tk.LEFT)
+        tstr = ('Snap displayed coordinates to data points (slow).\n'
+                'Nearest point will be determined in axes coordinates.')
+        self.snap_frame, self.snap_lbl, self.snap_coord, self.snap_tip = (
+            add_checkbutton(self.blocky, label='snap coord', value=False,
+                            command=self.resnap, tooltip=tstr))
+        self.snap_frame.pack(side=tk.LEFT)
 
         # redraw button
         self.bredraw, self.bredrawtip = add_button(
@@ -1012,6 +1019,8 @@ class dfvScatter(Frame):
         y = self.y.get()
         # rowy2
         y2 = self.y2.get()
+        # snap coordinates
+        snap_coord = self.snap_coord.get()
 
         # Clear both axes first, otherwise x-axis shows only if
         # line2 is chosen.
@@ -1066,8 +1075,8 @@ class dfvScatter(Frame):
                 estr += ' shapes do not match for plot:'
                 print(estr, xx.shape, yy2.shape)
                 return
-            self.axes2.format_coord = lambda x, y: format_coord_scatter(
-                x, y, self.axes, self.axes2, xx.dtype, yy.dtype, yy2.dtype)
+            self.axes2.format_coord = lambda x, y2: format_coord_scatter(
+                x, y2, self.axes, self.axes2, xx, yy, yy2, snap_coord)
             self.axes2.xaxis.set_label_text(xlab)
             self.axes2.yaxis.set_label_text(ylab2)
             # styles, invert, same axes, etc.
@@ -1078,5 +1087,53 @@ class dfvScatter(Frame):
             self.toolbar.update()
         else:
             self.line_y = self.axes.plot([0.], [0.])
+            self.canvas.draw()
+            self.toolbar.update()
+
+
+    def resnap(self, event=None):
+        """
+        Change axes.format_coord depending snap_coord checkbox.
+
+        Changes the behaviour of format_coord depending on snap_coord checkbox
+        without redrawing whole figure.
+
+        """
+        # rowxy
+        x = self.x.get()
+        y = self.y.get()
+        # rowy2
+        y2 = self.y2.get()
+        # snap coordinates
+        snap_coord = self.snap_coord.get()
+
+        # set x, y, axes labels
+        if (y != '') or (y2 != ''):
+            # y axis
+            if y != '':
+                vy = vardim2var(y)
+                yy = self.df[vy]
+            # y2 axis
+            if y2 != '':
+                vy2 = vardim2var(y2)
+                yy2 = self.df[vy2]
+            if (x != ''):
+                # x axis
+                vx = vardim2var(x)
+                xx = self.df[vx]
+            else:
+                # set x to index if not selected
+                xx = self.df.index
+            # set y-axes to nan if not selected
+            if (y == ''):
+                yy = np.ones_like(xx, dtype='float') * np.nan
+            if (y2 == ''):
+                yy2 = np.ones_like(xx, dtype='float') * np.nan
+            self.axes2.format_coord = lambda x, y2: format_coord_scatter(
+                x, y2, self.axes, self.axes2, xx, yy, yy2, snap_coord)
+            # styles, invert, same axes, etc.
+            self.redraw_y()
+            self.redraw_y2()
+            # redraw
             self.canvas.draw()
             self.toolbar.update()
