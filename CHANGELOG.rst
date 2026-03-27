@@ -1,6 +1,9 @@
 Changelog
 ---------
 
+v6.7 (??? 2026)
+  - Updated Github actions.
+
 v6.6 (Feb 2026)
   - Snap coordinates to nearest data points.
   - Update toplevel during zoom for Windows azure.
