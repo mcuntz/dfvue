@@ -38,6 +38,8 @@ History
    * Draw canvas as last element so that UI controls are displayed
      as long as possible, Dec 2025, Matthias Cuntz
    * Snap coordinates to nearest data points, Feb 2026, Matthias Cuntz
+   * Respect command line options when reading first 40 lines,
+     Aug 2026, Solim Rovera and Matthias Cuntz
 
 """
 import platform
@@ -548,9 +550,17 @@ class dfvScatter(Frame):
         Read new DataFrame.
 
         """
+        opts = {'nrows': 40}
+        for kk in ['sep', 'index_col', 'skiprows', 'parse_dates',
+                   'date_format', 'missing_value']:
+            text = getattr(self, kk, None)
+            if (text != '') and (text is not None):
+                tt = parse_entry(text)
+                if (tt != '') and (tt is not None):
+                    opts.update({kk: tt})
         with warnings.catch_warnings():
             warnings.simplefilter(action='ignore', category=FutureWarning)
-            self.top.df = pd.read_csv(self.top.csvfile[0], nrows=40)
+            self.top.df = pd.read_csv(self.top.csvfile[0], **opts)
         self.readcsvwin = dfvReadcsv(self.top, callback=self.reset)
 
     def next_y(self):

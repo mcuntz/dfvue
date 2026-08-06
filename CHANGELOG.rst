@@ -1,7 +1,9 @@
 Changelog
 ---------
 
-v6.7 (??? 2026)
+v6.7 (Aug 2026)
+  - Respect command line options when reading first 40 lines
+    (issue #1 by Solim Rovera)
   - Updated Github actions.
 
 v6.6 (Feb 2026)

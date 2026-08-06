@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=628480d8" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=30e432f0"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/documentation_options.js?v=56dd3646"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'dfvmain';</script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -51,7 +48,6 @@
     <link rel="prev" title="dfvue" href="dfvue.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="6.5.1" />
   </head>
   
   
@@ -67,8 +63,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -76,6 +83,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -83,8 +91,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -100,8 +108,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -131,11 +138,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
@@ -161,14 +172,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -329,16 +335,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -367,6 +381,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.after"><code class="docutils literal notranslate"><span class="pre">dfvMain.after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.after_cancel"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_cancel()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.after_idle"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_idle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.after_info"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_info()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.anchor"><code class="docutils literal notranslate"><span class="pre">dfvMain.anchor()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bbox"><code class="docutils literal notranslate"><span class="pre">dfvMain.bbox()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bell"><code class="docutils literal notranslate"><span class="pre">dfvMain.bell()</span></code></a></li>
@@ -374,6 +389,14 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bind_all"><code class="docutils literal notranslate"><span class="pre">dfvMain.bind_all()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bind_class"><code class="docutils literal notranslate"><span class="pre">dfvMain.bind_class()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bindtags"><code class="docutils literal notranslate"><span class="pre">dfvMain.bindtags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_cget"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_cget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_config"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_configure()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_current"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_current()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_forget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_hold"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_hold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_status"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_status()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.cget"><code class="docutils literal notranslate"><span class="pre">dfvMain.cget()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.clipboard_append"><code class="docutils literal notranslate"><span class="pre">dfvMain.clipboard_append()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.clipboard_clear"><code class="docutils literal notranslate"><span class="pre">dfvMain.clipboard_clear()</span></code></a></li>
@@ -425,6 +448,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">dfvMain.info_patchlevel()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.insert"><code class="docutils literal notranslate"><span class="pre">dfvMain.insert()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.keys"><code class="docutils literal notranslate"><span class="pre">dfvMain.keys()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.len"><code class="docutils literal notranslate"><span class="pre">dfvMain.len()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.lift"><code class="docutils literal notranslate"><span class="pre">dfvMain.lift()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.location"><code class="docutils literal notranslate"><span class="pre">dfvMain.location()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.lower"><code class="docutils literal notranslate"><span class="pre">dfvMain.lower()</span></code></a></li>
@@ -463,6 +487,14 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.slaves"><code class="docutils literal notranslate"><span class="pre">dfvMain.slaves()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tab"><code class="docutils literal notranslate"><span class="pre">dfvMain.tab()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_bisque"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_bisque()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_cget"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_cget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_config"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_configure()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_current"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_current()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_forget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_hold"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_hold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_status"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_status()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusFollowsMouse()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusNext()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_focusPrev"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusPrev()</span></code></a></li>
@@ -576,7 +608,7 @@ France.</p>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dfvMain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvmain.html#dfvMain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvmain.dfvMain" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dfvMain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dfvue/dfvmain.html#dfvMain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dfvue.dfvmain.dfvMain" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTkTabview</span></code></p>
 <p>Main dfvue notebook window with the plotting panels.</p>
 <p>Sets up the notebook layout with the panels.</p>
@@ -593,182 +625,212 @@ France.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.after_cancel" title="dfvue.dfvmain.dfvMain.after_cancel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">after_cancel</span></code></a>(id)</p></td>
 <td><p>Cancel scheduling of function identified with ID.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.after_idle" title="dfvue.dfvmain.dfvMain.after_idle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">after_idle</span></code></a>(func, *args)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.after_idle" title="dfvue.dfvmain.dfvMain.after_idle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">after_idle</span></code></a>(func, *args, **kw)</p></td>
 <td><p>Call FUNC once if the Tcl main loop has no event to process.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.anchor" title="dfvue.dfvmain.dfvMain.anchor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">anchor</span></code></a>([anchor])</p></td>
-<td><p>The anchor value controls how to place the grid within the master when no row/column has any weight.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.after_info" title="dfvue.dfvmain.dfvMain.after_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">after_info</span></code></a>([id])</p></td>
+<td><p>Return information about existing event handlers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bbox" title="dfvue.dfvmain.dfvMain.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>([column, row, col2, row2])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.anchor" title="dfvue.dfvmain.dfvMain.anchor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">anchor</span></code></a>([anchor])</p></td>
+<td><p>The anchor value controls how to place the grid within the container widget when no row/column has any weight.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bbox" title="dfvue.dfvmain.dfvMain.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>([column, row, col2, row2])</p></td>
 <td><p>Return a tuple of integer coordinates for the bounding box of this widget controlled by the geometry manager grid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bell" title="dfvue.dfvmain.dfvMain.bell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bell</span></code></a>([displayof])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bell" title="dfvue.dfvmain.dfvMain.bell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bell</span></code></a>([displayof])</p></td>
 <td><p>Ring a display's bell.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bind" title="dfvue.dfvmain.dfvMain.bind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bind</span></code></a>([sequence, command, add])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bind" title="dfvue.dfvmain.dfvMain.bind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bind</span></code></a>([sequence, command, add])</p></td>
 <td><p>Bind to this widget at event SEQUENCE a call to function FUNC.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bind_all" title="dfvue.dfvmain.dfvMain.bind_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bind_all</span></code></a>([sequence, func, add])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bind_all" title="dfvue.dfvmain.dfvMain.bind_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bind_all</span></code></a>([sequence, func, add])</p></td>
 <td><p>Bind to all widgets at an event SEQUENCE a call to function FUNC.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bind_class" title="dfvue.dfvmain.dfvMain.bind_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bind_class</span></code></a>(className[, sequence, func, add])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bind_class" title="dfvue.dfvmain.dfvMain.bind_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bind_class</span></code></a>(className[, sequence, func, add])</p></td>
 <td><p>Bind to widgets with bindtag CLASSNAME at event SEQUENCE a call of function FUNC.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bindtags" title="dfvue.dfvmain.dfvMain.bindtags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bindtags</span></code></a>([tagList])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.bindtags" title="dfvue.dfvmain.dfvMain.bindtags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bindtags</span></code></a>([tagList])</p></td>
 <td><p>Set or get the list of bindtags for this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.cget" title="dfvue.dfvmain.dfvMain.cget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cget</span></code></a>(attribute_name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.busy" title="dfvue.dfvmain.dfvMain.busy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">busy</span></code></a>(**kw)</p></td>
+<td><p>Make this widget appear busy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.busy_cget" title="dfvue.dfvmain.dfvMain.busy_cget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">busy_cget</span></code></a>(option)</p></td>
+<td><p>Return the value of busy configuration option.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.busy_config" title="dfvue.dfvmain.dfvMain.busy_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">busy_config</span></code></a>([cnf])</p></td>
+<td><p>Query or modify the busy configuration options.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.busy_configure" title="dfvue.dfvmain.dfvMain.busy_configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">busy_configure</span></code></a>([cnf])</p></td>
+<td><p>Query or modify the busy configuration options.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.busy_current" title="dfvue.dfvmain.dfvMain.busy_current"><code class="xref py py-obj docutils literal notranslate"><span class="pre">busy_current</span></code></a>([pattern])</p></td>
+<td><p>Return a list of widgets that are currently busy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.busy_forget" title="dfvue.dfvmain.dfvMain.busy_forget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">busy_forget</span></code></a>()</p></td>
+<td><p>Make this widget no longer busy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.busy_hold" title="dfvue.dfvmain.dfvMain.busy_hold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">busy_hold</span></code></a>(**kw)</p></td>
+<td><p>Make this widget appear busy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.busy_status" title="dfvue.dfvmain.dfvMain.busy_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">busy_status</span></code></a>()</p></td>
+<td><p>Return True if the widget is busy, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.cget" title="dfvue.dfvmain.dfvMain.cget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cget</span></code></a>(attribute_name)</p></td>
 <td><p>basic cget with bg_color, width, height support, calls cget of tkinter.Frame</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.clipboard_append" title="dfvue.dfvmain.dfvMain.clipboard_append"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clipboard_append</span></code></a>(string, **kw)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.clipboard_append" title="dfvue.dfvmain.dfvMain.clipboard_append"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clipboard_append</span></code></a>(string, **kw)</p></td>
 <td><p>Append STRING to the Tk clipboard.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.clipboard_clear" title="dfvue.dfvmain.dfvMain.clipboard_clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clipboard_clear</span></code></a>(**kw)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.clipboard_clear" title="dfvue.dfvmain.dfvMain.clipboard_clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clipboard_clear</span></code></a>(**kw)</p></td>
 <td><p>Clear the data in the Tk clipboard.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.clipboard_get" title="dfvue.dfvmain.dfvMain.clipboard_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clipboard_get</span></code></a>(**kw)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.clipboard_get" title="dfvue.dfvmain.dfvMain.clipboard_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clipboard_get</span></code></a>(**kw)</p></td>
 <td><p>Retrieve data from the clipboard on window's display.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.columnconfigure" title="dfvue.dfvmain.dfvMain.columnconfigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">columnconfigure</span></code></a>(index[, cnf])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.columnconfigure" title="dfvue.dfvmain.dfvMain.columnconfigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">columnconfigure</span></code></a>(index[, cnf])</p></td>
 <td><p>Configure column INDEX of a grid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.config" title="dfvue.dfvmain.dfvMain.config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">config</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Configure resources of a widget.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.config" title="dfvue.dfvmain.dfvMain.config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">config</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Query or modify the configuration options of the widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.configure" title="dfvue.dfvmain.dfvMain.configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">configure</span></code></a>([require_redraw])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.configure" title="dfvue.dfvmain.dfvMain.configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">configure</span></code></a>([require_redraw])</p></td>
 <td><p>basic configure with bg_color, width, height support, calls configure of tkinter.Frame, updates in the end</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.delete" title="dfvue.dfvmain.dfvMain.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete</span></code></a>(name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.delete" title="dfvue.dfvmain.dfvMain.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete</span></code></a>(name)</p></td>
 <td><p>delete tab by name</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.deletecommand" title="dfvue.dfvmain.dfvMain.deletecommand"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deletecommand</span></code></a>(name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.deletecommand" title="dfvue.dfvmain.dfvMain.deletecommand"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deletecommand</span></code></a>(name)</p></td>
 <td><p>Internal function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.destroy" title="dfvue.dfvmain.dfvMain.destroy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">destroy</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.destroy" title="dfvue.dfvmain.dfvMain.destroy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">destroy</span></code></a>()</p></td>
 <td><p>Destroy this and all descendants widgets.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.event_add" title="dfvue.dfvmain.dfvMain.event_add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_add</span></code></a>(virtual, *sequences)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.event_add" title="dfvue.dfvmain.dfvMain.event_add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_add</span></code></a>(virtual, *sequences)</p></td>
 <td><p>Bind a virtual event VIRTUAL (of the form &lt;&lt;Name&gt;&gt;) to an event SEQUENCE such that the virtual event is triggered whenever SEQUENCE occurs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.event_delete" title="dfvue.dfvmain.dfvMain.event_delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_delete</span></code></a>(virtual, *sequences)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.event_delete" title="dfvue.dfvmain.dfvMain.event_delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_delete</span></code></a>(virtual, *sequences)</p></td>
 <td><p>Unbind a virtual event VIRTUAL from SEQUENCE.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.event_generate" title="dfvue.dfvmain.dfvMain.event_generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_generate</span></code></a>(sequence, **kw)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.event_generate" title="dfvue.dfvmain.dfvMain.event_generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_generate</span></code></a>(sequence, **kw)</p></td>
 <td><p>Generate an event SEQUENCE.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.event_info" title="dfvue.dfvmain.dfvMain.event_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_info</span></code></a>([virtual])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.event_info" title="dfvue.dfvmain.dfvMain.event_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_info</span></code></a>([virtual])</p></td>
 <td><p>Return a list of all virtual events or the information about the SEQUENCE bound to the virtual event VIRTUAL.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus" title="dfvue.dfvmain.dfvMain.focus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus" title="dfvue.dfvmain.dfvMain.focus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus</span></code></a>()</p></td>
 <td><p>Direct input focus to this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_displayof" title="dfvue.dfvmain.dfvMain.focus_displayof"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_displayof</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_displayof" title="dfvue.dfvmain.dfvMain.focus_displayof"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_displayof</span></code></a>()</p></td>
 <td><p>Return the widget which has currently the focus on the display where this widget is located.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_force" title="dfvue.dfvmain.dfvMain.focus_force"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_force</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_force" title="dfvue.dfvmain.dfvMain.focus_force"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_force</span></code></a>()</p></td>
 <td><p>Direct input focus to this widget even if the application does not have the focus.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_get" title="dfvue.dfvmain.dfvMain.focus_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_get</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_get" title="dfvue.dfvmain.dfvMain.focus_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_get</span></code></a>()</p></td>
 <td><p>Return the widget which has currently the focus in the application.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_lastfor" title="dfvue.dfvmain.dfvMain.focus_lastfor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_lastfor</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_lastfor" title="dfvue.dfvmain.dfvMain.focus_lastfor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_lastfor</span></code></a>()</p></td>
 <td><p>Return the widget which would have the focus if top level for this widget gets the focus from the window manager.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_set" title="dfvue.dfvmain.dfvMain.focus_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_set</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.focus_set" title="dfvue.dfvmain.dfvMain.focus_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_set</span></code></a>()</p></td>
 <td><p>Direct input focus to this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.forget" title="dfvue.dfvmain.dfvMain.forget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forget</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.forget" title="dfvue.dfvmain.dfvMain.forget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forget</span></code></a>()</p></td>
 <td><p>Unmap this widget and do not use it for the packing order.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.get" title="dfvue.dfvmain.dfvMain.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a>()</p></td>
-<td><p>returns name of selected tab, returns empty string if no tab selected</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.get" title="dfvue.dfvmain.dfvMain.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a>([index])</p></td>
+<td><p>returns name of selected tab, returns empty string if no tab selected.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.getboolean" title="dfvue.dfvmain.dfvMain.getboolean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getboolean</span></code></a>(s)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.getboolean" title="dfvue.dfvmain.dfvMain.getboolean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getboolean</span></code></a>(s)</p></td>
 <td><p>Return a boolean value for Tcl boolean values true and false given as parameter.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.getvar" title="dfvue.dfvmain.dfvMain.getvar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getvar</span></code></a>([name])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.getvar" title="dfvue.dfvmain.dfvMain.getvar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getvar</span></code></a>([name])</p></td>
 <td><p>Return value of Tcl variable NAME.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_current" title="dfvue.dfvmain.dfvMain.grab_current"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_current</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_current" title="dfvue.dfvmain.dfvMain.grab_current"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_current</span></code></a>()</p></td>
 <td><p>Return widget which has currently the grab in this application or None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_release" title="dfvue.dfvmain.dfvMain.grab_release"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_release</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_release" title="dfvue.dfvmain.dfvMain.grab_release"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_release</span></code></a>()</p></td>
 <td><p>Release grab for this widget if currently set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_set" title="dfvue.dfvmain.dfvMain.grab_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_set</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_set" title="dfvue.dfvmain.dfvMain.grab_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_set</span></code></a>()</p></td>
 <td><p>Set grab for this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_set_global" title="dfvue.dfvmain.dfvMain.grab_set_global"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_set_global</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_set_global" title="dfvue.dfvmain.dfvMain.grab_set_global"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_set_global</span></code></a>()</p></td>
 <td><p>Set global grab for this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_status" title="dfvue.dfvmain.dfvMain.grab_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_status</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grab_status" title="dfvue.dfvmain.dfvMain.grab_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grab_status</span></code></a>()</p></td>
 <td><p>Return None, &quot;local&quot; or &quot;global&quot; if this widget has no, a local or a global grab.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid" title="dfvue.dfvmain.dfvMain.grid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid</span></code></a>(**kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid" title="dfvue.dfvmain.dfvMain.grid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid</span></code></a>(**kwargs)</p></td>
 <td><p>Position a widget in the parent widget in a grid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_anchor" title="dfvue.dfvmain.dfvMain.grid_anchor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_anchor</span></code></a>([anchor])</p></td>
-<td><p>The anchor value controls how to place the grid within the master when no row/column has any weight.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_anchor" title="dfvue.dfvmain.dfvMain.grid_anchor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_anchor</span></code></a>([anchor])</p></td>
+<td><p>The anchor value controls how to place the grid within the container widget when no row/column has any weight.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_bbox" title="dfvue.dfvmain.dfvMain.grid_bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_bbox</span></code></a>([column, row, col2, row2])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_bbox" title="dfvue.dfvmain.dfvMain.grid_bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_bbox</span></code></a>([column, row, col2, row2])</p></td>
 <td><p>Return a tuple of integer coordinates for the bounding box of this widget controlled by the geometry manager grid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_columnconfigure" title="dfvue.dfvmain.dfvMain.grid_columnconfigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_columnconfigure</span></code></a>(index[, cnf])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_columnconfigure" title="dfvue.dfvmain.dfvMain.grid_columnconfigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_columnconfigure</span></code></a>(index[, cnf])</p></td>
 <td><p>Configure column INDEX of a grid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_configure" title="dfvue.dfvmain.dfvMain.grid_configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_configure</span></code></a>([cnf])</p></td>
-<td><p>Position a widget in the parent widget in a grid. Use as options: column=number - use cell identified with given column (starting with 0) columnspan=number - this widget will span several columns in=master - use master to contain this widget in_=master - see 'in' option description ipadx=amount - add internal padding in x direction ipady=amount - add internal padding in y direction padx=amount - add padding in x direction pady=amount - add padding in y direction row=number - use cell identified with given row (starting with 0) rowspan=number - this widget will span several rows sticky=NSEW - if cell is larger on which sides will this               widget stick to the cell boundary.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_configure" title="dfvue.dfvmain.dfvMain.grid_configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_configure</span></code></a>([cnf])</p></td>
+<td><p>Position a widget in the parent widget in a grid. Use as options: column=number - use cell identified with given column (starting with 0) columnspan=number - this widget will span several columns in=container - use the container widget to contain this widget in_=container - see 'in' option description ipadx=amount - add internal padding in x direction ipady=amount - add internal padding in y direction padx=amount - add padding in x direction pady=amount - add padding in y direction row=number - use cell identified with given row (starting with 0) rowspan=number - this widget will span several rows sticky=NSEW - if cell is larger on which sides will this               widget stick to the cell boundary.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_forget" title="dfvue.dfvmain.dfvMain.grid_forget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_forget</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_forget" title="dfvue.dfvmain.dfvMain.grid_forget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_forget</span></code></a>()</p></td>
 <td><p>Unmap this widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_info" title="dfvue.dfvmain.dfvMain.grid_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_info</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_info" title="dfvue.dfvmain.dfvMain.grid_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_info</span></code></a>()</p></td>
 <td><p>Return information about the options for positioning this widget in a grid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_location" title="dfvue.dfvmain.dfvMain.grid_location"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_location</span></code></a>(x, y)</p></td>
-<td><p>Return a tuple of column and row which identify the cell at which the pixel at position X and Y inside the master widget is located.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_location" title="dfvue.dfvmain.dfvMain.grid_location"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_location</span></code></a>(x, y)</p></td>
+<td><p>Return a tuple of column and row which identify the cell at which the pixel at position X and Y inside the container widget is located.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_propagate" title="dfvue.dfvmain.dfvMain.grid_propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_propagate</span></code></a>([flag])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_propagate" title="dfvue.dfvmain.dfvMain.grid_propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_propagate</span></code></a>([flag])</p></td>
 <td><p>Set or get the status for propagation of geometry information.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_remove" title="dfvue.dfvmain.dfvMain.grid_remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_remove</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_remove" title="dfvue.dfvmain.dfvMain.grid_remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_remove</span></code></a>()</p></td>
 <td><p>Unmap this widget but remember the grid options.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_rowconfigure" title="dfvue.dfvmain.dfvMain.grid_rowconfigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_rowconfigure</span></code></a>(index[, cnf])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_rowconfigure" title="dfvue.dfvmain.dfvMain.grid_rowconfigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_rowconfigure</span></code></a>(index[, cnf])</p></td>
 <td><p>Configure row INDEX of a grid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_size" title="dfvue.dfvmain.dfvMain.grid_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_size</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_size" title="dfvue.dfvmain.dfvMain.grid_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_size</span></code></a>()</p></td>
 <td><p>Return a tuple of the number of column and rows in the grid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_slaves" title="dfvue.dfvmain.dfvMain.grid_slaves"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_slaves</span></code></a>([row, column])</p></td>
-<td><p>Return a list of all slaves of this widget in its packing order.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.grid_slaves" title="dfvue.dfvmain.dfvMain.grid_slaves"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_slaves</span></code></a>([row, column])</p></td>
+<td><p>Returns a list of the content widgets.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.image_names" title="dfvue.dfvmain.dfvMain.image_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">image_names</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.image_names" title="dfvue.dfvmain.dfvMain.image_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">image_names</span></code></a>()</p></td>
 <td><p>Return a list of all existing image names.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.image_types" title="dfvue.dfvmain.dfvMain.image_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">image_types</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.image_types" title="dfvue.dfvmain.dfvMain.image_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">image_types</span></code></a>()</p></td>
 <td><p>Return a list of all available image types (e.g. photo bitmap).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.index" title="dfvue.dfvmain.dfvMain.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code></a>(name)</p></td>
-<td><p>get index of tab with given name</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.index" title="dfvue.dfvmain.dfvMain.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code></a>([name])</p></td>
+<td><p>returns index of selected tab, raises ValueError if the tab is missing if the parameter is provided, returns the associated index or raises ValueError if no tab is found</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.info" title="dfvue.dfvmain.dfvMain.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">info</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.info" title="dfvue.dfvmain.dfvMain.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">info</span></code></a>()</p></td>
 <td><p>Return information about the packing options for this widget.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.info_patchlevel" title="dfvue.dfvmain.dfvMain.info_patchlevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">info_patchlevel</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.info_patchlevel" title="dfvue.dfvmain.dfvMain.info_patchlevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">info_patchlevel</span></code></a>()</p></td>
 <td><p>Returns the exact version of the Tcl library.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.insert" title="dfvue.dfvmain.dfvMain.insert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code></a>(index, name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.insert" title="dfvue.dfvmain.dfvMain.insert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code></a>(index, name)</p></td>
 <td><p>creates new tab with given name at position index</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.keys" title="dfvue.dfvmain.dfvMain.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a>()</p></td>
-<td><p>Return a list of all resource names of this widget.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.keys" title="dfvue.dfvmain.dfvMain.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a>()</p></td>
+<td><p>Return a list of all option names of this widget.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.len" title="dfvue.dfvmain.dfvMain.len"><code class="xref py py-obj docutils literal notranslate"><span class="pre">len</span></code></a>()</p></td>
+<td><p>returns the number of defined tabs</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.lift" title="dfvue.dfvmain.dfvMain.lift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lift</span></code></a>([aboveThis])</p></td>
 <td><p>Raise this widget in the stacking order.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.location" title="dfvue.dfvmain.dfvMain.location"><code class="xref py py-obj docutils literal notranslate"><span class="pre">location</span></code></a>(x, y)</p></td>
-<td><p>Return a tuple of column and row which identify the cell at which the pixel at position X and Y inside the master widget is located.</p></td>
+<td><p>Return a tuple of column and row which identify the cell at which the pixel at position X and Y inside the container widget is located.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.lower" title="dfvue.dfvmain.dfvMain.lower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lower</span></code></a>([belowThis])</p></td>
 <td><p>Lower this widget in the stacking order.</p></td>
@@ -795,7 +857,7 @@ France.</p>
 <td><p>Pack a widget in the parent widget.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.pack_configure" title="dfvue.dfvmain.dfvMain.pack_configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pack_configure</span></code></a>([cnf])</p></td>
-<td><p>Pack a widget in the parent widget. Use as options: after=widget - pack it after you have packed widget anchor=NSEW (or subset) - position widget according to                           given direction before=widget - pack it before you will pack widget expand=bool - expand widget if parent size grows fill=NONE or X or Y or BOTH - fill widget if widget grows in=master - use master to contain this widget in_=master - see 'in' option description ipadx=amount - add internal padding in x direction ipady=amount - add internal padding in y direction padx=amount - add padding in x direction pady=amount - add padding in y direction side=TOP or BOTTOM or LEFT or RIGHT -  where to add this widget.</p></td>
+<td><p>Pack a widget in the parent widget. Use as options: after=widget - pack it after you have packed widget anchor=NSEW (or subset) - position widget according to                           given direction before=widget - pack it before you will pack widget expand=bool - expand widget if parent size grows fill=NONE or X or Y or BOTH - fill widget if widget grows in=container - use the container widget to contain this widget in_=container - see 'in' option description ipadx=amount - add internal padding in x direction ipady=amount - add internal padding in y direction padx=amount - add padding in x direction pady=amount - add padding in y direction side=TOP or BOTTOM or LEFT or RIGHT -  where to add this widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.pack_forget" title="dfvue.dfvmain.dfvMain.pack_forget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pack_forget</span></code></a>()</p></td>
 <td><p>Unmap this widget and do not use it for the packing order.</p></td>
@@ -807,13 +869,13 @@ France.</p>
 <td><p>Set or get the status for propagation of geometry information.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.pack_slaves" title="dfvue.dfvmain.dfvMain.pack_slaves"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pack_slaves</span></code></a>()</p></td>
-<td><p>Return a list of all slaves of this widget in its packing order.</p></td>
+<td><p>Returns a list of all of the content widgets in the packing order for this container.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.place" title="dfvue.dfvmain.dfvMain.place"><code class="xref py py-obj docutils literal notranslate"><span class="pre">place</span></code></a>(**kwargs)</p></td>
 <td><p>Place a widget in the parent widget.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.place_configure" title="dfvue.dfvmain.dfvMain.place_configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">place_configure</span></code></a>([cnf])</p></td>
-<td><p>Place a widget in the parent widget. Use as options: in=master - master relative to which the widget is placed in_=master - see 'in' option description x=amount - locate anchor of this widget at position x of master y=amount - locate anchor of this widget at position y of master relx=amount - locate anchor of this widget between 0.0 and 1.0               relative to width of master (1.0 is right edge) rely=amount - locate anchor of this widget between 0.0 and 1.0               relative to height of master (1.0 is bottom edge) anchor=NSEW (or subset) - position anchor according to given direction width=amount - width of this widget in pixel height=amount - height of this widget in pixel relwidth=amount - width of this widget between 0.0 and 1.0                   relative to width of master (1.0 is the same width                   as the master) relheight=amount - height of this widget between 0.0 and 1.0                    relative to height of master (1.0 is the same                    height as the master) bordermode=&quot;inside&quot; or &quot;outside&quot; - whether to take border width of                                    master widget into account.</p></td>
+<td><p>Place a widget in the parent widget. Use as options: in=container - the container widget relative to which this widget is                placed in_=container - see 'in' option description x=amount - locate anchor of this widget at position x of the            container widget y=amount - locate anchor of this widget at position y of the            container widget relx=amount - locate anchor of this widget between 0.0 and 1.0               relative to width of the container widget (1.0 is                right edge) rely=amount - locate anchor of this widget between 0.0 and 1.0               relative to height of the container widget (1.0 is               bottom edge) anchor=NSEW (or subset) - position anchor according to given                           direction width=amount - width of this widget in pixel height=amount - height of this widget in pixel relwidth=amount - width of this widget between 0.0 and 1.0                   relative to width of the container widget (1.0 is                   the same width as the container widget) relheight=amount - height of this widget between 0.0 and 1.0                    relative to height of the container widget (1.0                    is the same height as the container widget) bordermode=&quot;inside&quot; or &quot;outside&quot; - whether to take border width of                                    the container widget into account.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.place_forget" title="dfvue.dfvmain.dfvMain.place_forget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">place_forget</span></code></a>()</p></td>
 <td><p>Unmap this widget.</p></td>
@@ -822,7 +884,7 @@ France.</p>
 <td><p>Return information about the placing options for this widget.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.place_slaves" title="dfvue.dfvmain.dfvMain.place_slaves"><code class="xref py py-obj docutils literal notranslate"><span class="pre">place_slaves</span></code></a>()</p></td>
-<td><p>Return a list of all slaves of this widget in its packing order.</p></td>
+<td><p>Returns a list of all the content widgets for which this widget is the container.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.propagate" title="dfvue.dfvmain.dfvMain.propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate</span></code></a>([flag])</p></td>
 <td><p>Set or get the status for propagation of geometry information.</p></td>
@@ -864,13 +926,37 @@ France.</p>
 <td><p>Return a tuple of the number of column and rows in the grid.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.slaves" title="dfvue.dfvmain.dfvMain.slaves"><code class="xref py py-obj docutils literal notranslate"><span class="pre">slaves</span></code></a>()</p></td>
-<td><p>Return a list of all slaves of this widget in its packing order.</p></td>
+<td><p>Returns a list of all of the content widgets in the packing order for this container.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tab" title="dfvue.dfvmain.dfvMain.tab"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tab</span></code></a>(name)</p></td>
 <td><p>returns reference to the tab with given name</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_bisque" title="dfvue.dfvmain.dfvMain.tk_bisque"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_bisque</span></code></a>()</p></td>
 <td><p>Change the color scheme to light brown as used in Tk 3.6 and before.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_busy" title="dfvue.dfvmain.dfvMain.tk_busy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_busy</span></code></a>(**kw)</p></td>
+<td><p>Make this widget appear busy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_busy_cget" title="dfvue.dfvmain.dfvMain.tk_busy_cget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_busy_cget</span></code></a>(option)</p></td>
+<td><p>Return the value of busy configuration option.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_busy_config" title="dfvue.dfvmain.dfvMain.tk_busy_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_busy_config</span></code></a>([cnf])</p></td>
+<td><p>Query or modify the busy configuration options.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_busy_configure" title="dfvue.dfvmain.dfvMain.tk_busy_configure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_busy_configure</span></code></a>([cnf])</p></td>
+<td><p>Query or modify the busy configuration options.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_busy_current" title="dfvue.dfvmain.dfvMain.tk_busy_current"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_busy_current</span></code></a>([pattern])</p></td>
+<td><p>Return a list of widgets that are currently busy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_busy_forget" title="dfvue.dfvmain.dfvMain.tk_busy_forget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_busy_forget</span></code></a>()</p></td>
+<td><p>Make this widget no longer busy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_busy_hold" title="dfvue.dfvmain.dfvMain.tk_busy_hold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_busy_hold</span></code></a>(**kw)</p></td>
+<td><p>Make this widget appear busy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_busy_status" title="dfvue.dfvmain.dfvMain.tk_busy_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_busy_status</span></code></a>()</p></td>
+<td><p>Return True if the widget is busy, False otherwise.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#dfvue.dfvmain.dfvMain.tk_focusFollowsMouse" title="dfvue.dfvmain.dfvMain.tk_focusFollowsMouse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tk_focusFollowsMouse</span></code></a>()</p></td>
 <td><p>The widget under mouse will get automatically focus.</p></td>
@@ -1092,7 +1178,7 @@ France.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.after">
-<span class="sig-name descname"><span class="pre">after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.after" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.after" title="Link to this definition">#</a></dt>
 <dd><p>Call function once after given time.</p>
 <p>MS specifies the time in milliseconds. FUNC gives the
 function which shall be called. Additional parameters
@@ -1110,7 +1196,7 @@ given as first parameter.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.after_idle">
-<span class="sig-name descname"><span class="pre">after_idle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.after_idle" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">after_idle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.after_idle" title="Link to this definition">#</a></dt>
 <dd><p>Call FUNC once if the Tcl main loop has no event to
 process.</p>
 <p>Return an identifier to cancel the scheduling with
@@ -1118,10 +1204,25 @@ after_cancel.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.after_info">
+<span class="sig-name descname"><span class="pre">after_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.after_info" title="Link to this definition">#</a></dt>
+<dd><p>Return information about existing event handlers.</p>
+<p>With no argument, return a tuple of the identifiers for all existing
+event handlers created by the after and after_idle commands for this
+interpreter.  If id is supplied, it specifies an existing handler; id
+must have been the return value from some previous call to after or
+after_idle and it must not have triggered yet or been canceled. If the
+id doesn’t exist, a TclError is raised.  Otherwise, the return value is
+a tuple containing (script, type) where script is a reference to the
+function to be called by the event handler and type is either ‘idle’
+or ‘timer’ to indicate what kind of event handler it is.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.anchor">
 <span class="sig-name descname"><span class="pre">anchor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anchor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.anchor" title="Link to this definition">#</a></dt>
 <dd><p>The anchor value controls how to place the grid within the
-master when no row/column has any weight.</p>
+container widget when no row/column has any weight.</p>
 <p>The default anchor is nw.</p>
 </dd></dl>
 
@@ -1135,7 +1236,7 @@ the cell with row and column 0 to the specified
 cell. If COL2 and ROW2 are given the bounding box
 starts at that cell.</p>
 <p>The returned integers specify the offset of the upper left
-corner in the master widget and the width and height.</p>
+corner in the container widget and the width and height.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1212,6 +1313,104 @@ processed (see bind).</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.busy">
+<span class="sig-name descname"><span class="pre">busy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.busy" title="Link to this definition">#</a></dt>
+<dd><p>Make this widget appear busy.</p>
+<p>The specified widget and its descendants will be blocked from
+user interactions.  Normally update() should be called
+immediately afterward to insure that the hold operation is in
+effect before the application starts its processing.</p>
+<p>The only supported configuration option is:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>cursor: the cursor to be displayed when the widget is made</dt><dd><p>busy.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.busy_cget">
+<span class="sig-name descname"><span class="pre">busy_cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.busy_cget" title="Link to this definition">#</a></dt>
+<dd><p>Return the value of busy configuration option.</p>
+<p>The widget must have been previously made busy by
+tk_busy_hold().  Option may have any of the values accepted by
+tk_busy_hold().</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.busy_config">
+<span class="sig-name descname"><span class="pre">busy_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.busy_config" title="Link to this definition">#</a></dt>
+<dd><p>Query or modify the busy configuration options.</p>
+<p>The widget must have been previously made busy by
+tk_busy_hold().  Options may have any of the values accepted by
+tk_busy_hold().</p>
+<p>Please note that the option database is referenced by the widget
+name or class.  For example, if a Frame widget with name “frame”
+is to be made busy, the busy cursor can be specified for it by
+either call:</p>
+<blockquote>
+<div><p>w.option_add(’<a href="#id1"><span class="problematic" id="id2">*</span></a>frame.busyCursor’, ‘gumby’)
+w.option_add(’<a href="#id3"><span class="problematic" id="id4">*</span></a>Frame.BusyCursor’, ‘gumby’)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.busy_configure">
+<span class="sig-name descname"><span class="pre">busy_configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.busy_configure" title="Link to this definition">#</a></dt>
+<dd><p>Query or modify the busy configuration options.</p>
+<p>The widget must have been previously made busy by
+tk_busy_hold().  Options may have any of the values accepted by
+tk_busy_hold().</p>
+<p>Please note that the option database is referenced by the widget
+name or class.  For example, if a Frame widget with name “frame”
+is to be made busy, the busy cursor can be specified for it by
+either call:</p>
+<blockquote>
+<div><p>w.option_add(’<a href="#id5"><span class="problematic" id="id6">*</span></a>frame.busyCursor’, ‘gumby’)
+w.option_add(’<a href="#id7"><span class="problematic" id="id8">*</span></a>Frame.BusyCursor’, ‘gumby’)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.busy_current">
+<span class="sig-name descname"><span class="pre">busy_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.busy_current" title="Link to this definition">#</a></dt>
+<dd><p>Return a list of widgets that are currently busy.</p>
+<p>If a pattern is given, only busy widgets whose path names match
+a pattern are returned.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.busy_forget">
+<span class="sig-name descname"><span class="pre">busy_forget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.busy_forget" title="Link to this definition">#</a></dt>
+<dd><p>Make this widget no longer busy.</p>
+<p>User events will again be received by the widget.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.busy_hold">
+<span class="sig-name descname"><span class="pre">busy_hold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.busy_hold" title="Link to this definition">#</a></dt>
+<dd><p>Make this widget appear busy.</p>
+<p>The specified widget and its descendants will be blocked from
+user interactions.  Normally update() should be called
+immediately afterward to insure that the hold operation is in
+effect before the application starts its processing.</p>
+<p>The only supported configuration option is:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>cursor: the cursor to be displayed when the widget is made</dt><dd><p>busy.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.busy_status">
+<span class="sig-name descname"><span class="pre">busy_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.busy_status" title="Link to this definition">#</a></dt>
+<dd><p>Return True if the widget is busy, False otherwise.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.cget">
 <span class="sig-name descname"><span class="pre">cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.cget" title="Link to this definition">#</a></dt>
 <dd><p>basic cget with bg_color, width, height support, calls cget of tkinter.Frame</p>
@@ -1252,7 +1451,7 @@ is to try UTF8_STRING and fall back to STRING.</p>
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.columnconfigure">
 <span class="sig-name descname"><span class="pre">columnconfigure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.columnconfigure" title="Link to this definition">#</a></dt>
 <dd><p>Configure column INDEX of a grid.</p>
-<p>Valid resources are minsize (minimum size of the column),
+<p>Valid options are minsize (minimum size of the column),
 weight (how much does additional space propagate to this column)
 and pad (how much space to let additionally).</p>
 </dd></dl>
@@ -1260,10 +1459,14 @@ and pad (how much space to let additionally).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.config">
 <span class="sig-name descname"><span class="pre">config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.config" title="Link to this definition">#</a></dt>
-<dd><p>Configure resources of a widget.</p>
-<p>The values for resources are specified as keyword
-arguments. To get an overview about
-the allowed keyword arguments call the method keys.</p>
+<dd><p>Query or modify the configuration options of the widget.</p>
+<p>If no arguments are specified, return a dictionary describing
+all of the available options for the widget.</p>
+<p>If an option name is specified, then return a tuple describing
+the one named option.</p>
+<p>If one or more keyword arguments are specified or a dictionary
+is specified, then modify the widget option(s) to have the given
+value(s).</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1379,8 +1582,9 @@ the focus through the window manager.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.get" title="Link to this definition">#</a></dt>
-<dd><p>returns name of selected tab, returns empty string if no tab selected</p>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.get" title="Link to this definition">#</a></dt>
+<dd><p>returns name of selected tab, returns empty string if no tab selected.</p>
+<p>if an index is provided, returns the tab name in that position</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1463,7 +1667,7 @@ sticky=NSEW - if cell is larger on which sides will this widget stick to the cel
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.grid_anchor">
 <span class="sig-name descname"><span class="pre">grid_anchor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anchor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.grid_anchor" title="Link to this definition">#</a></dt>
 <dd><p>The anchor value controls how to place the grid within the
-master when no row/column has any weight.</p>
+container widget when no row/column has any weight.</p>
 <p>The default anchor is nw.</p>
 </dd></dl>
 
@@ -1477,14 +1681,14 @@ the cell with row and column 0 to the specified
 cell. If COL2 and ROW2 are given the bounding box
 starts at that cell.</p>
 <p>The returned integers specify the offset of the upper left
-corner in the master widget and the width and height.</p>
+corner in the container widget and the width and height.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.grid_columnconfigure">
 <span class="sig-name descname"><span class="pre">grid_columnconfigure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.grid_columnconfigure" title="Link to this definition">#</a></dt>
 <dd><p>Configure column INDEX of a grid.</p>
-<p>Valid resources are minsize (minimum size of the column),
+<p>Valid options are minsize (minimum size of the column),
 weight (how much does additional space propagate to this column)
 and pad (how much space to let additionally).</p>
 </dd></dl>
@@ -1495,8 +1699,8 @@ and pad (how much space to let additionally).</p>
 <dd><p>Position a widget in the parent widget in a grid. Use as options:
 column=number - use cell identified with given column (starting with 0)
 columnspan=number - this widget will span several columns
-in=master - use master to contain this widget
-in_=master - see ‘in’ option description
+in=container - use the container widget to contain this widget
+in_=container - see ‘in’ option description
 ipadx=amount - add internal padding in x direction
 ipady=amount - add internal padding in y direction
 padx=amount - add padding in x direction
@@ -1526,7 +1730,7 @@ for positioning this widget in a grid.</p>
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.grid_location">
 <span class="sig-name descname"><span class="pre">grid_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.grid_location" title="Link to this definition">#</a></dt>
 <dd><p>Return a tuple of column and row which identify the cell
-at which the pixel at position X and Y inside the master
+at which the pixel at position X and Y inside the container
 widget is located.</p>
 </dd></dl>
 
@@ -1534,9 +1738,9 @@ widget is located.</p>
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.grid_propagate">
 <span class="sig-name descname"><span class="pre">grid_propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['_noarg_']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.grid_propagate" title="Link to this definition">#</a></dt>
 <dd><p>Set or get the status for propagation of geometry information.</p>
-<p>A boolean argument specifies whether the geometry information
-of the slaves will determine the size of this widget. If no argument
-is given, the current setting will be returned.</p>
+<p>A boolean argument specifies whether the size of this container will
+be determined by the geometry information of its content.
+If no argument is given the current setting will be returned.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1549,7 +1753,7 @@ is given, the current setting will be returned.</p>
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.grid_rowconfigure">
 <span class="sig-name descname"><span class="pre">grid_rowconfigure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.grid_rowconfigure" title="Link to this definition">#</a></dt>
 <dd><p>Configure row INDEX of a grid.</p>
-<p>Valid resources are minsize (minimum size of the row),
+<p>Valid options are minsize (minimum size of the row),
 weight (how much does additional space propagate to this row)
 and pad (how much space to let additionally).</p>
 </dd></dl>
@@ -1563,8 +1767,11 @@ and pad (how much space to let additionally).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.grid_slaves">
 <span class="sig-name descname"><span class="pre">grid_slaves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.grid_slaves" title="Link to this definition">#</a></dt>
-<dd><p>Return a list of all slaves of this widget
-in its packing order.</p>
+<dd><p>Returns a list of the content widgets.</p>
+<p>If no arguments are supplied, a list of all of the content in this
+container widget is returned, most recently managed first.
+If ROW or COLUMN is specified, only the content in the row or
+column is returned.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1581,8 +1788,9 @@ in its packing order.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.index">
-<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.index" title="Link to this definition">#</a></dt>
-<dd><p>get index of tab with given name</p>
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.index" title="Link to this definition">#</a></dt>
+<dd><p>returns index of selected tab, raises ValueError if the tab is missing
+if the parameter is provided, returns the associated index or raises ValueError if no tab is found</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1607,7 +1815,13 @@ for this widget.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.keys">
 <span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.keys" title="Link to this definition">#</a></dt>
-<dd><p>Return a list of all resource names of this widget.</p>
+<dd><p>Return a list of all option names of this widget.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.len">
+<span class="sig-name descname"><span class="pre">len</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.len" title="Link to this definition">#</a></dt>
+<dd><p>returns the number of defined tabs</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1620,7 +1834,7 @@ for this widget.</p>
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.location">
 <span class="sig-name descname"><span class="pre">location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.location" title="Link to this definition">#</a></dt>
 <dd><p>Return a tuple of column and row which identify the cell
-at which the pixel at position X and Y inside the master
+at which the pixel at position X and Y inside the container
 widget is located.</p>
 </dd></dl>
 
@@ -1710,8 +1924,8 @@ anchor=NSEW (or subset) - position widget according to</p>
 <p>before=widget - pack it before you will pack widget
 expand=bool - expand widget if parent size grows
 fill=NONE or X or Y or BOTH - fill widget if widget grows
-in=master - use master to contain this widget
-in_=master - see ‘in’ option description
+in=container - use the container widget to contain this widget
+in_=container - see ‘in’ option description
 ipadx=amount - add internal padding in x direction
 ipady=amount - add internal padding in y direction
 padx=amount - add padding in x direction
@@ -1736,16 +1950,16 @@ for this widget.</p>
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.pack_propagate">
 <span class="sig-name descname"><span class="pre">pack_propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['_noarg_']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.pack_propagate" title="Link to this definition">#</a></dt>
 <dd><p>Set or get the status for propagation of geometry information.</p>
-<p>A boolean argument specifies whether the geometry information
-of the slaves will determine the size of this widget. If no argument
-is given the current setting will be returned.</p>
+<p>A boolean argument specifies whether the size of this container will
+be determined by the geometry information of its content.
+If no argument is given the current setting will be returned.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.pack_slaves">
 <span class="sig-name descname"><span class="pre">pack_slaves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.pack_slaves" title="Link to this definition">#</a></dt>
-<dd><p>Return a list of all slaves of this widget
-in its packing order.</p>
+<dd><p>Returns a list of all of the content widgets in the packing order
+for this container.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1770,31 +1984,41 @@ bordermode=”inside” or “outside” - whether to take border width of maste
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.place_configure">
 <span class="sig-name descname"><span class="pre">place_configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.place_configure" title="Link to this definition">#</a></dt>
 <dd><p>Place a widget in the parent widget. Use as options:
-in=master - master relative to which the widget is placed
-in_=master - see ‘in’ option description
-x=amount - locate anchor of this widget at position x of master
-y=amount - locate anchor of this widget at position y of master
-relx=amount - locate anchor of this widget between 0.0 and 1.0</p>
+in=container - the container widget relative to which this widget is</p>
 <blockquote>
-<div><p>relative to width of master (1.0 is right edge)</p>
+<div><p>placed</p>
+</div></blockquote>
+<p>in_=container - see ‘in’ option description
+x=amount - locate anchor of this widget at position x of the</p>
+<blockquote>
+<div><p>container widget</p>
 </div></blockquote>
 <dl class="simple">
-<dt>rely=amount - locate anchor of this widget between 0.0 and 1.0</dt><dd><p>relative to height of master (1.0 is bottom edge)</p>
+<dt>y=amount - locate anchor of this widget at position y of the</dt><dd><p>container widget</p>
+</dd>
+<dt>relx=amount - locate anchor of this widget between 0.0 and 1.0</dt><dd><dl class="simple">
+<dt>relative to width of the container widget (1.0 is</dt><dd><p>right edge)</p>
 </dd>
 </dl>
-<p>anchor=NSEW (or subset) - position anchor according to given direction
-width=amount - width of this widget in pixel
+</dd>
+<dt>rely=amount - locate anchor of this widget between 0.0 and 1.0</dt><dd><p>relative to height of the container widget (1.0 is
+bottom edge)</p>
+</dd>
+<dt>anchor=NSEW (or subset) - position anchor according to given</dt><dd><p>direction</p>
+</dd>
+</dl>
+<p>width=amount - width of this widget in pixel
 height=amount - height of this widget in pixel
 relwidth=amount - width of this widget between 0.0 and 1.0</p>
 <blockquote>
-<div><p>relative to width of master (1.0 is the same width
-as the master)</p>
+<div><p>relative to width of the container widget (1.0 is
+the same width as the container widget)</p>
 </div></blockquote>
 <dl class="simple">
-<dt>relheight=amount - height of this widget between 0.0 and 1.0</dt><dd><p>relative to height of master (1.0 is the same
-height as the master)</p>
+<dt>relheight=amount - height of this widget between 0.0 and 1.0</dt><dd><p>relative to height of the container widget (1.0
+is the same height as the container widget)</p>
 </dd>
-<dt>bordermode=”inside” or “outside” - whether to take border width of</dt><dd><p>master widget into account</p>
+<dt>bordermode=”inside” or “outside” - whether to take border width of</dt><dd><p>the container widget into account</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1815,17 +2039,17 @@ for this widget.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.place_slaves">
 <span class="sig-name descname"><span class="pre">place_slaves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.place_slaves" title="Link to this definition">#</a></dt>
-<dd><p>Return a list of all slaves of this widget
-in its packing order.</p>
+<dd><p>Returns a list of all the content widgets for which this widget is
+the container.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.propagate">
 <span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['_noarg_']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.propagate" title="Link to this definition">#</a></dt>
 <dd><p>Set or get the status for propagation of geometry information.</p>
-<p>A boolean argument specifies whether the geometry information
-of the slaves will determine the size of this widget. If no argument
-is given the current setting will be returned.</p>
+<p>A boolean argument specifies whether the size of this container will
+be determined by the geometry information of its content.
+If no argument is given the current setting will be returned.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1852,7 +2076,7 @@ be given which will be executed before FUNC.</p>
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.rowconfigure">
 <span class="sig-name descname"><span class="pre">rowconfigure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.rowconfigure" title="Link to this definition">#</a></dt>
 <dd><p>Configure row INDEX of a grid.</p>
-<p>Valid resources are minsize (minimum size of the row),
+<p>Valid options are minsize (minimum size of the row),
 weight (how much does additional space propagate to this row)
 and pad (how much space to let additionally).</p>
 </dd></dl>
@@ -1935,8 +2159,8 @@ type - type of the selection (e.g. STRING, FILE_NAME).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.slaves">
 <span class="sig-name descname"><span class="pre">slaves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.slaves" title="Link to this definition">#</a></dt>
-<dd><p>Return a list of all slaves of this widget
-in its packing order.</p>
+<dd><p>Returns a list of all of the content widgets in the packing order
+for this container.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1949,6 +2173,104 @@ in its packing order.</p>
 <dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_bisque">
 <span class="sig-name descname"><span class="pre">tk_bisque</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_bisque" title="Link to this definition">#</a></dt>
 <dd><p>Change the color scheme to light brown as used in Tk 3.6 and before.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_busy">
+<span class="sig-name descname"><span class="pre">tk_busy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_busy" title="Link to this definition">#</a></dt>
+<dd><p>Make this widget appear busy.</p>
+<p>The specified widget and its descendants will be blocked from
+user interactions.  Normally update() should be called
+immediately afterward to insure that the hold operation is in
+effect before the application starts its processing.</p>
+<p>The only supported configuration option is:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>cursor: the cursor to be displayed when the widget is made</dt><dd><p>busy.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_busy_cget">
+<span class="sig-name descname"><span class="pre">tk_busy_cget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_busy_cget" title="Link to this definition">#</a></dt>
+<dd><p>Return the value of busy configuration option.</p>
+<p>The widget must have been previously made busy by
+tk_busy_hold().  Option may have any of the values accepted by
+tk_busy_hold().</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_busy_config">
+<span class="sig-name descname"><span class="pre">tk_busy_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_busy_config" title="Link to this definition">#</a></dt>
+<dd><p>Query or modify the busy configuration options.</p>
+<p>The widget must have been previously made busy by
+tk_busy_hold().  Options may have any of the values accepted by
+tk_busy_hold().</p>
+<p>Please note that the option database is referenced by the widget
+name or class.  For example, if a Frame widget with name “frame”
+is to be made busy, the busy cursor can be specified for it by
+either call:</p>
+<blockquote>
+<div><p>w.option_add(’<a href="#id9"><span class="problematic" id="id10">*</span></a>frame.busyCursor’, ‘gumby’)
+w.option_add(’<a href="#id11"><span class="problematic" id="id12">*</span></a>Frame.BusyCursor’, ‘gumby’)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_busy_configure">
+<span class="sig-name descname"><span class="pre">tk_busy_configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_busy_configure" title="Link to this definition">#</a></dt>
+<dd><p>Query or modify the busy configuration options.</p>
+<p>The widget must have been previously made busy by
+tk_busy_hold().  Options may have any of the values accepted by
+tk_busy_hold().</p>
+<p>Please note that the option database is referenced by the widget
+name or class.  For example, if a Frame widget with name “frame”
+is to be made busy, the busy cursor can be specified for it by
+either call:</p>
+<blockquote>
+<div><p>w.option_add(’<a href="#id13"><span class="problematic" id="id14">*</span></a>frame.busyCursor’, ‘gumby’)
+w.option_add(’<a href="#id15"><span class="problematic" id="id16">*</span></a>Frame.BusyCursor’, ‘gumby’)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_busy_current">
+<span class="sig-name descname"><span class="pre">tk_busy_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_busy_current" title="Link to this definition">#</a></dt>
+<dd><p>Return a list of widgets that are currently busy.</p>
+<p>If a pattern is given, only busy widgets whose path names match
+a pattern are returned.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_busy_forget">
+<span class="sig-name descname"><span class="pre">tk_busy_forget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_busy_forget" title="Link to this definition">#</a></dt>
+<dd><p>Make this widget no longer busy.</p>
+<p>User events will again be received by the widget.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_busy_hold">
+<span class="sig-name descname"><span class="pre">tk_busy_hold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_busy_hold" title="Link to this definition">#</a></dt>
+<dd><p>Make this widget appear busy.</p>
+<p>The specified widget and its descendants will be blocked from
+user interactions.  Normally update() should be called
+immediately afterward to insure that the hold operation is in
+effect before the application starts its processing.</p>
+<p>The only supported configuration option is:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>cursor: the cursor to be displayed when the widget is made</dt><dd><p>busy.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dfvue.dfvmain.dfvMain.tk_busy_status">
+<span class="sig-name descname"><span class="pre">tk_busy_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dfvue.dfvmain.dfvMain.tk_busy_status" title="Link to this definition">#</a></dt>
+<dd><p>Return True if the widget is busy, False otherwise.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1966,7 +2288,7 @@ widget which has currently the focus.</p>
 <p>The focus order first goes to the next child, then to
 the children of the child recursively and then to the
 next sibling which is higher in the stacking order.  A
-widget is omitted if it has the takefocus resource set
+widget is omitted if it has the takefocus option set
 to 0.</p>
 </dd></dl>
 
@@ -2434,8 +2756,7 @@ in the parent.</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2449,6 +2770,7 @@ in the parent.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.after"><code class="docutils literal notranslate"><span class="pre">dfvMain.after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.after_cancel"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_cancel()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.after_idle"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_idle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.after_info"><code class="docutils literal notranslate"><span class="pre">dfvMain.after_info()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.anchor"><code class="docutils literal notranslate"><span class="pre">dfvMain.anchor()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bbox"><code class="docutils literal notranslate"><span class="pre">dfvMain.bbox()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bell"><code class="docutils literal notranslate"><span class="pre">dfvMain.bell()</span></code></a></li>
@@ -2456,6 +2778,14 @@ in the parent.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bind_all"><code class="docutils literal notranslate"><span class="pre">dfvMain.bind_all()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bind_class"><code class="docutils literal notranslate"><span class="pre">dfvMain.bind_class()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.bindtags"><code class="docutils literal notranslate"><span class="pre">dfvMain.bindtags()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_cget"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_cget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_config"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_configure()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_current"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_current()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_forget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_hold"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_hold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.busy_status"><code class="docutils literal notranslate"><span class="pre">dfvMain.busy_status()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.cget"><code class="docutils literal notranslate"><span class="pre">dfvMain.cget()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.clipboard_append"><code class="docutils literal notranslate"><span class="pre">dfvMain.clipboard_append()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.clipboard_clear"><code class="docutils literal notranslate"><span class="pre">dfvMain.clipboard_clear()</span></code></a></li>
@@ -2507,6 +2837,7 @@ in the parent.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.info_patchlevel"><code class="docutils literal notranslate"><span class="pre">dfvMain.info_patchlevel()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.insert"><code class="docutils literal notranslate"><span class="pre">dfvMain.insert()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.keys"><code class="docutils literal notranslate"><span class="pre">dfvMain.keys()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.len"><code class="docutils literal notranslate"><span class="pre">dfvMain.len()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.lift"><code class="docutils literal notranslate"><span class="pre">dfvMain.lift()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.location"><code class="docutils literal notranslate"><span class="pre">dfvMain.location()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.lower"><code class="docutils literal notranslate"><span class="pre">dfvMain.lower()</span></code></a></li>
@@ -2545,6 +2876,14 @@ in the parent.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.slaves"><code class="docutils literal notranslate"><span class="pre">dfvMain.slaves()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tab"><code class="docutils literal notranslate"><span class="pre">dfvMain.tab()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_bisque"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_bisque()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_cget"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_cget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_config"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_configure"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_configure()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_current"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_current()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_forget"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_forget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_hold"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_hold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_busy_status"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_busy_status()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_focusFollowsMouse"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusFollowsMouse()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_focusNext"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusNext()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfvue.dfvmain.dfvMain.tk_focusPrev"><code class="docutils literal notranslate"><span class="pre">dfvMain.tk_focusPrev()</span></code></a></li>
@@ -2659,8 +2998,8 @@ By Matthias Cuntz
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
