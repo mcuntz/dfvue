@@ -36,6 +36,7 @@ History
    * Focus on first option upon calling, Jul 2025, Matthias Cuntz
    * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
    * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
+   * Catch ParseError of pandas.read_csv, Aug 2026, Matthias Cuntz
 
 """
 import tkinter as tk
@@ -709,15 +710,24 @@ class dfvReadcsv(Toplevel):
         # except TypeError:
         #     print('Did not work')
         #     pass
-        with warnings.catch_warnings():
-            warnings.simplefilter(action='ignore', category=FutureWarning)
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter(action='ignore', category=FutureWarning)
+                if (nrows is None) and (len(self.csvfile) > 1):
+                    dfl = []
+                    for cfile in self.csvfile:
+                        dfl.append(pd.read_csv(cfile, **opts))
+                    self.df = pd.concat(dfl)
+                else:
+                    self.df = pd.read_csv(self.csvfile[0], **opts)
+        except pd.errors.ParserError:
             if (nrows is None) and (len(self.csvfile) > 1):
                 dfl = []
                 for cfile in self.csvfile:
-                    dfl.append(pd.read_csv(cfile, **opts))
+                    with open(cfile, 'r') as fi:
+                        fin = fi.readlines()
+                    dfl.append(pd.DataFrame(fin))
                 self.df = pd.concat(dfl)
-            else:
-                self.df = pd.read_csv(self.csvfile[0], **opts)
         # if iparsedates:
         #     True
         # # Transformation

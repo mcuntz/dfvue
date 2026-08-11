@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+v6.7.1 (Aug 2026)
+  - Corrected bug in parsing missing_value to pandas.read_csv.
+  - Catch ParseError of pandas.read_csv.
+
 v6.7 (Aug 2026)
   - Respect command line options when reading first 40 lines
     (issue #1 by Solim Rovera)

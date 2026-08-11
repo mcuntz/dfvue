@@ -40,6 +40,9 @@ History
    * Snap coordinates to nearest data points, Feb 2026, Matthias Cuntz
    * Respect command line options when reading first 40 lines,
      Aug 2026, Solim Rovera and Matthias Cuntz
+   * Correct parsing of missing_value command line option,
+     Aug 2026, Matthias Cuntz
+   * Catch ParseError of pandas.read_csv, Aug 2026, Matthias Cuntz
 
 """
 import platform
@@ -557,10 +560,18 @@ class dfvScatter(Frame):
             if (text != '') and (text is not None):
                 tt = parse_entry(text)
                 if (tt != '') and (tt is not None):
-                    opts.update({kk: tt})
-        with warnings.catch_warnings():
-            warnings.simplefilter(action='ignore', category=FutureWarning)
-            self.top.df = pd.read_csv(self.top.csvfile[0], **opts)
+                    if kk == 'missing_value':
+                        opts.update({'na_values': [tt]})
+                    else:
+                        opts.update({kk: tt})
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter(action='ignore', category=FutureWarning)
+                self.top.df = pd.read_csv(self.top.csvfile[0], **opts)
+        except pd.errors.ParserError:
+            with open(self.top.csvfile[0], 'r') as fi:
+                fin = fi.readlines()
+            self.top.df = pd.DataFrame(fin)
         self.readcsvwin = dfvReadcsv(self.top, callback=self.reset)
 
     def next_y(self):
