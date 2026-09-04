@@ -37,34 +37,23 @@ History
    * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
    * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
    * Catch ParseError of pandas.read_csv, Aug 2026, Matthias Cuntz
+   * Use Qt framework with PySide6, Aug 2026, Matthias Cuntz
 
 """
-import tkinter as tk
-import tkinter.ttk as ttk
-import tkinter.font as tkfont
-try:
-    from customtkinter import CTkToplevel as Toplevel
-    from customtkinter import CTkFrame as Frame
-    from customtkinter import CTkLabel as Label
-    from customtkinter import CTkButton as Button
-    ihavectk = True
-except ModuleNotFoundError:
-    from tkinter import Toplevel
-    from tkinter.ttk import Frame
-    from tkinter.ttk import Label
-    from tkinter.ttk import Button
-    ihavectk = False
 from collections.abc import Iterable
 import warnings
 import pandas as pd
-from .dfvscreen import dfvScreen
-from .dfvutils import parse_entry
-from .ncvwidgets import add_entry, add_tooltip, Treeview, callurl
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QGridLayout, QHBoxLayout, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QLabel, QLineEdit
+from PySide6.QtWidgets import QTableWidget, QTableWidgetItem
+from .dfvutils import parse_entry, readcsv_window_size
+from .vuewidgets import add_label, add_table
+from .vuewidgets import add_pushbutton
 
 
 __all__ = ['read_csvopts', 'read_csvdefaults', 'read_csvhelp',
            'dfvReadcsv']
-
 
 read_csvopts = ['sep', 'index_col', 'usecols', 'skiprows', 'nrows',
                 'parse_dates', 'date_format',
@@ -431,7 +420,7 @@ Tooltips for pandas.read_csv options from pandas v2.0.3
 """
 
 
-class dfvReadcsv(Toplevel):
+class dfvReadcsv(QWidget):
     """
     Window for reading csv files.
 
@@ -441,41 +430,23 @@ class dfvReadcsv(Toplevel):
     # Setup panel
     #
 
-    def __init__(self, top, callback=None, **kwargs):
-        super().__init__(top, **kwargs)
+    def __init__(self, master, callback=None, **kwargs):
 
-        self.top = top  # top window
-        self.callback = callback
+        super().__init__(**kwargs)
 
         self.name = 'dfvReadcsv'
-        self.title("Read csv file")
-        sc = dfvScreen(top)
-        sc.set_window_geometry(self, sc.readcsv_window_size())
-        self.focus()
-        # self.after(200, self.focus) # 200ms if your CPU is too fast
-        # self.after(200, self.lift)
 
-        # copy for ease of use
-        self.csvfile = self.top.csvfile
-        self.newcsvfile = self.top.newcsvfile
+        self.master = master
+        self.top = master.top
         self.df = self.top.df
-        self.sep = self.top.sep
-        self.index_col = self.top.index_col
-        self.skiprows = self.top.skiprows
-        self.parse_dates = self.top.parse_dates
-        self.date_format = self.top.date_format
-        self.missing_value = self.top.missing_value
-        self.cols = self.top.cols
+        
+        self.setWindowTitle("Read csv file")
+        
+        self.layout = QVBoxLayout()
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setSpacing(3)
 
-        # space
-        rootspace = Frame(self)
-        rootspace.pack(side='top', fill='x')
-        rootspacespace = Label(rootspace, text=" ")
-        rootspacespace.pack(side='left')
-
-        # 1. row - treeview current DataFrame
-        self.rowtree = Frame(self)
-        self.rowtree.pack(side='top', fill='x')
+        # 1. table
         self.nrows = 10
         if self.df is None:
             print('No df')
@@ -485,174 +456,174 @@ class dfvReadcsv(Toplevel):
             df = pd.DataFrame(dat, columns=columns)
         else:
             df = self.df
-        self.new_tree(df)
+        self.table = self.new_table(df)
+        self.layout.addWidget(self.table)
 
-        # space
-        treespace = Frame(self)
-        treespace.pack(side='top', fill='x')
-        treespacespace = Label(treespace, text=" ")
-        treespacespace.pack(side='left')
+        # 2. empty row
+        self.rowspace = QHBoxLayout()
+        self.rowspace.setContentsMargins(5, 0, 5, 0)
+        self.rowspace.setSpacing(3)
 
-        # label for read_csv options
-        opthead = Frame(self)
-        opthead.pack(side='top', fill='x')
-        optheadlabel1 = Label(opthead, text='Options for ')
-        optheadlabel1.pack(side='left')
-        if ihavectk:
-            optheadlabel2 = Label(opthead, text='pandas.read_csv',
-                                  text_color=('blue', 'lightblue'))
-        else:
-            # https://stackoverflow.com/questions/1529847/how-to-change-the-foreground-or-background-colour-of-a-tkinter-button-on-mac-os/42591118#42591118
-            ttk.Style().configure('blue.TLabel', foreground='#0096FF')
-            optheadlabel2 = Label(opthead, text='pandas.read_csv',
-                                  style='blue.TLabel')
-            # https://stackoverflow.com/questions/3655449/underline-text-in-tkinter-label-widget
-            font = tkfont.Font(optheadlabel2, optheadlabel2.cget("font"))
-            font.configure(underline=True)
-            optheadlabel2.configure(font=font)
-        optheadlabel2.pack(side='left')
-        optheadlabel2.bind("<Button-1>",
-                           lambda e:
-                           callurl("https://pandas.pydata.org/docs/reference/"
-                                   "api/pandas.read_csv.html"))
-        optheadlabel3 = Label(opthead, text=' (date_format: see ')
-        optheadlabel3.pack(side='left')
-        if ihavectk:
-            optheadlabel4 = Label(opthead, text='strftime',
-                                  text_color=('blue', 'lightblue'))
-        else:
-            optheadlabel4 = Label(opthead, text='strftime',
-                                  style='blue.TLabel')
-            optheadlabel4.configure(font=font)
-        optheadlabel4.pack(side='left')
-        optheadlabel4.bind("<Button-1>",
-                           lambda e:
-                           callurl("https://docs.python.org/3/library/"
-                                   "datetime.html#"
-                                   "strftime-and-strptime-behavior"))
-        optheadlabel5 = Label(opthead, text=')')
-        optheadlabel5.pack(side='left')
+        space = add_label(self.rowspace, text=' ' * 1)
+        self.rowspace.addStretch()
 
-        # option fields
-        self.optframe = {}  # entry frame
-        self.optlbl = {}    # label
-        self.opt = {}       # entry test
-        self.opttip = {}    # tooltip
+        self.layout.addLayout(self.rowspace)
 
-        # rows with pandas.read_csv options
+        # 3. label for read_csv options
+        self.rowlab = QHBoxLayout()
+        self.rowlab.setContentsMargins(5, 0, 5, 5)
+        self.rowlab.setSpacing(3)
+
+        self.lab1 = add_label(self.rowlab, text='Options for ')
+        self.lab2 = add_label(self.rowlab,
+                              text=('<a href="https://pandas.pydata.org/docs/'
+                                    'reference/api/pandas.read_csv.html">'
+                                    'pandas.read_csv</a>'))
+        # self.lab2.setTextFormat(Qt.RichText)
+        # self.lab2.setTextInteractionFlags(Qt.TextBrowserInteraction)
+        self.lab2.setOpenExternalLinks(True)
+        self.lab3 = add_label(self.rowlab, text=' (date_format: see ')
+        self.lab4 = add_label(self.rowlab,
+                              text=('<a href="https://docs.python.org/3/library/'
+                                    'datetime.html#strftime-and-strptime-behavior">'
+                                    'strftime</a>'))
+        # self.lab4.setTextFormat(Qt.RichText)
+        # self.lab4.setTextInteractionFlags(Qt.TextBrowserInteraction)
+        self.lab4.setOpenExternalLinks(True)
+        self.lab5 = add_label(self.rowlab, text=')')
+
+        self.rowlab.addStretch()
+
+        self.layout.addLayout(self.rowlab)
+
+        # 4. rows with pandas.read_csv options
+        self.rowopt = QGridLayout()
+        self.rowopt.setContentsMargins(5, 0, 5, 0)
+        self.rowopt.setSpacing(3)
+        self.rowopt.setHorizontalSpacing(10)
+        self.rowopt.setVerticalSpacing(5)
+
+        rowheight = 25
+        lwidth = 140
+        ewidth = 70
+        self.opt = {}
         oend = 0
         nopt = len(read_csvopts)
         noptrow = nopt // 4
         if (nopt % 5) > 0:
             noptrow += 1
-        if ihavectk:
-            entrywidth = 85  # px
-            padlabel = 3     # characters
-            padxlabel = 5    # px
-        else:
-            entrywidth = 8   # characters
-            padlabel = 5     # characters
-            padxlabel = 5    # px
-        self.rowopt = Frame(self)
-        self.rowopt.pack(side='top', fill='x')
         for nr in range(noptrow):
             ostart = oend
             oend = ostart + 5
             for oois, oo in enumerate(read_csvopts[ostart:oend]):
-                (self.optframe[oo], self.optlbl[oo],
-                 self.opt[oo], self.opttip[oo]) = add_entry(
-                     self.rowopt, label=oo,
-                     padlabel=padlabel,
-                     text=read_csvdefaults[oo],
-                     width=entrywidth, padx=padxlabel,
-                     tooltip=read_csvhelp[oo],
-                     command=[self.read_again, self.read_final])
-                self.optframe[oo].grid(row=nr, column=2 * oois, columnspan=2,
-                                       sticky=tk.E)
-                # self.optframe[oo].pack(side='right')
+                ilabel = QLabel(oo)
+                fm = ilabel.fontMetrics()
+                iwidth = fm.size(0, oo)
+                ilabel.setMinimumWidth(iwidth.width() + 5)
+                ilabel.setMaximumWidth(lwidth)
+                self.rowopt.addWidget(ilabel, nr, 2 * oois,
+                                      alignment=Qt.AlignmentFlag.AlignRight)
+                #
+                self.opt[oo] = QLineEdit(**kwargs)
+                self.opt[oo].setText(str(read_csvdefaults[oo]))
+                self.opt[oo].setMinimumWidth(ewidth)
+                self.opt[oo].setToolTip(read_csvhelp[oo])
+                self.opt[oo].editingFinished.connect(self.read_again)
+                self.opt[oo].returnPressed.connect(self.read_final)
+                self.rowopt.addWidget(self.opt[oo], nr, 2 * oois + 1,
+                                      alignment=Qt.AlignmentFlag.AlignLeft)
+            # one empty column at the end of each row
+            ilabel1 = QLabel(' ')
+            ilabel1.setMinimumWidth(2.5 * ewidth)
+            self.rowopt.addWidget(ilabel1, nr, 11,
+                                  alignment=Qt.AlignmentFlag.AlignLeft)
+
         # overwrite defaults from command line
-        self.set_command_line_options(defaults=self.newcsvfile)
+        self.set_command_line_options(defaults=self.top.newcsvfile)
 
-        # add cancel and read buttons to last row
-        self.rowdone = Frame(self)
-        self.rowdone.pack(side='top', fill='x')
-        self.done = Button(self.rowdone, text="Read csv",
-                           command=self.read_final)
-        self.donetip = add_tooltip(self.done, 'Finished reading csv')
-        self.done.pack(side='right', padx=10, pady=5)
+        self.layout.addLayout(self.rowopt)
 
-        self.cancel = Button(self.rowdone, text="Cancel",
-                             command=self.cancel)
-        self.canceltip = add_tooltip(self.cancel, 'Cancel reading csv file')
-        self.cancel.pack(side='right', pady=5)
+        # 5. cancel and read buttons
+        self.rowdone = QHBoxLayout()
+        self.rowdone.setContentsMargins(3, 0, 3, 10)  # left, top, tight, bottom
+        self.rowdone.setSpacing(3)
 
-        self.optframe[read_csvopts[0]].focus_force()
+        self.rowdone.addStretch()
+
+        self.icancel = add_pushbutton(
+            self.rowdone, text='Cancel', command=self.cancel,
+            tooltip='Cancel reading csv file',
+            alignment=Qt.AlignmentFlag.AlignRight)
+
+        self.done = add_pushbutton(
+            self.rowdone, text='Read csv', command=self.read_final,
+            tooltip='Finished options for reading csv',
+            alignment=Qt.AlignmentFlag.AlignRight)
+
+        self.layout.addLayout(self.rowdone)
+
+        if len(self.top.screen) == 0:
+            screen = self.screen().availableGeometry()
+            self.top.screen = (screen.width(), screen.height())
+        xs, ys, xo, yo = readcsv_window_size(self.top.screen)
+        self.resize(xs, ys)
+        self.move(xo, yo)
+
+        self.setLayout(self.layout)
+
+        self.show()
         
-        self.read_again('')
-
-        self.update()
+        # # move tabs window behind - does not work
+        # self.master.lower()
+        # # activate the readcsv window - does not work
+        # self.raise_()
+        # self.activateWindow()
 
     #
     # Event bindings
     #
 
-    def cancel(self, event=None):
-        if self.callback is not None:
-            self.callback()
-        # do not self.destroy() with ctk.CTkButton, leading to
-        # 'invalid command name
-        #     ".!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas"'
-        # self.destroy() works with ttk.Button
-        self.withdraw()
+    def cancel(self):
+        self.close()
 
-    def new_tree(self, df):
-        """
-        Make new Treeview widget and fill it with pandas.Dataframe
+    def new_table(self, df=None):
+        if df is None:
+            nrows = 4
+            ncols = 5
+            columns = [ f'Column {i:03d}' for i in range(ncols) ]
+            dat = [ [''] * ncols for i in range(nrows) ]
+            df = pd.DataFrame(dat, columns=columns)
+        nrows = df.shape[0]
+        ncols = df.shape[1]
 
-        """
-        # create
-        self.tree = Treeview(self.rowtree, xscroll=True, yscroll=True)
-        self.tree.pack()
-        self.tree.tag_configure("even", background='white',
-                                foreground='black')
-        self.tree.tag_configure("odd", background='gray',
-                                foreground='white')
-        # fill
+        columns = [ f'{ii}: {cc}' for ii, cc in enumerate(list(df.columns)) ]
+
         idx = 'index'
         if df.index.name is not None:
             idx = 'index ' + df.index.name
-        columns = [idx]
-        df_columns = []  # index: name
-        for ii, cc in enumerate(list(df.columns)):
-            df_columns.append(f'{ii}: {cc}')
-        columns.extend(df_columns)  # index, df_columns
-        self.tree.config(columns=columns, show="headings",
-                         height=self.nrows)
-        # columns
-        self.tree.column(idx, width=150, stretch=False,
-                         anchor='center')
-        if len(df.columns) == 1:
-            # if sep not correct show long line
-            cwidth = 700
-        else:
-            cwidth = 150
-        for c in df_columns:  # columns w/o index
-            self.tree.column(c, width=cwidth, stretch=False,
-                             anchor='center')
-        for c in columns:  # columns with index
-            self.tree.heading(c, text=c, anchor='center')
-        # rows
-        for i in range(min([self.nrows * 4, df.shape[0]])):
-            values = [df.index[i]]
-            values.extend(list(df.iloc[i].values))
-            self.tree.insert(
-                '', 'end', values=values,
-                tags=('even',) if (i % 2) == 0 else ('odd',) )
 
-    def read_again(self, event):
-        self.tree.destroy()
-        self.read_df(nrows=4 * self.nrows)
-        self.new_tree(self.df)
+        itable = QTableWidget()
+        itable.setRowCount(nrows)
+        itable.setColumnCount(ncols + 1)
+        itable.setHorizontalHeaderLabels([idx] + columns)
+
+        for i in range(nrows):
+            item = QTableWidgetItem(str(df.index[i]))
+            itable.setItem(i, 0, item)
+            for k, cc in enumerate(df.columns):
+                item = QTableWidgetItem(str(df[cc].iloc[i]))
+                itable.setItem(i, k + 1, item)
+
+        return itable
+
+    def read_again(self):
+        self.table.close()
+
+        self.df = self.read_df(nrows=4 * self.nrows)
+        
+        self.newtable = self.new_table(self.df)
+        self.layout.replaceWidget(self.table, self.newtable)
+        self.table = self.newtable
 
     def read_df(self, nrows=None):
         """
@@ -661,7 +632,7 @@ class dfvReadcsv(Toplevel):
         """
         opts = {}
         for oo in read_csvopts:
-            text = self.opt[oo].get()
+            text = self.opt[oo].text()
             tt = parse_entry(text)
             if (tt != '') and (tt is not None):
                 opts.update({oo: tt})
@@ -689,80 +660,61 @@ class dfvReadcsv(Toplevel):
                     date, format=opts['date_format'])
                 opts['date_parser'] = date_parser
                 del opts['date_format']
-        # iparsedates = False
-        # if pd.__version__ > '2.0':
-        #     if 'parse_dates' in opts:
-        #         if not all(o.__hash__ is not None
-        #                    for o in opts['parse_dates']):
-        #             # parse_date is list of int, list of list, or dict
-        #             iparsedates = True
-        #             parse_dates = opts['parse_dates']
-        #             # del opts['parse_dates']
-        #             if 'date_format' in opts:
-        #                 date_format = opts['date_format']
-        #                 # del opts['date_format']
-        #             if 'index_col' in opts:
-        #                 index_col = opts['index_col']
-        #                 # del opts['index_col']
-        # # Testing
-        # try:
-        #     self.df = pd.read_csv(self.csvfile, **opts)
-        # except TypeError:
-        #     print('Did not work')
-        #     pass
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter(action='ignore', category=FutureWarning)
-                if (nrows is None) and (len(self.csvfile) > 1):
+                if (nrows is None) and (len(self.top.csvfile) > 1):
                     dfl = []
-                    for cfile in self.csvfile:
+                    for cfile in self.top.csvfile:
                         dfl.append(pd.read_csv(cfile, **opts))
-                    self.df = pd.concat(dfl)
+                    df = pd.concat(dfl)
                 else:
-                    self.df = pd.read_csv(self.csvfile[0], **opts)
+                    df = pd.read_csv(self.top.csvfile[0], **opts)
         except pd.errors.ParserError:
-            if (nrows is None) and (len(self.csvfile) > 1):
+            if (nrows is None) and (len(self.top.csvfile) > 1):
                 dfl = []
-                for cfile in self.csvfile:
+                for cfile in self.top.csvfile:
                     with open(cfile, 'r') as fi:
                         fin = fi.readlines()
                     dfl.append(pd.DataFrame(fin))
-                self.df = pd.concat(dfl)
-        # if iparsedates:
-        #     True
-        # # Transformation
-        # if nrows is None:
-        #     self.df = self.df.resample('1D').mean().squeeze()
+                df = pd.concat(dfl)
+
+        return df
 
     def read_final(self, event=None):
-        self.tree.destroy()
-        self.read_df()
+        self.top.df = self.read_df()
+
         # add index as column
         idx = 'df.index'
-        if self.df.index.name is not None:
-            idx = self.df.index.name
-        if isinstance(self.df.index, pd.MultiIndex):
+        if self.top.df.index.name is not None:
+            idx = self.top.df.index.name
+        if isinstance(self.top.df.index, pd.MultiIndex):
             series = [ [ str(kk) for kk in ii ]
-                       for ii in self.df.index ]
+                       for ii in self.top.df.index ]
             series = [ ' '.join(ii) for ii in series ]
         else:
-            series = self.df.index
-        self.df.insert(0, idx, pd.Series(series, index=self.df.index))
-        if isinstance(self.df.index, pd.MultiIndex):
+            series = self.top.df.index
+        # self.top.df.insert(0, idx, pd.Series(series, index=self.top.df.index))
+        self.top.df = pd.concat([pd.Series(series, index=self.top.df.index),
+                                 self.top.df], axis=1)
+        if isinstance(self.top.df.index, pd.MultiIndex):
             # replace MultiIndex with combined column
-            self.df.set_index(idx, drop=False, inplace=True)
-        rows = self.df.shape[0]
-        self.cols = [ f'{cc} ({rows} {self.df[cc].dtype.name})'
-                      for cc in self.df.columns ]
-        self.top.df = self.df
-        self.top.cols = self.cols
-        if self.callback is not None:
-            self.callback()
-        # do not self.destroy() with ctk.CTkButton, leading to
-        # 'invalid command name
-        #     ".!dfvreadcsv.!ctkframe3.!ctkbutton2.!ctkcanvas"'
-        # self.destroy() works with ttk.Button
-        self.withdraw()
+            self.top.df.set_index(idx, drop=False, inplace=True)
+
+        rows = self.top.df.shape[0]
+        self.top.cols = [ f'{cc} ({rows} {self.top.df[cc].dtype.name})'
+                          for cc in self.top.df.columns ]
+
+        self.master.top.df = self.top.df
+        self.master.top.cols = self.top.cols
+        
+        self.master.resetvars(nosort=True)
+        self.master.x.setCurrentIndex(0)
+        self.master.y.setCurrentIndex(0)
+        self.master.y2.setCurrentIndex(0)
+        self.master.redraw()
+
+        self.close()
 
     def set_command_line_options(self, defaults=False):
         """
@@ -773,23 +725,24 @@ class dfvReadcsv(Toplevel):
 
         """
         if defaults:
-            self.opt['sep'].set('')
-            self.opt['index_col'].set(None)
-            self.opt['skiprows'].set(None)
-            self.opt['parse_dates'].set('True')
-            self.opt['date_format'].set(None)
-            self.opt['missing_value'].set(None)
+            self.opt['sep'].setText('')
+            self.opt['index_col'].setText('None')
+            self.opt['skiprows'].setText('None')
+            self.opt['parse_dates'].setText('True')
+            self.opt['date_format'].setText('None')
+            self.opt['missing_value'].setText('None')
         else:
-            if self.sep != '':
-                self.opt['sep'].set(self.sep)
-            if self.index_col is not None:
-                self.opt['index_col'].set(self.index_col)
-            if self.skiprows is not None:
-                self.opt['skiprows'].set(self.skiprows)
-            if self.parse_dates is not None:
-                self.opt['parse_dates'].set(self.parse_dates)
-            if self.date_format is not None:
-                self.opt['date_format'].set(self.date_format)
-            if self.missing_value is not None:
-                self.opt['missing_value'].set(self.missing_value)
+            if self.top.sep != '':
+                self.opt['sep'].setText(self.top.sep)
+            if self.top.index_col is not None:
+                self.opt['index_col'].setText(str(self.top.index_col))
+            if self.top.skiprows is not None:
+                self.opt['skiprows'].setText(str(self.top.skiprows))
+            if self.top.parse_dates is not None:
+                self.opt['parse_dates'].setText(str(self.top.parse_dates))
+            if self.top.date_format is not None:
+                self.opt['date_format'].setText(self.top.date_format)
+            if self.top.missing_value is not None:
+                self.opt['missing_value'].setText(str(self.top.missing_value))
+
         return

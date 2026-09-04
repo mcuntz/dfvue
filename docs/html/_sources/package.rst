@@ -15,6 +15,5 @@ API
    dfvscatter.rst
    dfvreadcsv.rst
    dfvtransform.rst
-   dfvscreen.rst
    dfvutils.rst
-   ncvwidgets.rst
+   vuewidgets.rst

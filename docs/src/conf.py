@@ -227,7 +227,7 @@ intersphinx_mapping = {
     "pyeee": ("https://pyeee.readthedocs.io/en/latest/", None),
     "python": ("https://docs.python.org/3/", None),
     "schwimmbad": ("https://schwimmbad.readthedocs.io/en/latest/", None),
-    "scipy": ("https://docs.scipy.org/doc/scipy/", None),
+    # "scipy": ("https://docs.scipy.org/doc/scipy/", None),
     "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
     "xarray": ("https://docs.xarray.dev/en/stable/", None),
 }

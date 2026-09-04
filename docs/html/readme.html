@@ -16,66 +16,66 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=628480d8" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="_static/documentation_options.js?v=56dd3646"></script>
+    <script src="_static/documentation_options.js?v=222319ee"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'readme';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API" href="package.html" />
     <link rel="prev" title="Contents" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="6.7.2.dev0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -83,7 +83,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -91,15 +90,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -108,7 +151,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -138,15 +182,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
@@ -157,9 +197,8 @@
 <li class="toctree-l2"><a class="reference internal" href="dfvscatter.html">dfvscatter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvreadcsv.html">dfvreadcsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvtransform.html">dfvtransform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dfvscreen.html">dfvscreen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dfvutils.html">dfvutils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncvwidgets.html">ncvwidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vuewidgets.html">vuewidgets</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
@@ -172,9 +211,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -321,7 +365,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -335,25 +379,24 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
-`);
-</script>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -375,7 +418,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-gui-to-view-csv-files">A simple GUI to view csv files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-dfvue">About dfvue</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
@@ -435,43 +478,26 @@ file.</p>
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is an application written in Python. It can be installed
 with <cite>pip</cite>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>customtkinter<span class="w"> </span>dfvue
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dfvue
 </pre></div>
 </div>
 <p>or via <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>dfvue
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> if it is installed. <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> is
-not on <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>. One can install <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> with pip on <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>,
-which works well except for Linux.</p>
-<p>Sometimes <cite>tkinter</cite> is not enabled in the system’s Python version. One
-has to do, for example, <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-tk</span></code> on Linux or
-<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">python3</span> <span class="pre">python-tk</span></code> on macOS with <a class="reference external" href="https://brew.sh">Homebrew</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses the <a class="reference external" href="https://www.qt.io/development/qt-framework">Qt framework</a> with <a class="reference external" href="https://www.qt.io/development/qt-framework/python-bindings">PySide6</a>.</p>
 <p>We also provide standalone applications for macOS and Windows that
 come with everything needed to run <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> including Python:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>macOS: <a class="reference external" href="https://www.macu.de/extra/dfvue-6.6-intel.dmg">dfvue 6.6 Intel</a> and <a class="reference external" href="https://www.macu.de/extra/dfvue-6.5.1-arm64.dmg">dfvue 6.5.1 ARM</a> for Intel and
-ARM processors, resp., for macOS 15+ [Sequoia and newer]. The same
-packages without <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> are <a class="reference external" href="https://www.macu.de/extra/dfvue-6.6-intel-aqua.dmg">dfvue 6.6 Intel aqua</a> and
-<a class="reference external" href="https://www.macu.de/extra/dfvue-6.5.1-arm64-aqua.dmg">dfvue 6.5.1 ARM aqua</a> for Intel and ARM processors,
-respectively.</p></li>
-<li><p>Windows: <a class="reference external" href="https://www.macu.de/extra/dfvue-6.5.1-win64.msi">dfvue 6.5.1</a>, packaged on Windows 10. The same
-package without <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> is <a class="reference external" href="https://www.macu.de/extra/dfvue-6.5.1-win64-azure.msi">dfvue 6.5.1 azure</a></p></li>
+ARM processors, resp., for macOS 15+ [Sequoia and newer].</p></li>
+<li><p>Windows: <a class="reference external" href="https://www.macu.de/extra/dfvue-6.5.1-win64.msi">dfvue 6.5.1</a>, packaged on Windows 10.s</p></li>
 </ul>
 </div></blockquote>
 <p><cite>dfvue &gt; 6.0</cite> on macOS is either for Intel processors or for Apple
 Silicon (ARM) chips. The apps are notarized by Apple and might take a
 short while on first opening.</p>
-<p>Some people have problems with CustomTkinter’s dropdown menus that do
-not use scrollbars, e.g. for selecting variables. In this case,
-uninstall CustomTkinter:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>customtkinter
-</pre></div>
-</div>
-<p>or download the standalone package without it. This is less beautiful
-but uses scrollbars with menus and might work better on your setup.</p>
 </section>
 <section id="quick-usage-guide">
 <h2>Quick usage guide<a class="headerlink" href="#quick-usage-guide" title="Link to this heading">#</a></h2>
@@ -481,17 +507,17 @@ but uses scrollbars with menus and might work better on your setup.</p>
 </div>
 <p>or from within Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dfvue</span><span class="w"> </span><span class="kn">import</span> <span class="n">dfvue</span>
-<span class="n">dfvue</span><span class="p">(</span><span class="s1">&#39;csv_file.csv&#39;</span><span class="p">)</span>
+<span class="n">dfvue</span><span class="p">(</span><span class="s1">'csv_file.csv'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>where the csv file is optional. The latter can be left out and csv
 file(s) can be opened with the “Open File” button from within
 <code class="docutils literal notranslate"><span class="pre">dfvue</span></code>.</p>
-<p>Note, <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses the <cite>TkAgg</cite> backend of <cite>matplotlib</cite>. It must be
+<p>Note, <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses the <cite>QtAgg</cite> backend of <cite>matplotlib</cite>. It must be
 called before any other call to <cite>matplotlib</cite>. This also means that you
 cannot launch it from within <cite>iPython</cite> if it was launched with
 <cite>–pylab</cite>. It can be called from within a standard <cite>iPython</cite>, though,
-or using <cite>ipython –gui tk</cite>.</p>
+or using <cite>ipython –gui qt</cite>.</p>
 <section id="general-layout">
 <h3>General layout<a class="headerlink" href="#general-layout" title="Link to this heading">#</a></h3>
 <p>On opening, <code class="docutils literal notranslate"><span class="pre">dfvue</span></code> presents currently only one panel for producing
@@ -517,7 +543,7 @@ windows with the button “Open File”.</p>
 </div>
 <p>or from within Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dfvue</span><span class="w"> </span><span class="kn">import</span> <span class="n">dfvue</span>
-<span class="n">dfvue</span><span class="p">(</span><span class="s1">&#39;csv_file.csv&#39;</span><span class="p">)</span>
+<span class="n">dfvue</span><span class="p">(</span><span class="s1">'csv_file.csv'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>or being selected from the “Choose csv file(s)” selector that opens
@@ -558,7 +584,7 @@ pandas <cite>na_values</cite>.</p>
 <span class="w">                      </span>or<span class="w"> </span>string<span class="w"> </span>name.
 -k<span class="w"> </span>rows,<span class="w"> </span>--skiprows<span class="w"> </span>rows
 <span class="w">                      </span>Line<span class="w"> </span>number<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>to<span class="w"> </span>skip<span class="w"> </span><span class="o">(</span><span class="m">0</span>-indexed,<span class="w"> </span>must<span class="w"> </span>include<span class="w"> </span>comma,
-<span class="w">                      </span>e.g.<span class="w"> </span><span class="s2">&quot;1,&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>skipping<span class="w"> </span>the<span class="w"> </span>second<span class="w"> </span>row<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>lines
+<span class="w">                      </span>e.g.<span class="w"> </span><span class="s2">"1,"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>skipping<span class="w"> </span>the<span class="w"> </span>second<span class="w"> </span>row<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>lines
 <span class="w">                      </span>to<span class="w"> </span>skip<span class="w"> </span><span class="o">(</span>int,<span class="w"> </span>without<span class="w"> </span>comma<span class="o">)</span><span class="w"> </span>at<span class="w"> </span>the<span class="w"> </span>start<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>file.
 -p<span class="w"> </span>bool/list/dict,<span class="w"> </span>--parse_dates<span class="w"> </span>bool/list/dict
 <span class="w">                      </span>boolean,<span class="w"> </span><span class="k">if</span><span class="w"> </span>True<span class="w"> </span>-&gt;<span class="w"> </span>try<span class="w"> </span>parsing<span class="w"> </span>the<span class="w"> </span>index.
@@ -568,11 +594,11 @@ pandas <cite>na_values</cite>.</p>
 <span class="w">                      </span>list<span class="w"> </span>of<span class="w"> </span>lists,<span class="w"> </span>e.g.<span class="w"> </span><span class="o">[</span><span class="m">1</span>,3<span class="o">]</span>
 <span class="w">                          </span>-&gt;<span class="w"> </span>combine<span class="w"> </span>columns<span class="w"> </span><span class="m">1</span><span class="w"> </span>and<span class="w"> </span><span class="m">3</span><span class="w"> </span>and<span class="w"> </span>parse<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>single
 <span class="w">                             </span>date<span class="w"> </span>column.
-<span class="w">                      </span>dict,<span class="w"> </span>e.g.<span class="w"> </span><span class="s2">&quot;foo&quot;</span>:<span class="o">[</span><span class="m">1</span>,3<span class="o">]</span>
-<span class="w">                          </span>-&gt;<span class="w"> </span>parse<span class="w"> </span>columns<span class="w"> </span><span class="m">1</span><span class="w"> </span>and<span class="w"> </span><span class="m">3</span><span class="w"> </span>as<span class="w"> </span>date<span class="w"> </span>and<span class="w"> </span>call<span class="w"> </span>result<span class="w"> </span><span class="s2">&quot;foo&quot;</span>
+<span class="w">                      </span>dict,<span class="w"> </span>e.g.<span class="w"> </span><span class="s2">"foo"</span>:<span class="o">[</span><span class="m">1</span>,3<span class="o">]</span>
+<span class="w">                          </span>-&gt;<span class="w"> </span>parse<span class="w"> </span>columns<span class="w"> </span><span class="m">1</span><span class="w"> </span>and<span class="w"> </span><span class="m">3</span><span class="w"> </span>as<span class="w"> </span>date<span class="w"> </span>and<span class="w"> </span>call<span class="w"> </span>result<span class="w"> </span><span class="s2">"foo"</span>
 -d<span class="w"> </span>format_string,<span class="w"> </span>--date_format<span class="w"> </span>format_string
 <span class="w">                      </span>Will<span class="w"> </span>parse<span class="w"> </span>dates<span class="w"> </span>according<span class="w"> </span>to<span class="w"> </span>this<span class="w"> </span>format.
-<span class="w">                      </span>For<span class="w"> </span>example:<span class="w"> </span><span class="s2">&quot;%Y-%m-%d %H:%M%S&quot;</span>.<span class="w"> </span>See
+<span class="w">                      </span>For<span class="w"> </span>example:<span class="w"> </span><span class="s2">"%Y-%m-%d %H:%M%S"</span>.<span class="w"> </span>See
 <span class="w">                      </span>https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
 -m<span class="w"> </span>missing_value,<span class="w"> </span>--missing_value<span class="w"> </span>missing_value
 <span class="w">                     </span>Missing<span class="w"> </span>or<span class="w"> </span>undefined<span class="w"> </span>value<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>NaN.<span class="w"> </span>For<span class="w"> </span>negative<span class="w"> </span>values,
@@ -708,8 +734,6 @@ have multiple lines, import libraries, etc.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> is distributed under the MIT License. See the <a class="reference external" href="https://github.com/mcuntz/dfvue/blob/main/LICENSE">LICENSE</a> file
 for details.</p>
 <p>Copyright (c) 2023- Matthias Cuntz</p>
-<p><code class="docutils literal notranslate"><span class="pre">dfvue</span></code> uses <a class="reference external" href="https://customtkinter.tomschimansky.com">CustomTkinter</a> if installed. Otherwise it uses the
-<a class="reference external" href="https://github.com/rdbende/Azure-ttk-theme">Azure</a> 2.0 theme by <a class="reference external" href="https://github.com/rdbende">rdbende</a> on Linux and Windows.</p>
 <p>Standalone applications are produced with <a class="reference external" href="https://cx-freeze.readthedocs.io/en/latest/">cx_Freeze</a>, currently
 maintained by <a class="reference external" href="https://github.com/marcelotduarte">Marcelo Duarte</a>.</p>
 </section>
@@ -751,15 +775,17 @@ maintained by <a class="reference external" href="https://github.com/marcelotdua
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-gui-to-view-csv-files">A simple GUI to view csv files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-dfvue">About dfvue</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
@@ -821,8 +847,8 @@ By Matthias Cuntz
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
   <footer class="bd-footer">
   </footer>

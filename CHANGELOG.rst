@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+v7.0 (Sep 2026)
+  - Use Qt framework with PySide6 instead of Tkinter and
+    CustomTkinter.
+  - Rename `ncvwidgets` to `vuewidgets`.
+  - Add `Reinit` button.
+  - Remove `snap coord` option.
+
 v6.7.1 (Aug 2026)
   - Corrected bug in parsing missing_value to pandas.read_csv.
   - Catch ParseError of pandas.read_csv.

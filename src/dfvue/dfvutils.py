@@ -18,10 +18,14 @@ The following functions are provided:
 
 .. autosummary::
    clone_dfvmain
-   format_coord_scatter
    list_intersection
    parse_entry
+   size4font
    vardim2var
+   standard_window_size
+   secondary_window_size
+   transform_window_size
+   readcsv_window_size
 
 History
    * Written Jul 2023 by Matthias Cuntz (mc (at) macu (dot) de)
@@ -40,30 +44,30 @@ History
    * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
    * Snap coordinates to nearest data points in format_coord_scatter,
      Feb 2026, Matthias Cuntz
+   * Added size4font, Sep 2026, Matthias Cuntz
+   * Moved and changed standard_window_size, secondary_window_size,
+     transform_window_size, and readcsv_window_size for Qt framework
+     with PySide6, Sep 2026, Matthias Cuntz
+   * Changed clone_dfvmain for for Qt framework with PySide6,
+     Sep 2026, Matthias Cuntz
+   * Removed format_coord_scatter, Sep 2026, Matthias Cuntz
 
 """
-import tkinter as tk
-try:
-    from customtkinter import CTkToplevel as Toplevel
-except ModuleNotFoundError:
-    from tkinter import Toplevel
 from math import isfinite
 import numpy as np
 import matplotlib.dates as mpld
-from .dfvscreen import dfvScreen
-import dfvue
 
 
 __all__ = ['clone_dfvmain',
-           'format_coord_scatter',
            'list_intersection',
            'parse_entry',
-           'vardim2var']
+           'size4font',
+           'vardim2var',
+           'standard_window_size',
+           'secondary_window_size',
+           'transform_window_size',
+           'readcsv_window_size']
 
-
-#
-# Clone the main window
-#
 
 def clone_dfvmain(widget):
     """
@@ -80,167 +84,24 @@ def clone_dfvmain(widget):
 
     Examples
     --------
-    >>> self.newwin = ctk.CTkButton(
-    ...     self.rowwin, text="New Window",
-    ...     command=partial(clone_dfvmain, self.master))
+    >>> 
 
     """
-    if widget.name != 'dfvMain':
-        print('clone_dfvmain failed. Widget should be dfvMain.')
-        print('widget.name is: ', widget.name)
-        import sys
-        sys.exit()
-
-    root = Toplevel()
-    root.name = 'dfvClone'
-    root.top = widget.top
-    if root.top.csvfile:
-        tit = f"Secondary dfvue {root.top.csvfile}"
-    else:
-        tit = "Secondary dfvue"
-    root.title(tit)
-    sc = dfvScreen(root.top)
-    sc.set_window_geometry(root, sc.secondary_window_size())
-
-    # https://stackoverflow.com/questions/46505982/is-there-a-way-to-clone-a-tkinter-widget
     cls = widget.__class__
-    clone = cls(root)
-    try:
-        for key in widget.configure():
-            if key != 'class':
-                clone.configure({key: widget.cget(key)})
-    except TypeError:
-        cls = dfvue.dfvMain
-        clone = cls(root)
-        clone.pack(fill=tk.BOTH, expand=1)
+    clone = cls(widget.top)
+    clone.name = 'dfvClone'
 
-    return clone
+    if len(clone.top.screen) == 0:
+        screen = clone.screen().availableGeometry()
+        clone.top.screen = (screen.width(), screen.height())
+    xs, ys, xo, yo = secondary_window_size(clone.top.screen)
+    clone.resize(xs, ys)
+    clone.move(xo, yo)
+    
+    clone.show()
 
+    return
 
-#
-# How to write the value of the data point below the pointer
-#
-
-def format_coord_scatter(x, y2, ax, ax2, xx, yy, yy2, snap_coord):
-    """
-    Formatter function for scatter plot with left and right axis
-    having the same x-axis.
-
-    Parameters
-    ----------
-    x, y2 : float
-        Data coordinates of `ax2`.
-    ax, ax2: matplotlib.axes._subplots.AxesSubplot
-        Matplotlib axes object for left-hand and right-hand y-axis, resp.
-    xx, yy, yy2: ndarray
-        Numpy arrays with x-values, y-values, and y2-values
-    snap_coord: bool
-        If True, return coordinates of nearest data point instead of (x, y)
-
-    Returns
-    -------
-    String with left-hand side and right hand-side coordinates.
-
-    Examples
-    --------
-    >>> ax = plt.subplot(111)
-    >>> ax2 = ax.twinx()
-    >>> ax.plot(xx, yy)
-    >>> ax2.plot(xx, yy2)
-    >>> ax2.format_coord = lambda x, y2: format_coord_scatter(
-    ...     x, y2, ax, ax2, xx, yy, yy2, snap_coord)
-
-    """
-    # convert to display coords
-    # https://stackoverflow.com/questions/21583965/matplotlib-cursor-value-with-two-axes
-    display_coord = ax2.transData.transform((x, y2))
-    # convert back to data coords with respect to ax
-    inv      = ax.transData.inverted()
-    ax_coord = inv.transform(display_coord)
-    y = ax_coord[1]
-    x2 = x
-
-    xout = x
-    yout = y
-    x2out = x2
-    y2out = y2
-
-    if snap_coord:
-        # change data into axes coordinates (0, 1)
-        data2axes = ax.transData + ax.transAxes.inverted()
-        data2axes2 = ax2.transData + ax2.transAxes.inverted()
-        # change axes into data coordinates
-        axes2data = ax.transAxes + ax.transData.inverted()
-        axes2data2 = ax2.transAxes + ax2.transData.inverted()
-
-        # data point in axes coordinates
-        pos = np.array(data2axes.transform((x, y)))
-        pos2 = np.array(data2axes2.transform((x2, y2)))
-
-        # Search nearest neighbour in axes coordinates
-        # and within current axes limits
-        if np.issubdtype(xx.dtype, np.datetime64):
-            xarr = mpld.date2num(xx)
-        else:
-            xarr = np.array(xx)
-        if np.issubdtype(yy.dtype, np.datetime64):
-            yarr = mpld.date2num(yy)
-        else:
-            yarr = np.array(yy)
-
-        x2arr = xarr
-        if np.issubdtype(yy2.dtype, np.datetime64):
-            y2arr = mpld.date2num(yy2)
-        else:
-            y2arr = np.array(yy2)
-
-        xlim = ax.get_xlim()
-        ylim = ax.get_ylim()
-        ii = np.where((xarr >= xlim[0]) & (xarr <= xlim[1]) &
-                      (yarr >= ylim[0]) & (yarr <= ylim[1]))[0]
-        if ii.size > 0:
-            aarr = data2axes.transform(np.array([xarr[ii], yarr[ii]]).T)
-            dist = np.linalg.norm(aarr - pos, axis=1)
-            apos = aarr[np.argmin(dist), :]
-            xout, yout = axes2data.transform(apos)
-
-        x2lim = xlim
-        y2lim = ax2.get_ylim()
-        ii = np.where((x2arr >= x2lim[0]) & (x2arr <= x2lim[1]) &
-                      (y2arr >= y2lim[0]) & (y2arr <= y2lim[1]))[0]
-        if ii.size > 0:
-            a2arr = data2axes2.transform(np.array([x2arr[ii], y2arr[ii]]).T)
-            dist2 = np.linalg.norm(a2arr - pos2, axis=1)
-            apos2 = a2arr[np.argmin(dist2), :]
-            x2out, y2out = axes2data2.transform(apos2)
-
-    # Special treatment for datetime
-    if np.issubdtype(xx.dtype, np.datetime64):
-        xstr = mpld.num2date(xout).strftime('%Y-%m-%d %H:%M:%S')
-    else:
-        xstr  = '{:.6g}'.format(xout)
-    if np.issubdtype(yy.dtype, np.datetime64):
-        ystr = mpld.num2date(yout).strftime('%Y-%m-%d %H:%M:%S')
-    else:
-        ystr  = '{:.6g}'.format(yout)
-
-    if np.issubdtype(xx.dtype, np.datetime64):
-        x2str = mpld.num2date(x2out).strftime('%Y-%m-%d %H:%M:%S')
-    else:
-        x2str  = '{:.6g}'.format(x2out)
-    if np.issubdtype(yy2.dtype, np.datetime64):
-        y2str = mpld.num2date(y2out).strftime('%Y-%m-%d %H:%M:%S')
-    else:
-        y2str = '{:.6g}'.format(y2out)
-
-    out = f'Left: ({xstr}, {ystr}) Right: ({x2str}, {y2str})'
-
-    return out
-
-
-#
-# Intersection of two lists
-#
 
 def list_intersection(lst1, lst2):
     """
@@ -355,6 +216,37 @@ def parse_entry(text):
     return tt
 
 
+def size4font(widget, text=None):
+    """
+    Extract variable name from 'variable (dim1=ndim1,)' string.
+
+    Parameters
+    ----------
+    widget : QWidget
+        Any PSyde6 widget
+    text : string, optional
+        Return size needed for text in widget
+
+    Returns
+    -------
+    int
+        Size to bi used in widget.setFixedWidth(size)
+
+    Examples
+    --------
+    >>> 
+
+    """
+    fm = widget.fontMetrics()
+    if text is None:
+        text = widget.text()
+    if text:
+        iwidth = fm.size(0, text)
+    else:
+        iwidth = fm.size(0, ' ')
+    return iwidth.width() + 2 * 5  # +padding
+
+
 def vardim2var(vardim):
     """
     Extract variable name from 'variable (dim1=ndim1,)' string.
@@ -376,3 +268,114 @@ def vardim2var(vardim):
 
     """
     return vardim[0:vardim.rfind('(')].rstrip()
+
+#
+# Window sizes
+#
+
+def standard_window_size(screen):
+    '''
+    Set xsize, ysize, xoffset, yoffset of standard window
+
+    Parameters
+    ----------
+    screen : tuple
+        (width, height) of useable space on screen
+
+    Returns
+    -------
+    tuple
+        xsize, ysize, xoffset, yoffset
+
+    '''
+    if screen[1] < 800:
+        ysize = screen[1]
+    else:
+        ysize = max(4 * screen[1] // 5, 800)
+    yoffset = 0
+
+    if screen[0] < 1000:
+        xsize = screen[0]
+        xoffset = 0
+    else:
+        xsize = max(2 * screen[0] // 5, 1000)
+        xoffset = screen[0] // 5
+        if ((xsize + xoffset) > screen[0]) or (xsize == 1000):
+            xoffset = (screen[0] - xsize) // 2
+
+    # ysize = 1200
+    # xsize = int(1.5 * ysize)
+    return xsize, ysize, xoffset, yoffset
+
+
+def secondary_window_size(screen):
+    '''
+    Set xsize, ysize, xoffset, yoffset of secondary window
+
+    Parameters
+    ----------
+    screen : tuple
+        (width, height) of useable space on screen
+
+    Returns
+    -------
+    tuple
+        xsize, ysize, xoffset, yoffset
+
+    '''
+    xsize, ysize, xoffset, yoffset = standard_window_size(screen)
+    
+    xoffset += 50
+    if (xsize + xoffset) > screen[0]:
+        xoffset = screen[0] - xsize
+
+    return xsize, ysize, xoffset, yoffset
+
+
+def transform_window_size(screen):
+    '''
+    Set xsize, ysize, xoffset, yoffset of transform window
+
+    Parameters
+    ----------
+    screen : tuple
+        (width, height) of useable space on screen
+
+    Returns
+    -------
+    tuple
+        xsize, ysize, xoffset, yoffset
+
+    '''
+    xsize, ysize, xoffset, yoffset = standard_window_size(screen)
+
+    xsize = 700
+    ysize = 340
+
+    xoffset = max(xoffset - 50, 0)
+
+    return xsize, ysize, xoffset, yoffset
+
+
+def readcsv_window_size(screen):
+    '''
+    Set xsize, ysize, xoffset, yoffset of read csv file window
+
+    Parameters
+    ----------
+    screen : tuple
+        (width, height) of useable space on screen
+
+    Returns
+    -------
+    tuple
+        xsize, ysize, xoffset, yoffset
+
+    '''
+    xsize, ysize, xoffset, yoffset = standard_window_size(screen)
+
+    ysize = 550
+
+    xoffset = max(xoffset - 100, 0)
+
+    return xsize, ysize, xoffset, yoffset

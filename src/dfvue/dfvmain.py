@@ -24,16 +24,11 @@ History
    * Use mix of grid and pack layout manager, Jun 2024, Matthias Cuntz
    * Use CustomTkinter only if installed, Jun 2024, Matthias Cuntz
    * Back to pack layout manager for resizing, Nov 2024, Matthias Cuntz
+   * Use Qt framework with PySide6, Aug 2026, Matthias Cuntz
 
 """
-import tkinter as tk
-import tkinter.ttk as ttk
-try:
-    from customtkinter import CTkTabview as Frame
-    ihavectk = True
-except ModuleNotFoundError:
-    from tkinter.ttk import Frame
-    ihavectk = False
+from PySide6.QtCore import QCoreApplication
+from PySide6.QtWidgets import QMainWindow, QTabWidget
 from .dfvscatter import dfvScatter
 
 
@@ -44,40 +39,34 @@ __all__ = ['dfvMain']
 # Window with plot panels
 #
 
-class dfvMain(Frame):
+class dfvMain(QMainWindow):
     """
-    Main dfvue notebook window with the plotting panels.
-
-    Sets up the notebook layout with the panels.
-
-    Contains the method to check if csv file has changed.
+    Main dfvue tabbed window with the plotting panels.
 
     """
 
-    #
-    # Window setup
-    #
+    def __init__(self, top, **kwargs):
 
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
+        super().__init__(**kwargs)
 
-        self.name   = 'dfvMain'
-        self.master = master      # master window, i.e. root
-        self.top    = master.top  # top window
+        self.top = top
+        self.name = 'dfvOne'
+        
+        if self.top.os == 'Darwin':
+            self.setUnifiedTitleAndToolBarOnMac(True)
 
-        if ihavectk:
-            stab = 'Scatter/Line'
-            self.add(stab)
-            itab = self.tab(stab)
-            itab.name   = self.name
-            itab.master = self.master
-            itab.top    = self.top
-            self.tab_scatter = dfvScatter(itab)
-            self.tab_scatter.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+        if self.top.csvfile[0]:
+            tit = f"dfvue {self.top.csvfile}"
         else:
-            # Notebook for tabs for future plot types
-            self.tabs = ttk.Notebook(self)
-            self.tabs.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-            self.tab_scatter = dfvScatter(self)
-            self.tab_scatter.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-            self.tabs.add(self.tab_scatter, text=self.tab_scatter.name)
+            tit = QCoreApplication.applicationName()
+        self.setWindowTitle(tit)
+
+        self.tabs = QTabWidget()
+        self.tabs.setTabPosition(QTabWidget.North)
+        # self.tabs.setMovable(True)
+
+        self.tabs.addTab(dfvScatter(self), 'Scatter/Line')
+
+        self.setCentralWidget(self.tabs)
+
+        self.tabs.show()

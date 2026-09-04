@@ -52,7 +52,7 @@ with `pip`:
 
 .. code-block:: bash
 
-   python -m pip install customtkinter dfvue
+   python -m pip install dfvue
 
 or via Conda_:
 
@@ -60,39 +60,18 @@ or via Conda_:
 
    conda install -c conda-forge dfvue
 
-``dfvue`` uses CustomTkinter_ if it is installed. CustomTkinter_ is
-not on Conda_. One can install CustomTkinter_ with pip on Conda_,
-which works well except for Linux.
-
-Sometimes `tkinter` is not enabled in the system's Python version. One
-has to do, for example, ``sudo apt install python3-tk`` on Linux or
-``brew install python3 python-tk`` on macOS with Homebrew_.
+``dfvue`` uses the `Qt framework`_ with PySide6_.
 
 We also provide standalone applications for macOS and Windows that
 come with everything needed to run ``dfvue`` including Python:
 
   - macOS: `dfvue 6.6 Intel`_ and `dfvue 6.5.1 ARM`_ for Intel and
-    ARM processors, resp., for macOS 15+ [Sequoia and newer]. The same
-    packages without CustomTkinter_ are `dfvue 6.6 Intel aqua`_ and
-    `dfvue 6.5.1 ARM aqua`_ for Intel and ARM processors,
-    respectively.
-  - Windows: `dfvue 6.5.1`_, packaged on Windows 10. The same
-    package without CustomTkinter_ is `dfvue 6.5.1 azure`_
+    ARM processors, resp., for macOS 15+ [Sequoia and newer].
+  - Windows: `dfvue 6.5.1`_, packaged on Windows 10.s
 
 `dfvue > 6.0` on macOS is either for Intel processors or for Apple
 Silicon (ARM) chips. The apps are notarized by Apple and might take a
 short while on first opening.
-
-Some people have problems with CustomTkinter's dropdown menus that do
-not use scrollbars, e.g. for selecting variables. In this case,
-uninstall CustomTkinter:
-
-.. code-block:: bash
-
-   python -m pip uninstall customtkinter
-
-or download the standalone package without it. This is less beautiful
-but uses scrollbars with menus and might work better on your setup.
 
 
 Quick usage guide
@@ -115,11 +94,11 @@ where the csv file is optional. The latter can be left out and csv
 file(s) can be opened with the "Open File" button from within
 ``dfvue``.
 
-Note, ``dfvue`` uses the `TkAgg` backend of `matplotlib`. It must be
+Note, ``dfvue`` uses the `QtAgg` backend of `matplotlib`. It must be
 called before any other call to `matplotlib`. This also means that you
 cannot launch it from within `iPython` if it was launched with
 `--pylab`. It can be called from within a standard `iPython`, though,
-or using `ipython --gui tk`.
+or using `ipython --gui qt`.
 
 
 General layout
@@ -395,9 +374,6 @@ for details.
 
 Copyright (c) 2023- Matthias Cuntz
 
-``dfvue`` uses CustomTkinter_ if installed. Otherwise it uses the
-Azure_ 2.0 theme by rdbende_ on Linux and Windows.
-
 Standalone applications are produced with `cx_Freeze`_, currently
 maintained by `Marcelo Duarte`_.
 
@@ -416,14 +392,13 @@ maintained by `Marcelo Duarte`_.
 .. _pandas.DataFrame: https://pandas.pydata.org/docs/reference/frame.html
 .. _pandas.to_datetime: https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html
 .. _read_csv: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
-.. _rdbende: https://github.com/rdbende
 .. _strftime: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
-.. _Azure: https://github.com/rdbende/Azure-ttk-theme
 .. _Conda: https://docs.conda.io/projects/conda/en/latest/
-.. _CustomTkinter: https://customtkinter.tomschimansky.com
 .. _FLUXNET: https://fluxnet.org
 .. _Homebrew: https://brew.sh
 .. _ICOS: https://www.icos-cp.eu
 .. _ISO8601: https://en.wikipedia.org/wiki/ISO_8601
 .. _LICENSE: https://github.com/mcuntz/dfvue/blob/main/LICENSE
 .. _Marcelo Duarte: https://github.com/marcelotduarte
+.. _Qt framework: https://www.qt.io/development/qt-framework
+.. _PySide6: https://www.qt.io/development/qt-framework/python-bindings

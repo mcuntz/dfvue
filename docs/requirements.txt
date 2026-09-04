@@ -1,5 +1,9 @@
-# required for documentation
+# required for app
 numpy
-numpydoc
 matplotlib
 pandas
+pyside6
+# required for documentation
+numpydoc
+sphinx
+sphinx_book_theme

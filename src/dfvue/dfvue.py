@@ -33,25 +33,19 @@ History
    * Use own ncvue-blue theme for customtkinter, Jan 2025, Matthias Cuntz
    * Use dfvScreen for window sizes, Nov 2025, Matthias Cuntz
    * Use set_window_geometry from dfvScreen, Nov 2025, Matthias Cuntz
+   * Use Qt framework with PySide6, Aug 2026, Matthias Cuntz
 
 """
 import os
 import platform
 import sys
-import tkinter as tk
-import tkinter.ttk as ttk
-try:
-    import customtkinter
-    from customtkinter import CTk as Tk
-    from customtkinter import CTkToplevel as Toplevel
-    ihavectk = True
-except ModuleNotFoundError:
-    from tkinter import Tk
-    from tkinter import Toplevel
-    ihavectk = False
-from matplotlib import pyplot as plt
-from .dfvscreen import dfvScreen
+from PySide6.QtCore import QCoreApplication
+from PySide6.QtGui import QIcon, QPalette
+from PySide6.QtWidgets import QApplication
+from .top import topState
 from .dfvmain import dfvMain
+from .dfvutils import standard_window_size
+
 
 __all__ = ['dfvue']
 
@@ -96,94 +90,29 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
         Missing or undefined value set to NaN.
 
     """
-    # print(mpl.get_backend())
-    ios = platform.system()  # Windows, Darwin, Linux
-    if ios == 'Windows':
-        # make Windows aware of high resolution displays
-        # https://stackoverflow.com/questions/41315873/attempting-to-resolve-blurred-tkinter-text-scaling-on-windows-10-high-dpi-disp
-        from ctypes import windll
-        windll.shcore.SetProcessDpiAwareness(1)
-        # screensize = (windll.user32.GetSystemMetrics(0),
-        #               windll.user32.GetSystemMetrics(1))
-
     # Pyinstaller sets _MEIPASS if macOS app
     bundle_dir = getattr(sys, '_MEIPASS',
                          os.path.abspath(os.path.dirname(__file__)))
 
-    # style = ttk.Style()
-    # print(style.layout("TMenubutton"))
-    # a = ttk.Checkbutton()
-    # print(a.winfo_class())
+    # Initialise shared state
+    top = topState()
 
-    top = Tk()
-    sc = dfvScreen(top)
-    top.withdraw()
+    top.os = platform.system()  # Windows, Darwin, Linux
 
-    if ihavectk:
-        customtkinter.set_default_color_theme(
-            f'{bundle_dir}/themes/customtkinter/ncvue-blue.json')
-    else:
-        # style = ttk.Style()
-        # print(style.theme_names(), style.theme_use())
-        if ios == 'Darwin':
-            theme = 'aqua'
-            style = ttk.Style()
-            try:
-                style.theme_use(theme)
-            except:
-                pass
-        elif ios == 'Windows':
-            top.option_add("*Font", "Helvetica 10")
-            plt.rc('font', size=13)
-            # standard Windows themes
-            # ('winnative', 'clam', 'alt', 'default', 'classic', 'vista',
-            #  'xpnative')
-            # 'azure' v2.x of rdbende
-            top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
-            theme = 'light'  # light, dark
-            top.tk.call("set_theme", theme)
-        elif ios == 'Linux':
-            # standard Linux schemes
-            # theme = 'clam'  # 'clam', 'alt', 'default', 'classic'
-            # 'azure' v2.x of rdbende
-            top.tk.call('source', bundle_dir + '/themes/azure-2.0/azure.tcl')
-            theme = 'light'  # light, dark
-            top.tk.call("set_theme", theme)
-
-    # set titlebar and taskbar icon only if "standalone",
-    # i.e. not ipython or jupyter
-    try:
-        whichpy = get_ipython().__class__.__name__
-    except NameError:
-        whichpy = ''
-    if not whichpy:
-        icon = tk.PhotoImage(file=bundle_dir + '/images/dfvue_icon.png')
-        top.iconphoto(True, icon)  # True: apply to all future toplevels
-    else:
-        icon = None
-
-    root = Toplevel()
-    root.name = 'dfvOne'
-    if isinstance(csvfile, str):
-        csvfile = [csvfile]
-    if csvfile[0]:
-        tit = f"dfvue {csvfile}"
-    else:
-        tit = "dfvue"
-    root.title(tit)
-    sc.set_window_geometry(root, sc.standard_window_size())
-    # To make sure that it appears before any other window
-    # https://github.com/TomSchimansky/CustomTkinter/issues/1517
-    root.update()
-
-    # Connect csv file and add information to top
-    top.os = ios           # operating system
-    top.icon = icon        # app icon
-    top.csvfile = csvfile  # file name or file handle
+    # parse (command line) parameters
+    top.csvfile = [csvfile] if isinstance(csvfile, str) else list(csvfile)
     top.newcsvfile = True  # new file after command line
-    if csvfile[0]:
+    if top.csvfile[0]:
         top.newcsvfile = False
-    top.df = df            # pandas.DataFrame of csvfile
+
+    top.df = df
+    top.sep = sep
+    top.index_col = index_col
+    top.skiprows = skiprows
+    top.parse_dates = parse_dates
+    top.date_format = date_format
+    top.missing_value = missing_value
+
     # variable list
     if df is not None:
         top.newcsvfile = False
@@ -192,21 +121,112 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
                      for cc in top.df.columns ]
     else:
         top.cols = []
-    top.sep = sep
-    top.index_col = index_col
-    top.skiprows = skiprows
-    top.parse_dates = parse_dates
-    top.date_format = date_format
-    top.missing_value = missing_value
-    root.top = top
 
-    def on_closing():
-        top.quit()
-        top.destroy()
-    root.protocol("WM_DELETE_WINDOW", on_closing)
+    # Run dfvue
+    app = QApplication()
+    QCoreApplication.setApplicationName("dfvue")
+
+    # taskbar icon only if "standalone",
+    # i.e. not ipython or jupyter
+    try:
+        whichpy = get_ipython().__class__.__name__
+    except NameError:
+        whichpy = ''
+    if not whichpy:
+        top.icon = f'{bundle_dir}/images/dfvue_icon.png'
+        app.setWindowIcon(QIcon(top.icon))
+    else:
+        top.icon = ''
+
+    # design using system colours
+    # palette = main_frame.palette()
+    palette = app.palette()
+    # iblue = palette.color(QPalette.ColorRole.Highlight).name()
+    iblue = palette.color(QPalette.ColorRole.Accent).name()
+    # iblue = palette.color(QPalette.ColorRole.Link).name()
+    if top.os == 'Darwin':
+        iblue = '#3974E4'
+    # iblue_hoover = palette.color(QPalette.ColorRole.Accent).name()
+    iblue_hoover = palette.color(QPalette.ColorRole.Highlight).name()
+    # iblue_hoover = palette.color(QPalette.ColorRole.Link).name()
+    # if iblue < iblue_hoover:
+    #     iblue, iblue_hoover = iblue_hoover, iblue
+    # igray = palette.color(QPalette.ColorRole.AlternateBase).name()
+    igray = palette.color(QPalette.ColorRole.Dark).name()
+    iwin = palette.color(QPalette.ColorRole.Window).name()
+    iwintext = palette.color(QPalette.ColorRole.WindowText).name()
+    isize = 14
+    iradius = 5
+    ipadx = 5
+    app.setStyleSheet(
+        f"""
+        QCheckBox{{
+            font-size: {isize}pt;
+            border-radius: {iradius}px;
+        }}
+        QComboBox{{
+            font-size: {isize-1}pt;
+        }}
+        QLabel{{
+            font-size: {isize}pt;
+        }}
+        QLineEdit{{
+            font-size: {isize}pt;
+            background-color: {iwin};
+            color: {iwintext};
+            border: 1px solid {igray};
+            border-radius: {iradius}px;
+        }}
+        QPushButton{{
+            background: {iblue};
+            border-color: {igray};
+            color: white;
+            font-size: {isize}pt;
+            border-radius: {iradius}px;
+            padding: {ipadx}px;
+            height: 18px;
+            width: 130px;
+        }}
+        QPushButton:hover{{
+            background-color: {iblue_hoover};
+        }}
+        QTabWidget, QTabBar::tab{{
+            background-color: {iblue};
+            color: white;
+            font-size: {isize}pt;
+            border-radius: {iradius}px;
+            padding: {ipadx}px;
+            height: 18px;
+            width: 130px;
+        }}
+        QTabBar::tab:selected{{
+            background-color: {iblue};
+            color: white;
+        }}
+        # QTabBar::tab:hover{{
+        #     background-color: {iblue_hoover};
+        #     color: white;
+        # }}
+        QToolTip{{
+            font-size: {isize-1}pt;
+            border-radius: {iradius}px;
+        }}
+        """)
 
     # 1st plotting window
-    main_frame = dfvMain(root)
-    main_frame.pack(fill=tk.BOTH, expand=1)
+    mf = dfvMain(top)
+    
+    # # design using css
+    # with open(f'{bundle_dir}/css/dfvue.css', 'r') as fi:
+    #     mf.setStyleSheet(fi.read())
 
-    top.mainloop()
+    # window size
+    screen = mf.screen().availableGeometry()
+    top.screen = (screen.width(), screen.height())
+    xs, ys, xo, yo = standard_window_size(top.screen)
+    mf.resize(xs, ys)
+    mf.move(xo, yo)
+
+    mf.show()
+
+    sys.exit(app.exec())

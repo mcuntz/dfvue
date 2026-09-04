@@ -96,7 +96,7 @@ def main():
     del parser, args
 
     # This must be before any other call to matplotlib
-    # because it uses the TkAgg backend.
+    # because it uses the QtAgg backend.
     # This means, do not use --pylab with ipython.
     dfvue(csvfile=csvfile, sep=sep, index_col=index_col, skiprows=skiprows,
           parse_dates=parse_dates, date_format=date_format,

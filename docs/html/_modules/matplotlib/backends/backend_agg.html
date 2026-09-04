@@ -1,0 +1,1025 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>matplotlib.backends.backend_agg &#8212; dfvue</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=628480d8" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/documentation_options.js?v=222319ee"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/matplotlib/backends/backend_agg';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="6.7.2.dev0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">dfvue</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">dfvue</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../package.html">API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dfvue.html">dfvue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dfvmain.html">dfvmain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dfvscatter.html">dfvscatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dfvreadcsv.html">dfvreadcsv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dfvtransform.html">dfvtransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dfvutils.html">dfvutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../vuewidgets.html">vuewidgets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mcuntz/dfvue" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mcuntz/dfvue/issues/new?title=Issue%20on%20page%20%2F_modules/matplotlib/backends/backend_agg.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for matplotlib.backends.backend_agg</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">An `Anti-Grain Geometry`_ (AGG) backend.</span>
+
+<span class="sd">Features that are implemented:</span>
+
+<span class="sd">* capstyles and join styles</span>
+<span class="sd">* dashes</span>
+<span class="sd">* linewidth</span>
+<span class="sd">* lines, rectangles, ellipses</span>
+<span class="sd">* clipping to a rectangle</span>
+<span class="sd">* output to RGBA and Pillow-supported image formats</span>
+<span class="sd">* alpha blending</span>
+<span class="sd">* DPI scaling properly - everything scales properly (dashes, linewidths, etc)</span>
+<span class="sd">* draw polygon</span>
+<span class="sd">* freetype2 w/ ft2font</span>
+
+<span class="sd">Still TODO:</span>
+
+<span class="sd">* integrate screen dpi w/ ppi and text</span>
+
+<span class="sd">.. _Anti-Grain Geometry: http://agg.sourceforge.net/antigrain.com</span>
+<span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">nullcontext</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">features</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">cbook</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.backend_bases</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_Backend</span><span class="p">,</span> <span class="n">FigureCanvasBase</span><span class="p">,</span> <span class="n">FigureManagerBase</span><span class="p">,</span> <span class="n">RendererBase</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.dviread</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dvi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.font_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">fontManager</span> <span class="k">as</span> <span class="n">_fontManager</span><span class="p">,</span> <span class="n">get_font</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ft2font</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoadFlags</span><span class="p">,</span> <span class="n">RenderMode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.mathtext</span><span class="w"> </span><span class="kn">import</span> <span class="n">MathTextParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bbox</span><span class="p">,</span> <span class="n">BboxBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.backends._backend_agg</span><span class="w"> </span><span class="kn">import</span> <span class="n">RendererAgg</span> <span class="k">as</span> <span class="n">_RendererAgg</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_hinting_flag</span><span class="p">():</span>
+    <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'default'</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">,</span>
+        <span class="s1">'no_autohint'</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">NO_AUTOHINT</span><span class="p">,</span>
+        <span class="s1">'force_autohint'</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">FORCE_AUTOHINT</span><span class="p">,</span>
+        <span class="s1">'no_hinting'</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">NO_HINTING</span><span class="p">,</span>
+        <span class="kc">True</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">FORCE_AUTOHINT</span><span class="p">,</span>
+        <span class="kc">False</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">NO_HINTING</span><span class="p">,</span>
+        <span class="s1">'either'</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">,</span>
+        <span class="s1">'native'</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">NO_AUTOHINT</span><span class="p">,</span>
+        <span class="s1">'auto'</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">FORCE_AUTOHINT</span><span class="p">,</span>
+        <span class="s1">'none'</span><span class="p">:</span> <span class="n">LoadFlags</span><span class="o">.</span><span class="n">NO_HINTING</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'text.hinting'</span><span class="p">]]</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RendererAgg</span><span class="p">(</span><span class="n">RendererBase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    The renderer handles all the drawing primitives using a graphics</span>
+<span class="sd">    context instance that controls the colors/styles</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">dpi</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span> <span class="o">=</span> <span class="n">dpi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span> <span class="o">=</span> <span class="n">_RendererAgg</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="n">dpi</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_filter_renderers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_methods</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mathtext_parser</span> <span class="o">=</span> <span class="n">MathTextParser</span><span class="p">(</span><span class="s1">'path'</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bbox</span> <span class="o">=</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">from_bounds</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># We only want to preserve the init keywords of the Renderer.</span>
+        <span class="c1"># Anything else can be re-created.</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'width'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="s1">'height'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="s1">'dpi'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">'width'</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="s1">'height'</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="s1">'dpi'</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_methods</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw_gouraud_triangles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_gouraud_triangles</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw_markers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_markers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw_path_collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_path_collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw_quad_mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_quad_mesh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy_from_bbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">copy_from_bbox</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">rgbFace</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+        <span class="n">nmax</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'agg.path.chunksize'</span><span class="p">]</span>  <span class="c1"># here at least for testing</span>
+        <span class="n">npts</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">vertices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">npts</span> <span class="o">&gt;</span> <span class="n">nmax</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">should_simplify</span> <span class="ow">and</span>
+                <span class="n">rgbFace</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_hatch</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">nch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">npts</span> <span class="o">/</span> <span class="n">nmax</span><span class="p">)</span>
+            <span class="n">chsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">npts</span> <span class="o">/</span> <span class="n">nch</span><span class="p">))</span>
+            <span class="n">i0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">npts</span><span class="p">,</span> <span class="n">chsize</span><span class="p">)</span>
+            <span class="n">i1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">i0</span><span class="p">)</span>
+            <span class="n">i1</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i0</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">i1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">npts</span>
+            <span class="k">for</span> <span class="n">ii0</span><span class="p">,</span> <span class="n">ii1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span><span class="p">):</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ii0</span><span class="p">:</span><span class="n">ii1</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">codes</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">ii0</span><span class="p">:</span><span class="n">ii1</span><span class="p">]</span>
+                    <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span>  <span class="c1"># move to end of last chunk</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">simplify_threshold</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">simplify_threshold</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_path</span><span class="p">(</span><span class="n">gc</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">rgbFace</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">OverflowError</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="s2">"Exceeded cell block limit in Agg.</span><span class="se">\n\n</span><span class="s2">"</span>
+                        <span class="s2">"Please reduce the value of "</span>
+                        <span class="sa">f</span><span class="s2">"rcParams['agg.path.chunksize'] (currently </span><span class="si">{</span><span class="n">nmax</span><span class="si">}</span><span class="s2">) "</span>
+                        <span class="s2">"or increase the path simplification threshold"</span>
+                        <span class="s2">"(rcParams['path.simplify_threshold'] = "</span>
+                        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'path.simplify_threshold'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> by "</span>
+                        <span class="s2">"default and path.simplify_threshold = "</span>
+                        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="o">.</span><span class="n">simplify_threshold</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> on the input)."</span>
+                    <span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">OverflowError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_path</span><span class="p">(</span><span class="n">gc</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">rgbFace</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OverflowError</span><span class="p">:</span>
+                <span class="n">cant_chunk</span> <span class="o">=</span> <span class="s1">''</span>
+                <span class="k">if</span> <span class="n">rgbFace</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">cant_chunk</span> <span class="o">+=</span> <span class="s2">"- cannot split filled path</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="k">if</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_hatch</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">cant_chunk</span> <span class="o">+=</span> <span class="s2">"- cannot split hatched path</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">should_simplify</span><span class="p">:</span>
+                    <span class="n">cant_chunk</span> <span class="o">+=</span> <span class="s2">"- path.should_simplify is False</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cant_chunk</span><span class="p">):</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="s2">"Exceeded cell block limit in Agg, however for the "</span>
+                        <span class="s2">"following reasons:</span><span class="se">\n\n</span><span class="s2">"</span>
+                        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cant_chunk</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+                        <span class="s2">"we cannot automatically split up this path to draw."</span>
+                        <span class="s2">"</span><span class="se">\n\n</span><span class="s2">Please manually simplify your path."</span>
+                    <span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">inc_threshold</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="s2">"or increase the path simplification threshold"</span>
+                        <span class="s2">"(rcParams['path.simplify_threshold'] = "</span>
+                        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'path.simplify_threshold'</span><span class="p">]</span><span class="si">}</span><span class="s2"> "</span>
+                        <span class="s2">"by default and path.simplify_threshold "</span>
+                        <span class="sa">f</span><span class="s2">"= </span><span class="si">{</span><span class="n">path</span><span class="o">.</span><span class="n">simplify_threshold</span><span class="si">}</span><span class="s2"> "</span>
+                        <span class="s2">"on the input)."</span>
+                        <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">nmax</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="s2">"Exceeded cell block limit in Agg.  Please reduce "</span>
+                            <span class="s2">"the value of rcParams['agg.path.chunksize'] "</span>
+                            <span class="sa">f</span><span class="s2">"(currently </span><span class="si">{</span><span class="n">nmax</span><span class="si">}</span><span class="s2">) </span><span class="si">{</span><span class="n">inc_threshold</span><span class="si">}</span><span class="s2">"</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="s2">"Exceeded cell block limit in Agg.  Please set "</span>
+                            <span class="s2">"the value of rcParams['agg.path.chunksize'], "</span>
+                            <span class="sa">f</span><span class="s2">"(currently </span><span class="si">{</span><span class="n">nmax</span><span class="si">}</span><span class="s2">) to be greater than 100 "</span>
+                            <span class="o">+</span> <span class="n">inc_threshold</span>
+                        <span class="p">)</span>
+
+                <span class="k">raise</span> <span class="ne">OverflowError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_draw_text_glyphs_and_boxes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">glyphs</span><span class="p">,</span> <span class="n">boxes</span><span class="p">):</span>
+        <span class="c1"># y is downwards.</span>
+        <span class="n">cos</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+        <span class="n">sin</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+        <span class="n">load_flags</span> <span class="o">=</span> <span class="n">get_hinting_flag</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">font</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">glyph_index</span><span class="p">,</span> <span class="n">slant</span><span class="p">,</span> <span class="n">extend</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="ow">in</span> <span class="n">glyphs</span><span class="p">:</span>  <span class="c1"># dy is upwards.</span>
+            <span class="n">font</span><span class="o">.</span><span class="n">set_size</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
+            <span class="n">font</span><span class="o">.</span><span class="n">_set_transform</span><span class="p">(</span>
+                <span class="p">(</span><span class="mh">0x10000</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cos</span><span class="p">,</span> <span class="o">-</span><span class="n">sin</span><span class="p">],</span> <span class="p">[</span><span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">]])</span>
+                 <span class="o">@</span> <span class="p">[[</span><span class="n">extend</span><span class="p">,</span> <span class="n">extend</span> <span class="o">*</span> <span class="n">slant</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">round</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+                <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="mh">0x40</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">cos</span> <span class="o">-</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">sin</span><span class="p">)),</span>
+                 <span class="c1"># FreeType's y is upwards.</span>
+                 <span class="nb">round</span><span class="p">(</span><span class="mh">0x40</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">sin</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">cos</span><span class="p">))]</span>
+            <span class="p">)</span>
+            <span class="n">bitmap</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">_render_glyph</span><span class="p">(</span>
+                <span class="n">glyph_index</span><span class="p">,</span> <span class="n">load_flags</span><span class="p">,</span>
+                <span class="n">RenderMode</span><span class="o">.</span><span class="n">NORMAL</span> <span class="k">if</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_antialiased</span><span class="p">()</span> <span class="k">else</span> <span class="n">RenderMode</span><span class="o">.</span><span class="n">MONO</span><span class="p">)</span>
+            <span class="n">buffer</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="n">buffer</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_antialiased</span><span class="p">():</span>
+                <span class="n">buffer</span> <span class="o">*=</span> <span class="mh">0xff</span>
+            <span class="c1"># draw_text_image's y is downwards &amp; the bitmap bottom side.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_text_image</span><span class="p">(</span>
+                <span class="n">buffer</span><span class="p">,</span>
+                <span class="n">bitmap</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="n">bitmap</span><span class="o">.</span><span class="n">top</span> <span class="o">+</span> <span class="n">buffer</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="mi">0</span><span class="p">,</span> <span class="n">gc</span><span class="p">)</span>
+
+        <span class="n">rgba</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_rgb</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rgba</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_forced_alpha</span><span class="p">():</span>
+            <span class="n">rgba</span> <span class="o">=</span> <span class="n">rgba</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">(),)</span>
+        <span class="n">gc1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_gc</span><span class="p">()</span>
+        <span class="n">gc1</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">gc1</span><span class="o">.</span><span class="n">set_snap</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">get_snap</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">boxes</span><span class="p">:</span>  <span class="c1"># dy is upwards.</span>
+            <span class="k">if</span> <span class="n">gc1</span><span class="o">.</span><span class="n">get_snap</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">True</span><span class="p">]:</span>
+                <span class="c1"># Prevent thin bars from disappearing by growing symmetrically.</span>
+                <span class="k">if</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">dx</span> <span class="o">-=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">w</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="n">w</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">dy</span> <span class="o">-=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">h</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">_create_closed</span><span class="p">(</span>
+                <span class="p">[(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">),</span> <span class="p">(</span><span class="n">dx</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">dy</span><span class="p">),</span> <span class="p">(</span><span class="n">dx</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">dy</span> <span class="o">+</span> <span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">+</span> <span class="n">h</span><span class="p">)])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_path</span><span class="p">(</span>
+                <span class="n">gc1</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span>
+                <span class="n">mpl</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Affine2D</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">rotate_deg</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">y</span><span class="p">),</span>
+                <span class="n">rgba</span><span class="p">)</span>
+        <span class="n">gc1</span><span class="o">.</span><span class="n">restore</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_mathtext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Draw mathtext using :mod:`matplotlib.mathtext`."""</span>
+        <span class="n">parse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mathtext_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+            <span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">antialiased</span><span class="o">=</span><span class="n">gc</span><span class="o">.</span><span class="n">get_antialiased</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_draw_text_glyphs_and_boxes</span><span class="p">(</span>
+            <span class="n">gc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span>
+            <span class="p">((</span><span class="n">font</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">glyph_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">font</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">_char</span><span class="p">,</span> <span class="n">glyph_index</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="ow">in</span> <span class="n">parse</span><span class="o">.</span><span class="n">glyphs</span><span class="p">),</span>
+            <span class="n">parse</span><span class="o">.</span><span class="n">rects</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">ismath</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mtext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+        <span class="k">if</span> <span class="n">ismath</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_mathtext</span><span class="p">(</span><span class="n">gc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_font</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">_layout</span><span class="p">(</span>
+            <span class="n">s</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">get_hinting_flag</span><span class="p">(),</span>
+            <span class="n">features</span><span class="o">=</span><span class="n">mtext</span><span class="o">.</span><span class="n">get_fontfeatures</span><span class="p">()</span> <span class="k">if</span> <span class="n">mtext</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">language</span><span class="o">=</span><span class="n">mtext</span><span class="o">.</span><span class="n">get_language</span><span class="p">()</span> <span class="k">if</span> <span class="n">mtext</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">get_size_in_points</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_draw_text_glyphs_and_boxes</span><span class="p">(</span>
+            <span class="n">gc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span>
+            <span class="p">((</span><span class="n">item</span><span class="o">.</span><span class="n">ft_object</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">glyph_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">),</span>
+            <span class="p">[])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_text_width_height_descent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">ismath</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+
+        <span class="n">_api</span><span class="o">.</span><span class="n">check_in_list</span><span class="p">([</span><span class="s2">"TeX"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">ismath</span><span class="o">=</span><span class="n">ismath</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ismath</span> <span class="o">==</span> <span class="s2">"TeX"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_text_width_height_descent</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">ismath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ismath</span><span class="p">:</span>
+            <span class="n">parse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mathtext_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">parse</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">parse</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">parse</span><span class="o">.</span><span class="n">depth</span>
+
+        <span class="n">font</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_font</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">get_hinting_flag</span><span class="p">())</span>
+        <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">get_width_height</span><span class="p">()</span>  <span class="c1"># width and height of unrotated string</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">get_descent</span><span class="p">()</span>
+        <span class="n">w</span> <span class="o">/=</span> <span class="mf">64.0</span>  <span class="c1"># convert from subpixels</span>
+        <span class="n">h</span> <span class="o">/=</span> <span class="mf">64.0</span>
+        <span class="n">d</span> <span class="o">/=</span> <span class="mf">64.0</span>
+        <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">d</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_tex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mtext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+        <span class="c1"># todo, handle props, angle, origins</span>
+
+        <span class="n">size</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">get_size_in_points</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">"text.latex.engine"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"latex+dvipng"</span><span class="p">:</span>
+            <span class="n">Z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_texmanager</span><span class="p">()</span><span class="o">.</span><span class="n">get_grey</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
+            <span class="n">Z</span> <span class="o">=</span> <span class="p">(</span><span class="n">Z</span> <span class="o">*</span> <span class="mh">0xff</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+            <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text_width_height_descent</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">ismath</span><span class="o">=</span><span class="s2">"TeX"</span><span class="p">)</span>
+            <span class="n">xd</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+            <span class="n">yd</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">xd</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">yd</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_text_image</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">gc</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">dvifile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_texmanager</span><span class="p">()</span><span class="o">.</span><span class="n">make_dvi</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">Dvi</span><span class="p">(</span><span class="n">dvifile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span> <span class="k">as</span> <span class="n">dvi</span><span class="p">:</span>
+            <span class="n">page</span><span class="p">,</span> <span class="o">=</span> <span class="n">dvi</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_draw_text_glyphs_and_boxes</span><span class="p">(</span>
+            <span class="n">gc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span>
+            <span class="p">((</span><span class="n">get_font</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">font_path</span><span class="p">),</span> <span class="n">text</span><span class="o">.</span><span class="n">font_size</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+              <span class="n">text</span><span class="o">.</span><span class="n">font_effects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'slant'</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">text</span><span class="o">.</span><span class="n">font_effects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'extend'</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+              <span class="n">text</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+            <span class="p">((</span><span class="n">box</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">page</span><span class="o">.</span><span class="n">boxes</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_canvas_width_height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_font</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">font_prop</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get the `.FT2Font` for *font_prop*, clear its buffer, and set its size.</span>
+<span class="sd">        """</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="n">get_font</span><span class="p">(</span><span class="n">_fontManager</span><span class="o">.</span><span class="n">_find_fonts_by_props</span><span class="p">(</span><span class="n">font_prop</span><span class="p">))</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">font_prop</span><span class="o">.</span><span class="n">get_size_in_points</span><span class="p">()</span>
+        <span class="n">font</span><span class="o">.</span><span class="n">set_size</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">font</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_to_pixels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+        <span class="k">return</span> <span class="n">points</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span> <span class="o">/</span> <span class="mi">72</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">buffer_rgba</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">memoryview</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">tostring_argb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">option_image_nocomposite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+
+        <span class="c1"># It is generally faster to composite each image directly to</span>
+        <span class="c1"># the Figure, and there's no file size benefit to compositing</span>
+        <span class="c1"># with the Agg backend</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">option_scale_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">restore_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Restore the saved region. If bbox (instance of BboxBase, or</span>
+<span class="sd">        its extents) is given, only the region specified by the bbox</span>
+<span class="sd">        will be restored. *xy* (a pair of floats) optionally</span>
+<span class="sd">        specifies the new position (the LLC of the original region,</span>
+<span class="sd">        not the LLC of the bbox) where the region will be restored.</span>
+
+<span class="sd">        &gt;&gt;&gt; region = renderer.copy_from_bbox()</span>
+<span class="sd">        &gt;&gt;&gt; x1, y1, x2, y2 = region.get_extents()</span>
+<span class="sd">        &gt;&gt;&gt; renderer.restore_region(region, bbox=(x1+dx, y1, x2, y2),</span>
+<span class="sd">        ...                         xy=(x1-dx, y1))</span>
+
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">bbox</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">xy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">bbox</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">get_extents</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">BboxBase</span><span class="p">):</span>
+                <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">bbox</span><span class="o">.</span><span class="n">extents</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">bbox</span>
+
+            <span class="k">if</span> <span class="n">xy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span> <span class="o">=</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span> <span class="o">=</span> <span class="n">xy</span>
+
+            <span class="c1"># The incoming data is float, but the _renderer type-checking wants</span>
+            <span class="c1"># to see integers.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">restore_region</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">x1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y1</span><span class="p">),</span>
+                                          <span class="nb">int</span><span class="p">(</span><span class="n">x2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ox</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">oy</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">restore_region</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Start filtering. It simply creates a new canvas (the old one is saved).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_filter_renderers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span> <span class="o">=</span> <span class="n">_RendererAgg</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_methods</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">post_processing</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Save the current canvas as an image and apply post processing.</span>
+
+<span class="sd">        The *post_processing* function::</span>
+
+<span class="sd">           def post_processing(image, dpi):</span>
+<span class="sd">             # ny, nx, depth = image.shape</span>
+<span class="sd">             # image (numpy array) has RGBA channels and has a depth of 4.</span>
+<span class="sd">             ...</span>
+<span class="sd">             # create a new_image (numpy array of 4 channels, size can be</span>
+<span class="sd">             # different). The resulting image may have offsets from</span>
+<span class="sd">             # lower-left corner of the original image</span>
+<span class="sd">             return new_image, offset_x, offset_y</span>
+
+<span class="sd">        The saved renderer is restored and the returned image from</span>
+<span class="sd">        post_processing is plotted (using draw_image) on it.</span>
+<span class="sd">        """</span>
+        <span class="n">orig_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer_rgba</span><span class="p">())</span>
+        <span class="n">slice_y</span><span class="p">,</span> <span class="n">slice_x</span> <span class="o">=</span> <span class="n">cbook</span><span class="o">.</span><span class="n">_get_nonzero_slices</span><span class="p">(</span><span class="n">orig_img</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+        <span class="n">cropped_img</span> <span class="o">=</span> <span class="n">orig_img</span><span class="p">[</span><span class="n">slice_y</span><span class="p">,</span> <span class="n">slice_x</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_renderers</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_methods</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">cropped_img</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+            <span class="n">img</span><span class="p">,</span> <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span> <span class="o">=</span> <span class="n">post_processing</span><span class="p">(</span><span class="n">cropped_img</span> <span class="o">/</span> <span class="mi">255</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
+            <span class="n">gc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_gc</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">'f'</span><span class="p">:</span>
+                <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span> <span class="o">*</span> <span class="mf">255.</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="o">.</span><span class="n">draw_image</span><span class="p">(</span>
+                <span class="n">gc</span><span class="p">,</span> <span class="n">slice_x</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">ox</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="n">slice_y</span><span class="o">.</span><span class="n">stop</span> <span class="o">+</span> <span class="n">oy</span><span class="p">,</span>
+                <span class="n">img</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FigureCanvasAgg</span><span class="p">(</span><span class="n">FigureCanvasBase</span><span class="p">):</span>
+    <span class="c1"># docstring inherited</span>
+
+    <span class="n">_lastKey</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Overwritten per-instance on the first draw.</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy_from_bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox</span><span class="p">):</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_renderer</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">renderer</span><span class="o">.</span><span class="n">copy_from_bbox</span><span class="p">(</span><span class="n">bbox</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">restore_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_renderer</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">renderer</span><span class="o">.</span><span class="n">restore_region</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># docstring inherited</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_renderer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="c1"># Acquire a lock on the shared font cache.</span>
+        <span class="k">with</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">_wait_cursor_for_draw_cm</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span>
+              <span class="k">else</span> <span class="n">nullcontext</span><span class="p">()):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">renderer</span><span class="p">)</span>
+            <span class="c1"># A GUI class may be need to update a window using this draw, so</span>
+            <span class="c1"># don't forget to call the superclass.</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_renderer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_width_height</span><span class="p">(</span><span class="n">physical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">dpi</span>
+        <span class="n">reuse_renderer</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lastKey</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">reuse_renderer</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span> <span class="o">=</span> <span class="n">RendererAgg</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lastKey</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">tostring_argb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get the image as ARGB `bytes`.</span>
+
+<span class="sd">        `draw` must be called at least once before this function will work and</span>
+<span class="sd">        to update the renderer for any subsequent changes to the Figure.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">tostring_argb</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">buffer_rgba</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get the image as a `memoryview` to the renderer's buffer.</span>
+
+<span class="sd">        `draw` must be called at least once before this function will work and</span>
+<span class="sd">        to update the renderer for any subsequent changes to the Figure.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">buffer_rgba</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">metadata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"metadata not supported for raw/rgba"</span><span class="p">)</span>
+        <span class="n">FigureCanvasAgg</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_renderer</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">cbook</span><span class="o">.</span><span class="n">open_file_cm</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">renderer</span><span class="o">.</span><span class="n">buffer_rgba</span><span class="p">())</span>
+
+    <span class="n">print_rgba</span> <span class="o">=</span> <span class="n">print_raw</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_print_pil</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Draw the canvas, then save it using `.image.imsave` (to which</span>
+<span class="sd">        *pil_kwargs* and *metadata* are forwarded).</span>
+<span class="sd">        """</span>
+        <span class="n">FigureCanvasAgg</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">mpl</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span>
+            <span class="n">filename_or_obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_rgba</span><span class="p">(),</span> <span class="nb">format</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">"upper"</span><span class="p">,</span>
+            <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">dpi</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="n">pil_kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_png</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Write the figure to a PNG file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename_or_obj : str or path-like or file-like</span>
+<span class="sd">            The file to write to.</span>
+
+<span class="sd">        metadata : dict, optional</span>
+<span class="sd">            Metadata in the PNG file as key-value pairs of bytes or latin-1</span>
+<span class="sd">            encodable strings.</span>
+<span class="sd">            According to the PNG specification, keys must be shorter than 79</span>
+<span class="sd">            chars.</span>
+
+<span class="sd">            The `PNG specification`_ defines some common keywords that may be</span>
+<span class="sd">            used as appropriate:</span>
+
+<span class="sd">            - Title: Short (one line) title or caption for image.</span>
+<span class="sd">            - Author: Name of image's creator.</span>
+<span class="sd">            - Description: Description of image (possibly long).</span>
+<span class="sd">            - Copyright: Copyright notice.</span>
+<span class="sd">            - Creation Time: Time of original image creation</span>
+<span class="sd">              (usually RFC 1123 format).</span>
+<span class="sd">            - Software: Software used to create the image.</span>
+<span class="sd">            - Disclaimer: Legal disclaimer.</span>
+<span class="sd">            - Warning: Warning of nature of content.</span>
+<span class="sd">            - Source: Device used to create the image.</span>
+<span class="sd">            - Comment: Miscellaneous comment;</span>
+<span class="sd">              conversion from other image format.</span>
+
+<span class="sd">            Other keywords may be invented for other purposes.</span>
+
+<span class="sd">            If 'Software' is not given, an autogenerated value for Matplotlib</span>
+<span class="sd">            will be used.  This can be removed by setting it to *None*.</span>
+
+<span class="sd">            For more details see the `PNG specification`_.</span>
+
+<span class="sd">            .. _PNG specification: \</span>
+<span class="sd">                https://www.w3.org/TR/2003/REC-PNG-20031110/#11keywords</span>
+
+<span class="sd">        pil_kwargs : dict, optional</span>
+<span class="sd">            Keyword arguments passed to `PIL.Image.Image.save`.</span>
+
+<span class="sd">            If the 'pnginfo' key is present, it completely overrides</span>
+<span class="sd">            *metadata*, including the default 'Software' key.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print_pil</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="s2">"png"</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_to_buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">FigureCanvasAgg</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_renderer</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">renderer</span><span class="o">.</span><span class="n">buffer_rgba</span><span class="p">()),</span>
+                <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">renderer</span><span class="o">.</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">renderer</span><span class="o">.</span><span class="n">height</span><span class="p">)))</span>
+
+    <span class="c1"># Note that these methods should typically be called via savefig() and</span>
+    <span class="c1"># print_figure(), and the latter ensures that `self.figure.dpi` already</span>
+    <span class="c1"># matches the dpi kwarg (if any).</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_gif</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print_pil</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="s2">"gif"</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_jpg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># savefig() has already applied savefig.facecolor; we now set it to</span>
+        <span class="c1"># white to make imsave() blend semi-transparent figures against an</span>
+        <span class="c1"># assumed white background.</span>
+        <span class="k">with</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s2">"savefig.facecolor"</span><span class="p">:</span> <span class="s2">"white"</span><span class="p">}):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_print_pil</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="s2">"jpeg"</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+
+    <span class="n">print_jpeg</span> <span class="o">=</span> <span class="n">print_jpg</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_tif</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print_pil</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="s2">"tiff"</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+
+    <span class="n">print_tiff</span> <span class="o">=</span> <span class="n">print_tif</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_webp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print_pil</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="s2">"webp"</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_avif</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">features</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">"avif"</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"The installed pillow version does not support avif. Full "</span>
+                <span class="s2">"avif support has been added in pillow 11.3."</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print_pil</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="s2">"avif"</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+
+    <span class="p">(</span><span class="n">print_gif</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span>
+     <span class="n">print_jpg</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span>
+     <span class="n">print_tif</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span>
+     <span class="n">print_webp</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span>
+     <span class="n">print_avif</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Write the figure to a {} file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename_or_obj : str or path-like or file-like</span>
+<span class="sd">            The file to write to.</span>
+<span class="sd">        metadata : None</span>
+<span class="sd">            Unused for pillow-based writers. All supported options</span>
+<span class="sd">            can be passed via *pil_kwargs*.</span>
+<span class="sd">        pil_kwargs : dict, optional</span>
+<span class="sd">            Additional keyword arguments that are passed to</span>
+<span class="sd">            `PIL.Image.Image.save` when saving the figure.</span>
+<span class="sd">        """</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="p">[</span><span class="s2">"GIF"</span><span class="p">,</span> <span class="s2">"JPEG"</span><span class="p">,</span> <span class="s2">"TIFF"</span><span class="p">,</span> <span class="s2">"WebP"</span><span class="p">,</span> <span class="s2">"AVIF"</span><span class="p">])</span>
+
+
+<span class="nd">@_Backend</span><span class="o">.</span><span class="n">export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_BackendAgg</span><span class="p">(</span><span class="n">_Backend</span><span class="p">):</span>
+    <span class="n">backend_version</span> <span class="o">=</span> <span class="s1">'v2.2'</span>
+    <span class="n">FigureCanvas</span> <span class="o">=</span> <span class="n">FigureCanvasAgg</span>
+    <span class="n">FigureManager</span> <span class="o">=</span> <span class="n">FigureManagerBase</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthias Cuntz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023-2026, Matthias Cuntz.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
