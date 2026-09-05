@@ -3,19 +3,11 @@ r'''
 Make stand-alone version of dfvue with cx_Freeze.
 
 On macOS, use minimal virtual environment
-   if [[ "$(uname -m)" == "arm64" ]] ; then
-       export OPENBLAS="$(brew --prefix openblas)"
-   fi
-   pyenv virtualenv 3.12.8 dfvue-install
+   pyenv virtualenv 3.14.3 dfvue-install
    pyenv local dfvue-install
-   # or:
-   # pyenv virtualenv 3.12.8 dfvue-install-ctkinter
-   # pyenv local dfvue-install-ctkinter
-   pyenv rehash
+   # pip install --upgrade pip
    python -m pip install -r requirements.txt
-   # if dfvue-install-ctkinter:
-   #     python -m pip install customtkinter
-   python -m pip install -ve ./
+   python -m pip install -ve .
    python -m pip install cx_freeze
 Update if already installed:
    python -m pip list --outdated --exclude-editable --exclude gdal | sed 1,2d | cut -d ' ' -f 1 | xargs python -m pip install --upgrade
@@ -44,8 +36,6 @@ import os
 import codecs
 import re
 import sys
-import glob
-import shutil
 
 from cx_Freeze import setup, Executable
 
@@ -78,7 +68,17 @@ version = _find_version('src/' + package, '_version.py')
 script        = 'src/dfvue/__main__.py'
 packages      = []  # others detected automatically
 excludes      = ['pyflakes', 'mccabe', 'pycodestyle', 'flake8',  # flake8
-                 'gtk', 'PyQt4', 'PyQt5', 'wx']                  # matplotlib
+                 'gtk', 'PyQt4', 'PyQt5', 'wx',                  # matplotlib
+                 'urllib3', 'typing-extensions',                 # docu
+                 'sphinxcontrib-serializinghtml',
+                 'sphinxcontrib-qthelp', 'sphinxcontrib-jsmath',
+                 'sphinxcontrib-htmlhelp', 'sphinxcontrib-devhelp',
+                 'sphinxcontrib-applehelp', 'soupsieve', 'snowballstemmer',
+                 'roman-numerals', 'Pygments', 'MarkupSafe', 'imagesize', 'idna',
+                 'docutils', 'charset_normalizer', 'certifi', 'babel', 'alabaster',
+                 'requests', 'Jinja2', 'beautifulsoup4', 'accessible-pygments',
+                 'sphinx', 'pydata-sphinx-theme', 'numpydoc', 'sphinx_book_theme',
+                 ]
 includes      = []
 # no need to include images and themes because dfvue gets installed as module
 # include_files = [('dfvue/images', 'images'), ('dfvue/themes', 'themes')]

@@ -162,7 +162,8 @@ class dfvScatter(QWidget):
         medline = 'XXXX'
         longline = 'XXXXXXX'
         xlongline = 'XXXX-XX-XX,XXXX-XX-XX'
-        self.boxwidth = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        self.minboxwidth = 'XXXXXXXXXXXXXXX'
+        self.maxboxwidth = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
         layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
@@ -223,7 +224,8 @@ class dfvScatter(QWidget):
             command=self.selected_x,
             tooltip=('Choose variable of x-axis.\n'
                      'Take index if "None" (fast).'))
-        self.x.setMaximumWidth(size4font(self.x, self.boxwidth))
+        self.x.setMinimumWidth(size4font(self.x, self.minboxwidth))
+        self.x.setMaximumWidth(size4font(self.x, self.maxboxwidth))
 
         self.inv_x = add_checkbox(self.rowxy, label='invert x',
                                   value=False, command=self.checked_x,
@@ -244,7 +246,8 @@ class dfvScatter(QWidget):
             self.rowxy, label='', values=columns,
             command=self.selected_y,
             tooltip='Choose variable of y-axis.')
-        self.y.setMaximumWidth(size4font(self.y, self.boxwidth))
+        self.y.setMinimumWidth(size4font(self.y, self.minboxwidth))
+        self.y.setMaximumWidth(size4font(self.y, self.maxboxwidth))
 
         self.inv_y = add_checkbox(self.rowxy, label='invert y',
                                   value=False, command=self.checked_y,
@@ -387,7 +390,8 @@ class dfvScatter(QWidget):
             self.rowyy2, label='', values=columns,
             command=self.selected_y2,
             tooltip='Choose variable of right y-axis.')
-        self.y2.setMaximumWidth(size4font(self.y2, self.boxwidth))
+        self.y2.setMinimumWidth(size4font(self.y2, self.minboxwidth))
+        self.y2.setMaximumWidth(size4font(self.y2, self.maxboxwidth))
 
         self.inv_y2 = add_checkbox(self.rowyy2, label='invert y2',
                                   value=False, command=self.checked_y2,
@@ -618,9 +622,12 @@ class dfvScatter(QWidget):
         self.readcsvwin = dfvReadcsv(self)
 
         self.resetvars(nosort=True)
-        self.x.setMaximumWidth(size4font(self.x, self.boxwidth))
-        self.y.setMaximumWidth(size4font(self.y, self.boxwidth))
-        self.y2.setMaximumWidth(size4font(self.y2, self.boxwidth))
+        self.x.setMinimumWidth(size4font(self.x, self.minboxwidth))
+        self.x.setMaximumWidth(size4font(self.x, self.maxboxwidth))
+        self.y.setMinimumWidth(size4font(self.y, self.minboxwidth))
+        self.y.setMaximumWidth(size4font(self.y, self.maxboxwidth))
+        self.y2.setMinimumWidth(size4font(self.y2, self.minboxwidth))
+        self.y2.setMaximumWidth(size4font(self.y2, self.maxboxwidth))
 
         
 
