@@ -243,7 +243,7 @@ def size4font(widget, text=None):
     if text:
         iwidth = fm.size(0, text)
     else:
-        iwidth = fm.size(0, ' ')
+        iwidth = fm.size(0, '')
     return iwidth.width() + 2 * 5  # +padding
 
 

@@ -162,6 +162,11 @@ class dfvScatter(QWidget):
         medline = 'XXXX'
         longline = 'XXXXXXX'
         xlongline = 'XXXX-XX-XX,XXXX-XX-XX'
+        if self.top.os == 'Linux':
+            shortline += 'X'
+            medline += 'X'
+            longline += 'XX'
+            xlongline += 'XXXXX'
         self.minboxwidth = 'XXXXXXXXXXXXXXX'
         self.maxboxwidth = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 

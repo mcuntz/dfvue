@@ -141,21 +141,26 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
     # design using system colours
     # palette = main_frame.palette()
     palette = app.palette()
-    # iblue = palette.color(QPalette.ColorRole.Highlight).name()
-    iblue = palette.color(QPalette.ColorRole.Accent).name()
-    # iblue = palette.color(QPalette.ColorRole.Link).name()
     if top.os == 'Darwin':
         iblue = '#3974E4'
+    else:
+        # iblue = palette.color(QPalette.ColorRole.Highlight).name()
+        # iblue = palette.color(QPalette.ColorRole.Link).name()
+        iblue = palette.color(QPalette.ColorRole.Accent).name()
+        iblue = '#3974E4'
     # iblue_hoover = palette.color(QPalette.ColorRole.Accent).name()
-    iblue_hoover = palette.color(QPalette.ColorRole.Highlight).name()
     # iblue_hoover = palette.color(QPalette.ColorRole.Link).name()
+    iblue_hoover = palette.color(QPalette.ColorRole.Highlight).name()
     # if iblue < iblue_hoover:
     #     iblue, iblue_hoover = iblue_hoover, iblue
     # igray = palette.color(QPalette.ColorRole.AlternateBase).name()
     igray = palette.color(QPalette.ColorRole.Dark).name()
     iwin = palette.color(QPalette.ColorRole.Window).name()
     iwintext = palette.color(QPalette.ColorRole.WindowText).name()
-    isize = 14
+    if top.os == 'Linux':
+        isize = 12
+    else:
+        isize = 14
     iradius = 5
     ipadx = 5
     app.setStyleSheet(
@@ -191,8 +196,6 @@ def dfvue(df=None, csvfile='', sep='', index_col=None, skiprows=None,
             background-color: {iblue_hoover};
         }}
         QTabWidget, QTabBar::tab{{
-            background-color: {iblue};
-            color: white;
             font-size: {isize}pt;
             border-radius: {iradius}px;
             padding: {ipadx}px;
